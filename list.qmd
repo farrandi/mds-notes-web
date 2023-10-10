@@ -1,0 +1,10 @@
+---
+title: "List of Cheat Sheet"
+---
+
+| Course Code. | Block # | Title                                                                 |
+|--------------|---------|-----------------------------------------------------------------------|
+| 511          | 1       | [Intro to Python](block_1/511_python/511_python.html)                 |
+| 521          | 1       | [Platforms](block_1/521_platforms/521_platforms.html)                 |
+| 523          | 1       | [R Programming](block_1/523_R/523_R.html)                             |
+| 551          | 1       | [Statistics and Probability](block_1/551_stats-and-prob/551_stats.md)|

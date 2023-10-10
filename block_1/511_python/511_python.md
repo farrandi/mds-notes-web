@@ -1,4 +1,4 @@
-# Python Cheat Sheet
+# Python Basics
 
 ## Data Types
 
@@ -54,7 +54,7 @@ int, float, str, bool, list, tuple, dict, set, None
 | **Use Case**     | When order matters   | When data should not change | Mapping keys to values         | For unique values and set operations |
 | **Example**      | `[1, 2, 'three']`    | `(1, 2, 'three')`           | `{'name': 'Alice', 'age': 30}` | `{'apple', 'banana', 'cherry'}`      |
 
-### Inline for loop
+## Inline for loop
 
 ```python
     # syntax: [expression for item in list]
@@ -67,7 +67,7 @@ int, float, str, bool, list, tuple, dict, set, None
     x = [word if len(word) > 2 else "short" for word in words] # ["the", "short", "short", "words"]
 ```
 
-### Inline if-else
+## Inline if-else
 
 ```python
     # syntax: value_if_true if condition else value_if_false
@@ -76,7 +76,7 @@ int, float, str, bool, list, tuple, dict, set, None
     x = "long list" if len(words) > 10 else "short list"
 ```
 
-### Try-Except
+## Try-Except
 
 ```python
     try:
@@ -355,7 +355,7 @@ Note: For the `reshape` function, you can use `-1` to infer dimension (e.g. `arr
 
 Can return row of max value of col1 by: `df.iloc[[df['col1'].idxmax()]]` or `df.iloc[df.loc[:, 'col1'].idxmax()]`
 
-# Lecture 7: Data Wrangling
+## Data Wrangling
 
 ### Data Summary
 
