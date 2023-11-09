@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MDS cheatsheets – r</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MDS cheatsheets</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../list.html" rel="" target="">
+ <span class="menu-text">List of Cheat Sheet</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#r-programming-cheatsheet" id="toc-r-programming-cheatsheet" class="nav-link active" data-scroll-target="#r-programming-cheatsheet">R Programming Cheatsheet</a>
+  <ul class="collapse">
+  <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages">R Packages</a>
+  <ul class="collapse">
+  <li><a href="#readr-package" id="toc-readr-package" class="nav-link" data-scroll-target="#readr-package">Readr Package</a></li>
+  <li><a href="#readxl-package" id="toc-readxl-package" class="nav-link" data-scroll-target="#readxl-package">readxl Package</a></li>
+  <li><a href="#janitor-package" id="toc-janitor-package" class="nav-link" data-scroll-target="#janitor-package">janitor Package</a></li>
+  <li><a href="#dplyr-package" id="toc-dplyr-package" class="nav-link" data-scroll-target="#dplyr-package">dplyr Package</a></li>
+  <li><a href="#stringr-package" id="toc-stringr-package" class="nav-link" data-scroll-target="#stringr-package">stringr Package</a></li>
+  <li><a href="#forcats-package" id="toc-forcats-package" class="nav-link" data-scroll-target="#forcats-package">forcats Package</a></li>
+  <li><a href="#tidyr-package" id="toc-tidyr-package" class="nav-link" data-scroll-target="#tidyr-package">tidyr Package</a></li>
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">Tidy data</a></li>
+  </ul></li>
+  <li><a href="#assignment-environment" id="toc-assignment-environment" class="nav-link" data-scroll-target="#assignment-environment">Assignment environment</a>
+  <ul class="collapse">
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
+  </ul></li>
+  <li><a href="#tibbles-vs-data-frames" id="toc-tibbles-vs-data-frames" class="nav-link" data-scroll-target="#tibbles-vs-data-frames">Tibbles vs Data Frames</a></li>
+  <li><a href="#dates-and-times" id="toc-dates-and-times" class="nav-link" data-scroll-target="#dates-and-times">Dates and Times</a></li>
+  <li><a href="#joining-data" id="toc-joining-data" class="nav-link" data-scroll-target="#joining-data">Joining Data</a></li>
+  <li><a href="#change-or-remove-specific-values" id="toc-change-or-remove-specific-values" class="nav-link" data-scroll-target="#change-or-remove-specific-values">Change or Remove Specific Values</a>
+  <ul class="collapse">
+  <li><a href="#selectively-change-values" id="toc-selectively-change-values" class="nav-link" data-scroll-target="#selectively-change-values">Selectively Change Values</a></li>
+  <li><a href="#removing-rows-with-nas" id="toc-removing-rows-with-nas" class="nav-link" data-scroll-target="#removing-rows-with-nas">Removing Rows with NAs</a></li>
+  </ul></li>
+  <li><a href="#iterate-over-groups-of-rows" id="toc-iterate-over-groups-of-rows" class="nav-link" data-scroll-target="#iterate-over-groups-of-rows">Iterate over groups of rows</a></li>
+  <li><a href="#purrr-package" id="toc-purrr-package" class="nav-link" data-scroll-target="#purrr-package">purrr Package</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
+  <ul class="collapse">
+  <li><a href="#testing-with-testthat" id="toc-testing-with-testthat" class="nav-link" data-scroll-target="#testing-with-testthat">Testing with <code>testthat</code></a></li>
+  </ul></li>
+  <li><a href="#importing-packages-or-scripts" id="toc-importing-packages-or-scripts" class="nav-link" data-scroll-target="#importing-packages-or-scripts">Importing Packages or Scripts</a>
+  <ul class="collapse">
+  <li><a href="#anonymous-functions" id="toc-anonymous-functions" class="nav-link" data-scroll-target="#anonymous-functions">Anonymous Functions</a></li>
+  </ul></li>
+  <li><a href="#nested-data-frames" id="toc-nested-data-frames" class="nav-link" data-scroll-target="#nested-data-frames">Nested Data Frames</a></li>
+  <li><a href="#tidy-evaluation" id="toc-tidy-evaluation" class="nav-link" data-scroll-target="#tidy-evaluation">Tidy Evaluation</a>
+  <ul class="collapse">
+  <li><a href="#passing-dots" id="toc-passing-dots" class="nav-link" data-scroll-target="#passing-dots">Passing dots</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="r-programming-cheatsheet" class="level1">
+<h1>R Programming Cheatsheet</h1>
+<section id="r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="r-packages">R Packages</h2>
+<section id="readr-package" class="level3">
+<h3 class="anchored" data-anchor-id="readr-package">Readr Package</h3>
+<ul>
+<li><code>read_csv(url)</code>: reads a csv file
+<ul>
+<li><code>read_csv(url, col_types = cols())</code>: reads a csv file with no column types</li>
+<li><code>read_csv(url, col_types = cols(col_name = col_type))</code>: reads a csv file with column types</li>
+<li><code>read_csv(url, skip = n, n_max = m)</code>: reads a csv file skipping n rows and reading m rows</li>
+</ul></li>
+<li><code>read_csv2(url)</code>: reads a csv file with a comma as decimal separator</li>
+<li><code>read_tsv(url)</code>: reads a tsv file</li>
+<li><code>read_delim(url, delim = "")</code>: reads a file with a delimiter</li>
+</ul>
+</section>
+<section id="readxl-package" class="level3">
+<h3 class="anchored" data-anchor-id="readxl-package">readxl Package</h3>
+<ul>
+<li><code>read_excel(file_path, sheet="name")</code>: reads an excel file
+<ul>
+<li>to read url need to do <code>download.file(url, destfile = "file.xlsx", mode = "wb")</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="janitor-package" class="level3">
+<h3 class="anchored" data-anchor-id="janitor-package">janitor Package</h3>
+<ul>
+<li><code>clean_names(df)</code>: cleans column names to match them with R conventions (e.g., col_name1)</li>
+</ul>
+</section>
+<section id="dplyr-package" class="level3">
+<h3 class="anchored" data-anchor-id="dplyr-package">dplyr Package</h3>
+<ul>
+<li><code>select(df, col_name1, col_name2)</code>: selects cols</li>
+<li><code>filter(df, col_name1 == "value", col_name2 &gt; 5)</code>: filters rows
+<ul>
+<li><code>filter(df, col_name1 %in% c("value1", "value2"))</code>: filters if col_name1 is in a vector of values</li>
+</ul></li>
+<li><code>arrange(df, col_name1)</code>: sorts rows, default is ascending
+<ul>
+<li><code>arrange(df, desc(col_name1))</code>: sorts rows descending</li>
+</ul></li>
+<li><code>mutate(df, new_col_name = col_name1 + col_name2)</code>: creates new cols</li>
+<li><code>slice(df, 1:10)</code>: selects rows
+<ul>
+<li><code>slice(df, 1)</code>: selects first row</li>
+</ul></li>
+<li><code>pull(df, col_name1)</code>: extracts a column as a vector</li>
+</ul>
+</section>
+<section id="stringr-package" class="level3">
+<h3 class="anchored" data-anchor-id="stringr-package">stringr Package</h3>
+<ul>
+<li><code>str_detect(df$col_name, "value")</code>: detects if a string contains a value</li>
+<li><code>str_subset(df$col_name, "value")</code>: subsets a string if it contains a value</li>
+<li><code>str_split(df$col_name, "value")</code>: splits a string by a value
+<ul>
+<li><code>str_split_fixed(df$col_name, "value", n)</code>: splits a string by a value and returns n columns (gets character matrix)</li>
+</ul></li>
+<li><code>separate(df, col_name, into = c("new_col_name1", "new_col_name2"), sep = "value")</code>: separates a column into two columns</li>
+<li><code>str_length(df$col_name)</code>: gets length of string</li>
+<li><code>str_sub(df$col_name, start = n, end = m)</code>: gets substring from n to m</li>
+<li><code>str_c(df$col_name1, df$col_name2, sep = "value")</code>: concatenates two strings
+<ul>
+<li><code>str_c(df$col_name1, sep = "value", collapse = "value")</code>: concatenates vector of string and collapses them into one string</li>
+</ul></li>
+<li><code>str_replace(df$col_name, "value", "new_value")</code>: replaces a value in a string</li>
+</ul>
+</section>
+<section id="forcats-package" class="level3">
+<h3 class="anchored" data-anchor-id="forcats-package">forcats Package</h3>
+<ul>
+<li><code>fct_drop(df$col_name)</code>: drops unused levels</li>
+<li><code>fct_infreq(df$col_name)</code>: orders levels by frequency</li>
+<li><code>fct_reorder(df$col_name, df$col_name2)</code>: orders levels by another column</li>
+<li><code>fct_relevel(df$col_name, "value")</code>: moves a level to the front</li>
+<li><code>fct_rev(df$col_name)</code>: reverses order of levels</li>
+</ul>
+</section>
+<section id="tidyr-package" class="level3">
+<h3 class="anchored" data-anchor-id="tidyr-package">tidyr Package</h3>
+<ul>
+<li><code>pivot_longer(df, cols = c(col_name1, col_name2), names_to = "new_col_name", values_to = "new_col_name")</code>: pivots cols to rows</li>
+<li><code>pivot_wider(df, names_from = "col_name1", values_from = "col_name2")</code>: pivots rows to cols</li>
+</ul>
+</section>
+<section id="tidy-data" class="level3">
+<h3 class="anchored" data-anchor-id="tidy-data">Tidy data</h3>
+<p>Criteria:</p>
+<ol type="1">
+<li>Each row is a single observation</li>
+<li>Each variable is a single column</li>
+<li>Each value is a single cell</li>
+</ol>
+</section>
+</section>
+<section id="assignment-environment" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-environment">Assignment environment</h2>
+<p>we use <code>&lt;-</code> to assign values to variables.</p>
+<p>This is because when we do <code>median(x &lt;- c(1, 2, 3))</code> <code>x</code> is assigned to <code>c(1, 2, 3)</code> globally. <img src="img/r-datatypes.png" width="300"></p>
+<section id="vectors" class="level3">
+<h3 class="anchored" data-anchor-id="vectors">Vectors</h3>
+<ul>
+<li>objects that contain 1 or more elements of the same type</li>
+<li>elements are ordered</li>
+<li>Heirarchy for coercion: character &gt; double &gt; integer &gt; logical</li>
+<li>to change type of vector use <code>as.character()</code>, <code>as.double()</code>, <code>as.integer()</code>, <code>as.logical()</code></li>
+<li>to check if vector is of a certain type use <code>is.character()</code>, <code>is.double()</code>, <code>is.integer()</code>, <code>is.logical()</code></li>
+<li>to check length of vector use <code>length()</code></li>
+<li>to check type of vector use <code>typeof()</code></li>
+</ul>
+<p>Can get vector from df using: <code>df$col_name</code></p>
+<section id="subsetting" class="level4">
+<h4 class="anchored" data-anchor-id="subsetting">Subsetting</h4>
+<p><img src="img/indexing.png" width="600"></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>name[<span class="dv">1</span>] <span class="co"># "a"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>name[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># "b" "c"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>name[<span class="sc">-</span><span class="dv">1</span>] <span class="co"># "b" "c"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>name[<span class="fu">length</span>(name)] <span class="co"># "c"]</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Also...</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="tibbles-vs-data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="tibbles-vs-data-frames">Tibbles vs Data Frames</h2>
+<p>Tibles inherit from data frames but are more strict. They are more consistent and have better printing.</p>
+<p>Important properties:</p>
+<ol type="1">
+<li>Tibbles only output first 10 rows and all columns that fit on screen</li>
+<li>when you subset a tibble you always get a tibble, in data frames you get a vector</li>
+</ol>
+</section>
+<section id="dates-and-times" class="level2">
+<h2 class="anchored" data-anchor-id="dates-and-times">Dates and Times</h2>
+<p>uses lubridate package</p>
+<ul>
+<li><code>today()</code>: gets today’s date, class is Date</li>
+<li><code>now()</code>: gets today’s date and time, class is POSIXct</li>
+<li><code>ymd(), ydm(), mdy(), myd(), dmy(), dym()</code>: converts character to date</li>
+<li><code>ymd_hms()</code>: converts character to date and time</li>
+<li>Can mutate date: <code>dates |&gt; mutate = make_date(year, month, day)</code></li>
+<li><code>wdays()</code>: gets day of week
+<ul>
+<li><code>wdays(date, label = TRUE)</code>: gets abbreviated day of week (e.g., Mon)</li>
+<li><code>wday(date, label = TRUE, abbr = FALSE)</code>: gets day of week as full name (e.g., Monday)</li>
+</ul></li>
+<li><code>mdays()</code>: gets day of month</li>
+<li><code>ydays()</code>: gets day of year</li>
+</ul>
+</section>
+<section id="joining-data" class="level2">
+<h2 class="anchored" data-anchor-id="joining-data">Joining Data</h2>
+<ul>
+<li><p><code>bind_rows(df1, df2)</code>: binds rows of two dfs</p></li>
+<li><p><code>bind_cols(df1, df2)</code>: binds cols of two dfs</p></li>
+<li><p><code>inner_join(df1, df2, by = "col_name")</code>: joins two dfs by col_name, only keeps rows that match</p></li>
+<li><p><code>left_join(df1, df2, by = "col_name")</code>: joins two dfs by col_name, keeps all rows from df1</p></li>
+<li><p><code>semi_join(df1, df2, by = "col_name")</code>: joins two dfs by col_name, keeps only column names from df1, only keeps rows that match</p></li>
+<li><p><code>anti_join(df1, df2, by = "col_name")</code>: joins two dfs by col_name, keeps only column names from df1, keeps only rows that don’t match</p></li>
+<li><p><code>full_join(df1, df2, by = "col_name")</code>: joins two dfs by col_name, keeps all rows from both dfs</p></li>
+</ul>
+</section>
+<section id="change-or-remove-specific-values" class="level2">
+<h2 class="anchored" data-anchor-id="change-or-remove-specific-values">Change or Remove Specific Values</h2>
+<section id="selectively-change-values" class="level3">
+<h3 class="anchored" data-anchor-id="selectively-change-values">Selectively Change Values</h3>
+<ul>
+<li><code>case_when()</code>: selectively modify column values based on conditions</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">case_when</span>(country <span class="sc">==</span> <span class="st">"Cambodia"</span> <span class="sc">~</span> <span class="st">"Kingdom of Cambodia"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># only work if country is character (not factor)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                            <span class="cn">TRUE</span> <span class="sc">~</span> country))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># For multiple values</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">continent =</span> <span class="fu">case_when</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span> <span class="sc">~</span> <span class="st">"Asie"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                                 continent <span class="sc">==</span> <span class="st">"Europe"</span> <span class="sc">~</span> <span class="st">"L'Europe"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                                 continent <span class="sc">==</span> <span class="st">"Africa"</span> <span class="sc">~</span> <span class="st">"Afrique"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="cn">TRUE</span> <span class="sc">~</span> continent)) <span class="co">#This is to keep the original value (not NA)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="removing-rows-with-nas" class="level3">
+<h3 class="anchored" data-anchor-id="removing-rows-with-nas">Removing Rows with NAs</h3>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 54%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>drop_na()</code></td>
+<td>Remove rows based on NA in cols x to y</td>
+<td><code>df %&gt;% drop_na(x:y)</code></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Remove rows if any column has NA</td>
+<td><code>df %&gt;% drop_na()</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="iterate-over-groups-of-rows" class="level2">
+<h2 class="anchored" data-anchor-id="iterate-over-groups-of-rows">Iterate over groups of rows</h2>
+<ul>
+<li><code>summarise()</code> or <code>summarize()</code>: returns a single value for each group</li>
+<li><code>group_by()</code>: groups rows by a column</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the average life expectancy for the entire dataset</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_life_exp =</span> <span class="fu">mean</span>(lifeExp))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the average life expectancy for each continent and year</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(continent, year) <span class="sc">|&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_life_exp =</span> <span class="fu">mean</span>(lifeExp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># na.rm = TRUE removes NAs from calculation</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># does not collapse the data frame, compute with group</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">life_exp_gain =</span> lifeExp <span class="sc">-</span> <span class="fu">first</span>(lifeExp)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># first() returns the first value of a vector</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="purrr-package" class="level2">
+<h2 class="anchored" data-anchor-id="purrr-package">purrr Package</h2>
+<p><img src="img/5_purrr_map.png" width="400"></p>
+<ul>
+<li><code>map(df, mean, na.rm = TRUE)</code>: retuirns a list
+<ul>
+<li><code>na.rm = TRUE</code> removes NAs from calculation</li>
+</ul></li>
+<li><code>map_dfc(df, median)</code>: returns a tibble</li>
+<li><code>map_dbl(df, max)</code>: returns a double vector</li>
+</ul>
+<p>Can use anonymous functions with <code>map()</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Long form</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>map_<span class="sc">*</span>(data, <span class="cf">function</span>(arg) <span class="fu">function_being_called</span>(arg, other_arg))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">map_df</span>(data_entry, <span class="cf">function</span>(vect) <span class="fu">str_replace</span>(vect, <span class="at">pattern =</span> <span class="st">"Cdn"</span>, <span class="at">replacement =</span> <span class="st">"Canadian"</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># short form</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>map_<span class="sc">*</span>(data, <span class="sc">~</span> <span class="fu">function_being_called</span>(., other_arg))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">map_df</span>(data_entry, <span class="sc">~</span><span class="fu">str_replace</span>(., <span class="at">pattern =</span> <span class="st">"Cdn"</span>, <span class="at">replacement =</span> <span class="st">"Canadian"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<ul>
+<li>Has roxygen comments, same as python docstrings</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Calculates the variance of a vector of numbers.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Calculates the sample variance of data generated from a normal/Gaussian distribution,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' omitting NA's in the data.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param data numeric vector of numbers whose length is &gt; 1.</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return numeric vector of length one, the variance.</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' variance(c(1, 2, 3))</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>variance <span class="ot">&lt;-</span> <span class="cf">function</span>(observations) {</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(observations)) {</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Throws an error</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"All inputs must be numeric."</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((observations <span class="sc">-</span> <span class="fu">mean</span>(observations)) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">length</span>(observations) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Name Masking: if a variable is defined in the function, it will be used instead of the global variable
+<ul>
+<li>if not in function, looks one level up, until it reaches the global environment</li>
+</ul></li>
+<li>R looks for values when the function is run, not when it is defined</li>
+<li>Each run is independent of the other</li>
+<li>Lazy Evaluation: R only evaluates the arguments that are needed
+<ul>
+<li><code>force()</code> forces R to evaluate an argument</li>
+</ul></li>
+</ul>
+<section id="testing-with-testthat" class="level3">
+<h3 class="anchored" data-anchor-id="testing-with-testthat">Testing with <code>testthat</code></h3>
+<ul>
+<li><code>test_that("Message to print if test fails", expect_*(...))</code></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">'variance expects a numeric vector'</span>, {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect_error</span>(<span class="fu">variance</span>(<span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect_error</span>(<span class="fu">variance</span>(<span class="fu">data.frame</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect_error</span>(<span class="fu">variance</span>(<span class="fu">c</span>(<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>)))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>expect_identical</td>
+<td>Test two objects for being exactly equal</td>
+</tr>
+<tr class="even">
+<td>expect_equal</td>
+<td>Compare R objects x and y testing ‘near equality’ (can set a tolerance)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>- <code>expect_equal(x, y, tolerance = 0.00001)</code></td>
+</tr>
+<tr class="even">
+<td>expect_equivalent</td>
+<td>Compare R objects x and y testing ‘near equality’ (can set a tolerance) and does not assess attributes</td>
+</tr>
+<tr class="odd">
+<td>expect_error</td>
+<td>Tests if an expression throws an error</td>
+</tr>
+<tr class="even">
+<td>expect_warning</td>
+<td>Tests whether an expression outputs a warning</td>
+</tr>
+<tr class="odd">
+<td>expect_output</td>
+<td>Tests that print output matches a specified value</td>
+</tr>
+<tr class="even">
+<td>expect_true</td>
+<td>Tests if the object returns TRUE</td>
+</tr>
+<tr class="odd">
+<td>expect_false</td>
+<td>Tests if the object returns FALSE</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="importing-packages-or-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="importing-packages-or-scripts">Importing Packages or Scripts</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>source("path/to/script.R")</code></td>
+<td>Take functions from another script</td>
+</tr>
+<tr class="even">
+<td><code>library(package_name)</code></td>
+<td>Import a package</td>
+</tr>
+</tbody>
+</table>
+<section id="anonymous-functions" class="level3">
+<h3 class="anchored" data-anchor-id="anonymous-functions">Anonymous Functions</h3>
+<p><code>(function(x) x + 1)(1)</code> (see purrr package for examples)</p>
+</section>
+</section>
+<section id="nested-data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="nested-data-frames">Nested Data Frames</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a nested data frame</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>by_country <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(continent, country) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nest</span>() <span class="co"># turns all other columns into a column called data (list of data frames)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Common workflow:</p>
+<ol type="1">
+<li><code>group_by()</code> + <code>nest()</code> to create a nested data frame</li>
+<li><code>mutate()</code> + <code>map()</code> to add new columns</li>
+<li><code>unnest()</code> to return to a regular data frame</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>weather <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(origin, month) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># step 2</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">min_temp =</span> <span class="fu">map_dbl</span>(data, <span class="sc">~</span><span class="fu">min</span>(.<span class="sc">$</span>temp, <span class="at">na.rm =</span> T)),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">max_temp =</span> <span class="fu">map_dbl</span>(data, <span class="sc">~</span><span class="fu">max</span>(.<span class="sc">$</span>temp, <span class="at">na.rm =</span> T)),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">avg_temp =</span> <span class="fu">map_dbl</span>(data, <span class="sc">~</span><span class="fu">mean</span>(.<span class="sc">$</span>temp, <span class="at">na.rm =</span> T)))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># step 3</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">unnest</span>(avg_temp) <span class="co"># only unnest if we get some intermediate list-columns from map</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternative to above code:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>weather_nested_2 <span class="ot">&lt;-</span> weather <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(origin, month) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min_temp =</span> <span class="fu">min</span>(temp, <span class="at">na.rm =</span> T),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_temp =</span> <span class="fu">max</span>(temp, <span class="at">na.rm =</span> T),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">avg_temp =</span> <span class="fu">mean</span>(temp, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tidy-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-evaluation">Tidy Evaluation</h2>
+<p>metaprogramming: writing code that writes code</p>
+<p>With tidyverse, they have a feautre called “non-standard evaluation” (NSE). Part of this is data masking.</p>
+<ul>
+<li><p>Data Masking: data frame is promised to be first argument (data mask)</p>
+<ul>
+<li>columns act as if they are variables, <code>filter(gapminder, country == "Canada", year == 1952)</code></li>
+<li>checks dataframe first before global environment</li>
+</ul></li>
+<li><p>Delay in Evaluation: expressions are captured and evaluated later</p></li>
+<li><p><code>enquo()</code>: quotes the argument</p></li>
+<li><p><code>sym()</code>: turns column name into a function as a string</p></li>
+<li><p><code>!!</code>: unquotes the argument</p></li>
+<li><p><code>{{ arg_name }}</code>: unquotes and quotes the argument</p></li>
+<li><p><code>:=</code>: Walrus operator - needed when assigning values</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>filter_gap <span class="ot">&lt;-</span> <span class="cf">function</span>(col, val) {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    col <span class="ot">&lt;-</span> <span class="fu">enquo</span>(col)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(gapminder, <span class="sc">!!</span>col <span class="sc">==</span> val)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># better way</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>filter_gap <span class="ot">&lt;-</span> <span class="cf">function</span>(col, val) {</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(gapminder, {{col}} <span class="sc">==</span> val)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">filter_gap</span>(country, <span class="st">"Canada"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g. of walrus operator</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(data, group, col, fun) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    data <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>({{ group }}) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>( {{ col }} <span class="sc">:</span><span class="er">=</span> <span class="fu">fun</span>({{ col }}))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="passing-dots" class="level3">
+<h3 class="anchored" data-anchor-id="passing-dots">Passing dots</h3>
+<ul>
+<li>if passing varibales to tidyverse functions, use <code>...</code>
+<ul>
+<li>when variable not used in logical comparisons or variable assignment
+<ul>
+<li>should be last argument in function</li>
+<li>can add multiple arguments</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sort_gap <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(x <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(gapminder, ...)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sort_gap</span>(<span class="dv">1</span>, year, continent, country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

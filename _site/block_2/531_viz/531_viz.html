@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MDS cheatsheets – viz</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MDS cheatsheets</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../list.html" rel="" target="">
+ <span class="menu-text">List of Cheat Sheet</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link active" data-scroll-target="#data-visualization">Data Visualization</a>
+  <ul class="collapse">
+  <li><a href="#intro-to-data-visualization" id="toc-intro-to-data-visualization" class="nav-link" data-scroll-target="#intro-to-data-visualization">Intro to Data Visualization</a></li>
+  <li><a href="#plotting-in-python-altair" id="toc-plotting-in-python-altair" class="nav-link" data-scroll-target="#plotting-in-python-altair">Plotting in Python (Altair)</a></li>
+  <li><a href="#different-mark_types" id="toc-different-mark_types" class="nav-link" data-scroll-target="#different-mark_types">different mark_types</a>
+  <ul class="collapse">
+  <li><a href="#alt.x-alt.y-alt.color-alt.size-alt.shape-alt.opacity" id="toc-alt.x-alt.y-alt.color-alt.size-alt.shape-alt.opacity" class="nav-link" data-scroll-target="#alt.x-alt.y-alt.color-alt.size-alt.shape-alt.opacity">alt.X, alt.Y, alt.Color, alt.Size, alt.Shape, alt.Opacity</a></li>
+  <li><a href="#encoders" id="toc-encoders" class="nav-link" data-scroll-target="#encoders">Encoders</a></li>
+  <li><a href="#repeated-charts" id="toc-repeated-charts" class="nav-link" data-scroll-target="#repeated-charts">Repeated Charts</a></li>
+  <li><a href="#correlation-plot" id="toc-correlation-plot" class="nav-link" data-scroll-target="#correlation-plot">Correlation plot</a></li>
+  </ul></li>
+  <li><a href="#plotting-in-r-ggplot2" id="toc-plotting-in-r-ggplot2" class="nav-link" data-scroll-target="#plotting-in-r-ggplot2">Plotting in R (ggplot2)</a>
+  <ul class="collapse">
+  <li><a href="#different-geom_types" id="toc-different-geom_types" class="nav-link" data-scroll-target="#different-geom_types">different geom_types</a></li>
+  <li><a href="#ordering" id="toc-ordering" class="nav-link" data-scroll-target="#ordering">Ordering</a></li>
+  <li><a href="#ggally" id="toc-ggally" class="nav-link" data-scroll-target="#ggally">GGally</a></li>
+  </ul></li>
+  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting">Faceting</a></li>
+  <li><a href="#visual-channel" id="toc-visual-channel" class="nav-link" data-scroll-target="#visual-channel">Visual Channel</a></li>
+  <li><a href="#visualizing-distributions" id="toc-visualizing-distributions" class="nav-link" data-scroll-target="#visualizing-distributions">Visualizing Distributions</a></li>
+  <li><a href="#most-basic-fast-to-make" id="toc-most-basic-fast-to-make" class="nav-link" data-scroll-target="#most-basic-fast-to-make">Most basic (fast to make)</a></li>
+  <li><a href="#a-bit-better" id="toc-a-bit-better" class="nav-link" data-scroll-target="#a-bit-better">A bit better</a></li>
+  <li><a href="#showing-all-data" id="toc-showing-all-data" class="nav-link" data-scroll-target="#showing-all-data">Showing all data</a></li>
+  <li><a href="#plotting-density" id="toc-plotting-density" class="nav-link" data-scroll-target="#plotting-density">Plotting Density</a>
+  <ul class="collapse">
+  <li><a href="#python-plotting-density-in-altair" id="toc-python-plotting-density-in-altair" class="nav-link" data-scroll-target="#python-plotting-density-in-altair">Python: Plotting density in Altair</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#visualization-for-communication" id="toc-visualization-for-communication" class="nav-link" data-scroll-target="#visualization-for-communication">Visualization for Communication</a>
+  <ul class="collapse">
+  <li><a href="#some-notes" id="toc-some-notes" class="nav-link" data-scroll-target="#some-notes">Some notes</a>
+  <ul class="collapse">
+  <li><a href="#overplotting" id="toc-overplotting" class="nav-link" data-scroll-target="#overplotting">Overplotting</a></li>
+  <li><a href="#axes-formatting" id="toc-axes-formatting" class="nav-link" data-scroll-target="#axes-formatting">Axes Formatting</a></li>
+  </ul></li>
+  <li><a href="#trendlines" id="toc-trendlines" class="nav-link" data-scroll-target="#trendlines">Trendlines</a></li>
+  </ul></li>
+  <li><a href="#color-thoery-and-application" id="toc-color-thoery-and-application" class="nav-link" data-scroll-target="#color-thoery-and-application">Color Thoery and Application</a>
+  <ul class="collapse">
+  <li><a href="#some-general-rules" id="toc-some-general-rules" class="nav-link" data-scroll-target="#some-general-rules">Some general rules</a></li>
+  <li><a href="#add-annotations" id="toc-add-annotations" class="nav-link" data-scroll-target="#add-annotations">Add annotations</a>
+  <ul class="collapse">
+  <li><a href="#frequency-framing" id="toc-frequency-framing" class="nav-link" data-scroll-target="#frequency-framing">Frequency Framing</a></li>
+  </ul></li>
+  <li><a href="#error-bars" id="toc-error-bars" class="nav-link" data-scroll-target="#error-bars">Error bars</a></li>
+  <li><a href="#statistical-vs-practical-significance" id="toc-statistical-vs-practical-significance" class="nav-link" data-scroll-target="#statistical-vs-practical-significance">Statistical vs practical significance</a></li>
+  <li><a href="#figure-composition" id="toc-figure-composition" class="nav-link" data-scroll-target="#figure-composition">Figure composition</a>
+  <ul class="collapse">
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
+  </ul></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive visualization</a>
+  <ul class="collapse">
+  <li><a href="#panning-and-zooming" id="toc-panning-and-zooming" class="nav-link" data-scroll-target="#panning-and-zooming">Panning and zooming</a></li>
+  <li><a href="#details-on-demand" id="toc-details-on-demand" class="nav-link" data-scroll-target="#details-on-demand">Details on demand</a></li>
+  <li><a href="#interval-selection" id="toc-interval-selection" class="nav-link" data-scroll-target="#interval-selection">Interval selection</a></li>
+  <li><a href="#click-selection" id="toc-click-selection" class="nav-link" data-scroll-target="#click-selection">Click selection</a></li>
+  <li><a href="#filtering-data-based-on-selection" id="toc-filtering-data-based-on-selection" class="nav-link" data-scroll-target="#filtering-data-based-on-selection">Filtering data based on selection</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#saving-figures" id="toc-saving-figures" class="nav-link" data-scroll-target="#saving-figures">## Saving figures</a>
+  <ul class="collapse">
+  <li><a href="#pairwise-comparisons" id="toc-pairwise-comparisons" class="nav-link" data-scroll-target="#pairwise-comparisons">Pairwise comparisons</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="data-visualization" class="level1">
+<h1>Data Visualization</h1>
+<section id="intro-to-data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="intro-to-data-visualization">Intro to Data Visualization</h2>
+<ul>
+<li><p>Easier to understand data when it is visualized</p></li>
+<li><p>Anscombe’s quartet: 4 datasets with the same mean, variance, correlation, and linear regression line but look very different when plotted</p></li>
+<li><p>We are using high-level declarative (altair, ggplot) instead of low-level imperative (matplotlib) <img src="images/1_viz_landscape.png" width="700"></p></li>
+</ul>
+</section>
+<section id="plotting-in-python-altair" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-in-python-altair">Plotting in Python (Altair)</h2>
+<ul>
+<li>grammar: <code>alt.Chart(data).mark_type().encode(x,y).properties()</code></li>
+<li>example gallery: https://altair-viz.github.io/gallery/index.html</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to unlimit the number of rows displayed (5000 by default)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>alt.data_transformers.enable(<span class="st">'vegafusion'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars, title<span class="op">=</span><span class="st">"My plot title"</span>).mark_line(opacity<span class="op">=</span><span class="fl">0.6</span>).encode(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">"Year:T"</span>), <span class="co"># encoders</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">"mean(Miles_per_Gallon)"</span>),  <span class="co"># same as doing `y=cars.groupby('Year')['Miles_per_Gallon'].mean()`</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">"Origin"</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>).facet(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"region"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span><span class="dv">2</span>, <span class="co"># number of columns in the facet</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="different-mark_types" class="level2">
+<h2 class="anchored" data-anchor-id="different-mark_types">different mark_types</h2>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mark Type</th>
+<th>Description</th>
+<th>Example Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mark_area</code></td>
+<td>Filled area plots.</td>
+<td>Display quantitative data over an interval.</td>
+</tr>
+<tr class="even">
+<td><code>mark_bar</code></td>
+<td>Bar charts.</td>
+<td>Compare discrete categories or time intervals.</td>
+</tr>
+<tr class="odd">
+<td><code>mark_circle</code>, <code>mark_square</code>, <code>mark_geoshape</code></td>
+<td>Geometric shape marks.</td>
+<td>Visualize point data in 2D space (circle, square) or geographic regions and shapes (geoshape).</td>
+</tr>
+<tr class="even">
+<td><code>mark_line</code></td>
+<td>Line charts.</td>
+<td>Show trends over a continuous domain.</td>
+</tr>
+<tr class="odd">
+<td><code>mark_point</code></td>
+<td>Scatter plots with customizable point shapes.</td>
+<td>Visualize point data with various symbols.</td>
+</tr>
+<tr class="even">
+<td><code>mark_rect</code></td>
+<td>Rectangular marks, used in heatmaps.</td>
+<td>Display data in 2D grid-like structures.</td>
+</tr>
+<tr class="odd">
+<td><code>mark_boxplot</code></td>
+<td>Boxplots.</td>
+<td>Summarize data distribution with quartiles.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>no violin plot but can do <code>mark_circle</code> with y and color the same variable and size as count().</li>
+<li>pandas explode <code>df.explode()</code> to explode a column of lists into multiple rows</li>
+</ul>
+<section id="alt.x-alt.y-alt.color-alt.size-alt.shape-alt.opacity" class="level3">
+<h3 class="anchored" data-anchor-id="alt.x-alt.y-alt.color-alt.size-alt.shape-alt.opacity">alt.X, alt.Y, alt.Color, alt.Size, alt.Shape, alt.Opacity</h3>
+<ul>
+<li><code>alt.X("Year:T")</code> is the same as <code>alt.X("Year", type="temporal")</code></li>
+<li>can do <code>alt.X().scale()</code> to change the scale of the axis
+<ul>
+<li><code>.stack()</code> to stack the axis</li>
+<li><code>.scale()</code> to change the scale
+<ul>
+<li><code>.scale(type="log")</code> to change to log scale</li>
+<li><code>.scale(range=(0, 100))</code> to change the domain</li>
+<li><code>.scale(zero=False)</code> to not include 0 in the domain</li>
+</ul></li>
+<li><code>.bin()</code> to bin the axis, makes <strong>histogram</strong> if used on <code>mark_bar()</code>
+<ul>
+<li>default: stack=True</li>
+<li>takes in binwidth or maxbins</li>
+</ul></li>
+<li><code>.sort()</code> to sort the axis
+<ul>
+<li>.sort(“x”) to sort by x (ascending)</li>
+<li>.sort(“-x”) to sort by x (descending)</li>
+</ul></li>
+<li><code>.title("")</code>: change the title of the axis</li>
+</ul></li>
+</ul>
+</section>
+<section id="encoders" class="level3">
+<h3 class="anchored" data-anchor-id="encoders">Encoders</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Data Type</th>
+<th>Shorthand Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>quantitative</td>
+<td>Q</td>
+<td>a continuous real-valued quantity</td>
+</tr>
+<tr class="even">
+<td>ordinal</td>
+<td>O</td>
+<td>a discrete ordered quantity</td>
+</tr>
+<tr class="odd">
+<td>nominal</td>
+<td>N</td>
+<td>a discrete unordered category</td>
+</tr>
+<tr class="even">
+<td>temporal</td>
+<td>T</td>
+<td>a time or date value</td>
+</tr>
+<tr class="odd">
+<td>geojson</td>
+<td>G</td>
+<td>a geographic shape</td>
+</tr>
+</tbody>
+</table>
+<p><em>https://altair-viz.github.io/user_guide/encodings/index.html#encoding-data-types</em></p>
+</section>
+<section id="repeated-charts" class="level3">
+<h3 class="anchored" data-anchor-id="repeated-charts">Repeated Charts</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(movies).mark_point(opacity<span class="op">=</span><span class="fl">0.3</span>, size<span class="op">=</span><span class="dv">10</span>).encode(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>     alt.X(alt.repeat(<span class="st">'row'</span>)).<span class="bu">type</span>(<span class="st">'quantitative'</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     alt.Y(alt.repeat(<span class="st">'column'</span>)).<span class="bu">type</span>(<span class="st">'quantitative'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">200</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">200</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>).repeat(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span>[<span class="st">'runtime'</span>, <span class="st">'revenue'</span>, <span class="st">'budget'</span>],</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    row<span class="op">=</span>[<span class="st">'runtime'</span>, <span class="st">'revenue'</span>, <span class="st">'budget'</span>]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="correlation-plot" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-plot">Correlation plot</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>corr_df <span class="op">=</span> (</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    movies</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    .corr(<span class="st">'spearman'</span>, numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">abs</span>()                      <span class="co"># Use abs for negative correlation to stand out</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    .stack()                    <span class="co"># Get df into long format for altair</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    .reset_index(name<span class="op">=</span><span class="st">'corr'</span>))  <span class="co"># Name the index that is reset to avoid name collision</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>alt.Chart(corr_df).mark_circle().encode(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'level_0'</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'level_1'</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span><span class="st">'corr'</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'corr'</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="plotting-in-r-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-in-r-ggplot2">Plotting in R (ggplot2)</h2>
+<ul>
+<li>grammar: <code>ggplot(data, aes(x, y)) + geom_type() + facet_wrap() + theme()</code></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(url) <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Miles_per_Gallon, <span class="at">color =</span> Origin)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># stat_summary(geom = "line", fun = mean) # alternative way of doing the same thing</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> region, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># properties</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"My plot title"</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>in ggplot, fill and color are different
+<ul>
+<li>fill is the color of the inside of the shape (bars, area, etc.)</li>
+<li>color is the color of the outline of the shape (points, lines, etc.)</li>
+</ul></li>
+</ul>
+<section id="different-geom_types" class="level3">
+<h3 class="anchored" data-anchor-id="different-geom_types">different geom_types</h3>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 24%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Geom Function</th>
+<th>Description</th>
+<th>Example Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>geom_area</code></td>
+<td>Filled area plots.</td>
+<td>Display quantitative data over an interval.</td>
+</tr>
+<tr class="even">
+<td><code>geom_bar</code> &amp; <code>geom_col</code></td>
+<td>Bar charts.</td>
+<td>Compare discrete categories. <code>geom_col</code> is a special case of <code>geom_bar</code> where height is pre-determined.</td>
+</tr>
+<tr class="odd">
+<td><code>geom_point</code>, <code>geom_tile</code>, <code>geom_polygon</code></td>
+<td>Geometric shape marks.</td>
+<td><code>geom_point</code> for scatter plots, <code>geom_tile</code> for heatmaps, and <code>geom_polygon</code> for custom shapes.</td>
+</tr>
+<tr class="even">
+<td><code>geom_line</code></td>
+<td>Line charts.</td>
+<td>Show trends over a continuous domain.</td>
+</tr>
+<tr class="odd">
+<td><code>geom_smooth</code></td>
+<td>Adds a smoothed conditional mean.</td>
+<td>Fit and display a trend line for scattered data.</td>
+</tr>
+<tr class="even">
+<td><code>geom_boxplot</code></td>
+<td>Boxplots.</td>
+<td>Summarize data distribution with quartiles.</td>
+</tr>
+<tr class="odd">
+<td><code>geom_histogram</code></td>
+<td>Histograms.</td>
+<td>Display frequency distributions.</td>
+</tr>
+<tr class="even">
+<td><code>geom_text</code> &amp; <code>geom_label</code></td>
+<td>Display text and labels.</td>
+<td>Annotate plots with text or labeled rectangles.</td>
+</tr>
+<tr class="odd">
+<td><code>geom_jitter</code></td>
+<td>Points with a small amount of random noise.</td>
+<td>Display individual data points without overlap.</td>
+</tr>
+<tr class="even">
+<td><code>geom_path</code></td>
+<td>Connect observations in the order they appear.</td>
+<td>Display paths or trajectories.</td>
+</tr>
+<tr class="odd">
+<td><code>geom_violin</code></td>
+<td>Violin plots.</td>
+<td>Combine boxplot and kernel density estimation.</td>
+</tr>
+<tr class="even">
+<td><code>geom_rug</code></td>
+<td>Marginal rug plots.</td>
+<td>Display 1D data distribution on plot margins.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ordering" class="level3">
+<h3 class="anchored" data-anchor-id="ordering">Ordering</h3>
+<ul>
+<li><code>reorder()</code> to reorder the axis</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gm2018 <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_count</span>(region) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">reorder</span>(region, n))) <span class="sc">+</span> <span class="co"># y is region, reorder by its count (n)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ggally" class="level3">
+<h3 class="anchored" data-anchor-id="ggally">GGally</h3>
+<ul>
+<li>Repeated Charts</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(movies <span class="sc">%&gt;%</span> <span class="fu">select_if</span>(is.numeric), <span class="at">progress =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Correlation plot</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggcorr</span>(movies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="faceting" class="level2">
+<h2 class="anchored" data-anchor-id="faceting">Faceting</h2>
+<ul>
+<li>Faceting displays groups based on a dataset variable in separate subplots.</li>
+<li>It’s useful for splitting data over additional categorical variables.</li>
+<li>Avoids overloading a single chart with too much information.</li>
+<li>Using color groupings in a histogram can obscure differences between groups.</li>
+<li>Faceting each group in separate subplots clarifies distribution comparisons.</li>
+</ul>
+</section>
+<section id="visual-channel" class="level2">
+<h2 class="anchored" data-anchor-id="visual-channel">Visual Channel</h2>
+<p><img src="images/2_viz_efficiency.png" width="700"></p>
+</section>
+<section id="visualizing-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-distributions">Visualizing Distributions</h2>
+</section>
+<section id="most-basic-fast-to-make" class="level2">
+<h2 class="anchored" data-anchor-id="most-basic-fast-to-make">Most basic (fast to make)</h2>
+<p>shows only 1 value of distribution, can show 3 with error bars:</p>
+<ul>
+<li>Dot plots</li>
+<li>Bar plots</li>
+</ul>
+</section>
+<section id="a-bit-better" class="level2">
+<h2 class="anchored" data-anchor-id="a-bit-better">A bit better</h2>
+<ul>
+<li>box plots: normally shows 5 values (min, max, median, 25th percentile, 75th percentile)</li>
+<li>Histograms
+<ul>
+<li><strong>cons</strong>: binning required and distribution sensitive to bin settings</li>
+</ul></li>
+<li>KDE
+<ul>
+<li>shows density of data points</li>
+<li>gives a smooth curve because uses “gaussian” (default) centered at each data point</li>
+<li>No binning required (not sensitive to bin width or bin location)</li>
+<li>less affected by sparse data</li>
+<li><strong>cons</strong>: y-axis is density, not count (hard to interpret)</li>
+</ul></li>
+<li>Violin plots: mirror of density estimates (KDE)
+<ul>
+<li>more would show higher density, unlike box plots (smaller box plots would show higher density)</li>
+<li><strong>cons</strong>: over-smoothing of data (when too little data points)</li>
+</ul></li>
+</ul>
+</section>
+<section id="showing-all-data" class="level2">
+<h2 class="anchored" data-anchor-id="showing-all-data">Showing all data</h2>
+<ul>
+<li><p>scatter plots: shows all data points (can overlap and saturate)</p></li>
+<li><p>jitter plots: scatter plots with jittering over a small width in y-axis</p></li>
+<li><p>raincloud plots: violin plots with jittering</p></li>
+</ul>
+</section>
+<section id="plotting-density" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-density">Plotting Density</h2>
+<section id="python-plotting-density-in-altair" class="level3">
+<h3 class="anchored" data-anchor-id="python-plotting-density-in-altair">Python: Plotting density in Altair</h3>
+<ul>
+<li><code>alt.Chart(df).transform_density('x', as_=['x', 'density']).mark_area().encode(x='x:Q', y='density:Q')</code></li>
+<li><code>alt.Chart(df).explode('col_name')</code>: explode a column (of list normally) into multiple rows</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="visualization-for-communication" class="level1">
+<h1>Visualization for Communication</h1>
+<section id="some-notes" class="level2">
+<h2 class="anchored" data-anchor-id="some-notes">Some notes</h2>
+<ul>
+<li>same data can give different messages</li>
+<li>keep same color mapping for same categories across plots</li>
+<li>labels horizontally &gt; vertically</li>
+<li>Pie charts aint it when:
+<ul>
+<li>categories &gt; 3</li>
+<li>comparing &gt; 1 pie charts</li>
+</ul></li>
+<li>Don’t have too many lines in a line chart
+<ul>
+<li>unless you gray out the lines and highlight the one you want to show</li>
+</ul></li>
+</ul>
+<section id="overplotting" class="level3">
+<h3 class="anchored" data-anchor-id="overplotting">Overplotting</h3>
+<ul>
+<li>Too many points in a plot</li>
+<li>Some solutions:
+<ul>
+<li>lower size</li>
+<li>lower opacity (alpha in ggplot)</li>
+</ul></li>
+<li>If you have too many points, you can use a heatmap
+<ul>
+<li>ggplot: <code>gromm::geom_bin2d(bins=40)</code> or <code>gromm::geom_hex(bins=40)</code>
+<ul>
+<li>hex is preferred because better granularity</li>
+</ul></li>
+</ul></li>
+<li>match group colours in different charts</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>carat, <span class="at">y=</span>price) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hex</span>(<span class="at">bins=</span><span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>altair:</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(diamonds).mark_rect().encode(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  alt.X(<span class="st">'carat'</span>, <span class="bu">bin</span><span class="op">=</span>alt.Bin(maxbins<span class="op">=</span><span class="dv">40</span>)),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  alt.Y(<span class="st">'price'</span>, binsalt.Bin(maxbins<span class="op">=</span><span class="dv">40</span>)),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  alt.Color(<span class="st">'count()'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="axes-formatting" class="level3">
+<h3 class="anchored" data-anchor-id="axes-formatting">Axes Formatting</h3>
+<ul>
+<li>Python Altair:</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clip=True to remove points outside of the plot axis</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>alt.Chart(diamonds,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">'Diamonds'</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        subtitle<span class="op">=</span><span class="st">'Price vs. Carat'</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    ).mark_rect(clip<span class="op">=</span><span class="va">True</span>).encode(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  alt.X(<span class="st">'carat'</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">bin</span><span class="op">=</span>alt.Bin(maxbins<span class="op">=</span><span class="dv">40</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Carat'</span>, <span class="co"># set the axis title, blank if no title</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">3</span>)), <span class="co"># set the axis extent</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    reverse<span class="op">=</span><span class="va">True</span> <span class="co"># reverse=True to flip the axis (largest value on the left)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># axis=None # remove the axis (no labels no titles)</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  alt.Y(<span class="st">'price'</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    binsalt.Bin(maxbins<span class="op">=</span><span class="dv">40</span>),</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Price'</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">2000</span>)),</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span>alt.Axis(<span class="bu">format</span><span class="op">=</span><span class="st">'$s'</span>) <span class="co"># set the axis format 1000 -&gt; $1.0k</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  alt.Color(<span class="st">'count()'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>R ggplot:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>carat, <span class="at">y=</span>price) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hex</span>(<span class="at">bins=</span><span class="dv">40</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span> <span class="co"># expand=c(0, 0) to remove padding [c(mult, add)] for both sides</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2000</span>),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">trans=</span><span class="st">"reverse"</span>, <span class="co"># to flip the axis</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span> <span class="co"># to format the axis labels</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Carat"</span>, <span class="at">y=</span><span class="st">"Price"</span>, <span class="at">fill=</span><span class="st">"Number"</span>, <span class="co"># to set the axis labels</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">title=</span><span class="st">"Diamonds"</span>, <span class="at">subtitle=</span><span class="st">"Price vs. Carat"</span>) <span class="sc">+</span> <span class="co"># to set the title and subtitle</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_blank</span>(), <span class="co"># to remove the axis title</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_blank</span>(), <span class="co"># to remove the axis labels</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x=</span><span class="fu">element_blank</span>()) <span class="sc">+</span><span class="co"># to remove the axis ticks</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># theme_void() # to remove everything (no labels no titles)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="trendlines" class="level2">
+<h2 class="anchored" data-anchor-id="trendlines">Trendlines</h2>
+<ul>
+<li>(Rolling) Mean: average of a subset of data
+<ul>
+<li>to communicate to general public</li>
+</ul></li>
+<li>Linear Regression: line of best fit
+<ul>
+<li>for extrapolation</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>points <span class="op">+</span>  points.mark_line(size<span class="op">=</span><span class="dv">3</span>).transform_regression(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Year'</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Horsepower'</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  groupby<span class="op">=</span>[<span class="st">'Origin'</span>],</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  method<span class="op">=</span><span class="st">'poly'</span>, <span class="co"># 'linear' (default), 'log', 'exp', 'pow', 'quad', 'poly'</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li>Loess: linear regression with a moving window (subset of data)
+<ul>
+<li>python:</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>points <span class="op">+</span>  points.mark_line(size<span class="op">=</span><span class="dv">3</span>).transform_loess(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Year'</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Horsepower'</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    groupby<span class="op">=</span>[<span class="st">'Origin'</span>],</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    bandwidth<span class="op">=</span><span class="fl">0.8</span>, <span class="co"># 0.3 (default), 1 (max is similar to linear regression)</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>R:</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cars) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Year,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> Horsepower,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> Origin,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> Origin) <span class="sc">+</span> <span class="co"># fill the CI area around the line</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">span =</span> <span class="fl">0.8</span>, <span class="co"># similar to bandwidth</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">"loess"</span>) <span class="co"># method = "lm" for linear regression</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="color-thoery-and-application" class="level1">
+<h1>Color Thoery and Application</h1>
+<ul>
+<li>Sometimes need to consider color blindness
+<ul>
+<li>diagram still needs to work in b&amp;w and red-weakened</li>
+</ul></li>
+<li>Talk in HSV (hue, saturation, value) instead of RGB
+<ul>
+<li>Hue: color</li>
+<li>Saturation: how much color (vibrant/ colourful)</li>
+<li>Value: how bright</li>
+</ul></li>
+</ul>
+<section id="some-general-rules" class="level2">
+<h2 class="anchored" data-anchor-id="some-general-rules">Some general rules</h2>
+<ul>
+<li>in Altair: `alt.Color(‘species’).scale(scheme=‘dark2’, reverse=True)</li>
+<li>in ggplot: <code>scale_color_brewer(palette='Dark2')</code></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 16%">
+<col style="width: 29%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Data Type</strong></th>
+<th><strong>Variation</strong></th>
+<th><strong>Color Map Type</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Numerical</td>
+<td>Vary value</td>
+<td>Sequential (Perceptually uniform)</td>
+<td>Number of people (0-100)</td>
+</tr>
+<tr class="even">
+<td>Categorical</td>
+<td>Vary hue</td>
+<td>Categorical</td>
+<td>Subject (math, science, english)</td>
+</tr>
+<tr class="odd">
+<td>Ordered</td>
+<td>Vary hue and value</td>
+<td>Not specified</td>
+<td>Low, medium, high</td>
+</tr>
+<tr class="even">
+<td>Cyclic</td>
+<td>Vary hue and value</td>
+<td>Cyclic</td>
+<td>Degrees (0-360) or days of week (0-6)</td>
+</tr>
+<tr class="odd">
+<td>Data with natural center</td>
+<td>Not specified</td>
+<td>Diverging</td>
+<td>Temperature (0-100)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/6_div_cm.png" width="400"> <img src="images/6_seq_cm.png" width="400"></p>
+<p><img src="images/6_cat_cm.png" width="400"> <img src="images/6_cyc_cm.png" width="400"></p>
+<ul>
+<li>Also consider intuitive colors
+<ul>
+<li>(e.g.&nbsp;red for hot, blue for cold)</li>
+</ul></li>
+</ul>
+</section>
+<section id="add-annotations" class="level2">
+<h2 class="anchored" data-anchor-id="add-annotations">Add annotations</h2>
+<ul>
+<li>in Altair:</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> alt.Chart(wheat).mark_bar().encode(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'year:O'</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"wheat"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">'highlight'</span>).legend(<span class="va">None</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>bars <span class="op">+</span> bars.mark_text(dy<span class="op">=-</span><span class="dv">5</span>).encode(text<span class="op">=</span><span class="st">'wheat'</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Or for line plot</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> alt.Chart(stocks).mark_line().encode(</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'date'</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'price'</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">'symbol'</span>).legend(<span class="va">None</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> alt.Chart(stock_order).mark_text(dx<span class="op">=</span><span class="dv">20</span>).encode(</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'date'</span>,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'price'</span>,</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="st">'symbol'</span>,</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'symbol'</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>lines <span class="op">+</span> text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>in ggplot:</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wheat) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> year,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> wheat,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> highlight,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">label =</span> wheat) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">color =</span> <span class="st">'white'</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.3</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Or for line plot</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stocks) <span class="sc">+</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> date,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> price,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> symbol,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">label =</span> symbol) <span class="sc">+</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data =</span> stock_order, <span class="at">vjust=</span><span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    ggthemes<span class="sc">::</span><span class="fu">scale_color_tableau</span>() <span class="sc">+</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'none'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="frequency-framing" class="level3">
+<h3 class="anchored" data-anchor-id="frequency-framing">Frequency Framing</h3>
+<ul>
+<li>people normally judge probabilities wrongly</li>
+<li>Normalize the counts and show each individual count</li>
+</ul>
+</section>
+</section>
+<section id="error-bars" class="level2">
+<h2 class="anchored" data-anchor-id="error-bars">Error bars</h2>
+<ul>
+<li><p>Specify what kind of error bar</p>
+<ul>
+<li>min, max</li>
+<li>std dev</li>
+<li>std error</li>
+<li>95% confidence interval</li>
+</ul></li>
+<li><p>in Altair:</p></li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>points.mark_errorband(extent<span class="op">=</span><span class="st">'ci'</span>) <span class="co"># always 95% confidence interval</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># good way</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>err_bars <span class="op">=</span> alt.Chart(cars).mark_errorbar(extent<span class="op">=</span><span class="st">'ci'</span>, rule<span class="op">=</span>alt.LineConfig(size<span class="op">=</span><span class="dv">2</span>)).encode(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">'Horsepower'</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  y<span class="op">=</span><span class="st">'Origin'</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>(err_bars.mark_tick(color<span class="op">=</span><span class="st">'lightgrey'</span>) <span class="op">+</span> <span class="co"># show ticks</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>err_bars <span class="op">+</span> <span class="co"># error bars</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>err_bars.mark_point(color<span class="op">=</span><span class="st">'black'</span>).encode(x<span class="op">=</span><span class="st">'mean(Horsepower)'</span>)) <span class="co"># mean as a point</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>In ggplot: use <code>Hmisc::mean_cl_boot()</code></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cars) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Horsepower,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> Origin) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="st">'|'</span>, <span class="at">color=</span><span class="st">'grey'</span>, <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span> <span class="co"># show ticks</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_pointrange</span>(<span class="at">stat =</span> <span class="st">'summary'</span>, <span class="at">fun.data =</span> mean_cl_boot, <span class="at">size =</span> <span class="fl">0.7</span>) <span class="co"># error bar + mean as a point</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># For line mean and errobar</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>... <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">'summary'</span>, <span class="at">fun =</span> mean) <span class="sc">+</span> <span class="co"># mean as a line</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="at">stat =</span> <span class="st">'summary'</span>, <span class="at">fun.data =</span> mean_cl_boot, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">color =</span> <span class="cn">NA</span>) <span class="co"># error bar as a ribbon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="statistical-vs-practical-significance" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-vs-practical-significance">Statistical vs practical significance</h2>
+<ul>
+<li>Statistical significance: is the difference between two groups statistically significant?</li>
+<li>Practical significance: is the difference between two groups practically significant?</li>
+</ul>
+</section>
+<section id="figure-composition" class="level2">
+<h2 class="anchored" data-anchor-id="figure-composition">Figure composition</h2>
+<section id="python" class="level3">
+<h3 class="anchored" data-anchor-id="python">Python</h3>
+<ul>
+<li>vertically: <code>plot1 &amp; plot2</code> or <code>alt.vconcat(plot1, plot2)</code></li>
+<li>horizontally: <code>plot1 | plot2</code> or <code>alt.hconcat(plot1, plot2)</code></li>
+<li>add title: <code>(plot1 | plot2).properties(title='title')</code></li>
+</ul>
+</section>
+<section id="r" class="level3">
+<h3 class="anchored" data-anchor-id="r">R</h3>
+<ul>
+<li><p>use package <code>patchwork</code></p></li>
+<li><p>vertically: <code>plot_grid(plot1, plot2, ncol=1)</code></p></li>
+<li><p>horizontally: <code>plot_grid(plot1, plot2, nrow=1)</code></p></li>
+<li><p>Add labels: <code>plot_grid(plot1, plot2, labels=c('A', 'B'))</code></p></li>
+<li><p>Set width: <code>plot_grid(plot1, plot2, rel_widths=c(1, 2))</code></p></li>
+</ul>
+</section>
+</section>
+<section id="interactive-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-visualization">Interactive visualization</h2>
+<section id="panning-and-zooming" class="level3">
+<h3 class="anchored" data-anchor-id="panning-and-zooming">Panning and zooming</h3>
+<ul>
+<li>Add <code>.interactive()</code> to the end of the chart</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_circle().encode(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'Horsepower'</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'Miles_per_Gallon'</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>).interactive()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="details-on-demand" class="level3">
+<h3 class="anchored" data-anchor-id="details-on-demand">Details on demand</h3>
+<ul>
+<li>Add a tooltip to show details on demand</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_circle().encode(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'Horsepower'</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'Miles_per_Gallon'</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[<span class="st">'Name'</span>, <span class="st">'Origin'</span>]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="interval-selection" class="level3">
+<h3 class="anchored" data-anchor-id="interval-selection">Interval selection</h3>
+<ul>
+<li>Use <code>alt.selection_interval()</code> to select a range of data points
+<ul>
+<li>format: <code>alt.condition(check, if_true, if_false)</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>brush <span class="op">=</span> alt.selection_interval(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    encodings<span class="op">=</span>[<span class="st">'x'</span>], <span class="co"># only select x axis, default is both x and y</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    resolve<span class="op">=</span><span class="st">'union'</span> <span class="co"># default is 'global', which means all charts are linked</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>points <span class="op">=</span> alt.Chart(cars).mark_circle().encode(</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'Horsepower'</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'Miles_per_Gallon'</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use alt.condition to do a selection</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.condition(brush, <span class="st">'Origin'</span>, alt.value(<span class="st">'lightgray'</span>))</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>).add_params(</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    brush</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># linking different plots</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>points <span class="op">|</span> points.encode(x<span class="op">=</span><span class="st">'Acceleration'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="click-selection" class="level3">
+<h3 class="anchored" data-anchor-id="click-selection">Click selection</h3>
+<ul>
+<li>default: <code>on='click'</code></li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>click <span class="op">=</span> alt.selection_point(fields<span class="op">=</span>[<span class="st">'Origin'</span>], on<span class="op">=</span><span class="st">'mouseover'</span>, bind<span class="op">=</span><span class="st">'legend'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> alt.Chart(cars).mark_bar().encode(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'count()'</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'Origin'</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'Origin'</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    opacity<span class="op">=</span>alt.condition(click, alt.value(<span class="fl">0.9</span>), alt.value(<span class="fl">0.2</span>))</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>).add_params(</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    click</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="filtering-data-based-on-selection" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-data-based-on-selection">Filtering data based on selection</h3>
+<ul>
+<li>use <code>transform_filter</code> to filter data based on selection</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>brush <span class="op">=</span> alt.selection_interval()</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>click <span class="op">=</span> alt.selection_point(fields<span class="op">=</span>[<span class="st">'Origin'</span>], bind<span class="op">=</span><span class="st">'legend'</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>points <span class="op">=</span> alt.Chart(cars).mark_circle().encode(</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'Horsepower'</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'Miles_per_Gallon'</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.condition(brush, <span class="st">'Origin'</span>, alt.value(<span class="st">'lightgray'</span>)),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    opacity<span class="op">=</span>alt.condition(click, alt.value(<span class="fl">0.9</span>), alt.value(<span class="fl">0.2</span>))</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>).add_params(</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    brush</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> alt.Chart(cars).mark_bar().encode(</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'count()'</span>,</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'Origin'</span>,</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'Origin'</span>,</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    opacity<span class="op">=</span>alt.condition(click, alt.value(<span class="fl">0.9</span>), alt.value(<span class="fl">0.2</span>))</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>).transform_filter( <span class="co"># changes bar plot based on selection of points</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    brush</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>(points <span class="op">&amp;</span> bars).add_params(click)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="saving-figures" class="level1">
+<h1>## Saving figures</h1>
+<ul>
+<li>In python: <code>chart.save('filename.png', scale_factor=2.0)</code>
+<ul>
+<li><code>scale_factor</code> is optional, default is 1.0</li>
+</ul></li>
+<li>In R: <code>ggsave('filename.png', plot1, width=4, height=4, dpi=300)</code>
+<ul>
+<li>saves most recent plot if no plot is specified</li>
+<li>can save to .svg but need <code>svglite</code> package</li>
+</ul></li>
+</ul>
+<section id="pairwise-comparisons" class="level2">
+<h2 class="anchored" data-anchor-id="pairwise-comparisons">Pairwise comparisons</h2>
+<ul>
+<li>Python:</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>points <span class="op">=</span> alt.Chart(scores_this_year).mark_circle(size<span class="op">=</span><span class="dv">50</span>, color<span class="op">=</span><span class="st">'black'</span>, opacity<span class="op">=</span><span class="dv">1</span>).encode(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'score_type'</span>),</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    alt.Y(<span class="st">'score'</span>),</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    alt.Detail(<span class="st">'time'</span>)).properties(width<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>points.mark_line(size<span class="op">=</span><span class="fl">1.8</span>, opacity<span class="op">=</span><span class="fl">0.8</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    ).encode(</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        alt.Color(<span class="st">'diff'</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'blueorange'</span>, domain<span class="op">=</span>(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>))) <span class="co"># diverging colormap</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># scale(range=['coral', 'green', 'steelblue']) # for categorial [negative, neutral, positive]</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    points</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>R:</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scores_this_year) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> score_type,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> score,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">group =</span> time) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> self_belief), <span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">''</span>) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># colour the lines by diverging colormap (sometimes not a good idea)</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_distiller</span>(<span class="at">palette =</span> <span class="st">'PuOr'</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

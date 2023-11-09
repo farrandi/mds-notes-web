@@ -7,4 +7,8 @@ title: "List of Cheat Sheet"
 | 511          | 1       | [Intro to Python](block_1/511_python/511_python.html)                 |
 | 521          | 1       | [Platforms](block_1/521_platforms/521_platforms.html)                 |
 | 523          | 1       | [R Programming](block_1/523_R/523_R.html)                             |
-| 551          | 1       | [Statistics and Probability](block_1/551_stats-and-prob/551_stats.md)|
+| 551          | 1       | [Statistics and Probability](block_1/551_stats-and-prob/551_stats.md) |
+| 512          | 2       | [Algorithms and Data Structures](block_2/512_algs_ds/512_algs_ds.html)|
+| 531          | 2       | [Data Visualization](block_2/531_viz/531_viz.html)                    |
+| 552          | 2       | [Statistical Interference](block_2/552_stat_inter/552_stat_inter.html)|
+| 571          | 2       | [Supervised Learning](block_2/571_sup_learn/571_sup_learn.html)       |
