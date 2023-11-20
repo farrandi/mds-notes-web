@@ -122,9 +122,9 @@ Github pages will look in either the repository root / directory or in the repos
     - Interwoven in text (RMarkdown's inline code).
     - Separate sections: code cells (Jupyter) or code chunks (RMarkdown).
 
-# RSudio and Quarto
+## RSudio and Quarto
 
-## RStudio Basics
+### RStudio Basics
 
 | Function       | Description                                                                                                                  |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -147,7 +147,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 ````
 
-## Quarto
+### Quarto
 
 <img src="images/6_quarto.png" width="450">
 
