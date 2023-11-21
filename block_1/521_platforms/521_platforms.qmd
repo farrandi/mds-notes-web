@@ -256,7 +256,7 @@ format: revealjs
 - `conda env list`: list all environments
 - `conda activate <env_name>`: activate the environment
 - `conda deactivate`: deactivate the environment
-- `conda remove -n <env_name> --all`: remove the environment
+- `conda env remove -n <env_name> --all`: remove the environment
 - `conda env export -f environment.yml --from-history`: export the environment to a file
   - `--from-history`: only include packages that were explicitly installed
 
