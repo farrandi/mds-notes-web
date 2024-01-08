@@ -12,3 +12,7 @@ title: "List of Cheat Sheet"
 | 531          | 2       | [Data Visualization](block_2/531_viz/531_viz.html)                    |
 | 552          | 2       | [Statistical Interference](block_2/552_stat_inter/552_stat_inter.html)|
 | 571          | 2       | [Supervised Learning](block_2/571_sup_learn/571_sup_learn.html)       |
+| 513          | 3       | [Databases](block_3/513_databases/513_databases.html)                 |
+| 522          | 3       | [Workflows](block_3/522_workflows/522_workflows.html)                 |
+|561           | 3       | [Regression I](block_3/561_regression/561_regression.html)            |
+|573           | 3       | [Model Selection](block_3/573_model_sel/573_model_sel.html)           |

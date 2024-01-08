@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MDS cheatsheets – databases</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MDS cheatsheets</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../list.html" rel="" target="">
+ <span class="menu-text">List of Cheat Sheet</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#relational-databases" id="toc-relational-databases" class="nav-link active" data-scroll-target="#relational-databases">Relational Databases</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#reasons-for-dbms" id="toc-reasons-for-dbms" class="nav-link" data-scroll-target="#reasons-for-dbms">Reasons for DBMS</a></li>
+  </ul></li>
+  <li><a href="#relational-data-model" id="toc-relational-data-model" class="nav-link" data-scroll-target="#relational-data-model">Relational Data Model</a></li>
+  <li><a href="#relational-database" id="toc-relational-database" class="nav-link" data-scroll-target="#relational-database">Relational Database</a></li>
+  <li><a href="#query-language-in-a-dbms" id="toc-query-language-in-a-dbms" class="nav-link" data-scroll-target="#query-language-in-a-dbms">Query language in a DBMS</a></li>
+  <li><a href="#postgresql" id="toc-postgresql" class="nav-link" data-scroll-target="#postgresql">PostgreSQL</a>
+  <ul class="collapse">
+  <li><a href="#psql" id="toc-psql" class="nav-link" data-scroll-target="#psql">psql</a></li>
+  <li><a href="#ipython-sql" id="toc-ipython-sql" class="nav-link" data-scroll-target="#ipython-sql">ipython-sql</a></li>
+  </ul></li>
+  <li><a href="#sql-basic-commands" id="toc-sql-basic-commands" class="nav-link" data-scroll-target="#sql-basic-commands">SQL basic commands</a>
+  <ul class="collapse">
+  <li><a href="#querying-data-from-a-table" id="toc-querying-data-from-a-table" class="nav-link" data-scroll-target="#querying-data-from-a-table">Querying Data from a table</a></li>
+  <li><a href="#querying-data-from-multiple-tables" id="toc-querying-data-from-multiple-tables" class="nav-link" data-scroll-target="#querying-data-from-multiple-tables">Querying Data from multiple tables</a></li>
+  <li><a href="#using-sql-operators" id="toc-using-sql-operators" class="nav-link" data-scroll-target="#using-sql-operators">Using SQL Operators</a></li>
+  <li><a href="#managing-tables" id="toc-managing-tables" class="nav-link" data-scroll-target="#managing-tables">Managing Tables</a></li>
+  </ul></li>
+  <li><a href="#database-data-types" id="toc-database-data-types" class="nav-link" data-scroll-target="#database-data-types">Database Data Types</a></li>
+  <li><a href="#vs" id="toc-vs" class="nav-link" data-scroll-target="#vs">” vs ’</a>
+  <ul class="collapse">
+  <li><a href="#numbers" id="toc-numbers" class="nav-link" data-scroll-target="#numbers">Numbers</a></li>
+  <li><a href="#type-conversion" id="toc-type-conversion" class="nav-link" data-scroll-target="#type-conversion">Type conversion</a></li>
+  <li><a href="#filtering-using-where" id="toc-filtering-using-where" class="nav-link" data-scroll-target="#filtering-using-where">Filtering using <code>WHERE</code></a></li>
+  <li><a href="#column-aliases-using-as" id="toc-column-aliases-using-as" class="nav-link" data-scroll-target="#column-aliases-using-as">Column Aliases using <code>AS</code></a></li>
+  <li><a href="#order-of-execution" id="toc-order-of-execution" class="nav-link" data-scroll-target="#order-of-execution">ORDER OF EXECUTION</a></li>
+  <li><a href="#functions-and-operators" id="toc-functions-and-operators" class="nav-link" data-scroll-target="#functions-and-operators">Functions and Operators</a></li>
+  </ul></li>
+  <li><a href="#aggregate-functions" id="toc-aggregate-functions" class="nav-link" data-scroll-target="#aggregate-functions">Aggregate Functions</a></li>
+  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping">Grouping</a></li>
+  <li><a href="#joining-tables" id="toc-joining-tables" class="nav-link" data-scroll-target="#joining-tables">Joining Tables</a></li>
+  <li><a href="#data-manipulation" id="toc-data-manipulation" class="nav-link" data-scroll-target="#data-manipulation">Data Manipulation</a>
+  <ul class="collapse">
+  <li><a href="#insert" id="toc-insert" class="nav-link" data-scroll-target="#insert">INSERT</a></li>
+  <li><a href="#update" id="toc-update" class="nav-link" data-scroll-target="#update">UPDATE</a></li>
+  <li><a href="#delete" id="toc-delete" class="nav-link" data-scroll-target="#delete">DELETE</a></li>
+  <li><a href="#truncate" id="toc-truncate" class="nav-link" data-scroll-target="#truncate">TRUNCATE</a></li>
+  </ul></li>
+  <li><a href="#creating-altering-and-dropping-tables" id="toc-creating-altering-and-dropping-tables" class="nav-link" data-scroll-target="#creating-altering-and-dropping-tables">Creating, Altering, and Dropping Tables</a>
+  <ul class="collapse">
+  <li><a href="#create-table" id="toc-create-table" class="nav-link" data-scroll-target="#create-table">CREATE TABLE</a></li>
+  <li><a href="#keys" id="toc-keys" class="nav-link" data-scroll-target="#keys">Keys</a></li>
+  <li><a href="#temporary-table" id="toc-temporary-table" class="nav-link" data-scroll-target="#temporary-table">TEMPORARY TABLE</a></li>
+  </ul></li>
+  <li><a href="#drop-table" id="toc-drop-table" class="nav-link" data-scroll-target="#drop-table">DROP TABLE</a></li>
+  <li><a href="#transaction" id="toc-transaction" class="nav-link" data-scroll-target="#transaction">Transaction</a>
+  <ul class="collapse">
+  <li><a href="#acid" id="toc-acid" class="nav-link" data-scroll-target="#acid">ACID</a></li>
+  </ul></li>
+  <li><a href="#subqueries" id="toc-subqueries" class="nav-link" data-scroll-target="#subqueries">Subqueries</a>
+  <ul class="collapse">
+  <li><a href="#correlated-subqueries" id="toc-correlated-subqueries" class="nav-link" data-scroll-target="#correlated-subqueries">Correlated Subqueries</a></li>
+  <li><a href="#any-all-exists" id="toc-any-all-exists" class="nav-link" data-scroll-target="#any-all-exists">ANY, ALL, EXISTS</a></li>
+  </ul></li>
+  <li><a href="#views" id="toc-views" class="nav-link" data-scroll-target="#views">Views</a>
+  <ul class="collapse">
+  <li><a href="#materialized-views" id="toc-materialized-views" class="nav-link" data-scroll-target="#materialized-views">Materialized Views</a></li>
+  </ul></li>
+  <li><a href="#temporary-tables" id="toc-temporary-tables" class="nav-link" data-scroll-target="#temporary-tables">Temporary Tables</a></li>
+  <li><a href="#ctes" id="toc-ctes" class="nav-link" data-scroll-target="#ctes">CTEs</a></li>
+  <li><a href="#summary-tt-vs-views-vs-ctes" id="toc-summary-tt-vs-views-vs-ctes" class="nav-link" data-scroll-target="#summary-tt-vs-views-vs-ctes">Summary TT vs Views vs CTEs</a></li>
+  <li><a href="#window-functions" id="toc-window-functions" class="nav-link" data-scroll-target="#window-functions">Window Functions</a>
+  <ul class="collapse">
+  <li><a href="#window-function-types" id="toc-window-function-types" class="nav-link" data-scroll-target="#window-function-types">Window Function Types</a></li>
+  </ul></li>
+  <li><a href="#relational-vs.-non-relational-databases" id="toc-relational-vs.-non-relational-databases" class="nav-link" data-scroll-target="#relational-vs.-non-relational-databases">Relational vs.&nbsp;Non-relational Databases</a></li>
+  <li><a href="#nosql-not-only-sql" id="toc-nosql-not-only-sql" class="nav-link" data-scroll-target="#nosql-not-only-sql">NoSQL (Not Only SQL)</a>
+  <ul class="collapse">
+  <li><a href="#strengths" id="toc-strengths" class="nav-link" data-scroll-target="#strengths">Strengths</a></li>
+  <li><a href="#types-of-nosql-databases" id="toc-types-of-nosql-databases" class="nav-link" data-scroll-target="#types-of-nosql-databases">Types of NoSQL Databases</a></li>
+  </ul></li>
+  <li><a href="#mongodb" id="toc-mongodb" class="nav-link" data-scroll-target="#mongodb">MongoDB</a>
+  <ul class="collapse">
+  <li><a href="#find" id="toc-find" class="nav-link" data-scroll-target="#find"><code>find</code></a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="relational-databases" class="level1">
+<h1>Relational Databases</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<ul>
+<li>What is a database?
+<ul>
+<li>Organized collection of related data</li>
+</ul></li>
+<li>Whart is a database management system (DBMS)?
+<ul>
+<li>Collection of programs that enables users to create and maintain a database</li>
+<li>allows users to create, query, modify, and manage</li>
+</ul></li>
+</ul>
+<p><strong>DATABASE != DBMS</strong></p>
+<section id="reasons-for-dbms" class="level3">
+<h3 class="anchored" data-anchor-id="reasons-for-dbms">Reasons for DBMS</h3>
+<ul>
+<li><strong>Efficiency</strong>: Data is stored efficiently.</li>
+<li><strong>Integrity</strong>: Data is consistent and correct.</li>
+<li><strong>Security</strong>: Data is safe from unauthorized access.</li>
+<li><strong>Concurrent Access</strong>: Multiple users can access the same data at the same time.</li>
+<li><strong>Crash Recovery</strong>: Data is safe from crashes.</li>
+<li><strong>Independence</strong>: Data is independent of the programs that use it.</li>
+</ul>
+</section>
+</section>
+<section id="relational-data-model" class="level2">
+<h2 class="anchored" data-anchor-id="relational-data-model">Relational Data Model</h2>
+<ul>
+<li>Works with entities and relationships</li>
+<li><strong>Entity</strong>: a thing or object in the real world that is distinguishable from other objects
+<ul>
+<li>e.g.&nbsp;students in a school</li>
+</ul></li>
+<li><strong>Relationship</strong>: an association among entities
+<ul>
+<li>e.g.&nbsp;a student is enrolled in a course</li>
+</ul></li>
+</ul>
+</section>
+<section id="relational-database" class="level2">
+<h2 class="anchored" data-anchor-id="relational-database">Relational Database</h2>
+<ul>
+<li>Collection of relations</li>
+<li>A relation is an instance of a relation schema (similar to object = instance of a class)</li>
+<li><strong>Relation Schema</strong> specifies:
+<ol type="1">
+<li>Name of relation</li>
+<li>Name and domain of each attribute</li>
+</ol></li>
+<li><strong>Domain</strong>: set of constraints that determines the type, length, format, range, uniqueness and nullability of values stored for an attribute</li>
+</ul>
+<p><img src="images/1_anatomy_table.png" width="400"></p>
+</section>
+<section id="query-language-in-a-dbms" class="level2">
+<h2 class="anchored" data-anchor-id="query-language-in-a-dbms">Query language in a DBMS</h2>
+<ul>
+<li>Query: a request for information from a database. Results in a relation.</li>
+<li><strong>Structured Query Language (SQL)</strong>: standard programming language for managing and manipulating databases.</li>
+<li>Can be categorized into:
+<ul>
+<li><strong>Data Definition Language (DDL)</strong>: used to define the database structure or schema.</li>
+<li><strong>Data Manipulation Language (DML)</strong>: used to read, insert, delete, and modify data.</li>
+<li><strong>Data Query Language (DQL)</strong>: used to retrieve data from a database.</li>
+<li><strong>Data Control Language (DCL)</strong>: used to control access to data stored in a database.</li>
+</ul></li>
+</ul>
+</section>
+<section id="postgresql" class="level2">
+<h2 class="anchored" data-anchor-id="postgresql">PostgreSQL</h2>
+<ul>
+<li>Specific flavor of SQL and DBMS</li>
+<li>open-source, cross-platform DBMS that implements the relational model</li>
+<li>reliable, robust, and feature-rich</li>
+</ul>
+<section id="psql" class="level3">
+<h3 class="anchored" data-anchor-id="psql">psql</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>\l</code></td>
+<td>List all databases</td>
+</tr>
+<tr class="even">
+<td><code>\c</code></td>
+<td>Connect to a database</td>
+</tr>
+<tr class="odd">
+<td><code>\d</code></td>
+<td>Describe tables and views</td>
+</tr>
+<tr class="even">
+<td><code>\dt</code></td>
+<td>List tables</td>
+</tr>
+<tr class="odd">
+<td><code>\dt+</code></td>
+<td>List tables with additional info</td>
+</tr>
+<tr class="even">
+<td><code>\d+</code></td>
+<td>List tables and views with additional info</td>
+</tr>
+<tr class="odd">
+<td><code>\!</code></td>
+<td>Execute shell commands</td>
+</tr>
+<tr class="even">
+<td><code>\cd</code></td>
+<td>Change directory</td>
+</tr>
+<tr class="odd">
+<td><code>\i</code></td>
+<td>Execute commands from a file</td>
+</tr>
+<tr class="even">
+<td><code>\h</code></td>
+<td>View help on SQL commands</td>
+</tr>
+<tr class="odd">
+<td><code>\?</code></td>
+<td>View help on psql meta commands</td>
+</tr>
+<tr class="even">
+<td><code>\q</code></td>
+<td>Quit interactive shell</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ipython-sql" class="level3">
+<h3 class="anchored" data-anchor-id="ipython-sql">ipython-sql</h3>
+<ul>
+<li>To install: <code>pip install ipython-sql</code></li>
+<li>To load: <code>%load_ext sql</code></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Login to database</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.parse</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># use credentials.json to login (not included in repo)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data/credentials.json'</span>) <span class="im">as</span> f:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    login <span class="op">=</span> json.load(f)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>username <span class="op">=</span> login[<span class="st">'user'</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>password <span class="op">=</span> urllib.parse.quote(login[<span class="st">'password'</span>])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>host <span class="op">=</span> login[<span class="st">'host'</span>]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>port <span class="op">=</span> login[<span class="st">'port'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Establish connection:</li>
+</ul>
+<pre><code>%sql postgresql://{username}:{password}@{host}:{port}/world</code></pre>
+<ul>
+<li>Run queries:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> <span class="op">%</span>sql SELECT name, population FROM country<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql output <span class="op">&lt;&lt;</span> <span class="co"># Not a pandas dataframe</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>SELECT</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  name, population</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>FROM</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  country</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to pandas dataframe</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> output.DataFrame()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Set configurations:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config SqlMagic.displaylimit <span class="op">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="sql-basic-commands" class="level2">
+<h2 class="anchored" data-anchor-id="sql-basic-commands">SQL basic commands</h2>
+<ul>
+<li>taken from https://www.sqltutorial.org/sql-cheat-sheet/*</li>
+</ul>
+<section id="querying-data-from-a-table" class="level3">
+<h3 class="anchored" data-anchor-id="querying-data-from-a-table">Querying Data from a table</h3>
+<table class="table">
+<colgroup>
+<col style="width: 60%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description / Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>SELECT c1, c2</code><br><code>FROM t;</code></td>
+<td>Query data in columns c1, c2 from a table</td>
+</tr>
+<tr class="even">
+<td><code>SELECT *</code><br><code>FROM t;</code></td>
+<td>Query all rows and columns from a table</td>
+</tr>
+<tr class="odd">
+<td><code>SELECT c1, c2</code><br><code>FROM t</code><br><code>WHERE condition;</code></td>
+<td>Query data and filter rows with a condition</td>
+</tr>
+<tr class="even">
+<td><code>SELECT DISTINCT c1</code><br><code>FROM t</code><br><code>WHERE condition;</code></td>
+<td>Query distinct rows from a table</td>
+</tr>
+<tr class="odd">
+<td><code>SELECT COUNT(DISTINCT (c1, c2))</code><br><code>FROM t;</code></td>
+<td>Count distinct rows in a table</td>
+</tr>
+<tr class="even">
+<td><code>SELECT c1, c2</code><br><code>FROM t</code><br><code>ORDER BY c1 ASC [DESC];</code></td>
+<td>Sort the result set in ascending or descending order</td>
+</tr>
+<tr class="odd">
+<td><code>SELECT c1, c2</code><br><code>FROM t</code><br><code>ORDER BY c1</code><br><code>LIMIT n OFFSET offset;</code></td>
+<td>Skip offset of rows and return the next n rows</td>
+</tr>
+<tr class="even">
+<td><code>SELECT c1, aggregate(c2)</code><br><code>FROM t</code><br><code>GROUP BY c1;</code></td>
+<td>Group rows using an aggregate function</td>
+</tr>
+<tr class="odd">
+<td><code>SELECT c1, aggregate(c2)</code><br><code>FROM t</code><br><code>GROUP BY c1</code><br><code>HAVING condition;</code></td>
+<td>Filter groups using HAVING clause</td>
+</tr>
+<tr class="even">
+<td><code>SELECT CONCAT(c1, c2)</code><br><code>FROM t;</code></td>
+<td>Concatenate two or more strings</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>Conditions: <code>=</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>IN ('a','b')</code>, <code>IS NULL</code>, …</li>
+<li>Strings must be enclosed in single quotes <code>'...'</code></li>
+<li>Aggregate functions: <code>AVG</code>, <code>COUNT</code>, <code>MAX</code>, <code>MIN</code>, <code>SUM</code>, <code>ROUND(value, decimal_places)</code></li>
+<li>Need decimal point to prevent integer division</li>
+</ul>
+</section>
+<section id="querying-data-from-multiple-tables" class="level3">
+<h3 class="anchored" data-anchor-id="querying-data-from-multiple-tables">Querying Data from multiple tables</h3>
+<table class="table">
+<colgroup>
+<col style="width: 59%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description / Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>SELECT c1, c2</code><br><code>FROM t1</code><br><code>INNER JOIN t2 ON condition;</code></td>
+<td>Inner join t1 and t2</td>
+</tr>
+<tr class="even">
+<td><code>SELECT c1, c2</code><br><code>FROM t1</code><br><code>LEFT JOIN t2 ON condition;</code></td>
+<td>Left join t1 and t2</td>
+</tr>
+<tr class="odd">
+<td><code>SELECT c1, c2</code><br><code>FROM t1</code><br><code>RIGHT JOIN t2 ON condition;</code></td>
+<td>Right join t1 and t2</td>
+</tr>
+<tr class="even">
+<td><code>SELECT c1, c2</code><br><code>FROM t1</code><br><code>FULL OUTER JOIN t2 ON condition;</code></td>
+<td>Perform full outer join</td>
+</tr>
+<tr class="odd">
+<td><code>SELECT c1, c2</code><br><code>FROM t1</code><br><code>CROSS JOIN t2;</code></td>
+<td>Produce a Cartesian product of rows in tables</td>
+</tr>
+<tr class="even">
+<td><code>SELECT c1, c2</code><br><code>FROM t1 A</code><br><code>INNER JOIN t2 B ON condition;</code></td>
+<td>Join t1 to itself using INNER JOIN clause</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="using-sql-operators" class="level3">
+<h3 class="anchored" data-anchor-id="using-sql-operators">Using SQL Operators</h3>
+<table class="table">
+<colgroup>
+<col style="width: 61%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description / Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>SELECT c1, c2</code><br><code>FROM t1</code><br><code>UNION [ALL]</code><br><code>SELECT c1, c2 FROM t2;</code></td>
+<td>Combine rows from two queries</td>
+</tr>
+<tr class="even">
+<td><code>SELECT c1, c2</code><br><code>FROM t1</code><br><code>INTERSECT</code><br><code>SELECT c1, c2 FROM t2;</code></td>
+<td>Return the intersection of two queries</td>
+</tr>
+<tr class="odd">
+<td><code>SELECT c1, c2</code><br><code>FROM t1</code><br><code>MINUS</code><br><code>SELECT c1, c2 FROM t2;</code></td>
+<td>Subtract a result set from another result set</td>
+</tr>
+<tr class="even">
+<td><code>SELECT c1, c2</code><br><code>FROM t</code><br><code>WHERE c1 [NOT] LIKE pattern;</code></td>
+<td>Query rows using pattern matching % _</td>
+</tr>
+<tr class="odd">
+<td><code>SELECT c1, c2</code><br><code>FROM t</code><br><code>WHERE c1 [NOT] IN value_list;</code></td>
+<td>Query rows in a list</td>
+</tr>
+<tr class="even">
+<td><code>SELECT c1, c2</code><br><code>FROM t</code><br><code>WHERE c1 BETWEEN low AND high;</code></td>
+<td>Query rows between two values</td>
+</tr>
+<tr class="odd">
+<td><code>SELECT c1, c2</code><br><code>FROM t</code><br><code>WHERE c1 IS [NOT] NULL;</code></td>
+<td>Check if values in a table is NULL or not</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="managing-tables" class="level3">
+<h3 class="anchored" data-anchor-id="managing-tables">Managing Tables</h3>
+<table class="table">
+<colgroup>
+<col style="width: 72%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description / Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CREATE TABLE t (</code><br><code>id INT PRIMARY KEY,</code><br><code>name VARCHAR NOT NULL,</code><br><code>price INT DEFAULT 0);</code></td>
+<td>Create a new table with three columns</td>
+</tr>
+<tr class="even">
+<td><code>DROP TABLE t;</code></td>
+<td>Delete the table from the database</td>
+</tr>
+<tr class="odd">
+<td><code>ALTER TABLE t ADD column;</code></td>
+<td>Add a new column to the table</td>
+</tr>
+<tr class="even">
+<td><code>ALTER TABLE t DROP COLUMN c;</code></td>
+<td>Drop column c from the</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="database-data-types" class="level2">
+<h2 class="anchored" data-anchor-id="database-data-types">Database Data Types</h2>
+<p>PostgreSQL supports many data types. The most common ones are:</p>
+<ul>
+<li><strong>Boolean</strong>, <code>BOOLEAN</code> or <code>BOOL</code>
+<ul>
+<li>True: <code>TRUE</code>, <code>t</code>, <code>true</code>, <code>y</code>, <code>yes</code>, <code>on</code>, <code>1</code></li>
+</ul></li>
+<li><strong>Characters</strong>
+<ul>
+<li><code>CHAR(n)</code>: string of <code>n</code> characters (pad with spaces)</li>
+<li><code>VARCHAR(n)</code>: string of up to <code>n</code> characters</li>
+<li><code>TEXT</code>: PostgreSQL-specific type for storing strings of any length</li>
+</ul></li>
+<li><strong>DateTime</strong>: date and time
+<ul>
+<li><code>DATE</code>: date (YYYY-MM-DD)
+<ul>
+<li><code>CURRENT_DATE</code>: current date</li>
+</ul></li>
+<li><code>TIME</code>: time</li>
+<li><code>TIMESTAMP</code>: date and time</li>
+<li><code>TIMESTAMPTZ</code>: date and time with timezone</li>
+</ul></li>
+<li><strong>Binary</strong>: binary data</li>
+<li><strong>Numbers</strong></li>
+</ul>
+</section>
+<section id="vs" class="level2">
+<h2 class="anchored" data-anchor-id="vs">” vs ’</h2>
+<ul>
+<li><code>"</code> is used for identifiers (e.g.&nbsp;table names, column names)</li>
+<li><code>'</code> is used for strings.</li>
+</ul>
+<section id="numbers" class="level3">
+<h3 class="anchored" data-anchor-id="numbers">Numbers</h3>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 28%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Storage Size</th>
+<th>Description</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>smallint</code></td>
+<td>2 bytes</td>
+<td>small-range integer</td>
+<td>-32,768 to +32,767</td>
+</tr>
+<tr class="even">
+<td><code>integer</code></td>
+<td>4 bytes</td>
+<td>typical choice for integer</td>
+<td>-2,147,483,648 to +2,147,483,647</td>
+</tr>
+<tr class="odd">
+<td><code>bigint</code></td>
+<td>8 bytes</td>
+<td>large-range integer</td>
+<td>-9,223,372,036,854,775,808 to +9,223,372,036,854,775,807</td>
+</tr>
+<tr class="even">
+<td><code>serial</code></td>
+<td>4 bytes</td>
+<td>auto-incrementing integer</td>
+<td>1 to 2,147,483,647</td>
+</tr>
+<tr class="odd">
+<td><code>bigserial</code></td>
+<td>8 bytes</td>
+<td>large auto-incrementing integer</td>
+<td>1 to 9,223,372,036,854,775,807</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: <code>serial</code> and <code>bigserial</code> are not true types, but merely a notational convenience for creating unique identifier columns.</em></p>
+<p><strong>Floating-Point Numbers</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 10%">
+<col style="width: 24%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Storage Size</th>
+<th>Description</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>real</code></td>
+<td>4 bytes</td>
+<td>variable-precision, inexact</td>
+<td>at least 6 decimal digits (implementation dependent)</td>
+</tr>
+<tr class="even">
+<td><code>double precision</code></td>
+<td>8 bytes</td>
+<td>variable-precision, inexact</td>
+<td>at least 15 decimal digits (implementation dependent)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Arbitrary Precision Numbers</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 9%">
+<col style="width: 24%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Storage Size</th>
+<th>Description</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>numeric</code> or <code>decimal</code></td>
+<td>variable</td>
+<td>user-specified precision, exact</td>
+<td>131072 digits before and 16383 digits after the decimal point</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: <code>numeric</code> and <code>decimal</code> are the same type in Postgres.</em></p>
+</section>
+<section id="type-conversion" class="level3">
+<h3 class="anchored" data-anchor-id="type-conversion">Type conversion</h3>
+<ul>
+<li>Can do : <code>&lt;col&gt;::&lt;data_type&gt;</code> or <code>CAST(&lt;col&gt; AS &lt;data_type&gt;)</code></li>
+<li>e.g.&nbsp;<code>SELECT '123'::integer;</code></li>
+<li>e.g.&nbsp;<code>SELECT CAST('123' AS integer);</code></li>
+</ul>
+</section>
+<section id="filtering-using-where" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-using-where">Filtering using <code>WHERE</code></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> table_name</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> [<span class="kw">NOT</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    condition</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">AND</span><span class="op">/</span><span class="kw">OR</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    condition;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Condition Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>WHERE column = value</code></td>
+<td>Equals; returns true if the column equals the value.</td>
+</tr>
+<tr class="even">
+<td><code>WHERE column &lt;&gt; value</code></td>
+<td>Not equals; true if the column is not equal to value.</td>
+</tr>
+<tr class="odd">
+<td><code>WHERE column &gt; value</code></td>
+<td>Greater than; true if the column is more than value.</td>
+</tr>
+<tr class="even">
+<td><code>WHERE column &lt; value</code></td>
+<td>Less than; true if the column is less than value.</td>
+</tr>
+<tr class="odd">
+<td><code>WHERE column BETWEEN value1 AND value2</code></td>
+<td>True if the column is within the range of value1 and value2.</td>
+</tr>
+<tr class="even">
+<td><code>WHERE column [NOT] IN (value1, value2, ...)</code></td>
+<td>True if the column is equal to any of multiple values.</td>
+</tr>
+<tr class="odd">
+<td><code>WHERE column [NOT] LIKE pattern</code></td>
+<td>True if the column matches the SQL pattern.</td>
+</tr>
+<tr class="even">
+<td><code>WHERE column IS [NOT] NULL</code></td>
+<td>True if the column is NULL.</td>
+</tr>
+</tbody>
+</table>
+<section id="pattern-matching-using-like" class="level4">
+<h4 class="anchored" data-anchor-id="pattern-matching-using-like">Pattern Matching using <code>LIKE</code></h4>
+<ul>
+<li><code>LIKE</code> is case-sensitive</li>
+<li><code>ILIKE</code> is case-insensitive</li>
+<li>Wildcards:
+<ul>
+<li><code>%</code> (any string of zero or more characters)</li>
+<li><code>_</code> (any single character)</li>
+</ul></li>
+<li>e.g.&nbsp;<code>WHERE column LIKE 'abc%'</code></li>
+</ul>
+<p>Other nuances:</p>
+<ul>
+<li>using <code>ESCAPE</code> to identify escape character
+<ul>
+<li>e.g.&nbsp;<code>WHERE column LIKE '%$%%' ESCAPE '$'</code>: matches strings that contains <code>%</code></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="column-aliases-using-as" class="level3">
+<h3 class="anchored" data-anchor-id="column-aliases-using-as">Column Aliases using <code>AS</code></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">column</span> <span class="kw">AS</span> alias</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> table_name;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Cannot use alias in <code>WHERE</code> clause because order of execution is <code>FROM</code> then <code>WHERE</code></li>
+</ul>
+</section>
+<section id="order-of-execution" class="level3">
+<h3 class="anchored" data-anchor-id="order-of-execution">ORDER OF EXECUTION</h3>
+<ol type="1">
+<li><code>FROM</code> and <code>JOIN</code></li>
+<li><code>WHERE</code></li>
+<li><code>GROUP BY</code>, then <code>HAVING</code></li>
+<li><code>SELECT</code> , then <code>DISTINCT</code></li>
+<li><code>ORDER BY</code></li>
+<li><code>LIMIT</code> and <code>OFFSET</code></li>
+</ol>
+</section>
+<section id="functions-and-operators" class="level3">
+<h3 class="anchored" data-anchor-id="functions-and-operators">Functions and Operators</h3>
+<section id="math" class="level4">
+<h4 class="anchored" data-anchor-id="math">Math</h4>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Short Description</th>
+<th>Example/Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Addition</td>
+<td><code>col1 + col2</code></td>
+</tr>
+<tr class="even">
+<td>Subtraction</td>
+<td><code>col1 - col2</code></td>
+</tr>
+<tr class="odd">
+<td>Multiplication</td>
+<td><code>col1 * col2</code></td>
+</tr>
+<tr class="even">
+<td>Division</td>
+<td><code>col1 / col2</code></td>
+</tr>
+<tr class="odd">
+<td>Modulus</td>
+<td><code>col1 % col2</code></td>
+</tr>
+<tr class="even">
+<td>Absolute Value</td>
+<td><code>ABS(col)</code></td>
+</tr>
+<tr class="odd">
+<td>Round to n decimal places</td>
+<td><code>ROUND(col, n)</code></td>
+</tr>
+<tr class="even">
+<td>Round up</td>
+<td><code>CEILING(col)</code></td>
+</tr>
+<tr class="odd">
+<td>Round down</td>
+<td><code>FLOOR(col)</code></td>
+</tr>
+<tr class="even">
+<td>Power of n</td>
+<td><code>POWER(col, n)</code></td>
+</tr>
+<tr class="odd">
+<td>Square Root</td>
+<td><code>SQRT(col)</code></td>
+</tr>
+<tr class="even">
+<td>Truncate to n decimal places</td>
+<td><code>TRUNCATE(col, n)</code></td>
+</tr>
+<tr class="odd">
+<td>Generate random number</td>
+<td><code>RAND()</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="string" class="level4">
+<h4 class="anchored" data-anchor-id="string">String</h4>
+<table class="table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Short Description</th>
+<th>Example/Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Concatenate strings</td>
+<td><code>CONCAT(str1, str2, ...)</code> or <code>str1 \|\| str2</code></td>
+</tr>
+<tr class="even">
+<td>Length of string</td>
+<td><code>CHAR_LENGTH(str)</code></td>
+</tr>
+<tr class="odd">
+<td>Convert to lower case</td>
+<td><code>LOWER(str)</code></td>
+</tr>
+<tr class="even">
+<td>Convert to upper case</td>
+<td><code>UPPER(str)</code></td>
+</tr>
+<tr class="odd">
+<td>Extract substring</td>
+<td><code>SUBSTRING(str, start, length)</code></td>
+</tr>
+<tr class="even">
+<td>Trim spaces</td>
+<td><code>TRIM(str)</code></td>
+</tr>
+<tr class="odd">
+<td>Replace substring</td>
+<td><code>REPLACE(str, from_str, to_str)</code></td>
+</tr>
+<tr class="even">
+<td>Position of substring</td>
+<td><code>POSITION(substring IN str)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="datetime" class="level4">
+<h4 class="anchored" data-anchor-id="datetime">Datetime</h4>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Short Description</th>
+<th>Example/Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Current date</td>
+<td><code>CURRENT_DATE</code></td>
+</tr>
+<tr class="even">
+<td>Current time</td>
+<td><code>CURRENT_TIME</code></td>
+</tr>
+<tr class="odd">
+<td>Current date and time</td>
+<td><code>CURRENT_TIMESTAMP</code></td>
+</tr>
+<tr class="even">
+<td>Extract part of date/time</td>
+<td><code>EXTRACT(part FROM date/time)</code></td>
+</tr>
+<tr class="odd">
+<td>Add interval to date/time</td>
+<td><code>date/time + INTERVAL</code></td>
+</tr>
+<tr class="even">
+<td>Subtract interval from date/time</td>
+<td><code>date/time - INTERVAL</code></td>
+</tr>
+<tr class="odd">
+<td>Difference between dates/times</td>
+<td><code>DATEDIFF(date1, date2)</code></td>
+</tr>
+<tr class="even">
+<td>Format date/time</td>
+<td><code>FORMAT(date/time, format)</code></td>
+</tr>
+</tbody>
+</table>
+<p>e.g.&nbsp;<code>SELECT EXTRACT(YEAR FROM CURRENT_DATE);</code></p>
+</section>
+<section id="null" class="level4">
+<h4 class="anchored" data-anchor-id="null">Null</h4>
+<table class="table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Short Description</th>
+<th>Example/Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Check for NULL</td>
+<td><code>col IS NULL</code></td>
+</tr>
+<tr class="even">
+<td>Check for non-NULL</td>
+<td><code>col IS NOT NULL</code></td>
+</tr>
+<tr class="odd">
+<td>Replace NULL with specified value</td>
+<td><code>COALESCE(col, replace_value)</code></td>
+</tr>
+<tr class="even">
+<td>Null-safe equal to operator</td>
+<td><code>col1 &lt;=&gt; col2</code></td>
+</tr>
+<tr class="odd">
+<td>Case statement with NULL handling</td>
+<td><code>CASE WHEN col IS NULL THEN result ELSE other_result END</code></td>
+</tr>
+<tr class="even">
+<td>Null if expression is NULL</td>
+<td><code>NULLIF(expression, NULL)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="aggregate-functions" class="level2">
+<h2 class="anchored" data-anchor-id="aggregate-functions">Aggregate Functions</h2>
+<table class="table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 86%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>AVG()</code></td>
+<td>Returns the average value.</td>
+</tr>
+<tr class="even">
+<td><code>COUNT()</code></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="odd">
+<td><code>MAX()</code></td>
+<td>Returns the maximum value.</td>
+</tr>
+<tr class="even">
+<td><code>MIN()</code></td>
+<td>Returns the minimum value.</td>
+</tr>
+<tr class="odd">
+<td><code>SUM()</code></td>
+<td>Returns the sum of all or distinct values.</td>
+</tr>
+<tr class="even">
+<td><code>VAR()</code></td>
+<td>Returns the variance of all or distinct values.</td>
+</tr>
+<tr class="odd">
+<td><code>STDDEV</code></td>
+<td>Returns the standard deviation of all or distinct values.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important notes:</strong></p>
+<ul>
+<li>Cannot use aggregate function with normal column (in <code>SELECT</code> clause) without <code>GROUP BY</code> clause</li>
+<li>All aggregate functions ignore <code>NULL</code> values except <code>COUNT(*)</code></li>
+<li>Cannot use aggregate function in <code>WHERE</code> clause because order of execution is <code>FROM</code> then <code>WHERE</code></li>
+</ul>
+</section>
+<section id="grouping" class="level2">
+<h2 class="anchored" data-anchor-id="grouping">Grouping</h2>
+<ul>
+<li><code>GROUP BY</code> clause is used to group rows with the same values</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Formal syntax</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    grouping_columns, aggregated_columns</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    table1</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="co">-- filter rows before grouping</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    condition</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="co">-- must be between WHERE and ORDER BY</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    grouping_columns</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="co">-- Used to filter groups (after grouping)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    group_condition</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    grouping_columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="joining-tables" class="level2">
+<h2 class="anchored" data-anchor-id="joining-tables">Joining Tables</h2>
+<ul>
+<li><code>JOIN</code> clause is used to combine rows from two or more tables based on a related column between them
+<ul>
+<li>DEFAULT: <code>INNER JOIN</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="co">-- columns from both tables</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    t1.column1, t2.column2</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    table1 <span class="kw">AS</span> t1 <span class="co">-- after using alias, use alias instead of table name</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>jointype</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    table2 <span class="kw">AS</span> t2</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> <span class="co">-- condition to join tables</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    t1.<span class="kw">column</span> <span class="op">=</span> t2.<span class="kw">column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 89%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Join Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CROSS</code></td>
+<td>Returns the Cartesian product of the sets of rows from the joined tables (all possible combinations)</td>
+</tr>
+<tr class="even">
+<td><code>INNER</code></td>
+<td>Returns rows when there is a match in both tables. (intersect)</td>
+</tr>
+<tr class="odd">
+<td><code>NATURAL</code></td>
+<td>Returns all rows without specifying ON, names have to be the same in both tables.</td>
+</tr>
+<tr class="even">
+<td><code>LEFT OUTER</code></td>
+<td>Returns all rows from the left-hand table, plus any rows in the right-hand table that match the left-hand side.</td>
+</tr>
+<tr class="odd">
+<td><code>RIGHT OUTER</code></td>
+<td>Returns all rows from the right-hand table, plus any rows in the left-hand table that match the right-hand side.</td>
+</tr>
+<tr class="even">
+<td><code>FULL OUTER</code></td>
+<td>Returns all rows from both tables, with nulls in place of those rows that have no match in the other table.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-manipulation" class="level2">
+<h2 class="anchored" data-anchor-id="data-manipulation">Data Manipulation</h2>
+<section id="insert" class="level3">
+<h3 class="anchored" data-anchor-id="insert">INSERT</h3>
+<ul>
+<li>Add new rows to table, by:
+<ul>
+<li><p>column position:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INSERT</span> <span class="kw">INTO</span> table_name</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        (value1, value2, <span class="op">..</span>.),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        (value1, value2, <span class="op">..</span>.), <span class="co">-- can insert multiple rows at once</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">..</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>values need to be in the same order as the columns</li>
+<li>don’t need to specify column names</li>
+</ul></li>
+<li><p>column name:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> table_name(column1, column2, <span class="op">..</span>.)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (value1, value2, <span class="op">..</span>.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>values can be in any order</li>
+<li>need to specify column names</li>
+</ul></li>
+<li><p>from another table:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    table_name(column1, column2, <span class="op">..</span>.)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> other_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+</ul>
+</section>
+<section id="update" class="level3">
+<h3 class="anchored" data-anchor-id="update">UPDATE</h3>
+<ul>
+<li>Modify existing rows in table</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> table_name</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> column1 <span class="op">=</span> value1,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    column2 <span class="op">=</span> value2,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">..</span>.</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> condition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="delete" class="level3">
+<h3 class="anchored" data-anchor-id="delete">DELETE</h3>
+<ul>
+<li>Remove rows from table</li>
+<li>removes all rows but keeps table if no <code>WHERE</code> clause</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> table_name</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> condition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="truncate" class="level3">
+<h3 class="anchored" data-anchor-id="truncate">TRUNCATE</h3>
+<ul>
+<li>Remove all rows from table</li>
+<li>faster than <code>DELETE</code> because it doesn’t scan every row
+<ul>
+<li>also does not log each row deletion</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TRUNCATE</span> <span class="kw">TABLE</span> table_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="creating-altering-and-dropping-tables" class="level2">
+<h2 class="anchored" data-anchor-id="creating-altering-and-dropping-tables">Creating, Altering, and Dropping Tables</h2>
+<section id="create-table" class="level3">
+<h3 class="anchored" data-anchor-id="create-table">CREATE TABLE</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> table_name (</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    column1 datatype [<span class="kw">constraint</span>] <span class="kw">PRIMARY</span> <span class="kw">KEY</span>, <span class="co">-- for simple primary key</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    column2 datatype <span class="kw">UNIQUE</span>, <span class="co">-- unique constraint</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    column3 TEXT <span class="kw">DEFAULT</span> <span class="st">'default value'</span>, <span class="co">-- default value</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    column4 datatype</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        [<span class="kw">CONSTRAINT</span> constraint_name] <span class="kw">CHECK</span> (condition), <span class="co">-- check constraint</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- e.g.</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    phone <span class="dt">CHAR</span>(<span class="dv">12</span>) <span class="kw">CHECK</span> (phone <span class="kw">LIKE</span> <span class="st">'___-___-____'</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">..</span>.</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- table constraints</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- if set composite primary key, also can simple</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    [<span class="kw">CONSTRAINT</span> constraint_name] <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (column1, column2, <span class="op">..</span>.),</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="keys" class="level3">
+<h3 class="anchored" data-anchor-id="keys">Keys</h3>
+<ul>
+<li><strong>Simple key</strong>: a single column</li>
+<li><strong>Composite key</strong>: multiple columns</li>
+</ul>
+<section id="candidate-key" class="level4">
+<h4 class="anchored" data-anchor-id="candidate-key">Candidate Key</h4>
+<ul>
+<li>Can uniquely identify a table row</li>
+<li>Must be <strong>minimal</strong>: no subset of the candidate key can be a candidate key</li>
+<li>Can have multiple in a table (e.g.&nbsp;<code>id</code> and <code>email</code>)</li>
+</ul>
+</section>
+<section id="primary-key" class="level4">
+<h4 class="anchored" data-anchor-id="primary-key">Primary Key</h4>
+<ul>
+<li>A candidate key that is chosen to be the main identifier of a table</li>
+<li>Automaticaly <strong>unique</strong> and <strong>not null</strong></li>
+<li>Must be unique and not null</li>
+<li>Must be <strong>minimal</strong>
+<ul>
+<li>generally the candidate key with the fewest columns</li>
+</ul></li>
+</ul>
+</section>
+<section id="foreign-key" class="level4">
+<h4 class="anchored" data-anchor-id="foreign-key">Foreign Key</h4>
+<ul>
+<li>A column that references a primary key in another table</li>
+<li>Prevents invalid data from being inserted</li>
+<li>Can be null</li>
+<li><strong>Child table</strong>: table with foreign key</li>
+<li><strong>Parent table</strong>: table with primary key</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- parent table</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> instructor (</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    name TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    email TEXT <span class="kw">UNIQUE</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- child table</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> instructor_course (</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    course_id TEXT,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="kw">id</span>, course_id), <span class="co">-- composite primary key</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (<span class="kw">id</span>) <span class="kw">REFERENCES</span> instructor (<span class="kw">id</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- can also specify column name</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (course_id) <span class="kw">REFERENCES</span> instructor (<span class="kw">id</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span> <span class="co">-- delete child rows when parent row is deleted</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span> <span class="co">-- update child rows when child row is updated</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Foreign key constraint ensures there are no orphaned rows
+<ul>
+<li>i.e.&nbsp;all foreign key in child table must exist in parent table</li>
+</ul></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 78%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Referential Action</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>NO ACTION</code></td>
+<td>Default. Rejects update or delete of parent row</td>
+</tr>
+<tr class="even">
+<td><code>SET NULL</code></td>
+<td>Sets foreign key to null</td>
+</tr>
+<tr class="odd">
+<td><code>CASCADE</code></td>
+<td>Deletes or updates child rows when parent row is deleted or updated</td>
+</tr>
+<tr class="even">
+<td><code>SET DEFAULT</code></td>
+<td>Sets foreign key to default value</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="temporary-table" class="level3">
+<h3 class="anchored" data-anchor-id="temporary-table">TEMPORARY TABLE</h3>
+<ul>
+<li>Used to store temporary data</li>
+<li>Automatically dropped at end of session</li>
+<li>Private to current session</li>
+<li>Physically stored in temp tablespace</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TEMPORARY</span> <span class="kw">TABLE</span> table_name (</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">..</span>.</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- can also create from another table</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TEMPORARY</span> <span class="kw">TABLE</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    temp_table_name</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="kw">AS</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> name, department <span class="kw">FROM</span> other_table</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="drop-table" class="level2">
+<h2 class="anchored" data-anchor-id="drop-table">DROP TABLE</h2>
+<ul>
+<li>Remove table and all its data</li>
+<li>Postgres does not allow dropping a table if it has a foreign key constraint
+<ul>
+<li>need to drop the foreign key constraint first</li>
+<li>or use <code>CASCADE</code> to drop the table and all its foreign key constraints</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> table_name [<span class="kw">CASCADE</span>];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="transaction" class="level2">
+<h2 class="anchored" data-anchor-id="transaction">Transaction</h2>
+<ul>
+<li>A transaction is a sequence of SQL statements that are treated as a unit, so either all of them are executed, or none of them are executed.</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>[{<span class="cf">BEGIN</span>|<span class="kw">START</span>} [<span class="kw">TRANSACTION</span>]]; <span class="co">-- </span><span class="re">BEGIN</span><span class="co"> more common, can just start  with `</span><span class="re">BEGIN</span><span class="co">`</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>SQL statements<span class="op">&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>{<span class="kw">COMMIT</span>|<span class="kw">ROLLBACK</span>};</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>COMMIT</code>: make all changes made by the transaction permanent
+<ul>
+<li>without COMMIT, changes are not visible to other users</li>
+</ul></li>
+<li><code>ROLLBACK</code>: undo all changes made by the transaction</li>
+</ul>
+<section id="acid" class="level3">
+<h3 class="anchored" data-anchor-id="acid">ACID</h3>
+<p>Properties of a transaction:</p>
+<ul>
+<li><strong>Atomicity</strong>: all or nothing (transaction either completes or is aborted)</li>
+<li><strong>Consistency</strong>: database must be in a consistent state before and after the transaction
+<ul>
+<li>e.g.&nbsp;no scores &gt; 100, transaction will not be committed if it violates this</li>
+</ul></li>
+<li><strong>Isolation</strong>: if two transactions are executed concurrently, the result should be the same as if they were executed one after the other</li>
+<li><strong>Durability</strong>: changes made by a committed transaction must be permanent (even if there is a system failure), achieved using transaction log</li>
+</ul>
+</section>
+</section>
+<section id="subqueries" class="level2">
+<h2 class="anchored" data-anchor-id="subqueries">Subqueries</h2>
+<ul>
+<li>A subquery is a query within a query</li>
+<li>Normally used to mix aggregate and non-aggregate queries</li>
+<li>Can only be used if subquery <strong>returns ONLY 1 value</strong>.</li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Selects countries with a population greater than the average population of all countries</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    name</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    surfacearea <span class="op">&gt;</span> (</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">SELECT</span> <span class="fu">AVG</span>(surfacearea) <span class="kw">FROM</span> country</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="correlated-subqueries" class="level3">
+<h3 class="anchored" data-anchor-id="correlated-subqueries">Correlated Subqueries</h3>
+<ul>
+<li>A correlated subquery is a subquery that uses values from the outer query</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Selects countries with the largest population in their continent</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    c1.name, c1.continent</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    country c1</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    c1.population <span class="op">=</span> (</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">SELECT</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">MAX</span>(c2.population)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">FROM</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>            country c2</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">WHERE</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>            c2.continent <span class="op">=</span> c1.continent</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="any-all-exists" class="level3">
+<h3 class="anchored" data-anchor-id="any-all-exists">ANY, ALL, EXISTS</h3>
+<ul>
+<li><code>ANY</code> and <code>ALL</code> are used to compare a value to a list or subquery</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>ANY</th>
+<th>ALL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>if one of values true =&gt; true</td>
+<td>if all values true =&gt; true</td>
+</tr>
+</tbody>
+</table>
+<p>e.g.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Find the names of all countries that have a</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- population greater than all European countries.</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    name</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    country</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    continent <span class="op">&lt;&gt;</span> <span class="st">'Europe'</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">AND</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    population <span class="op">&gt;</span> <span class="kw">ALL</span> (</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">SELECT</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>            population</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">FROM</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>            country</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">WHERE</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>            continent <span class="op">=</span> <span class="st">'Europe'</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>EXISTS</code> is used to check if a subquery returns any rows
+<ul>
+<li>faster than <code>IN</code> because it stops as soon as it finds a match</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> co.name</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country co</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="kw">EXISTS</span> (<span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> city ci</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">WHERE</span> co.code <span class="op">=</span> ci.countrycode <span class="kw">AND</span> ci.population <span class="op">&gt;</span> <span class="dv">5000000</span>);</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        ```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="views" class="level2">
+<h2 class="anchored" data-anchor-id="views">Views</h2>
+<ul>
+<li>Is a named <em>result</em> of a <code>SELECT</code> query
+<ul>
+<li>Behaves like a table (called <em>virtual table</em> sometimes)</li>
+<li>Current and Dynamic: whenever you query a view, you get the most up-to-date data</li>
+<li>Views persists: they are kept</li>
+<li>Not materialized: they are not stored in the database</li>
+<li>Views can hide complexity</li>
+<li>Manage access to data</li>
+<li>Do not support constraints</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> view_name <span class="kw">AS</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    select_statment</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>;</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">VIEW</span> [<span class="cf">IF</span> <span class="kw">EXISTS</span>] view_name;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="materialized-views" class="level3">
+<h3 class="anchored" data-anchor-id="materialized-views">Materialized Views</h3>
+<ul>
+<li>Materialized views are stored in the database</li>
+<li>They are updated periodically</li>
+<li>They are used for performance reasons (a lot faster)</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">MATERIALIZED</span> <span class="kw">VIEW</span> my_mat_view <span class="kw">AS</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    select_statement</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>;</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="kw">REFRESH</span> <span class="kw">MATERIALIZED</span> <span class="kw">VIEW</span> [CONCURRENTLY] my_mat_view;</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- CONCURRENTLY: allows you to query the view while it is being refreshed, no guarantee it is up-to-date</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">MATERIALIZED</span> <span class="kw">VIEW</span> my_mat_view;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="temporary-tables" class="level2">
+<h2 class="anchored" data-anchor-id="temporary-tables">Temporary Tables</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> temp_table_name;</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TEMPORARY</span> <span class="kw">TABLE</span> temp_table_name <span class="kw">AS</span> (</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">..</span>.</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ctes" class="level2">
+<h2 class="anchored" data-anchor-id="ctes">CTEs</h2>
+<ul>
+<li>Common Table Expressions: temporary named result of a query</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    expression_name [(column_names, <span class="op">..</span>.)]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">AS</span> (</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">query</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="kw">query</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- SELECT * FROM expression_name;</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- This query needs to use the column names defined in the CTE after the expression name</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="summary-tt-vs-views-vs-ctes" class="level2">
+<h2 class="anchored" data-anchor-id="summary-tt-vs-views-vs-ctes">Summary TT vs Views vs CTEs</h2>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 16%">
+<col style="width: 19%">
+<col style="width: 16%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Temporary Tables</th>
+<th>Views</th>
+<th>Materialized Views</th>
+<th>CTEs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Nature</strong></td>
+<td>Physical table, session-scoped</td>
+<td>Virtual table</td>
+<td>Physical storage of query results</td>
+<td>Temporary result set</td>
+</tr>
+<tr class="even">
+<td><strong>Data Storage</strong></td>
+<td>Stores data temporarily</td>
+<td>Does not store data, only stores the query itself</td>
+<td>Stores results of a query</td>
+<td>Does not store data, used within query execution</td>
+</tr>
+<tr class="odd">
+<td><strong>Scope</strong></td>
+<td>Exists only during a database session</td>
+<td>Permanent, unless dropped</td>
+<td>Permanent, unless dropped</td>
+<td>Exists only during the execution of a query</td>
+</tr>
+<tr class="even">
+<td><strong>Access</strong></td>
+<td>Can only be accessed by 1 user</td>
+<td>Can be accessed by multiple users</td>
+<td>Can be accessed by multiple users</td>
+<td>Can be accessed by multiple users</td>
+</tr>
+<tr class="odd">
+<td><strong>Usage</strong></td>
+<td>Intermediate data storage, complex queries</td>
+<td>Simplifying access to complex queries, data security</td>
+<td>Performance improvement for complex queries</td>
+<td>Breaking down complex queries, recursive queries <br> can manipulate default processing order of SQL clauses</td>
+</tr>
+<tr class="even">
+<td><strong>Performance</strong></td>
+<td>Dependent on data size and indexes</td>
+<td>Executes underlying query each time</td>
+<td>Faster access, as data is pre-calculated</td>
+<td>Dependent on the complexity of the query</td>
+</tr>
+<tr class="odd">
+<td><strong>Updates</strong></td>
+<td>Data persists for the session, can be updated</td>
+<td>Reflects real-time data from base tables</td>
+<td>Requires refresh to update data</td>
+<td>Not applicable (recomputed with each query execution)</td>
+</tr>
+<tr class="even">
+<td><strong>Indexing</strong></td>
+<td>Can have indexes</td>
+<td>Cannot have indexes</td>
+<td>Can have indexes</td>
+<td>Not applicable</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="window-functions" class="level2">
+<h2 class="anchored" data-anchor-id="window-functions">Window Functions</h2>
+<ul>
+<li>Window functions are used to compute aggregate values over a group of rows</li>
+<li><strong>Only allowed in <code>SELECT</code> and <code>ORDER BY</code> clauses</strong></li>
+<li>Processed:
+<ul>
+<li><strong>after</strong> <code>WHERE</code>, <code>GROUP BY</code>, and <code>HAVING</code></li>
+<li><strong>before</strong> <code>SELECT</code> and <code>ORDER BY</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">column</span>,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    window_function_name(expression) <span class="kw">OVER</span> (</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">PARTITION</span> <span class="kw">BY</span> <span class="kw">column</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">ORDER</span> <span class="kw">BY</span> <span class="kw">column</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        frame_clause</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- e.g.</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    continent,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">MAX</span>(population)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> continent)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">table</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="window-function-types" class="level3">
+<h3 class="anchored" data-anchor-id="window-function-types">Window Function Types</h3>
+<ul>
+<li>Aggregate functions
+<ul>
+<li><code>AVG</code>, <code>COUNT</code>, <code>MAX</code>, <code>MIN</code>, <code>SUM</code></li>
+</ul></li>
+<li>Ranking functions
+<ul>
+<li><code>CUME_DIST()</code>: returns the cumulative distribution, i.e.&nbsp;the percentage of values less than or equal to the current value.</li>
+<li><code>NTILE()</code>: given a specified number of buckets, it tells us in which bucket each row goes among other rows in the partition.</li>
+<li><code>PERCENT_RANK()</code>: similar to CUME_DIST(), but considers only the percentage of values less than (and not equal to) the current value.</li>
+<li><code>DENSE_RANK()</code>: returns the rank of a row within a partition without jumps after duplicate ranks (e.g.&nbsp;1, 2, 2, 3, …)</li>
+<li><code>RANK()</code>: returns the rank of row within a partition but with jumps after duplicates ranks (e.g.&nbsp;1, 2, 2, 4, …)</li>
+<li><code>ROW_NUMBER()</code>: returns simply the number of a row in a partition, regardless of duplicate values</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="relational-vs.-non-relational-databases" class="level2">
+<h2 class="anchored" data-anchor-id="relational-vs.-non-relational-databases">Relational vs.&nbsp;Non-relational Databases</h2>
+<table class="table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 42%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Elements</th>
+<th>Relational</th>
+<th>Non-relational</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Model</td>
+<td>tables</td>
+<td>key-value pairs, documents, graphs, etc.</td>
+</tr>
+<tr class="even">
+<td>Schema</td>
+<td>fixed (updates are complicated and time-consuming)</td>
+<td>dynamic (schema-free)</td>
+</tr>
+<tr class="odd">
+<td>Querying</td>
+<td>semi standard (SQL)</td>
+<td>proprietary</td>
+</tr>
+<tr class="even">
+<td>Performance</td>
+<td>strong data consistency and integrity</td>
+<td>faster performance for specific usecases</td>
+</tr>
+<tr class="odd">
+<td>Efficiency</td>
+<td>write times and table locks reduce efficiency</td>
+<td>faster read and write times</td>
+</tr>
+<tr class="even">
+<td>Scalability</td>
+<td>vertical scaling</td>
+<td>horizontal scaling</td>
+</tr>
+<tr class="odd">
+<td>Development</td>
+<td>require more effort</td>
+<td>easier to develop and require fewer resources</td>
+</tr>
+<tr class="even">
+<td>Principles</td>
+<td><strong>ACID</strong> (Atomicity, Consistency, Isolation, Durability)</td>
+<td><strong>BASE</strong> (Basically Available, Soft state, Eventual consistency)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="nosql-not-only-sql" class="level2">
+<h2 class="anchored" data-anchor-id="nosql-not-only-sql">NoSQL (Not Only SQL)</h2>
+<ul>
+<li><strong>Main goals</strong>:
+<ul>
+<li>reduce the dependence on fixed schema</li>
+<li>reduce the dependence on a single point of truth</li>
+<li>scaling</li>
+</ul></li>
+</ul>
+<section id="strengths" class="level3">
+<h3 class="anchored" data-anchor-id="strengths">Strengths</h3>
+<ul>
+<li>Schema-free</li>
+<li>Accepting Basic Availability
+<ul>
+<li>usually see all tweets, but sometimes a refresh shows new tweets</li>
+</ul></li>
+<li>BASE:
+<ul>
+<li>Basically Available</li>
+<li>Soft state</li>
+<li>Eventual consistent</li>
+</ul></li>
+</ul>
+</section>
+<section id="types-of-nosql-databases" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-nosql-databases">Types of NoSQL Databases</h3>
+<ul>
+<li><strong>Key-value stores</strong>: like a dictionary
+<ul>
+<li>Redis, Memcached, Amazon DynamoDB</li>
+</ul></li>
+<li><strong>Document stores</strong>: type of key-value store but with an internal searchable structure.
+<ul>
+<li>Document: contains all the relevant data and has a unique key</li>
+<li>MongoDB, CouchDB</li>
+</ul></li>
+<li><strong>Column stores</strong>: based on Google’s BigTable
+<ul>
+<li>Cassandra, HBase, Google BigTable</li>
+</ul></li>
+<li><strong>Graph databases</strong>: based on graph theory
+<ul>
+<li>Neo4j, OrientDB, Amazon Neptune</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="mongodb" class="level2">
+<h2 class="anchored" data-anchor-id="mongodb">MongoDB</h2>
+<ul>
+<li>Based on <em>JSON-like</em> (JavaScript Object Notation) documents for storage:
+<ul>
+<li>Actually it is <strong>BSON</strong> (Binary JSON)</li>
+<li>Max BSON document size: 16MB</li>
+</ul></li>
+<li>Structure:
+<ul>
+<li><strong>Database</strong>: <code>client.get_database_names()</code></li>
+<li><strong>Collection</strong>: <code>client[db_name].get_collection_names()</code></li>
+<li><strong>Document</strong>: <code>client[db_name][collection_name].find_one()</code> or <code>client[db_name][collection_name].find()</code></li>
+</ul></li>
+</ul>
+<section id="find" class="level3">
+<h3 class="anchored" data-anchor-id="find"><code>find</code></h3>
+<ul>
+<li><code>client[db_name][collection_name].find()</code>
+<ul>
+<li>returns a cursor</li>
+<li><code>list(client[db_name][collection_name].find())</code> returns a list of documents</li>
+<li><code>next(client[db_name][collection_name].find())</code> returns the next document</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> MongoClient()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>client[db_name][collection_name].find(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">filter</span><span class="op">=</span>{...},</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    projection<span class="op">=</span>{...},</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    sort<span class="op">=</span>[...],</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    skip<span class="op">=</span>...,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    limit<span class="op">=</span>...,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="filter" class="level4">
+<h4 class="anchored" data-anchor-id="filter"><code>filter</code></h4>
+<ul>
+<li><code>filter</code> is a dictionary</li>
+<li><code>filter = {"key": "value"}</code> returns all documents where <code>key</code> is <code>value</code></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 9%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>symbol</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>$eq</code> or <code>$neq</code></td>
+<td><code>=</code> or <code>~=</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>$gt</code> or <code>$gte</code></td>
+<td><code>&gt;</code> or <code>&gt;=</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>$lt</code> or <code>$lte</code></td>
+<td><code>&lt;</code> or <code>&lt;=</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>$ne</code></td>
+<td><code>!=</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>$in</code></td>
+<td><code>in</code></td>
+<td>if any of the values in the list matches the value of the key, the document is returned</td>
+</tr>
+<tr class="even">
+<td><code>$nin</code></td>
+<td><code>not in</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>$all</code></td>
+<td><code>all</code></td>
+<td>all values in the list must match the value of the keys</td>
+</tr>
+<tr class="even">
+<td><code>$exists</code></td>
+<td><code>exists</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>$regex</code></td>
+<td><code>regex</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Also can use <code>$not</code> to negate the operator</p></li>
+<li><p>using <code>$or</code>, <code>$nor</code> and <code>$and</code>:</p></li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> {</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"$or"</span>: [</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"key_1"</span>: <span class="st">"value_1"</span>},</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"key_2"</span>: <span class="st">"value_2"</span>},</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"$and"</span>: [</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"key_3"</span>: <span class="st">"value_3"</span>},</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"key_4"</span>: <span class="st">"value_4"</span>},</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key_5"</span>: {<span class="st">"$gte"</span>: <span class="dv">10</span>, <span class="st">"$lte"</span>: <span class="dv">20</span>}, <span class="co"># and is implied</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> {</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"key_1"</span>: <span class="st">"value_1"</span>,</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"key_2"</span>: <span class="st">"value_2"</span>, <span class="co"># and is implied</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="projection" class="level4">
+<h4 class="anchored" data-anchor-id="projection"><code>projection</code></h4>
+<ul>
+<li><code>projection</code> is a dictionary</li>
+<li><code>projection = {"key_1": 1, "key_2": 0}</code> returns all documents with only <code>key_1</code> and without <code>key_2</code></li>
+</ul>
+</section>
+<section id="sort" class="level4">
+<h4 class="anchored" data-anchor-id="sort"><code>sort</code></h4>
+<ul>
+<li><code>sort</code> is a list of tuples
+<ul>
+<li>1: ascending order</li>
+<li>-1: descending order</li>
+</ul></li>
+<li><code>sort = [("key_1", 1), ("key_2", -1)]</code> sorts by <code>key_1</code> in ascending order and then by <code>key_2</code> in descending order</li>
+</ul>
+</section>
+<section id="limit" class="level4">
+<h4 class="anchored" data-anchor-id="limit"><code>limit</code></h4>
+<ul>
+<li><code>limit</code> is an integer</li>
+<li><code>limit = 10</code> returns the first 10 documents</li>
+</ul>
+</section>
+<section id="skip" class="level4">
+<h4 class="anchored" data-anchor-id="skip"><code>skip</code></h4>
+<ul>
+<li><code>skip</code> is an integer</li>
+<li><code>skip = 10</code> skips the first 10 documents</li>
+</ul>
+</section>
+<section id="count_documents" class="level4">
+<h4 class="anchored" data-anchor-id="count_documents"><code>count_documents</code></h4>
+<ul>
+<li><code>count_documents</code> is a method</li>
+<li><code>client[db_name][collection_name].count_documents(filter={...})</code> returns the number of documents that match the filter</li>
+</ul>
+</section>
+<section id="distinct" class="level4">
+<h4 class="anchored" data-anchor-id="distinct"><code>distinct</code></h4>
+<ul>
+<li><code>distinct</code> is a method</li>
+<li><code>client[db_name][collection_name].distinct("key_1")</code> returns a list of distinct values for <code>key_1</code></li>
+</ul>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

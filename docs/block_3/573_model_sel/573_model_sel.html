@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MDS cheatsheets – model_sel</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MDS cheatsheets</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../list.html" rel="" target="">
+ <span class="menu-text">List of Cheat Sheet</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link active" data-scroll-target="#model-selection">Model Selection</a>
+  <ul class="collapse">
+  <li><a href="#classification-metrics" id="toc-classification-metrics" class="nav-link" data-scroll-target="#classification-metrics">Classification Metrics</a>
+  <ul class="collapse">
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a></li>
+  <li><a href="#confusion-matrix" id="toc-confusion-matrix" class="nav-link" data-scroll-target="#confusion-matrix">Confusion Matrix</a></li>
+  <li><a href="#precision-recall-curve" id="toc-precision-recall-curve" class="nav-link" data-scroll-target="#precision-recall-curve">Precision Recall curve</a></li>
+  <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve">ROC Curve</a></li>
+  <li><a href="#class-imbalance" id="toc-class-imbalance" class="nav-link" data-scroll-target="#class-imbalance">Class Imbalance</a></li>
+  </ul></li>
+  <li><a href="#regression-metrics" id="toc-regression-metrics" class="nav-link" data-scroll-target="#regression-metrics">Regression Metrics</a>
+  <ul class="collapse">
+  <li><a href="#model-building" id="toc-model-building" class="nav-link" data-scroll-target="#model-building">Model Building</a></li>
+  <li><a href="#scoring-regression-models" id="toc-scoring-regression-models" class="nav-link" data-scroll-target="#scoring-regression-models">Scoring Regression Models</a></li>
+  </ul></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data Cleaning</a>
+  <ul class="collapse">
+  <li><a href="#importance-of-features" id="toc-importance-of-features" class="nav-link" data-scroll-target="#importance-of-features">Importance of Features</a></li>
+  <li><a href="#feature-preprocessing-vs.-feature-engineering" id="toc-feature-preprocessing-vs.-feature-engineering" class="nav-link" data-scroll-target="#feature-preprocessing-vs.-feature-engineering">Feature Preprocessing vs.&nbsp;Feature Engineering</a></li>
+  </ul></li>
+  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">Feature Engineering</a>
+  <ul class="collapse">
+  <li><a href="#polynomial-feature-transformation" id="toc-polynomial-feature-transformation" class="nav-link" data-scroll-target="#polynomial-feature-transformation">Polynomial Feature Transformation</a></li>
+  <li><a href="#sklearn-polynomialfeature" id="toc-sklearn-polynomialfeature" class="nav-link" data-scroll-target="#sklearn-polynomialfeature">sklearn: PolynomialFeature</a></li>
+  <li><a href="#matrix-notation-for-linear-regression" id="toc-matrix-notation-for-linear-regression" class="nav-link" data-scroll-target="#matrix-notation-for-linear-regression">Matrix Notation for Linear Regression</a></li>
+  <li><a href="#kernel-trick" id="toc-kernel-trick" class="nav-link" data-scroll-target="#kernel-trick">Kernel Trick</a></li>
+  </ul></li>
+  <li><a href="#feature-importance" id="toc-feature-importance" class="nav-link" data-scroll-target="#feature-importance">Feature Importance</a>
+  <ul class="collapse">
+  <li><a href="#feature-correlation" id="toc-feature-correlation" class="nav-link" data-scroll-target="#feature-correlation">Feature Correlation</a></li>
+  <li><a href="#coefficients-in-linear-models" id="toc-coefficients-in-linear-models" class="nav-link" data-scroll-target="#coefficients-in-linear-models">Coefficients in Linear Models</a></li>
+  </ul></li>
+  <li><a href="#feature-selection" id="toc-feature-selection" class="nav-link" data-scroll-target="#feature-selection">Feature Selection</a>
+  <ul class="collapse">
+  <li><a href="#intrinsic-feature-selection" id="toc-intrinsic-feature-selection" class="nav-link" data-scroll-target="#intrinsic-feature-selection">Intrinsic Feature Selection</a></li>
+  <li><a href="#model-based-feature-selection" id="toc-model-based-feature-selection" class="nav-link" data-scroll-target="#model-based-feature-selection">Model-Based Feature Selection</a></li>
+  <li><a href="#recursive-feature-elimination-rfe" id="toc-recursive-feature-elimination-rfe" class="nav-link" data-scroll-target="#recursive-feature-elimination-rfe">Recursive Feature Elimination (RFE)</a></li>
+  <li><a href="#search-and-score-methods-forwardbackward-selection" id="toc-search-and-score-methods-forwardbackward-selection" class="nav-link" data-scroll-target="#search-and-score-methods-forwardbackward-selection">Search and Score Methods (Forward/Backward Selection)</a></li>
+  <li><a href="#warnings-about-feature-selection" id="toc-warnings-about-feature-selection" class="nav-link" data-scroll-target="#warnings-about-feature-selection">Warnings about Feature Selection</a></li>
+  </ul></li>
+  <li><a href="#loss-function" id="toc-loss-function" class="nav-link" data-scroll-target="#loss-function">Loss Function</a>
+  <ul class="collapse">
+  <li><a href="#scoring-metric-vs-loss-function" id="toc-scoring-metric-vs-loss-function" class="nav-link" data-scroll-target="#scoring-metric-vs-loss-function">Scoring Metric vs Loss Function</a></li>
+  </ul></li>
+  <li><a href="#regression-loss-functions" id="toc-regression-loss-functions" class="nav-link" data-scroll-target="#regression-loss-functions">Regression Loss Functions</a>
+  <ul class="collapse">
+  <li><a href="#ordinary-least-squares-ols-loss" id="toc-ordinary-least-squares-ols-loss" class="nav-link" data-scroll-target="#ordinary-least-squares-ols-loss">Ordinary Least Squares (OLS) Loss</a></li>
+  <li><a href="#absolute-value-loss-l1-loss-robust-regression" id="toc-absolute-value-loss-l1-loss-robust-regression" class="nav-link" data-scroll-target="#absolute-value-loss-l1-loss-robust-regression">Absolute Value Loss (L1 Loss/ Robust Regression)</a></li>
+  </ul></li>
+  <li><a href="#classification-loss-functions" id="toc-classification-loss-functions" class="nav-link" data-scroll-target="#classification-loss-functions">Classification Loss Functions</a>
+  <ul class="collapse">
+  <li><a href="#different-loss-functions" id="toc-different-loss-functions" class="nav-link" data-scroll-target="#different-loss-functions">Different Loss Functions</a></li>
+  <li><a href="#sigmoid-vs-logistic-loss" id="toc-sigmoid-vs-logistic-loss" class="nav-link" data-scroll-target="#sigmoid-vs-logistic-loss">Sigmoid vs Logistic Loss</a></li>
+  <li><a href="#sklearn-logistic-regression" id="toc-sklearn-logistic-regression" class="nav-link" data-scroll-target="#sklearn-logistic-regression">Sklearn Logistic Regression</a></li>
+  </ul></li>
+  <li><a href="#final-cost-function" id="toc-final-cost-function" class="nav-link" data-scroll-target="#final-cost-function">Final Cost Function</a></li>
+  <li><a href="#regularization" id="toc-regularization" class="nav-link" data-scroll-target="#regularization">Regularization</a></li>
+  <li><a href="#l0-regularization" id="toc-l0-regularization" class="nav-link" data-scroll-target="#l0-regularization">L0 Regularization</a></li>
+  <li><a href="#l2-regularization" id="toc-l2-regularization" class="nav-link" data-scroll-target="#l2-regularization">L2 Regularization</a>
+  <ul class="collapse">
+  <li><a href="#picking-lambda" id="toc-picking-lambda" class="nav-link" data-scroll-target="#picking-lambda">Picking <span class="math inline">\(\lambda\)</span></a></li>
+  <li><a href="#sklearn-ridge-regression" id="toc-sklearn-ridge-regression" class="nav-link" data-scroll-target="#sklearn-ridge-regression">Sklearn: Ridge Regression</a></li>
+  </ul></li>
+  <li><a href="#l1-regularization" id="toc-l1-regularization" class="nav-link" data-scroll-target="#l1-regularization">L1 Regularization</a>
+  <ul class="collapse">
+  <li><a href="#terminology" id="toc-terminology" class="nav-link" data-scroll-target="#terminology">Terminology</a></li>
+  <li><a href="#sklearn-lasso-regression" id="toc-sklearn-lasso-regression" class="nav-link" data-scroll-target="#sklearn-lasso-regression">Sklearn: Lasso Regression</a></li>
+  </ul></li>
+  <li><a href="#regularization-and-scaling" id="toc-regularization-and-scaling" class="nav-link" data-scroll-target="#regularization-and-scaling">Regularization and scaling</a></li>
+  <li><a href="#regularization-and-collinearity" id="toc-regularization-and-collinearity" class="nav-link" data-scroll-target="#regularization-and-collinearity">Regularization and collinearity</a></li>
+  <li><a href="#sklearn-elastic-net" id="toc-sklearn-elastic-net" class="nav-link" data-scroll-target="#sklearn-elastic-net">Sklearn: Elastic Net</a></li>
+  <li><a href="#ensemble-methods" id="toc-ensemble-methods" class="nav-link" data-scroll-target="#ensemble-methods">Ensemble Methods</a>
+  <ul class="collapse">
+  <li><a href="#diversity" id="toc-diversity" class="nav-link" data-scroll-target="#diversity">Diversity</a></li>
+  <li><a href="#random-forest" id="toc-random-forest" class="nav-link" data-scroll-target="#random-forest">Random Forest</a></li>
+  <li><a href="#extremely-randomized-trees" id="toc-extremely-randomized-trees" class="nav-link" data-scroll-target="#extremely-randomized-trees">Extremely Randomized Trees</a></li>
+  <li><a href="#adaboost-adaptive-boosting" id="toc-adaboost-adaptive-boosting" class="nav-link" data-scroll-target="#adaboost-adaptive-boosting">AdaBoost (Adaptive Boosting)</a></li>
+  <li><a href="#gradient-boosted-trees" id="toc-gradient-boosted-trees" class="nav-link" data-scroll-target="#gradient-boosted-trees">Gradient Boosted Trees</a></li>
+  <li><a href="#combining-models" id="toc-combining-models" class="nav-link" data-scroll-target="#combining-models">Combining Models</a></li>
+  </ul></li>
+  <li><a href="#important-to-model-important-to-the-real-world" id="toc-important-to-model-important-to-the-real-world" class="nav-link" data-scroll-target="#important-to-model-important-to-the-real-world">Important to model != Important to the real world</a></li>
+  <li><a href="#model-interpretability" id="toc-model-interpretability" class="nav-link" data-scroll-target="#model-interpretability">Model Interpretability</a>
+  <ul class="collapse">
+  <li><a href="#tree-based-feature-importance" id="toc-tree-based-feature-importance" class="nav-link" data-scroll-target="#tree-based-feature-importance">Tree-based feature importance</a></li>
+  <li><a href="#permutation-feature-importance" id="toc-permutation-feature-importance" class="nav-link" data-scroll-target="#permutation-feature-importance">Permutation feature importance</a></li>
+  <li><a href="#shapley-values" id="toc-shapley-values" class="nav-link" data-scroll-target="#shapley-values">Shapley values</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="model-selection" class="level1">
+<h1>Model Selection</h1>
+<section id="classification-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="classification-metrics">Classification Metrics</h2>
+<ul>
+<li>Need to evaluate the performance of a classifier not just by accuracy</li>
+</ul>
+<section id="logistic-regression" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h3>
+<ul>
+<li>Linear regression with sigmoid function</li>
+<li>Hyperparameter: <code>C</code> (default 1.0)
+<ul>
+<li>Lower C =&gt; more regularization =&gt; smaller coefficients =&gt; underfitting</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pipe_lr <span class="op">=</span> make_pipeline(preprocessor, LogisticRegression())</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(cross_validate(pipe_lr, X_train, y_train, cv<span class="op">=</span><span class="dv">10</span>, return_train_score<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="confusion-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="confusion-matrix">Confusion Matrix</h3>
+<p><img src="img/1_conf_mat.png" width="600"></p>
+<ul>
+<li>Choose the positive case based on which class is more important to us or which class is rare
+<ul>
+<li>spotting a class (e.g.&nbsp;fraud/ spam/ disease detection)</li>
+</ul></li>
+<li>Can do this in python:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_predict</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># gets values without plot</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>confusion_matrix(y_train, cross_val_predict(pipe_lr, X_train, y_train, cv<span class="op">=</span><span class="dv">5</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get values with plot</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ConfusionMatrixDisplay</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_estimator(pipe_lr, X_train, y_train, display_labels<span class="op">=</span>[<span class="st">'Not Fraud'</span>, <span class="st">'Fraud'</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output of confusion matrix by default:</p>
+<pre><code>             | Predicted F [0]| Predicted T [1]
+Actual F [0] | TN             | FP
+Actual T [1] | FN             | TP</code></pre>
+<section id="values" class="level4">
+<h4 class="anchored" data-anchor-id="values">Values</h4>
+<ul>
+<li><strong>Precision</strong> <span class="math display">\[precision = \frac{TP}{PP} =  \frac{TP}{TP + FP}\]</span></li>
+<li><strong>Recall</strong> or True positive rate (TPR) <span class="math display">\[recall = \frac{TP}{P} = \frac{TP}{TP + FN}\]</span></li>
+<li><strong>f1-score</strong> <span class="math display">\[f1 = 2 \cdot \frac{precision * recall}{precision + recall} = 2 \frac{1}{\frac{1}{precision} + \frac{1}{recall}}\]</span></li>
+</ul>
+</section>
+<section id="classification-report" class="level4">
+<h4 class="anchored" data-anchor-id="classification-report">Classification Report</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_train, cross_val_predict(pipe_lr, X_train, y_train, cv<span class="op">=</span><span class="dv">5</span>)))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># output</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#               precision    recall  f1-score   support</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#        Fraud       0.89      0.63      0.74       102</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#    Non fraud       1.00      1.00      1.00     59708</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     accuracy                           1.00     59810</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#    macro avg       0.94      0.81      0.87     59810</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># weighted avg       1.00      1.00      1.00     59810</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="precision-recall-curve" class="level3">
+<h3 class="anchored" data-anchor-id="precision-recall-curve">Precision Recall curve</h3>
+<ul>
+<li>tradeoff between precision and recall</li>
+<li>setting a threshold is called setting the <strong>operating point</strong></li>
+<li>Changing the <strong>threshold</strong> of the classifier (default of logistic regression is <strong>0.5</strong>)
+<ul>
+<li>remember <code>predict_proba</code> returns the probability of the positive class, if higher than threshold, then positive class</li>
+<li>as <strong><em>threshold increases</em></strong>, higher bar =&gt; precision increases and recall decreases (less FP but less TP)</li>
+<li>as <strong><em>threshold decreases</em></strong>, lower bar =&gt; precision decreases and recall increases (more TP but more FP)</li>
+</ul></li>
+</ul>
+<section id="plotting-precision-recall-curve" class="level4">
+<h4 class="anchored" data-anchor-id="plotting-precision-recall-curve">Plotting Precision Recall Curve</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> PrecisionRecallDisplay</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>PrecisionRecallDisplay.from_estimator(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    pipe_lr,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    X_valid,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    y_valid,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    pos_label<span class="op">=</span><span class="st">'Fraud'</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'LR'</span>,  <span class="co"># For Logistic Regression</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="img/1_pr_curve.png" width="400"></p>
+<ul>
+<li>Want the curve to be as close to the top right corner as possible (100% precision and 100% recall)
+<ul>
+<li>Threshold of <strong>0</strong> in bottom left =&gt; All points are predicted to be positive =&gt; 100% recall and 0% precision</li>
+<li>Threshold of <strong>1</strong> in top right =&gt; All points are predicted to be negative =&gt; 0% recall and 100% precision</li>
+</ul></li>
+</ul>
+<p>Or if want just the values:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_recall_curve</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    precision_recall_curve(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        y_valid,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        pipe_lr.predict_proba(X_valid)[:, fraud_column],</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        pos_label<span class="op">=</span><span class="st">'Fraud'</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'precision'</span>, <span class="st">'recall'</span>, <span class="st">'threshold'</span>]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>).T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ap-average-precision-score" class="level4">
+<h4 class="anchored" data-anchor-id="ap-average-precision-score">AP (Average Precision) score</h4>
+<ul>
+<li>Area under the precision recall curve</li>
+<li>Higher is better (0 is worst, 1 is best)</li>
+<li>Also supports multi-class using one-vs-rest approach + averaging</li>
+<li><strong>IMPORTANT</strong>:
+<ul>
+<li>F1 score is for a given threshold and measures the quality of predict.</li>
+<li>AP score is a summary across thresholds and measures the quality of predict_proba.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> average_precision_score</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ap_lr <span class="op">=</span> average_precision_score(y_valid, pipe_lr.predict_proba(X_valid)[:, fraud_column], pos_label<span class="op">=</span><span class="st">'Fraud'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<thead>
+<tr class="header">
+<th>AP score</th>
+<th>f1 score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>measures quality of <code>predict_proba</code></td>
+<td>measures quality of <code>predict</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>These two metrics do not always agree*</li>
+</ul>
+</section>
+</section>
+<section id="roc-curve" class="level3">
+<h3 class="anchored" data-anchor-id="roc-curve">ROC Curve</h3>
+<ul>
+<li>Receiver Operating Characteristic: plots the <strong>true positive rate</strong> (recall) against the <strong>false positive rate</strong> (1 - specificity)
+<ul>
+<li>Instead of plotting precision against recall, plots recall (TPR) against FPR</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[FPR = \frac{FP}{N} = \frac{FP}{FP + TN}\]</span></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> RocCurveDisplay</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>RocCurveDisplay.from_estimator(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    pipe_lr,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    X_valid,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    y_valid,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    pos_label<span class="op">=</span><span class="st">'Fraud'</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="img/1_roc_curve.png" width="400"></p>
+<ul>
+<li>Ideal is top left corner (100% TPR and 0% FPR)</li>
+<li>Lower left (Threshold of 1) =&gt; 0% TPR and 0% FPR</li>
+<li>Upper right (Threshold of 0) =&gt; 100% TPR and 100% FPR</li>
+</ul>
+<section id="auc-area-under-the-curve" class="level4">
+<h4 class="anchored" data-anchor-id="auc-area-under-the-curve">AUC (Area Under the Curve)</h4>
+<ul>
+<li><p>Area under the ROC curve</p></li>
+<li><p>AUC is the probability that a randomly chosen positive point has a higher score than a randomly chosen negative point</p>
+<ul>
+<li><strong>AUC of 1.0</strong>: all positive points have a higher score than all negative points.</li>
+<li><strong>AUC of 0.5</strong>: means random chance.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="class-imbalance" class="level3">
+<h3 class="anchored" data-anchor-id="class-imbalance">Class Imbalance</h3>
+<ul>
+<li>If we balance the classes:
+<ul>
+<li>Precision goes down, FP goes up</li>
+<li>Recall goes up, FN goes down</li>
+<li>F1 score goes down</li>
+<li>AP score goes down</li>
+<li>AUC score goes down</li>
+<li>generally reduce accuracy</li>
+</ul></li>
+</ul>
+<section id="solutions-to-class-imbalance" class="level4">
+<h4 class="anchored" data-anchor-id="solutions-to-class-imbalance">Solutions to Class Imbalance</h4>
+<ul>
+<li><em>Class weights</em>: penalize the minority class more</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>LogisticRegression(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  max_iter<span class="op">=</span><span class="dv">500</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># give more importance to "Fraud" class (10x)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  class_weight<span class="op">=</span>{<span class="st">'Non fraud'</span>: <span class="dv">1</span>, <span class="st">'Fraud'</span>: <span class="dv">10</span>}</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># class_weight='balanced' =&gt; automatically give more importance to minority class</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="regression-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="regression-metrics">Regression Metrics</h2>
+<section id="model-building" class="level3">
+<h3 class="anchored" data-anchor-id="model-building">Model Building</h3>
+<section id="dummy-regressor" class="level4">
+<h4 class="anchored" data-anchor-id="dummy-regressor">Dummy Regressor</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.dummy <span class="im">import</span> DummyRegressor</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> DummyRegressor(strategy<span class="op">=</span><span class="st">'mean'</span>) <span class="co"># default</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(cross_validate(dummy, X_train, y_train, cv<span class="op">=</span><span class="dv">10</span>, return_train_score<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ridge" class="level4">
+<h4 class="anchored" data-anchor-id="ridge">Ridge</h4>
+<ul>
+<li>Linear regression with L2 regularization</li>
+<li>Hyperparameter: <code>alpha</code> (default 1.0)
+<ul>
+<li>Higher alpha =&gt; more regularization =&gt; smaller coefficients =&gt; underfitting</li>
+<li>more regularization : smaller coefficients =&gt; less sensitive to changes in the input features =&gt; less likely to overfit</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>lr_pipe <span class="op">=</span> make_pipeline(preprocessor, Ridge())</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(cross_validate(lr_pipe, X_train, y_train, cv<span class="op">=</span><span class="dv">10</span>, return_train_score<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>lr_pipe.fit(X_train, y_train)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># get coefficients</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>{<span class="st">"coefficients"</span>: lr_pipe.named_steps[<span class="st">"ridge"</span>].coef_}, index<span class="op">=</span>feature_names)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">"coefficients"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ridgecv" class="level4">
+<h4 class="anchored" data-anchor-id="ridgecv">RidgeCV</h4>
+<ul>
+<li>Ridge with cross-validation to find the best alpha</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> RidgeCV</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>alphas <span class="op">=</span> <span class="fl">10.0</span> <span class="op">**</span> np.arange(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">1</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>ridgecv_pipe <span class="op">=</span> make_pipeline(preprocessor,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  RidgeCV(alphas<span class="op">=</span>alphas, cv<span class="op">=</span><span class="dv">10</span>))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>ridgecv_pipe.fit(X_train, y_train)<span class="op">;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># best alpha</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>best_alpha <span class="op">=</span> ridgecv_pipe.named_steps[<span class="st">"ridgecv"</span>].alpha_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="scoring-regression-models" class="level3">
+<h3 class="anchored" data-anchor-id="scoring-regression-models">Scoring Regression Models</h3>
+<ul>
+<li>Cannot use equality since we are predicting a continuous variable (not classification)</li>
+</ul>
+<section id="scoring-methods-in-regression-models" class="level4">
+<h4 class="anchored" data-anchor-id="scoring-methods-in-regression-models">Scoring Methods in Regression Models</h4>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 32%">
+<col style="width: 21%">
+<col style="width: 5%">
+<col style="width: 2%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Description</th>
+<th>Formula</th>
+<th>Min Value</th>
+<th>Max Value</th>
+<th>Code Example (sklearn)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>MSE</strong> (Mean Squared Error)</td>
+<td>Measures the average of the squares of the errors, i.e., the average squared difference between the estimated values and the actual value.</td>
+<td><span class="math display">\[MSE = \frac{1}{n}\sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2\]</span></td>
+<td>0 (perfect)</td>
+<td>∞</td>
+<td><code>from sklearn.metrics import mean_squared_error</code> <br> <code>mse = mean_squared_error(y_true, y_pred)</code></td>
+</tr>
+<tr class="even">
+<td><strong>RMSE</strong> (Root Mean Squared Error)</td>
+<td>Square root of the MSE. It measures the standard deviation of the prediction errors or residuals.</td>
+<td><span class="math display">\[RMSE = \sqrt{MSE}\]</span></td>
+<td>0 (perfect)</td>
+<td>∞</td>
+<td><code>rmse = mean_squared_error(y_true, y_pred, squared=False)</code></td>
+</tr>
+<tr class="odd">
+<td><strong>MAE</strong> (Mean Absolute Error)</td>
+<td>Measures the average of the absolute errors.</td>
+<td><span class="math display">\[MAE = \frac{1}{n}\sum_{i=1}^{n}\left\| Y_i - \hat{Y}_i \right\| \]</span></td>
+<td>0 (perfect)</td>
+<td>∞</td>
+<td><code>from sklearn.metrics import mean_absolute_error</code> <br> <code>mae = mean_absolute_error(y_true, y_pred)</code></td>
+</tr>
+<tr class="even">
+<td><strong>MAPE</strong> (Mean Absolute Percentage Error)</td>
+<td>Measures the average of the absolute percentage errors.</td>
+<td><span class="math display">\[MAPE = \frac{1}{n}\sum_{i=1}^{n}\left\| \frac{Y_i - \hat{Y}_i}{Y_i} \right\| \times 100\% \]</span></td>
+<td>0 % (perfect)</td>
+<td>∞ %</td>
+<td><code>from sklearn.metrics import mean_absolute_percentage_error</code> <br> <code>mape = mean_absolute_percentage_error(y_true, y_pred)</code></td>
+</tr>
+<tr class="odd">
+<td><strong>R²</strong> (Coefficient of Determination)</td>
+<td>Measures how well future samples are likely to be predicted by the model.</td>
+<td><span class="math display">\[R^2 = 1 - \frac{\sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\sum_{i=1}^{n}(Y_i - \bar{Y})^2}\]</span></td>
+<td>-ve [if worst than mean]</td>
+<td>1 (perfect)</td>
+<td><code>from sklearn.metrics import r2_score</code> <br> <code>r2 = r2_score(y_true, y_pred)</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>MAE is less sensitive to outliers than MSE</li>
+</ul>
+</section>
+<section id="inspecting-error" class="level4">
+<h4 class="anchored" data-anchor-id="inspecting-error">Inspecting error</h4>
+<ul>
+<li>Can plot the actual vs predicted values to see the error (and plot line of gradient 1 = perfect prediction)</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> PredictionErrorDisplay</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>PredictionErrorDisplay.from_estimator(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    ridge_tuned,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    X_train,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    y_train,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">'actual_vs_predicted'</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    subsample<span class="op">=</span><span class="va">None</span>  <span class="co"># show all predictions</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="img/2_ac_vc_pred.png" width="350"></p>
+<ul>
+<li>Can plot the residuals (error) vs predicted values to see if there is a pattern (e.g.&nbsp;heteroscedasticity)</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> PredictionErrorDisplay</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>PredictionErrorDisplay.from_estimator(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    ridge_tuned,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    X_train,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    y_train,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    subsample<span class="op">=</span><span class="va">None</span>  <span class="co"># show all predictions</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="img/2_res.png" width="350"></p>
+</section>
+</section>
+</section>
+<section id="data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h2>
+<p>Need to have good data to build a good model.</p>
+<p><strong>Bad quality data</strong>:</p>
+<ol type="1">
+<li>Missing values</li>
+<li>Few observations overall or in a specific group</li>
+<li>Biased sample (not representative of the population)</li>
+<li>Non-independent observations</li>
+<li>Inaccurate measurements</li>
+<li>Fabricated data</li>
+<li>Out of bounds values</li>
+<li>Obsure column names</li>
+<li>Typos (spelling differences in categorical variables)</li>
+<li>Using multiple values to represent same thing (e.g.&nbsp;NA, NONE, NULL, NaN)</li>
+<li>Incorrect data types</li>
+</ol>
+<section id="importance-of-features" class="level3">
+<h3 class="anchored" data-anchor-id="importance-of-features">Importance of Features</h3>
+<p><strong>Better features help more than a better model.</strong></p>
+<ul>
+<li><p>Good features would ideally:</p>
+<ul>
+<li>capture the most important information</li>
+<li>allow learning with few examples</li>
+<li>generalize to new scenarios</li>
+</ul></li>
+<li><p><em>Trade-off for simple and expressive features</em>:</p>
+<ul>
+<li>simple features: overfitting risk is low but low score</li>
+<li>expressive features: overfitting risk is high but high score</li>
+</ul></li>
+</ul>
+</section>
+<section id="feature-preprocessing-vs.-feature-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="feature-preprocessing-vs.-feature-engineering">Feature Preprocessing vs.&nbsp;Feature Engineering</h3>
+<table class="table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Preprocessing</th>
+<th>Engineering</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>step of cleaning and preparing the data for analysis</td>
+<td>creating new features from existing data</td>
+</tr>
+<tr class="even">
+<td>generally HAVE to do, or error</td>
+<td>optional but can improve model performance</td>
+</tr>
+<tr class="odd">
+<td>e.g.&nbsp;scaling, normalization, imputation</td>
+<td>e.g.&nbsp;one-hot encoding, binning, get more data, group-wise normalization, transformation</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Feature Selection</strong>: removing irrelevant features, normally done after feature engineering</li>
+</ul>
+</section>
+</section>
+<section id="feature-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="feature-engineering">Feature Engineering</h2>
+<p>Common guidelines:</p>
+<ol type="1">
+<li>Is not unique or random</li>
+<li>Has a variance (not constant)</li>
+<li>Adds unique variance (is not constant transformation)
+<ul>
+<li>changing units (e.g.&nbsp;from meters to feet) is not feature engineering</li>
+</ul></li>
+<li>Is ideally interpretable</li>
+</ol>
+<p>Examples:</p>
+<ul>
+<li>Looking up and getting additional data</li>
+<li>Discretization (binning): e.g.&nbsp;age -&gt; age group</li>
+<li>Group-wise normalization: express feature relative to group mean/median</li>
+<li>Transformation: e.g.&nbsp;height, weight -&gt; BMI</li>
+</ul>
+<section id="polynomial-feature-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="polynomial-feature-transformation">Polynomial Feature Transformation</h3>
+<ul>
+<li>parameter: degree
+<ul>
+<li>higher degree: more expressive features =&gt; more overfitting</li>
+</ul></li>
+<li>Try to capture non-linear relationships
+<ul>
+<li>Linear regression can only capture lines, planes, hyperplanes</li>
+</ul></li>
+<li>e.g.&nbsp;add a squared feature (feat1^2)</li>
+</ul>
+</section>
+<section id="sklearn-polynomialfeature" class="level3">
+<h3 class="anchored" data-anchor-id="sklearn-polynomialfeature">sklearn: PolynomialFeature</h3>
+<ul>
+<li>Do polynomial then StandardScaler
+<ul>
+<li>avoids polynomials being very large</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># degree: max degree of polynomial features</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>X_enc <span class="op">=</span> poly_feats.fit_transform(X_toy)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(X_enc, columns<span class="op">=</span>poly_feats.get_feature_names_out()).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Degree example:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>Degree</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>1, x, x^2</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2</td>
+<td>1, x, y, x^2, xy, y^2</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="matrix-notation-for-linear-regression" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-notation-for-linear-regression">Matrix Notation for Linear Regression</h3>
+<p><span class="math display">\[ \hat{y} = Xw \]</span></p>
+<ul>
+<li>X: design matrix (n x d)</li>
+<li>w: weights (d x 1)</li>
+<li>y: target (n x 1)</li>
+</ul>
+<p><strong>For polynomial features:</strong></p>
+<p><span class="math inline">\(Z = [1, x, x^2]\)</span></p>
+<p><span class="math display">\[ \hat{y} = Zw = \begin{bmatrix} 1 &amp; x_1 &amp; x_1^2 \\ 1 &amp; x_2 &amp; x_2^2 \\ \vdots &amp; \vdots &amp; \vdots \\ 1 &amp; x_n &amp; x_n^2 \end{bmatrix} \begin{bmatrix} w_0 \\ w_1 \\ w_2 \end{bmatrix} = \begin{bmatrix} w_0 + w_1x_1 + w_2x_1^2 \\ w_0 + w_1x_2 + w_2x_2^2 \\ \vdots \\ w_0 + w_1x_n + w_2x_n^2 \end{bmatrix} \]</span></p>
+</section>
+<section id="kernel-trick" class="level3">
+<h3 class="anchored" data-anchor-id="kernel-trick">Kernel Trick</h3>
+<ul>
+<li>Polynomial features can be expensive to compute</li>
+<li>Kernel trick: compute dot product between two vectors in a higher dimensional space without computing the transformation explicitly</li>
+</ul>
+</section>
+</section>
+<section id="feature-importance" class="level2">
+<h2 class="anchored" data-anchor-id="feature-importance">Feature Importance</h2>
+<section id="feature-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="feature-correlation">Feature Correlation</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.corr(), annot<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Shows correlation between features</li>
+<li>Extremely simplistic:
+<ul>
+<li>Only looks at linear correlation</li>
+<li>Only looks at pairwise correlation (isolates features)</li>
+</ul></li>
+</ul>
+</section>
+<section id="coefficients-in-linear-models" class="level3">
+<h3 class="anchored" data-anchor-id="coefficients-in-linear-models">Coefficients in Linear Models</h3>
+<ul>
+<li>Correlation among features might make coefficients completely uninterpretable.</li>
+<li>Fairly straightforward to interpret coefficients of ordinal features.</li>
+<li>In categorical features, it’s often helpful to consider one category as a reference point and think about relative importance.</li>
+<li>For numeric features, relative importance is meaningful after scaling.</li>
+<li>You have to be careful about the scale of the feature when interpreting the coefficients.</li>
+<li>Remember that explaining the model explaining the data or explaining how the world works.</li>
+<li>The coefficients tell us only about the model and they might not accurately reflect the data.</li>
+</ul>
+</section>
+</section>
+<section id="feature-selection" class="level2">
+<h2 class="anchored" data-anchor-id="feature-selection">Feature Selection</h2>
+<ul>
+<li>More features =&gt; more complex model =&gt; overfitting</li>
+<li><strong>Feature selection</strong> find features that are important for prediction and remove the rest.</li>
+</ul>
+<p><strong>Why?</strong></p>
+<ul>
+<li>Interpretability: easier to explain with fewer features</li>
+<li>Computation: faster to train simpler models (curse of dimensionality)</li>
+<li>Data collection: cheaper to collect fewer features</li>
+<li>Storage: less space to store fewer features</li>
+<li>Fundamental Tradeoff: reduce overfitting by reducing complexity</li>
+</ul>
+<p><strong>How?</strong></p>
+<ul>
+<li>domain knowledge</li>
+<li>automatic feature selection
+<ul>
+<li>model-based selection</li>
+<li>recursive feature elimination</li>
+<li>forward/backward selection</li>
+</ul></li>
+</ul>
+<section id="intrinsic-feature-selection" class="level3">
+<h3 class="anchored" data-anchor-id="intrinsic-feature-selection">Intrinsic Feature Selection</h3>
+<ul>
+<li>Fast and easy</li>
+<li>Arbitrary, does not take into account feature combinations</li>
+<li>e.g.&nbsp;correlation threshold, variance threshold</li>
+</ul>
+</section>
+<section id="model-based-feature-selection" class="level3">
+<h3 class="anchored" data-anchor-id="model-based-feature-selection">Model-Based Feature Selection</h3>
+<ul>
+<li>Use a supervised model to judge the importance of each feature, and keep only the most important ones.</li>
+<li>Can use different model than the final estimator.</li>
+<li>Use a model that provides some measure of feature importance. (e.g.&nbsp;decision trees, linear models, etc.)</li>
+</ul>
+<p><strong>General Steps</strong>:</p>
+<ul>
+<li>Select a threshold for which features to keep.</li>
+<li>Discard features below the threshold.</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectFromModel</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>select_lr <span class="op">=</span> SelectFromModel(Ridge(), threshold<span class="op">=</span><span class="st">"median"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add feature selection to pipeline (after preprocessing)</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> make_pipeline(preprocessor, select_lr, Ridge())</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># access selected features</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>pipe.named_steps[<span class="st">"selectfrommodel"</span>]</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># can do: .n_features_in_, .threshold_, .get_support()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="recursive-feature-elimination-rfe" class="level3">
+<h3 class="anchored" data-anchor-id="recursive-feature-elimination-rfe">Recursive Feature Elimination (RFE)</h3>
+<ul>
+<li>Recursively remove features, build a model on those features that remain, and then repeatedly construct a model and remove the weakest feature until a specified number of features remain.</li>
+<li><strong>Iteratively</strong> eliminates unimportant features.</li>
+<li>Computationally expensive</li>
+</ul>
+<section id="rfe-algorithm" class="level4">
+<h4 class="anchored" data-anchor-id="rfe-algorithm">RFE Algorithm</h4>
+<ol type="1">
+<li>Decide the number of features to select.</li>
+<li>Assign importances to features, e.g.&nbsp;by fitting a model and looking at <code>coef_</code> (Linear models) or <code>feature_importances_</code> (RandomForestClassifier).</li>
+<li>Remove the least important feature.</li>
+<li>Repeat steps 2-3 until only <span class="math inline">\(k\)</span> features are remaining.</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> RFE</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>rfe <span class="op">=</span> RFE(Ridge(), n_features_to_select<span class="op">=</span><span class="dv">120</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>pipe_rf_rfe <span class="op">=</span> make_pipeline(preprocessor, rfe, RandomForestRegressor(random_state<span class="op">=</span><span class="dv">42</span>))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"rfe + rfe"</span>] <span class="op">=</span> mean_std_cross_val_scores(</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    pipe_rf_rfe, X_train, y_train, return_train_score<span class="op">=</span><span class="va">True</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Note</strong>: for categorical features, RFE might remove some OHE features. This is an unresolved issue.</p>
+</section>
+<section id="rfecv" class="level4">
+<h4 class="anchored" data-anchor-id="rfecv">RFECV</h4>
+<ul>
+<li>RFE but using CV to find the optimal number of features to keep.</li>
+<li>very slow since there is CV within CV.</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> RFECV</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>rfecv <span class="op">=</span> RFECV(Ridge())</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>pipe_rf_rfecv <span class="op">=</span> make_pipeline(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    preprocessor, rfecv, RandomForestRegressor(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>pipe_rf_rfecv.fit(X_train, y_train)<span class="op">;</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># optimal number of features</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>pipe_rfe_ridgecv.named_steps[<span class="st">"rfecv"</span>].n_features_</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># which features were selected</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>pipe_rfe_ridgecv.named_steps[<span class="st">"rfecv"</span>].support_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="search-and-score-methods-forwardbackward-selection" class="level3">
+<h3 class="anchored" data-anchor-id="search-and-score-methods-forwardbackward-selection">Search and Score Methods (Forward/Backward Selection)</h3>
+<ul>
+<li><p>Not based on feature importance.</p></li>
+<li><p>Define a scoring function <span class="math inline">\(f(S)\)</span> that measures the quality of a subset of features <span class="math inline">\(S\)</span>.</p></li>
+<li><p>Search through all possible subsets of features and pick the subset with the best score.</p>
+<ul>
+<li>e.g.&nbsp;for A, B, C search through {}, {A}, {B}, {C}, {A, B}, {A, C}, {B, C}, {A, B, C}…</li>
+<li># subsets = <span class="math inline">\(2^p\)</span> where <span class="math inline">\(p\)</span> is the number of features</li>
+</ul></li>
+<li><p><strong>Forward selection</strong>: start with no features and add one at a time.</p>
+<ul>
+<li>add the feature that results in the best score.</li>
+</ul></li>
+<li><p><strong>Backward selection</strong>: start with all features and remove one at a time.</p>
+<ul>
+<li>remove the feature that results in the best score.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SequentialFeatureSelector</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>pipe_forward <span class="op">=</span> make_pipeline(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    preprocessor,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    SequentialFeatureSelector(Ridge(), direction<span class="op">=</span><span class="st">"forward"</span>),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    RandomForestRegressor(random_state<span class="op">=</span><span class="dv">42</span>),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># results['rf_forward_fs'] = mean_std_cross_val_scores(pipe_forward, X_train, y_train, return_train_score=True)</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>pipe_forward.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="warnings-about-feature-selection" class="level3">
+<h3 class="anchored" data-anchor-id="warnings-about-feature-selection">Warnings about Feature Selection</h3>
+<ul>
+<li>A feature relevance is only defines in the context of other features.
+<ul>
+<li>Adding/removing features can change the importance of other features.</li>
+</ul></li>
+<li>Relevance != causality</li>
+<li>The methods don’t always work.</li>
+</ul>
+</section>
+</section>
+<section id="loss-function" class="level2">
+<h2 class="anchored" data-anchor-id="loss-function">Loss Function</h2>
+<ul>
+<li>A function that measures how well a model fits the data</li>
+<li>The goal is to <strong>minimize</strong> the loss function
+<ul>
+<li>smaller loss <span class="math inline">\(\rightarrow\)</span> better model</li>
+</ul></li>
+<li>Captures what is important to minimize</li>
+<li>Common loss functions:
+<ul>
+<li>Least squares loss</li>
+<li>Absolute error loss</li>
+<li>Huber loss</li>
+</ul></li>
+</ul>
+<p><img src="img/5_loss_graph.png" width="350"></p>
+<section id="scoring-metric-vs-loss-function" class="level3">
+<h3 class="anchored" data-anchor-id="scoring-metric-vs-loss-function">Scoring Metric vs Loss Function</h3>
+<table class="table">
+<colgroup>
+<col style="width: 51%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scoring Metric</th>
+<th>Loss Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Report the results (often several metrics)</td>
+<td>Used to train/ fit the model</td>
+</tr>
+<tr class="even">
+<td>Find best model hyperparams</td>
+<td>Find best model parameters</td>
+</tr>
+<tr class="odd">
+<td>Can pick those suitable for the task</td>
+<td>Constrainted (need to be differentiable)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="regression-loss-functions" class="level2">
+<h2 class="anchored" data-anchor-id="regression-loss-functions">Regression Loss Functions</h2>
+<section id="ordinary-least-squares-ols-loss" class="level3">
+<h3 class="anchored" data-anchor-id="ordinary-least-squares-ols-loss">Ordinary Least Squares (OLS) Loss</h3>
+<p><span class="math display">\[J(\omega) = \sum_{i=1}^{n} (y_i - \omega^T x_i)^2 \]</span></p>
+<ul>
+<li>Define loss as sum of squared errors (difference between prediction and actual value)</li>
+<li>Penalizes heavily for large errors
+<ul>
+<li>sensitive to outliers</li>
+</ul></li>
+<li>For a well-defined OLS, there is a unique solution (not always the case)
+<ul>
+<li><span class="math inline">\(\omega = (X^T X)^{-1} X^T y\)</span>
+<ul>
+<li><span class="math inline">\(X^T X\)</span> must be invertible</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="absolute-value-loss-l1-loss-robust-regression" class="level3">
+<h3 class="anchored" data-anchor-id="absolute-value-loss-l1-loss-robust-regression">Absolute Value Loss (L1 Loss/ Robust Regression)</h3>
+<p><span class="math display">\[J(\omega) = \sum_{i=1}^{n} |y_i - \omega^T x_i| \]</span></p>
+<ul>
+<li>Less sensitive to outliers</li>
+<li>But minimization is harder
+<ul>
+<li>not differentiable at 0</li>
+<li>no closed form solution</li>
+</ul></li>
+<li>Alternative: <strong>Huber Loss</strong>
+<ul>
+<li>behaves like OLS for small errors</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="classification-loss-functions" class="level2">
+<h2 class="anchored" data-anchor-id="classification-loss-functions">Classification Loss Functions</h2>
+<p><span class="math display">\[ y_i w^T x_i = \begin{cases} \text{correct} &amp; y_i w^T x_i &gt; 0 \\ \text{incorrect} &amp; y_i w^T x_i &lt; 0 \end{cases} \]</span></p>
+<ul>
+<li><span class="math inline">\(y_i\)</span>: positive
+<ul>
+<li>correct: <span class="math inline">\(w^T x_i &gt; 0 \rightarrow y_i w^T x_i &gt; 0\)</span></li>
+<li>incorrect: <span class="math inline">\(w^T x_i &lt; 0 \rightarrow y_i w^T x_i &lt; 0\)</span></li>
+</ul></li>
+<li><span class="math inline">\(y_i\)</span>: negative
+<ul>
+<li>correct: <span class="math inline">\(w^T x_i &lt; 0 \rightarrow y_i w^T x_i &gt; 0\)</span></li>
+<li>incorrect: <span class="math inline">\(w^T x_i &gt; 0 \rightarrow y_i w^T x_i &lt; 0\)</span></li>
+</ul></li>
+</ul>
+<section id="different-loss-functions" class="level3">
+<h3 class="anchored" data-anchor-id="different-loss-functions">Different Loss Functions</h3>
+<p><img src="img/5_classification_plots.png" width="400"></p>
+<table class="table">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 30%">
+<col style="width: 24%">
+<col style="width: 23%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>0-1 Loss</th>
+<th><span style="color:blue"> Exponential Loss </span></th>
+<th><span style="color:Orange"> Hinge Loss </span></th>
+<th><span style="color:green"> Logistic Loss </span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>description</td>
+<td>Only cares about whether the prediction is correct or not</td>
+<td>Punishes the wrong predictions exponentially, value gets smaller as more confident for correct predictions</td>
+<td>- Confident and correct predictions are not penalized<br>- Grows linearly for incorrect predictions</td>
+<td>- Used in logistic regression<br>- Smooths the degenerate 0-1 loss with log-sum-exp</td>
+</tr>
+<tr class="even">
+<td>function</td>
+<td><span class="math display">\[\mathbb{1}\{y \neq w^T x\}\]</span></td>
+<td><span class="math display">\[e^{-y w^T x}\]</span></td>
+<td><span class="math display">\[\max(0, 1 - y w^T x)\]</span></td>
+<td><span class="math display">\[\log(1 + e^{-y w^T x})\]</span></td>
+</tr>
+<tr class="odd">
+<td>loss</td>
+<td>- when incorrect, loss is 1<br>- when correct, loss is 0<br>- Total loss is the sum of all losses (number of incorrect predictions)</td>
+<td>- when incorrect, loss is large<br>- when correct, loss is small</td>
+<td>- if correct <span class="math inline">\(y w^T x &gt; 1\)</span>, <span class="math inline">\(1-y w^T x &lt;0\)</span> <br>- if incorrect <span class="math inline">\(y w^T x &lt; 1\)</span>, <span class="math inline">\(1-y w^T x &gt;0\)</span></td>
+<td>- Convex, differentiable, and smooth</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Hinge loss + L2 regularization = SVM</li>
+</ul>
+</section>
+<section id="sigmoid-vs-logistic-loss" class="level3">
+<h3 class="anchored" data-anchor-id="sigmoid-vs-logistic-loss">Sigmoid vs Logistic Loss</h3>
+<p>Let <span class="math inline">\(z = y_i w^T x_i\)</span></p>
+<ul>
+<li>Sigmoid loss: <span class="math inline">\(\sigma(z) = \frac{1}{1 + e^{-z}}\)</span>
+<ul>
+<li>maps to [0, 1] (probability)</li>
+<li>for <code>predict_proba</code></li>
+</ul></li>
+<li>Logistic loss: <span class="math inline">\(\log(1 + e^{-z})\)</span>
+<ul>
+<li>maps <span class="math inline">\(y_i w^T x_i\)</span> to <span class="math inline">\([0, \infty]\)</span> = loss contribution for a single example</li>
+<li>important for <code>fit</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="sklearn-logistic-regression" class="level3">
+<h3 class="anchored" data-anchor-id="sklearn-logistic-regression">Sklearn Logistic Regression</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression()</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>model.predict(X_test)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>model.predict_proba(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>hyperparameters:
+<ul>
+<li><code>C</code>: inverse of regularization strength
+<ul>
+<li>smaller <code>C</code> <span class="math inline">\(\rightarrow\)</span> stronger regularization <span class="math inline">\(\rightarrow\)</span> smaller weights <span class="math inline">\(\rightarrow\)</span> simpler model <span class="math inline">\(\rightarrow\)</span> underfitting</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="final-cost-function" class="level2">
+<h2 class="anchored" data-anchor-id="final-cost-function">Final Cost Function</h2>
+<p><span class="math display">\[J(w) = \text{loss} + \lambda \cdot \text{regularization} \]</span></p>
+<ul>
+<li>more complex model =&gt; higher regularization =&gt; higher cost</li>
+</ul>
+</section>
+<section id="regularization" class="level2">
+<h2 class="anchored" data-anchor-id="regularization">Regularization</h2>
+<ul>
+<li>adding penalty on model complexity (to reduce overfitting)</li>
+<li>Benefits:
+<ul>
+<li>reduce overfitting</li>
+<li>less prone to outliers</li>
+</ul></li>
+<li><strong>Key Idea</strong>: Pick the line/ hyperplane with the smalles slope (simplest model)</li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 26%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>L0 Norm</th>
+<th>L1 Norm</th>
+<th>L2 Norm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number of non-zero elements</td>
+<td>Sum of absolute values</td>
+<td>Square root of the sum of squared values</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\|\|w\|\|_0\)</span></td>
+<td><span class="math inline">\(\|\|w\|\|_1\)</span></td>
+<td><span class="math inline">\(\|\|w\|\|_2\)</span></td>
+</tr>
+<tr class="odd">
+<td>N/A</td>
+<td><span class="math inline">\(\sum_{i=1}^{n} \|x_i\|\)</span></td>
+<td><span class="math inline">\(\sqrt{\sum_{i=1}^{n} x_i^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="l0-regularization" class="level2">
+<h2 class="anchored" data-anchor-id="l0-regularization">L0 Regularization</h2>
+<p><span class="math display">\[J(\omega) = ||X\omega - y||_2^2 + \lambda ||\omega||_0\]</span></p>
+<ul>
+<li>Where <span class="math inline">\(||\omega||_0\)</span> is the <strong>L0-norm</strong>: number of non-zero elements in <span class="math inline">\(\omega\)</span></li>
+<li>To increase the degrees of freedom by 1, need to decrease the error by <span class="math inline">\(\lambda\)</span>
+<ul>
+<li>degrees of freedom: number of parameters in the model</li>
+<li>smaller DOF is preferred</li>
+</ul></li>
+<li>Hard to optimize since it is non-convex and non-differentiable</li>
+</ul>
+</section>
+<section id="l2-regularization" class="level2">
+<h2 class="anchored" data-anchor-id="l2-regularization">L2 Regularization</h2>
+<p><span class="math display">\[J(\omega) = ||X\omega - y||_2^2 + \lambda ||\omega||_2^2\]</span></p>
+<ul>
+<li>Where <span class="math inline">\(||\omega||_2^2\)</span> is the <strong>L2-norm</strong>: sum of squared values of <span class="math inline">\(\omega\)</span></li>
+<li>Weights decrease, but <strong>DO NOT</strong> become zero</li>
+<li>Big <span class="math inline">\(\lambda\)</span> =&gt; more regularization =&gt; lower weights =&gt; simpler model =&gt; underfitting
+<ul>
+<li><span class="math inline">\(\lambda=0\)</span> same as OLS</li>
+</ul></li>
+<li>As <span class="math inline">\(\lambda\)</span> increases (simpler model):
+<ul>
+<li><span class="math inline">\(||X\omega - y||_2^2\)</span> increases (less accurate)</li>
+<li><span class="math inline">\(||\omega||_2^2\)</span> decreases (smaller weights)</li>
+</ul></li>
+</ul>
+<section id="picking-lambda" class="level3">
+<h3 class="anchored" data-anchor-id="picking-lambda">Picking <span class="math inline">\(\lambda\)</span></h3>
+<ul>
+<li>Theory: As n grows, <span class="math inline">\(\lambda\)</span> should be in the range of <span class="math inline">\([0,\sqrt{n}]\)</span></li>
+<li>Do this by optimizing validation error or CV error</li>
+</ul>
+</section>
+<section id="sklearn-ridge-regression" class="level3">
+<h3 class="anchored" data-anchor-id="sklearn-ridge-regression">Sklearn: Ridge Regression</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> Ridge(alpha<span class="op">=</span><span class="fl">1.0</span>) <span class="co"># alpha is lambda</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ridge.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="l1-regularization" class="level2">
+<h2 class="anchored" data-anchor-id="l1-regularization">L1 Regularization</h2>
+<p><span class="math display">\[J(\omega) = ||X\omega - y||_2^2 + \lambda ||\omega||_1\]</span></p>
+<ul>
+<li>Similar to L2 but uses L1-norm instead.
+<ul>
+<li>both shrink weights and result in simpler models</li>
+</ul></li>
+<li>Weights <strong>can become zero</strong>
+<ul>
+<li>some features are completely ignored</li>
+<li>kinda like feature selection</li>
+</ul></li>
+</ul>
+<section id="terminology" class="level3">
+<h3 class="anchored" data-anchor-id="terminology">Terminology</h3>
+<ul>
+<li>sparsity: linear function with many zero-valued coefficients</li>
+<li>L0 and L1 regularization =&gt; sparse models</li>
+</ul>
+</section>
+<section id="sklearn-lasso-regression" class="level3">
+<h3 class="anchored" data-anchor-id="sklearn-lasso-regression">Sklearn: Lasso Regression</h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>lasso <span class="op">=</span> Lasso(alpha<span class="op">=</span><span class="fl">1.0</span>) <span class="co"># alpha is lambda</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>lasso.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="regularization-and-scaling" class="level2">
+<h2 class="anchored" data-anchor-id="regularization-and-scaling">Regularization and scaling</h2>
+<ul>
+<li>Scaling does not matter:
+<ul>
+<li>Decision trees/ Naive Bayes/ Random Forests: only look at 1 feature at a time</li>
+<li>Least Squares Loss: just change weights</li>
+</ul></li>
+<li>Scaling matters:
+<ul>
+<li>KNN: distance will be affected by large values</li>
+<li>Regularized Least Squares: regularization term will be affected by large values</li>
+</ul></li>
+</ul>
+</section>
+<section id="regularization-and-collinearity" class="level2">
+<h2 class="anchored" data-anchor-id="regularization-and-collinearity">Regularization and collinearity</h2>
+<ul>
+<li>L2 regularization: only 1 unique solution
+<ul>
+<li>e.g.&nbsp;3 collinear features =&gt; all equal weights (1/3)</li>
+</ul></li>
+<li>L1 regularization: many solutions
+<ul>
+<li>e.g.&nbsp;3 collinear features =&gt; (1,0,0), (0,1,0), (0,0,1), (1/2,1/2,0), etc.</li>
+</ul></li>
+</ul>
+</section>
+<section id="sklearn-elastic-net" class="level2">
+<h2 class="anchored" data-anchor-id="sklearn-elastic-net">Sklearn: Elastic Net</h2>
+<p><span class="math display">\[J(\omega) = ||X\omega - y||_2^2 + \lambda(\alpha ||\omega||_1 + (1-\alpha)||\omega||_2^2)\]</span></p>
+<ul>
+<li><span class="math inline">\(\lambda\)</span> is the regularization parameter</li>
+<li><span class="math inline">\(\alpha\)</span> promotes:
+<ul>
+<li>sparcity in L1</li>
+<li>smoothness in L2</li>
+</ul></li>
+<li>Function is strictly convex, so there is a unique solution (no collinearity problem)</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> ElasticNet</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>elastic_net <span class="op">=</span> ElasticNet(alpha<span class="op">=</span><span class="fl">1.0</span>, l1_ratio<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># alpha is lambda, l1_ratio is alpha</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>elastic_net.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ensemble-methods" class="level2">
+<h2 class="anchored" data-anchor-id="ensemble-methods">Ensemble Methods</h2>
+<ul>
+<li><p><strong>Key Idea</strong>: Groups make better decisions than individuals, especially when the group members are diverse.</p></li>
+<li><p>Tree-based is the most successful ensemble method</p>
+<ul>
+<li>Random Forest</li>
+<li>Gradient Boosted Trees</li>
+</ul></li>
+<li><p>Ways to combine models:</p>
+<ul>
+<li>Averaging</li>
+<li>Stacking</li>
+</ul></li>
+</ul>
+<section id="diversity" class="level3">
+<h3 class="anchored" data-anchor-id="diversity">Diversity</h3>
+<ul>
+<li>Does not make the individual models better but adds diversity =&gt; better ensemble</li>
+<li>Think of it visually as high variance (not precise) and low bias (accurate on average)</li>
+<li>((insert image from slides))</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>RF</th>
+<th>Boosting</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Many independent trees</td>
+<td>Trees are dependent on each other</td>
+</tr>
+<tr class="even">
+<td>random diversity</td>
+<td>non-random diversity</td>
+</tr>
+<tr class="odd">
+<td>can be parallelized</td>
+<td>sequential</td>
+</tr>
+</tbody>
+</table>
+<section id="bagging" class="level4">
+<h4 class="anchored" data-anchor-id="bagging">Bagging</h4>
+<ul>
+<li>Train each model on a different subset of the <strong>data</strong></li>
+<li><strong>Bootstrap Aggregation</strong>: Sampling with replacement.</li>
+</ul>
+</section>
+</section>
+<section id="random-forest" class="level3">
+<h3 class="anchored" data-anchor-id="random-forest">Random Forest</h3>
+<ul>
+<li><p>Bagging + Random set of <strong>features</strong> at each node.</p></li>
+<li><p>Deep trees, normally full depth.</p></li>
+<li><p><strong>General Idea</strong>:</p>
+<ul>
+<li>Single tree is likely to overfit</li>
+<li>Use a collection of diverse trees</li>
+<li>Each tree overfits on some part of the data but reduce overfitting by averaging</li>
+</ul></li>
+<li><p>At each node:</p>
+<ul>
+<li>randomly select a subset of features (independednt from each node)</li>
+<li>find best split among the subset of features</li>
+<li>grow tree to full depth</li>
+</ul></li>
+<li><p>Prediction:</p>
+<ul>
+<li>Vote the trees</li>
+</ul></li>
+</ul>
+<section id="sklearn-randomforestclassifier" class="level4">
+<h4 class="anchored" data-anchor-id="sklearn-randomforestclassifier">Sklearn RandomForestClassifier</h4>
+<ul>
+<li>uses soft prediction (avg predict_proba)</li>
+<li>easy to fit in parallel (each tree is independent)</li>
+<li>Some important hyperparameters:
+<ul>
+<li><code>n_estimators</code>: number of trees (higher = more complex)</li>
+<li><code>max_depth</code>: max depth of each tree (higher = more complex)</li>
+<li><code>max_features</code>: max number of features to consider at each split (higher = more complex)
+<ul>
+<li>Defaults:
+<ul>
+<li>Classification: sqrt(# features)</li>
+<li>Regression: # features / 3 or # features</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><code>max_features</code> and <code>n_estimators</code> get better scores as values increase but more computationally expensive
+<ul>
+<li>different from standard “hyperparameter tuning”</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="extremely-randomized-trees" class="level3">
+<h3 class="anchored" data-anchor-id="extremely-randomized-trees">Extremely Randomized Trees</h3>
+<ul>
+<li>Random Forest + Random Thresholds (instead of the best threshold)</li>
+<li>Individually, each tree is not that good</li>
+<li>Each tree is grown to full depth</li>
+<li>In sklearn: <code>ExtraTreesClassifier</code></li>
+<li>((insert image about the variance comparison))</li>
+</ul>
+</section>
+<section id="adaboost-adaptive-boosting" class="level3">
+<h3 class="anchored" data-anchor-id="adaboost-adaptive-boosting">AdaBoost (Adaptive Boosting)</h3>
+<ul>
+<li>Boost performance through reweighting of data</li>
+</ul>
+<ol type="1">
+<li>Fit initial model on training data</li>
+<li>reweight the training data so that samples that the initial model got wrong became more important</li>
+<li>Fit the next model on the reweighted data
+<ul>
+<li>will prioritize the samples that the previous model performed poorly on</li>
+</ul></li>
+<li>Repeat until you have a set of models</li>
+<li>Combine the models into a single model</li>
+</ol>
+</section>
+<section id="gradient-boosted-trees" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-boosted-trees">Gradient Boosted Trees</h3>
+<ul>
+<li>better than AdaBoost</li>
+<li><strong>Key Idea</strong>: Trying to decrease the <strong>residuals</strong> of the previous model by creating new tree that can predict the residuals (then use it as correction)
+<ul>
+<li>No randomization</li>
+<li>combine multiple shallow (depth 1-5) trees</li>
+<li>built sequentially</li>
+</ul></li>
+<li>Was computationally expensive but now it is not:
+<ul>
+<li>XGBoost, LightGBM, CatBoost</li>
+</ul></li>
+</ul>
+<ol type="1">
+<li>Construct a base tree (root node), no splits</li>
+<li>Build next tree based on errors of previous tree
+<ul>
+<li>the errors are the residuals</li>
+</ul></li>
+<li>Combine the tree from step 1 with the tree from step 2</li>
+<li>Repeat until max number of estimators is reached</li>
+<li>Combine the trees into a single model</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBClassifier</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> catboost <span class="im">import</span> CatBoostClassifier</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lightbgm.sklearn <span class="im">import</span> LGBMClassifier</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Important Hyperparameters:</strong>
+<ul>
+<li><code>n_estimators</code>: number of boosting rounds (higher = more complex)</li>
+<li><code>learning_rate</code>: controls how strongly each tree tries to correct the mistakes of the previous trees (higher = more corrections = more complex)</li>
+<li><code>max_depth</code>: max depth of each tree (higher = more complex)</li>
+<li><code>scale_pos_weight</code>: balancing of positive and negative weights</li>
+</ul></li>
+</ul>
+</section>
+<section id="combining-models" class="level3">
+<h3 class="anchored" data-anchor-id="combining-models">Combining Models</h3>
+<section id="averaging" class="level4">
+<h4 class="anchored" data-anchor-id="averaging">Averaging</h4>
+<ul>
+<li>Take vote of all models</li>
+</ul>
+</section>
+<section id="sklearn-votingclassifier" class="level4">
+<h4 class="anchored" data-anchor-id="sklearn-votingclassifier">Sklearn VotingClassifier</h4>
+<ul>
+<li><code>voting='soft'</code> uses <code>predict_proba</code> and averages the probabilities
+<ul>
+<li>good if trust <code>predict_proba</code></li>
+</ul></li>
+<li><code>voting='hard'</code> uses <code>predict</code> and takes the majority vote</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> VotingClassifier</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>averaging_model <span class="op">=</span> VotingClassifier(</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">list</span>(classifiers.items()), voting<span class="op">=</span><span class="st">"soft"</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>)  <span class="co"># need the list() here for cross-validation to work!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="stacking" class="level4">
+<h4 class="anchored" data-anchor-id="stacking">Stacking</h4>
+<ul>
+<li><strong>Key idea:</strong> Weighted voting via simple model
+<ul>
+<li>use outputs as inputs to a new model</li>
+</ul></li>
+<li>Use a simpler model like logistic regression as “meta-model”</li>
+<li>Each model is a feature for the meta-model</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="important-to-model-important-to-the-real-world" class="level2">
+<h2 class="anchored" data-anchor-id="important-to-model-important-to-the-real-world">Important to model != Important to the real world</h2>
+</section>
+<section id="model-interpretability" class="level2">
+<h2 class="anchored" data-anchor-id="model-interpretability">Model Interpretability</h2>
+<ul>
+<li>Looking at <strong>feature importance</strong> can help us understand the model</li>
+<li>Why?
+<ul>
+<li><strong>Debugging:</strong> find systematic errors</li>
+<li><strong>Diagnosing bias:</strong> find underlying biases</li>
+<li><strong>Feature engineering:</strong> find new features</li>
+<li><strong>Feature selection:</strong> find unimportant features</li>
+<li>Model interpretability can be leveraged by domain experts to diagnose systematic errors and underlying biases of complex ML systems.</li>
+</ul></li>
+</ul>
+<section id="tree-based-feature-importance" class="level3">
+<h3 class="anchored" data-anchor-id="tree-based-feature-importance">Tree-based feature importance</h3>
+<ul>
+<li><strong>Key idea:</strong> How much does each feature contribute to the model?</li>
+<li>Use a tree-based model (e.g.&nbsp;random forest) to measure feature importance
+<ul>
+<li>Do not use single decision tree because it is not stable</li>
+</ul></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 51%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Easy to interpret</td>
+<td>Not stable (can change a lot with small changes in data)</td>
+</tr>
+<tr class="even">
+<td>Can be used for feature selection</td>
+<td>Can be biased towards high cardinality* features (e.g.&nbsp;ID)</td>
+</tr>
+<tr class="odd">
+<td>Can be used for feature engineering (e.g.&nbsp;interaction features)</td>
+<td>Can be biased towards numerical features (e.g.&nbsp;age)</td>
+</tr>
+<tr class="even">
+<td>na</td>
+<td>Can only be used for tree-based models (e.g.&nbsp;random forest)</td>
+</tr>
+</tbody>
+</table>
+<p>*<em>high cardinality</em>: a feature with a lot of unique values</p>
+</section>
+<section id="permutation-feature-importance" class="level3">
+<h3 class="anchored" data-anchor-id="permutation-feature-importance">Permutation feature importance</h3>
+<ul>
+<li>Randomly shuffle a feature and measure how much the model performance changes</li>
+<li>No issue with high cardinality features</li>
+<li>Can add a random noise column to measure feature importance
+<ul>
+<li>Can be used as a threshold to remove features</li>
+</ul></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Can be used for any model (not just tree-based models)</td>
+<td>Correlated features are still an issue</td>
+</tr>
+<tr class="even">
+<td>no issue with high cardinality features</td>
+<td>We do not know if they contribute positively or negatively to the model</td>
+</tr>
+<tr class="odd">
+<td>Simple concept, easy to understand</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Use validation data, so not picking up features that overfit</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<section id="in-python" class="level4">
+<h4 class="anchored" data-anchor-id="in-python">in Python</h4>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> permutation_importance</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>perm_importance <span class="op">=</span> permutation_importance(</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    model,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    X_test,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    y_test,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    n_repeats<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    n_jobs<span class="op">=-</span><span class="dv">1</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>can be used on non <code>sklearn</code> models</li>
+<li>do not have a sign</li>
+<li>only tell us importance not direction of importance</li>
+</ul>
+</section>
+</section>
+<section id="shapley-values" class="level3">
+<h3 class="anchored" data-anchor-id="shapley-values">Shapley values</h3>
+<ul>
+<li>What is the contribution of each feature to the prediction?</li>
+<li>The order of the features matters due to interactions</li>
+<li>Could use backward/ forward selection to find the best subset of features but very expensive</li>
+<li>Instead, see how the prediction changes when we add a feature</li>
+<li><strong>Shapley values:</strong> the average marginal contribution of a feature value over all possible coalitions
+<ul>
+<li><strong>Marginal contribution:</strong> the difference in the prediction with and without the feature</li>
+<li><strong>Coalition:</strong> a subset of features</li>
+</ul></li>
+</ul>
+<p>read: https://towardsdatascience.com/using-shap-values-to-explain-how-your-machine-learning-model-works-732b3f40e137</p>
+<section id="shap-values" class="level4">
+<h4 class="anchored" data-anchor-id="shap-values">Shap values</h4>
+<ul>
+<li>Indicate the contribution of each feature to the prediction</li>
+<li>Same units as the prediction (for classification, it is probability)</li>
+</ul>
+</section>
+<section id="shap-in-python" class="level4">
+<h4 class="anchored" data-anchor-id="shap-in-python">Shap in Python</h4>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shap</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>X_test_enc <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pipe[:<span class="op">-</span><span class="dv">1</span>].transform(X_test),</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> feature_names,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> X_test.index</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>explainer <span class="op">=</span> shap.Explainer(pipe[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>explanation <span class="op">=</span> explainer(X_test_enc)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># [sample, feature, class], class 1 is the positive class</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>explanation[:,:,<span class="dv">1</span>].values</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co"># also [sample, feature, class]</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>shap.plots.waterfall(explanation[<span class="dv">2</span>,:,<span class="dv">1</span>])</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="co"># or force plot: compresses the waterfall plot</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>shap.plots.force(explanation[<span class="dv">2</span>,:,<span class="dv">1</span>])</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="co"># summary plit to show impact of each feature</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>shap.plots.beeswarm(explanation[:,:,<span class="dv">1</span>])</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>shap.summary_plot(explanation[:,:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

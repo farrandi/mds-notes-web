@@ -2,13 +2,13 @@
 
 ## Project
 
-Link: https://github.com/UBC-MDS/english-score-predictor
+Link: [https://github.com/UBC-MDS/english-score-predictor](https://github.com/UBC-MDS/english-score-predictor)
 
 ## Docker
 
 ### Ten Simple Rules for Writing Dockerfiles
 
-*https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316#sec021*
+[https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316#sec021](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316#sec021)
 
 1. **Base Your Image on a Minimal Official Docker Image**
 
