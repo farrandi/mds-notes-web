@@ -16,3 +16,5 @@ title: "List of Cheat Sheet"
 | 522          | 3       | [Workflows](block_3/522_workflows/522_workflows.html)                 |
 |561           | 3       | [Regression I](block_3/561_regression/561_regression.html)            |
 |573           | 3       | [Model Selection](block_3/573_model_sel/573_model_sel.html)           |
+| 562          | 4       | [Regression II](block_4/562_regression_2/562_regression_2.html)       |
+| 572          | 4       | [Supervised Learning II](block_4/572_sup_learn_2/572_sup_learn_2.html)|
