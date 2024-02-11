@@ -1,7 +1,7 @@
 ---
 title: "Home"
 ---
-**Made by [@farrandi](https://www.farrandi.com/)**
+**Made by Nando [(@farrandi)](https://www.farrandi.com/)**
 
 This is a list of notes from my classes in the Master of Data Science program (2023/2024) at the University of British Columbia.
 
