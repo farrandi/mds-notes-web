@@ -5,11 +5,11 @@ project:
 website:
   title: "Nando's MDS Notes"
   navbar:
+    logo: images/mds_logo.png
     left:
       - href: index.qmd
       - list.qmd
-      # - block_1/511_python/511_python.md
-      # - block_1/521_platforms/521_platforms.qmd
+  favicon: images/white_cartoon.PNG
 
 format:
   html:
