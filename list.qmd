@@ -1,8 +1,12 @@
 ---
-title: "List of Cheat Sheet"
+title: "List of Notes"
 ---
 
-| Course Code. | Block # | Title                                                                 |
+This is the list of [MDS Courses](https://ubc-mds.github.io/descriptions/).
+
+Below are my list of notes for each course.
+
+| Course Code  | Block # | Title                                                                 |
 |--------------|---------|-----------------------------------------------------------------------|
 | 511          | 1       | [Intro to Python](block_1/511_python/511_python.html)                 |
 | 521          | 1       | [Platforms](block_1/521_platforms/521_platforms.html)                 |
@@ -14,7 +18,7 @@ title: "List of Cheat Sheet"
 | 571          | 2       | [Supervised Learning](block_2/571_sup_learn/571_sup_learn.html)       |
 | 513          | 3       | [Databases](block_3/513_databases/513_databases.html)                 |
 | 522          | 3       | [Workflows](block_3/522_workflows/522_workflows.html)                 |
-|561           | 3       | [Regression I](block_3/561_regression/561_regression.html)            |
-|573           | 3       | [Model Selection](block_3/573_model_sel/573_model_sel.html)           |
+| 561          | 3       | [Regression I](block_3/561_regression/561_regression.html)            |
+| 573          | 3       | [Model Selection](block_3/573_model_sel/573_model_sel.html)           |
 | 562          | 4       | [Regression II](block_4/562_regression_2/562_regression_2.html)       |
 | 572          | 4       | [Supervised Learning II](block_4/572_sup_learn_2/572_sup_learn_2.html)|
