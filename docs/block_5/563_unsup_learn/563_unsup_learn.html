@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Nando's MDS Notes – unsup_learn</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/white_cartoon.PNG" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/mds_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Nando’s MDS Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../list.html" rel="" target="">
+ <span class="menu-text">List of Notes</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#unsupervised-learning" id="toc-unsupervised-learning" class="nav-link active" data-scroll-target="#unsupervised-learning">Unsupervised Learning</a>
+  <ul class="collapse">
+  <li><a href="#unsupervised-learning-introduction" id="toc-unsupervised-learning-introduction" class="nav-link" data-scroll-target="#unsupervised-learning-introduction">Unsupervised Learning Introduction</a></li>
+  <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link" data-scroll-target="#k-means-clustering">K-Means Clustering</a>
+  <ul class="collapse">
+  <li><a href="#clustering-motivation" id="toc-clustering-motivation" class="nav-link" data-scroll-target="#clustering-motivation">Clustering Motivation</a></li>
+  <li><a href="#k-means" id="toc-k-means" class="nav-link" data-scroll-target="#k-means">K-Means</a></li>
+  </ul></li>
+  <li><a href="#gaussian-mixture-models-high-level-overview" id="toc-gaussian-mixture-models-high-level-overview" class="nav-link" data-scroll-target="#gaussian-mixture-models-high-level-overview">Gaussian Mixture Models (High-Level Overview)</a>
+  <ul class="collapse">
+  <li><a href="#how-gmms-work" id="toc-how-gmms-work" class="nav-link" data-scroll-target="#how-gmms-work">How GMMs Work</a></li>
+  </ul></li>
+  <li><a href="#dbscan" id="toc-dbscan" class="nav-link" data-scroll-target="#dbscan">DBSCAN</a>
+  <ul class="collapse">
+  <li><a href="#how-dbscan-works" id="toc-how-dbscan-works" class="nav-link" data-scroll-target="#how-dbscan-works">How DBSCAN works</a></li>
+  <li><a href="#evaluating-dbscan-clusters" id="toc-evaluating-dbscan-clusters" class="nav-link" data-scroll-target="#evaluating-dbscan-clusters">Evaluating DBSCAN Clusters</a></li>
+  </ul></li>
+  <li><a href="#hierarchical-clustering" id="toc-hierarchical-clustering" class="nav-link" data-scroll-target="#hierarchical-clustering">Hierarchical Clustering</a>
+  <ul class="collapse">
+  <li><a href="#dendrogram" id="toc-dendrogram" class="nav-link" data-scroll-target="#dendrogram">Dendrogram</a></li>
+  <li><a href="#linkage-criteria" id="toc-linkage-criteria" class="nav-link" data-scroll-target="#linkage-criteria">Linkage Criteria</a></li>
+  <li><a href="#simplifying-the-dendrogram" id="toc-simplifying-the-dendrogram" class="nav-link" data-scroll-target="#simplifying-the-dendrogram">Simplifying the Dendrogram</a></li>
+  </ul></li>
+  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a>
+  <ul class="collapse">
+  <li><a href="#dimensionality-reduction-motivation" id="toc-dimensionality-reduction-motivation" class="nav-link" data-scroll-target="#dimensionality-reduction-motivation">Dimensionality Reduction Motivation</a></li>
+  <li><a href="#pca-overview" id="toc-pca-overview" class="nav-link" data-scroll-target="#pca-overview">PCA Overview</a></li>
+  <li><a href="#pca-terminology" id="toc-pca-terminology" class="nav-link" data-scroll-target="#pca-terminology">PCA Terminology</a></li>
+  <li><a href="#pca-math" id="toc-pca-math" class="nav-link" data-scroll-target="#pca-math">PCA Math</a></li>
+  <li><a href="#choosing-number-of-components" id="toc-choosing-number-of-components" class="nav-link" data-scroll-target="#choosing-number-of-components">Choosing Number of Components</a></li>
+  <li><a href="#pca-and-multicollinearity" id="toc-pca-and-multicollinearity" class="nav-link" data-scroll-target="#pca-and-multicollinearity">PCA and Multicollinearity</a></li>
+  <li><a href="#pca-applications" id="toc-pca-applications" class="nav-link" data-scroll-target="#pca-applications">PCA Applications</a></li>
+  <li><a href="#pca-in-python" id="toc-pca-in-python" class="nav-link" data-scroll-target="#pca-in-python">PCA in Python</a></li>
+  <li><a href="#k-means-and-pca" id="toc-k-means-and-pca" class="nav-link" data-scroll-target="#k-means-and-pca">K-means and PCA</a></li>
+  </ul></li>
+  <li><a href="#lsa-latent-semantic-analysis" id="toc-lsa-latent-semantic-analysis" class="nav-link" data-scroll-target="#lsa-latent-semantic-analysis">LSA (Latent Semantic Analysis)</a></li>
+  <li><a href="#nmf-non-negative-matrix-factorization" id="toc-nmf-non-negative-matrix-factorization" class="nav-link" data-scroll-target="#nmf-non-negative-matrix-factorization">NMF (Non-Negative Matrix Factorization)</a></li>
+  <li><a href="#comparison-of-pca-lsa-and-nmf" id="toc-comparison-of-pca-lsa-and-nmf" class="nav-link" data-scroll-target="#comparison-of-pca-lsa-and-nmf">Comparison of PCA, LSA, and NMF</a></li>
+  <li><a href="#word-embeddings" id="toc-word-embeddings" class="nav-link" data-scroll-target="#word-embeddings">Word Embeddings</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#word-representation" id="toc-word-representation" class="nav-link" data-scroll-target="#word-representation">Word Representation</a></li>
+  <li><a href="#other-word-embeddings" id="toc-other-word-embeddings" class="nav-link" data-scroll-target="#other-word-embeddings">Other Word Embeddings</a></li>
+  </ul></li>
+  <li><a href="#word-embedding-applications" id="toc-word-embedding-applications" class="nav-link" data-scroll-target="#word-embedding-applications">Word Embedding Applications</a>
+  <ul class="collapse">
+  <li><a href="#document-similarity-and-text-classification" id="toc-document-similarity-and-text-classification" class="nav-link" data-scroll-target="#document-similarity-and-text-classification">Document Similarity and Text Classification</a></li>
+  <li><a href="#word2vec-for-product-recommendations" id="toc-word2vec-for-product-recommendations" class="nav-link" data-scroll-target="#word2vec-for-product-recommendations">word2vec for Product Recommendations</a></li>
+  </ul></li>
+  <li><a href="#manifold-learning" id="toc-manifold-learning" class="nav-link" data-scroll-target="#manifold-learning">Manifold Learning</a>
+  <ul class="collapse">
+  <li><a href="#t-sne-t-distributed-stochastic-neighbor-embedding" id="toc-t-sne-t-distributed-stochastic-neighbor-embedding" class="nav-link" data-scroll-target="#t-sne-t-distributed-stochastic-neighbor-embedding">t-SNE (t-distributed Stochastic Neighbor Embedding)</a></li>
+  </ul></li>
+  <li><a href="#recommender-systems-introduction" id="toc-recommender-systems-introduction" class="nav-link" data-scroll-target="#recommender-systems-introduction">Recommender Systems Introduction</a>
+  <ul class="collapse">
+  <li><a href="#data-and-approaches-to-recommender-systems" id="toc-data-and-approaches-to-recommender-systems" class="nav-link" data-scroll-target="#data-and-approaches-to-recommender-systems">Data and Approaches to Recommender Systems</a></li>
+  </ul></li>
+  <li><a href="#recommender-systems-structure" id="toc-recommender-systems-structure" class="nav-link" data-scroll-target="#recommender-systems-structure">Recommender Systems Structure</a>
+  <ul class="collapse">
+  <li><a href="#utility-matrix" id="toc-utility-matrix" class="nav-link" data-scroll-target="#utility-matrix">Utility Matrix</a></li>
+  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation">Evaluation</a></li>
+  <li><a href="#baseline-approaches" id="toc-baseline-approaches" class="nav-link" data-scroll-target="#baseline-approaches">Baseline Approaches</a></li>
+  </ul></li>
+  <li><a href="#collaborative-filtering" id="toc-collaborative-filtering" class="nav-link" data-scroll-target="#collaborative-filtering">Collaborative Filtering</a>
+  <ul class="collapse">
+  <li><a href="#z-and-w-in-collaborative-filtering" id="toc-z-and-w-in-collaborative-filtering" class="nav-link" data-scroll-target="#z-and-w-in-collaborative-filtering">Z and W in Collaborative Filtering</a></li>
+  <li><a href="#using-surprise-library" id="toc-using-surprise-library" class="nav-link" data-scroll-target="#using-surprise-library">Using <code>surprise</code> library</a></li>
+  </ul></li>
+  <li><a href="#distance-metrics" id="toc-distance-metrics" class="nav-link" data-scroll-target="#distance-metrics">Distance Metrics</a></li>
+  <li><a href="#content-based-filtering" id="toc-content-based-filtering" class="nav-link" data-scroll-target="#content-based-filtering">Content Based Filtering</a>
+  <ul class="collapse">
+  <li><a href="#steps-in-python-with-a-movie-recommendation-example" id="toc-steps-in-python-with-a-movie-recommendation-example" class="nav-link" data-scroll-target="#steps-in-python-with-a-movie-recommendation-example">Steps in Python (With a movie recommendation example)</a></li>
+  </ul></li>
+  <li><a href="#collaborative-vs-content-based-filtering" id="toc-collaborative-vs-content-based-filtering" class="nav-link" data-scroll-target="#collaborative-vs-content-based-filtering">Collaborative vs Content Based Filtering</a></li>
+  <li><a href="#beyond-error-rate-in-recommender-systems" id="toc-beyond-error-rate-in-recommender-systems" class="nav-link" data-scroll-target="#beyond-error-rate-in-recommender-systems">Beyond Error Rate in Recommender Systems</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="unsupervised-learning" class="level1">
+<h1>Unsupervised Learning</h1>
+<section id="unsupervised-learning-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="unsupervised-learning-introduction">Unsupervised Learning Introduction</h2>
+<ul>
+<li><p>Type of machine learning algorithm used to draw inferences from datasets consisting of input data <strong>without labeled responses</strong></p></li>
+<li><p>Examples:</p>
+<ul>
+<li>Clustering</li>
+<li>Dimensionality Reduction</li>
+</ul></li>
+</ul>
+</section>
+<section id="k-means-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="k-means-clustering">K-Means Clustering</h2>
+<section id="clustering-motivation" class="level3">
+<h3 class="anchored" data-anchor-id="clustering-motivation">Clustering Motivation</h3>
+<ul>
+<li>Labeling data is expensive and time-consuming</li>
+<li>Clustering is a way to group based on similarity
+<ul>
+<li>Can get a sense of the structure of the data without labeled responses</li>
+</ul></li>
+<li><strong>Clustering</strong>: Task of partitioning data into groups called clusters based on similarity</li>
+<li>Goal:
+<ul>
+<li>Points in the same cluster should be as similar as possible</li>
+<li>Points in different clusters should be as different as possible</li>
+</ul></li>
+<li>Can have multiple different clusters in the same dataset
+<ul>
+<li>e.g.&nbsp;in dataset of food can have clusters of:
+<ul>
+<li>appetizers, main courses, desserts</li>
+<li>cuisines</li>
+<li>healthy vs unhealthy</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr>
+<p><strong>Comparisons with kNN</strong>: | k-Means | k-Nearest Neighbors | | ——- | ——————– | | Unsupervised | Supervised | | Clustering | Classification | | Parametric | Non-parametric | | k = number of clusters | k = number of neighbors |</p>
+<hr>
+<section id="common-applications" class="level4">
+<h4 class="anchored" data-anchor-id="common-applications">Common Applications</h4>
+<ol type="1">
+<li>Data Exploration
+<ul>
+<li>Summarize/ compress data</li>
+<li>Partition data into groups</li>
+</ul></li>
+<li>Customer Segmentation
+<ul>
+<li>Group customers based on purchasing behavior</li>
+<li>Target marketing</li>
+</ul></li>
+<li>Document Clustering
+<ul>
+<li>Group similar documents together</li>
+<li>Topic modeling Other applications: Medical imaging, Anomaly detection, Image segmentation, Inputting missing data, data compression, etc.</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="k-means" class="level3">
+<h3 class="anchored" data-anchor-id="k-means">K-Means</h3>
+<ul>
+<li>One of the most popular clustering algorithms</li>
+<li>Simple and easy to implement</li>
+<li><strong>Basic Algorithm</strong>:
+<ol type="1">
+<li>Randomly initialize <span class="math inline">\(K\)</span> centroids</li>
+<li>Assign each data point to the nearest centroid</li>
+<li>Update the centroids to the mean of the data points assigned to it</li>
+<li>Repeat steps 2 and 3 until convergence</li>
+</ol></li>
+<li><strong>Properties</strong>:
+<ul>
+<li>Will always converge (not necessarily to the right answer)</li>
+<li>Sensitive to intialization</li>
+<li>Terminates when centroids do not change</li>
+<li>Makes <em>linear</em> decision boundaries</li>
+<li><strong>MUST SCALE DATA</strong> before applying K-means
+<ul>
+<li>Because K-means uses distance</li>
+<li>If features are on different scales, the clustering will be biased towards the features with larger scales</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr>
+<ul>
+<li><strong>Input</strong>:
+<ul>
+<li><span class="math inline">\(X\)</span>: Set of <span class="math inline">\(n\)</span> data points</li>
+<li><span class="math inline">\(K\)</span>: Number of clusters</li>
+</ul></li>
+<li><strong>Output</strong>:
+<ul>
+<li><span class="math inline">\(K\)</span> clusters with centroids <span class="math inline">\(\mu_1, \mu_2, \ldots, \mu_K\)</span></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="st">'auto'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X)<span class="op">;</span> <span class="co"># only need X</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>kmeans.labels_ <span class="co"># cluster assignments</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>kmeans.cluster_centers_ <span class="co"># cluster centroids</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>kmeans.predict(new_data) <span class="co"># predict cluster for new data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="choosing-k" class="level4">
+<h4 class="anchored" data-anchor-id="choosing-k">Choosing K</h4>
+<ul>
+<li>K is a hyperparameter
+<ul>
+<li>As K increases -&gt; smaller clusters</li>
+</ul></li>
+<li>No perfect way to choose K</li>
+</ul>
+<ol type="1">
+<li><strong>Elbow Method</strong>:</li>
+</ol>
+<p><img src="images/1_elbow.png" width="400"></p>
+<ul>
+<li>Specific to k-means</li>
+<li><span class="math inline">\(\text{Inertia} = \text{sum of intra-cluster distances}\)</span>
+<ul>
+<li>Sum of centroid to point distances of all points in the cluster of all clusters <span class="math inline">\(\sum_{i=1}^{K} \sum_{x \in C_i} ||x - \mu_i||^2\)</span></li>
+</ul></li>
+<li>Inertia decreases as K increases, until it reaches 0 when K = n</li>
+<li>Plot inertia vs K
+<ul>
+<li>Elbow point: point where inertia starts to decrease more slowly</li>
+</ul></li>
+<li>Choose K at elbow point</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> yellowbrick.cluster <span class="im">import</span> KElbowVisualizer</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> model <span class="op">=</span> KMeans(n_init<span class="op">=</span><span class="st">'auto'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> visualizer <span class="op">=</span> KElbowVisualizer(model, k<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">10</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> visualizer.fit(XX)  <span class="co"># Fit the data to the visualizer</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a> visualizer.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li><strong>Silhouette Score</strong>: <img src="images/1_silh.png" width="400"></li>
+</ol>
+<ul>
+<li><p><strong>Not dependent on cluster centers</strong> -&gt; can be used to compare different clustering algorithms</p></li>
+<li><p>Gets worst as K increases, since being closer to neigouring clusters <span class="math display">\[\text{Silhouette Score} = \frac{b - a}{\max(a, b)}\]</span></p></li>
+<li><p><span class="math inline">\(a\)</span>: Mean distance between a sample and all other points in the same cluster</p></li>
+<li><p><span class="math inline">\(b\)</span>: Mean distance between a sample and all other points in the next nearest cluster</p></li>
+<li><p>Range: <span class="math inline">\([-1, 1]\)</span></p>
+<ul>
+<li><strong>1</strong>: Object is well matched to its own cluster and poorly matched to neighboring clusters (BEST)</li>
+<li><strong>0</strong>: Object is not matched to its own cluster and might be better in neighboring clusters</li>
+<li><strong>-1</strong>: Object is poorly matched to its own cluster and well matched to neighboring clusters (WORST)</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> yellowbrick.cluster <span class="im">import</span> SilhouetteVisualizer</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> KMeans(<span class="dv">2</span>, n_init<span class="op">=</span><span class="st">'auto'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>visualizer <span class="op">=</span> SilhouetteVisualizer(model, colors<span class="op">=</span><span class="st">"yellowbrick"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>visualizer.fit(XX)  <span class="co"># Fit the data to the visualizer</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>visualizer.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>y-axis</strong>: Sample number (similar thickness = balanced cluster sizes)</li>
+<li><strong>x-axis</strong>: Silhouette score</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="gaussian-mixture-models-high-level-overview" class="level2">
+<h2 class="anchored" data-anchor-id="gaussian-mixture-models-high-level-overview">Gaussian Mixture Models (High-Level Overview)</h2>
+<ul>
+<li><strong>Motivation</strong>:
+<ul>
+<li>K-means makes <em>linear</em> decision boundaries</li>
+<li>GMMs can have more flexible cluster shapes</li>
+</ul></li>
+</ul>
+<p><img src="images/1_gmm_type.png" width="550"></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.mixture <span class="im">import</span> GaussianMixture</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gmm <span class="op">=</span> GaussianMixture(n_components<span class="op">=</span><span class="dv">3</span>, covariance_type<span class="op">=</span><span class="st">'full'</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>gmm.fit(X_train)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>gmm_labels <span class="op">=</span> gmm.predict(X_train)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get values</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>gmm.means_ <span class="co"># cluster means (size: K x n_features)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>gmm.covariances_ <span class="co"># cluster covariances (size: K x n_features x n_features)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>gmm.weights_ <span class="co"># cluster weights (size: K)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>covariance_type</code>:
+<ul>
+<li><code>full</code>: Each component has its own general covariance matrix
+<ul>
+<li>size: <span class="math inline">\(K \times n\_features \times n\_features\)</span></li>
+</ul></li>
+<li><code>tied</code>: All components share the same general covariance matrix
+<ul>
+<li>size: <span class="math inline">\(n\_features \times n\_features\)</span></li>
+</ul></li>
+<li><code>diag</code>: Each component has its own diagonal covariance matrix
+<ul>
+<li>size: <span class="math inline">\(K \times n\_features\)</span></li>
+</ul></li>
+<li><code>spherical</code>: Each component has its own single variance
+<ul>
+<li>size: <span class="math inline">\(K\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="how-gmms-work" class="level3">
+<h3 class="anchored" data-anchor-id="how-gmms-work">How GMMs Work</h3>
+<p><span class="math display">\[P(x) = \sum_{k=1}^{K} \pi_k \mathcal{N}(x | \mu_k, \Sigma_k)\]</span></p>
+<ul>
+<li><p><span class="math inline">\(P(x)\)</span>: Probability of observing <span class="math inline">\(x\)</span></p></li>
+<li><p><span class="math inline">\(\pi_k\)</span>: Weight of the <span class="math inline">\(k\)</span>th Gaussian (between 0 and 1)</p></li>
+<li><p><span class="math inline">\(k\)</span>: Number of clusters</p></li>
+<li><p><span class="math inline">\(\mathcal{N}(x | \mu_k, \Sigma_k)\)</span>: Gaussian distribution with mean <span class="math inline">\(\mu_k\)</span> and covariance <span class="math inline">\(\Sigma_k\)</span></p>
+<p><br></p></li>
+<li><p><strong>Generative Model</strong>: models the probability of a data point being generated from the mixture of Gaussians</p></li>
+<li><p>The generative story of the model assumes that each data point in the dataset is generated from one of the Gaussian components</p>
+<ul>
+<li>Choose <span class="math inline">\(k\)</span> with probability <span class="math inline">\(\pi_k\)</span></li>
+<li>Generate data point from <span class="math inline">\(\mathcal{N}(x | \mu_k, \Sigma_k)\)</span></li>
+</ul></li>
+<li><p><strong>High Level Algorithm</strong> (non-convex optimization):</p>
+<ol type="1">
+<li>Initialize <span class="math inline">\(\pi_k, \mu_k, \Sigma_k\)</span> (sensitive to init, can init with k-means)</li>
+<li>E-step: Compute the probability of each data point belonging to each cluster</li>
+<li>M-step: Update <span class="math inline">\(\pi_k, \mu_k, \Sigma_k\)</span> to maximize the likelihood of the data</li>
+<li>Repeat steps 2 and 3 until convergence</li>
+</ol></li>
+<li><p>Under the hood, GMMs use the <strong>Expectation-Maximization (EM)</strong> algorithm.</p>
+<ul>
+<li>Basic idea: treat cluster assignments as hidden variables and iteratively update them</li>
+<li><strong>E-step</strong>: for each point, compute the probability of it belonging to each cluster</li>
+<li><strong>M-step</strong>: for each cluster, update the parameters to maximize the likelihood of the data</li>
+</ul></li>
+<li><p><strong>Other Properties</strong>:</p>
+<ul>
+<li>Can constrain the covariance matrix</li>
+<li>Number of clusters is a hyperparameter and has a significant impact on the model</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="dbscan" class="level2">
+<h2 class="anchored" data-anchor-id="dbscan">DBSCAN</h2>
+<ul>
+<li>Density-Based Spatial Clustering of Applications with Noise</li>
+<li><strong>Idea</strong>: Clusters are dense regions in the data space, separated by low-density regions</li>
+<li>Addresses K-Means’ weaknesses:
+<ul>
+<li>No need to specify number of clusters</li>
+<li>Can find clusters of arbitrary shapes</li>
+<li>Can identify points that don’t belong to any cluster (points don’t have to belong to any cluster, label = <code>-1</code>)</li>
+<li>Initialization is not a problem</li>
+</ul></li>
+<li>Comparison to K-means:
+<ul>
+<li>does not have to assign all points to clusters</li>
+<li>no <code>predict</code> method unlike K-means</li>
+<li>non-parametric</li>
+</ul></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Can find clusters of arbitrary shapes</td>
+<td>cannot predict new data</td>
+</tr>
+<tr class="even">
+<td>Can detect outliers</td>
+<td>Needs tuning of 2 non-trivial hyperparameters</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>DBSCAN Failure Cases</strong>:
+<ul>
+<li>Different densities of clusters</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dbscan <span class="op">=</span> DBSCAN(eps<span class="op">=</span><span class="fl">0.5</span>, min_samples<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dbscan.fit(X)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>dbscan.labels_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>eps</code> (default=0.5): maximum distance between two samples for one to be considered as in the neighborhood of the other.</li>
+<li><code>min_samples</code> (default = 5): number of samples in a neighborhood for a point to be considered as a core point</li>
+</ul>
+<section id="how-dbscan-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-dbscan-works">How DBSCAN works</h3>
+<ul>
+<li><p><strong>Kinds of points</strong>:</p>
+<ul>
+<li><strong>Core point</strong>: A point that has at least <code>min_samples</code> points within <code>eps</code> of it</li>
+<li><strong>Border point</strong>: A point that is within <code>eps</code> of a core point, but has less than <code>min_samples</code> points within <code>eps</code> of it</li>
+<li><strong>Noise point</strong>: A point that is neither a core point nor a border point</li>
+</ul></li>
+<li><p><strong>Algorithm</strong>:</p>
+<ul>
+<li>randomly pick a point that has not been visited</li>
+<li>Check if it’s a core point
+<ul>
+<li>See <code>eps</code> distance around the point if there are <code>min_samples</code> points</li>
+</ul></li>
+<li>If yes, start a cluster around this point</li>
+<li>Check if neighbors are core points and repeat</li>
+<li>Once no more core points, pick another random point and repeat</li>
+</ul></li>
+</ul>
+</section>
+<section id="evaluating-dbscan-clusters" class="level3">
+<h3 class="anchored" data-anchor-id="evaluating-dbscan-clusters">Evaluating DBSCAN Clusters</h3>
+<ol type="1">
+<li>Silhouette Method
+<ul>
+<li>Cannot use elbow method because no centroids</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> yellowbrick.cluster <span class="im">import</span> SilhouetteVisualizer</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> DBSCAN(eps<span class="op">=</span><span class="fl">0.5</span>, min_samples<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>model.fit(X)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Silhoutte is designed for k-means, so we need to do this</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>n_clusters <span class="op">=</span> <span class="bu">len</span>(<span class="bu">set</span>(model.labels_))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>dbscan.n_clusters <span class="op">=</span> n_clusters</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>dbscan.predict <span class="op">=</span> <span class="kw">lambda</span> x: model.labels_</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>visualizer <span class="op">=</span> SilhouetteVisualizer(dbscan, colors<span class="op">=</span><span class="st">'yellowbrick'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>visualizer.fit(X)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>visualizer.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="hierarchical-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering">Hierarchical Clustering</h2>
+<ul>
+<li>Hard to decide how many clusters
+<ul>
+<li>So get complete picture of similarity between points then decide</li>
+</ul></li>
+<li><strong>Main idea</strong>:
+<ul>
+<li>Start with each point as a cluster</li>
+<li>Merge the closest clusters</li>
+<li>Repeat until only a single cluster remains (n-1 steps)</li>
+</ul></li>
+<li>Visualized as a <code>dendrogram</code></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.cluster.hierarchy <span class="im">import</span> dendrogram, ward</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>X_scaled <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>linkage_array <span class="op">=</span> ward(X_scaled) <span class="co"># see below for linkage criteria</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the dendrogram</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>dendrogram(linkage_array, ax<span class="op">=</span>ax, color_threshold<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="dendrogram" class="level3">
+<h3 class="anchored" data-anchor-id="dendrogram">Dendrogram</h3>
+<p><img src="images/2_dendogram.png" width="300"></p>
+<ul>
+<li><strong>x-axis</strong>: data points</li>
+<li><strong>y-axis</strong>: distance between clusters</li>
+<li>Is a tree like plot
+<ul>
+<li>New parent node for each 2 clusters that are merged</li>
+</ul></li>
+<li>Length of the vertical line at the point of merging is the distance between the clusters</li>
+</ul>
+</section>
+<section id="linkage-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="linkage-criteria">Linkage Criteria</h3>
+<ul>
+<li>Linkage Criteria determines how to find similarity between clusters</li>
+<li><strong>Single Linkage</strong>:
+<ul>
+<li>Merge smallest <strong>min</strong> distance between points in two clusters</li>
+<li>Can lead to chaining</li>
+<li><code>scipy.cluster.hierarchy.single</code></li>
+</ul></li>
+<li><strong>Complete Linkage</strong>:
+<ul>
+<li>Merge smallest <strong>max</strong> distance between points in two clusters</li>
+<li>Can lead to crowding (tight clusters)</li>
+<li><code>scipy.cluster.hierarchy.complete</code></li>
+</ul></li>
+<li><strong>Average Linkage</strong>:
+<ul>
+<li>Merge smallest <strong>mean</strong> distance between points in two clusters</li>
+<li><code>scipy.cluster.hierarchy.average</code></li>
+</ul></li>
+<li><strong>Ward’s Method</strong>:
+<ul>
+<li>Minimizes the variance of the clusters being merged</li>
+<li>Leads to equally sized clusters</li>
+<li><code>scipy.cluster.hierarchy.ward</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="simplifying-the-dendrogram" class="level3">
+<h3 class="anchored" data-anchor-id="simplifying-the-dendrogram">Simplifying the Dendrogram</h3>
+<ol type="1">
+<li><p><strong>Truncation</strong>:</p>
+<ul>
+<li><p><code>scipy.cluster.hierarchy.dendrogram</code> has a <code>truncate_mode</code> parameter</p></li>
+<li><p>Two levels:</p>
+<ul>
+<li><code>lastp</code>: show last p merged clusters (only p nodes are shown)</li>
+<li><code>level</code>: level is all nodes with <code>p</code> merges from the root</li>
+</ul></li>
+</ul></li>
+</ol>
+<p><img src="images/2_truncation.png" width="600"></p>
+<ol start="2" type="1">
+<li><strong>Flatten</strong>
+<ul>
+<li>Directly cut the dendogram at certain condition (e.g.&nbsp;distance or max number of clusters)</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.cluster.hierarchy <span class="im">import</span> fcluster</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 is the max distance</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>hier_labels <span class="op">=</span> fcluster(linkage_array, <span class="dv">3</span> , criterion<span class="op">=</span><span class="st">'distance'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Based on max number of clusters (4 max clusters)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>hier_labels <span class="op">=</span> fcluster(linkage_array, <span class="dv">4</span> , criterion<span class="op">=</span><span class="st">'maxclust'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="principal-component-analysis-pca" class="level2">
+<h2 class="anchored" data-anchor-id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h2>
+<section id="dimensionality-reduction-motivation" class="level3">
+<h3 class="anchored" data-anchor-id="dimensionality-reduction-motivation">Dimensionality Reduction Motivation</h3>
+<ul>
+<li><strong>Curse of Dimensionality</strong>
+<ul>
+<li>As the number of dimensions increases, the volume of the space increases so fast that the available data become sparse</li>
+</ul></li>
+<li><strong>Data Visualization</strong>
+<ul>
+<li>It is difficult to visualize data in high dimensions</li>
+</ul></li>
+<li><strong>Computational Efficiency</strong>
+<ul>
+<li>Many algorithms are computationally infeasible in high dimensions</li>
+</ul></li>
+</ul>
+</section>
+<section id="pca-overview" class="level3">
+<h3 class="anchored" data-anchor-id="pca-overview">PCA Overview</h3>
+<ul>
+<li><strong>Goal</strong>
+<ul>
+<li>Find a low-dimensional representation of the data that captures as much of the variance as possible</li>
+</ul></li>
+<li><strong>Approach</strong>
+<ul>
+<li>Find the lower dimension hyperplane that minimizes the reconstruction error</li>
+<li>Model is the best-fit hyperplane</li>
+</ul></li>
+</ul>
+</section>
+<section id="pca-terminology" class="level3">
+<h3 class="anchored" data-anchor-id="pca-terminology">PCA Terminology</h3>
+<p><span class="math display">\[X = ZW\]</span></p>
+<p><span class="math display">\[(n \times d) = (n \times k) \cdot (k \times d)\]</span></p>
+<p>Usually <span class="math inline">\(k &lt;&lt; d\)</span></p>
+<ul>
+<li><span class="math inline">\(X\)</span>: original data, (<span class="math inline">\(n \times d\)</span>)</li>
+<li><span class="math inline">\(Z\)</span>: coordinates in the lower dimension, (<span class="math inline">\(n \times k\)</span>)</li>
+<li><span class="math inline">\(W\)</span>: lower dimension hyperplane, (<span class="math inline">\(k \times d\)</span>)
+<ul>
+<li><span class="math inline">\(W\)</span> is the principal components</li>
+<li>Rows of <span class="math inline">\(W\)</span> are orthogonal to each other</li>
+</ul></li>
+</ul>
+<p>Can <strong>reconstruct</strong> the original data with some error:</p>
+<p><span class="math display">\[\hat{X} = ZW\]</span></p>
+<p><em>Note</em>: if <span class="math inline">\(k = d\)</span>, then <span class="math inline">\(Z\)</span> is not necessarily <span class="math inline">\(X\)</span> but <span class="math inline">\(\hat{X} = X\)</span> (Frobenius norm)</p>
+<ul>
+<li><strong>Objective/ Loss Function</strong>:
+<ul>
+<li>Minimize reconstruction error <span class="math inline">\(\|ZW - X\|_F^2\)</span>
+<ul>
+<li>Frobeinus norm <span class="math inline">\(||A||_F = \sqrt{\sum_{i=1}^m \sum_{j=1}^n a_{ij}^2}\)</span></li>
+</ul></li>
+<li>NOT the same as least squares
+<ul>
+<li>LS is vertical distance, PCA is orthogonal distance</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="pca-math" class="level3">
+<h3 class="anchored" data-anchor-id="pca-math">PCA Math</h3>
+<ul>
+<li><p>Singular Value Decomposition (SVD)</p>
+<p><span class="math display">\[A = USV^T\]</span></p>
+<ul>
+<li><span class="math inline">\(A\)</span>: original data, (<span class="math inline">\(n \times d\)</span>)</li>
+<li><span class="math inline">\(U\)</span>: <strong>left singular vectors</strong>, (<span class="math inline">\(n \times n\)</span>)
+<ul>
+<li>orthonormal columns <span class="math inline">\(U_i^TU_j = 0\)</span> for all <span class="math inline">\(i \neq j\)</span></li>
+</ul></li>
+<li><span class="math inline">\(S\)</span>: <strong>diagonal matrix</strong> of singular values, (<span class="math inline">\(n \times d\)</span>)
+<ul>
+<li>square root of <strong>eigenvalues</strong> of <span class="math inline">\(A^TA\)</span> or <span class="math inline">\(AA^T\)</span></li>
+<li>corresponds to the variance of the data along the principal components (in decreasing order)</li>
+</ul></li>
+<li><span class="math inline">\(V\)</span>: <strong>right singular vectors</strong>, (<span class="math inline">\(d \times d\)</span>)
+<ul>
+<li>orthonormal columns (<strong>eigenvectors</strong>)</li>
+<li>principal components (get the first <span class="math inline">\(k\)</span> columns)</li>
+</ul></li>
+</ul></li>
+<li><p>For dimensionality reduction, we can use the first <span class="math inline">\(k\)</span> columns of <span class="math inline">\(U\)</span> and the first <span class="math inline">\(k\)</span> rows of <span class="math inline">\(V^T\)</span> (equal to first <span class="math inline">\(k\)</span> columns of <span class="math inline">\(V\)</span>)</p></li>
+<li><p><strong>PCA Algorithm</strong></p>
+<ol type="1">
+<li>Center the data (subtract the mean of each column)</li>
+<li>Compute the SVD of the centered data to get the principal components <span class="math inline">\(W\)</span>.
+<ul>
+<li><span class="math inline">\(W\)</span> is the first <span class="math inline">\(k\)</span> columns of <span class="math inline">\(V\)</span></li>
+</ul></li>
+<li>Variance of each PC is the square of the singular value <span class="math inline">\(s_i^2\)</span></li>
+<li>Drop the PCs with the smallest variance</li>
+</ol></li>
+<li><p><strong>Uniquess of PCA</strong></p>
+<ul>
+<li>PCA are not unique, similar to eigenvectors</li>
+<li>Can add constraints to make it closer to unique:
+<ul>
+<li>Normalization: <span class="math inline">\(||w_i|| = 1\)</span></li>
+<li>Orthogonality: <span class="math inline">\(w_i^Tw_j = 0\)</span> for all <span class="math inline">\(i \neq j\)</span></li>
+<li>Sequential PCA: <span class="math inline">\(w_1^Tw_2 = 0\)</span>, <span class="math inline">\(w_2^Tw_3 = 0\)</span>, etc.</li>
+</ul></li>
+<li>The principal components are unique up to sign</li>
+</ul></li>
+</ul>
+</section>
+<section id="choosing-number-of-components" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-number-of-components">Choosing Number of Components</h3>
+<ul>
+<li>No definitive rule</li>
+<li>Can look at:
+<ul>
+<li>Explained variance ratio</li>
+<li>Reconstructions plot</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pca.fit(samples)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the explained variances</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.plot(np.cumsum(pca.explained_variance_ratio_))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pca-and-multicollinearity" class="level3">
+<h3 class="anchored" data-anchor-id="pca-and-multicollinearity">PCA and Multicollinearity</h3>
+<ul>
+<li>PCA can be used to remove multicollinearity</li>
+<li><strong>Concept</strong>: the principal components are orthogonal to each other so they should not be correlated</li>
+</ul>
+</section>
+<section id="pca-applications" class="level3">
+<h3 class="anchored" data-anchor-id="pca-applications">PCA Applications</h3>
+<ol type="1">
+<li><strong>Data Compression</strong>
+<ul>
+<li>Can use the first <span class="math inline">\(k\)</span> principal components to represent the data</li>
+</ul></li>
+<li><strong>Feature Extraction</strong>
+<ul>
+<li>Can use the first <span class="math inline">\(k\)</span> principal components as features</li>
+</ul></li>
+<li><strong>Visualization of High-Dimensional Data</strong>
+<ul>
+<li>Can visualize the data in 2D or 3D by using the first 2 or 3 principal components</li>
+</ul></li>
+<li><strong>Dimensionality Reduction</strong></li>
+<li><strong>Anomaly Detection</strong>
+<ul>
+<li>Can use the reconstruction error to detect anomalies/ outliers (if the error is too large)</li>
+<li>Outliers = high reconstruction error</li>
+</ul></li>
+</ol>
+</section>
+<section id="pca-in-python" class="level3">
+<h3 class="anchored" data-anchor-id="pca-in-python">PCA in Python</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> make_pipeline(StandardScaler(), pca)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the pipeline to 'samples'</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> pipeline.fit_transform(samples)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>X_hat <span class="op">=</span> pipeline.inverse_transform(Z)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the principal components</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pca.components_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="k-means-and-pca" class="level3">
+<h3 class="anchored" data-anchor-id="k-means-and-pca">K-means and PCA</h3>
+<ul>
+<li>PCA is a generalization of K-means</li>
+<li>K-means is a special case of PCA where the principal components are the cluster centers</li>
+<li>K-means each example is expressed with only one component (one-hot encoding) but in PCA it is a linear combination of all components</li>
+</ul>
+</section>
+</section>
+<section id="lsa-latent-semantic-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="lsa-latent-semantic-analysis">LSA (Latent Semantic Analysis)</h2>
+<ul>
+<li>Do not center the data and just use SVD</li>
+<li>Useful for sparse data (e.g.&nbsp;text data in a bag-of-words model)</li>
+<li>It is also referred to as <strong>Latent Semantic Indexing (LSI)</strong></li>
+<li><code>TruncatedSVD</code> in <code>sklearn</code> is used for LSA</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> TruncatedSVD</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>lsa_pipe <span class="op">=</span> make_pipeline(CountVectorizer(stop_words<span class="op">=</span><span class="st">'english'</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                             TruncatedSVD(n_components<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>lsa_transformed <span class="op">=</span> lsa_pipe.fit_transform(df[<span class="st">'text'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="nmf-non-negative-matrix-factorization" class="level2">
+<h2 class="anchored" data-anchor-id="nmf-non-negative-matrix-factorization">NMF (Non-Negative Matrix Factorization)</h2>
+<ul>
+<li>Useful for when data is created with several independent sources
+<ul>
+<li>e.g.&nbsp;music with different instruments</li>
+</ul></li>
+<li><strong>Properties</strong>:
+<ul>
+<li>Coefficients and basis vectors (components) are <strong>non-negative</strong>
+<ul>
+<li>Unlike in PCA you can subtract, e.g.&nbsp;<span class="math inline">\(X_i = 14W_0 - 2W_2\)</span></li>
+<li>Since cannot cancel out =&gt; <strong>more interpretable</strong></li>
+</ul></li>
+<li>Components are neither orthogonal to each other nor are they sorted by the variance explained by them</li>
+<li>Data is not centered</li>
+<li>Will get <strong>different results for different number of components</strong>
+<ul>
+<li><code>n_components=2</code> will point at extreme, <code>n_components=1</code> will point at mean</li>
+<li>Unlike PCA, where first component points at the direction of maximum variance regardless of the number of components</li>
+</ul></li>
+<li>Slower than PCA</li>
+</ul></li>
+</ul>
+</section>
+<section id="comparison-of-pca-lsa-and-nmf" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-of-pca-lsa-and-nmf">Comparison of PCA, LSA, and NMF</h2>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 27%">
+<col style="width: 26%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Differenciating Feature</th>
+<th>PCA</th>
+<th>NMF</th>
+<th>LSA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Primary Use</td>
+<td>Dimensionality reduction, feature extraction</td>
+<td>Feature extraction, source separation</td>
+<td>Dimensionality reduction, semantic analysis</td>
+</tr>
+<tr class="even">
+<td>Data types/ constraints</td>
+<td>Linear data, centered data</td>
+<td>Non-negative data, non-centered data</td>
+<td>Sparse data (e.g., text data), not centered</td>
+</tr>
+<tr class="odd">
+<td>Output components</td>
+<td>Orthogonal components, sorted by variance explained</td>
+<td>Non-negative components, not orthogonal or sorted</td>
+<td>Components from SVD, not necessarily orthogonal or sorted</td>
+</tr>
+<tr class="even">
+<td>Interpretability</td>
+<td>Less interpretable due to orthogonality</td>
+<td>More interpretable due to non-negativity</td>
+<td>More interpretable, particularly in semantic analysis contexts</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="word-embeddings" class="level2">
+<h2 class="anchored" data-anchor-id="word-embeddings">Word Embeddings</h2>
+<ul>
+<li><strong>Motivation</strong>: You can understand a word by the context/company it keeps.</li>
+</ul>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<ul>
+<li>Standard approach: put words in vector space and the distance between words is the similarity between them.</li>
+</ul>
+<p><img src="images/5_word_vector_space.png" width="400"></p>
+<ul>
+<li><code>word2vec</code> is unsupervised/ semi-supervised learning because:
+<ul>
+<li>closely related to dimensionality reduction + extracting meaninggful representation from raw data</li>
+<li>do not need any labeled data</li>
+<li>running text is used as supervision signal</li>
+</ul></li>
+</ul>
+</section>
+<section id="word-representation" class="level3">
+<h3 class="anchored" data-anchor-id="word-representation">Word Representation</h3>
+<ul>
+<li><strong>One-hot representation</strong>:
+<ul>
+<li>Simplest way to represent a word</li>
+<li>OHE vector is a vector of all 0s except for a 1 at the index of the word in the vocabulary
+<ul>
+<li>rows = words in sentence, columns = words in vocabulary</li>
+</ul></li>
+<li><strong>Disadvantages</strong>:
+<ul>
+<li>High dimensionality</li>
+<li>No notion of similarity between words (dot product = 0)</li>
+<li>No notion of context</li>
+</ul></li>
+</ul></li>
+<li><strong>Term-term co-occurrence matrix</strong>:
+<ul>
+<li>A matrix where each row and column corresponds to a word in the vocabulary</li>
+<li>The value in the i-th row and j-th column is the number of times word i and word j appear together in a context window
+<ul>
+<li><strong>Context window</strong>: a fixed-size window that slides over the text (e.g.&nbsp;window size = 2 means 2 words to the left and 2 words to the right)</li>
+</ul></li>
+<li><strong>Disadvantages</strong>:
+<ul>
+<li>High dimensionality</li>
+<li>Sparse</li>
+<li>Does not capture polysemy (multiple meanings of a word)</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="images/5_word_vec_ttcm.png" width="400"></p>
+<section id="dense-word-representations" class="level4">
+<h4 class="anchored" data-anchor-id="dense-word-representations">Dense Word Representations</h4>
+<ul>
+<li>Term-term co-occurrence matrix is sparse and high-dimensional</li>
+<li>Better to learn short and dense vectors for words
+<ul>
+<li>Easier to store and train</li>
+<li>Better generalization</li>
+</ul></li>
+<li>Approaches:
+<ul>
+<li><strong>Latent Semantic Analysis (LSA)</strong>: Use SVD to reduce the dimensionality of the term-term co-occurrence matrix
+<ul>
+<li>Works better for small datasets compared to word2vec</li>
+</ul></li>
+<li><strong>Word2Vec</strong>: Use neural networks to learn word embeddings</li>
+</ul></li>
+</ul>
+</section>
+<section id="word2vec" class="level4">
+<h4 class="anchored" data-anchor-id="word2vec">Word2Vec</h4>
+<ul>
+<li>Create <strong>short and dense</strong> word embeddings using neural networks</li>
+<li><strong>Idea</strong>: Predict the context of a word given the word itself
+<ul>
+<li><strong>Skip-gram</strong>: Predict the context words given the target word</li>
+<li><strong>Continuous Bag of Words (CBOW)</strong>: Predict the target word given the context words</li>
+</ul></li>
+<li>Two moderately efficient training algorithms:
+<ul>
+<li><strong>Hierarchical softmax</strong>: Use a binary tree to represent all words in the vocabulary</li>
+<li><strong>Negative sampling</strong>: Treat the problem as a binary classification problem</li>
+</ul></li>
+</ul>
+<section id="word2vec-skip-gram" class="level5">
+<h5 class="anchored" data-anchor-id="word2vec-skip-gram">word2vec: Skip-gram</h5>
+<ul>
+<li>Predict the context words given the target word</li>
+<li>NN to obtain short and dense word vectors</li>
+<li><strong>Architecture</strong>:</li>
+</ul>
+<p><img src="images/5_w2v_nn.png" width="500"></p>
+<ul>
+<li><p><strong>Input layer</strong>: one-hot encoded vector of the target word (size = <span class="math inline">\(V \times 1\)</span>)</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(W\)</span> = input layer to hidden layer weights (size = <span class="math inline">\(V \times d\)</span>) <span class="math inline">\(\text{hidden} = W^T \times \text{input}\)</span></p>
+</blockquote></li>
+<li><p><strong>Hidden layer</strong>: linear transformation (no activation function) to obtain the word vector (size = <span class="math inline">\(d \times 1\)</span>)</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(W_c\)</span> = hidden layer to output layer weights (size = <span class="math inline">\(V \times d\)</span>) <span class="math inline">\(\text{output} = W_c \times \text{hidden}\)</span></p>
+</blockquote></li>
+<li><p><strong>Output layer</strong>: softmax layer to predict the context words (size = <span class="math inline">\(V \times 1\)</span>)</p>
+<ul>
+<li>Returns a one-hot encoded vector of the context word</li>
+</ul></li>
+<li><p>The dense representation of the word:</p>
+<ul>
+<li><span class="math inline">\(W\)</span>: <strong>word embedding matrix</strong> (size = <span class="math inline">\(V \times d\)</span>)
+<ul>
+<li>This is the main output of the algorithm</li>
+</ul></li>
+<li><span class="math inline">\(W_c\)</span>: shared context embedding matrix (size = <span class="math inline">\(V \times d\)</span>)</li>
+</ul></li>
+<li><p>Train multiple target+context pairs until the weights converge <br></p></li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li>“Add freshly <em>squeezed</em> [pineapple] <em>juice</em> to your smoothie.
+<ul>
+<li>Target word: pineapple</li>
+<li>NN outputs probability distribution of context words: {squeezed, juice}</li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="skip-gram-objective-function" class="level6">
+<h6 class="anchored" data-anchor-id="skip-gram-objective-function">Skip-Gram Objective Function</h6>
+<p><span class="math display">\[\arg \max\limits_\theta \prod\limits_{(w_c,w_t) \in D} P(w_c|w_t;\theta) \approx \prod\limits_{(w_c,w_t) \in D} \frac{e^{w_c.w_t}}{\sum\limits_{\substack{c' \in V}} e^{w_{c'}.w_t}}\]</span></p>
+<ul>
+<li><strong>Want to get the context word with the highest probability given the target word</strong></li>
+<li><span class="math inline">\(w_t\)</span> → target word</li>
+<li><span class="math inline">\(w_c\)</span> → context word</li>
+<li><span class="math inline">\(D\)</span> → the set of all target and context pairs from the text</li>
+<li><span class="math inline">\(P(w_c|w_t;\theta)\)</span> → probability of context word given the target word</li>
+<li><strong>Assumption</strong>: maximizing this objective would lead to good word embeddings</li>
+</ul>
+</section>
+<section id="hyperparameters" class="level6">
+<h6 class="anchored" data-anchor-id="hyperparameters">Hyperparameters</h6>
+<ul>
+<li>Dimensionality of word vectors (<span class="math inline">\(d\)</span>)</li>
+<li>Window size:
+<ul>
+<li>Small window size: captures more syntactic information (e.g.&nbsp;verb-noun relationships)</li>
+<li>Large window size: captures more semantic information (e.g.&nbsp;country-capital relationships)</li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="pre-trained-word-embeddings" class="level4">
+<h4 class="anchored" data-anchor-id="pre-trained-word-embeddings">Pre-trained Word Embeddings</h4>
+<ul>
+<li><a href="https://code.google.com/archive/p/word2vec/">word2vec</a></li>
+<li><a href="https://wikipedia2vec.github.io/wikipedia2vec/pretrained/">wikipedia2vec</a>: for 12 languages</li>
+<li><a href="https://nlp.stanford.edu/projects/glove/">GloVe</a>: based on GloVe algorithm (Stanford)</li>
+<li><a href="https://fasttext.cc/docs/en/pretrained-vectors.html">fastText pre-trained embeddings for 294 languages</a></li>
+</ul>
+</section>
+<section id="success-of-word2vec" class="level4">
+<h4 class="anchored" data-anchor-id="success-of-word2vec">Success of word2vec</h4>
+<ul>
+<li><p>Can do analogy tasks</p>
+<ul>
+<li>e.g.&nbsp;man to king as women to (queen)</li>
+<li><strong>MAN : KING :: WOMAN : ?</strong></li>
+<li>solce by: <span class="math inline">\(\vec{X} = \vec{\text{KING}} − \vec{\text{MAN}} + \vec{\text{WOMAN}}\)</span></li>
+</ul></li>
+<li><p>There are some biases in the word embeddings because they are trained on biased data</p></li>
+</ul>
+<p><img src="images/5_analogy.png" width="300"></p>
+</section>
+</section>
+<section id="other-word-embeddings" class="level3">
+<h3 class="anchored" data-anchor-id="other-word-embeddings">Other Word Embeddings</h3>
+<section id="fasttext" class="level4">
+<h4 class="anchored" data-anchor-id="fasttext">FastText</h4>
+<ul>
+<li>NLP library by Facebook research</li>
+<li>Includes an algorithm which is an extension to word2vec</li>
+<li>Helps deal with unknown words elegantly</li>
+<li>Breaks words into several n-gram subwords</li>
+<li>Example: trigram sub-words for berry are ber, err, rry
+<ul>
+<li>Embedding(berry) = embedding(ber) + embedding(err) + embedding(rry)</li>
+</ul></li>
+</ul>
+</section>
+<section id="glove-global-vectors-for-word-representation" class="level4">
+<h4 class="anchored" data-anchor-id="glove-global-vectors-for-word-representation">gloVe (Global Vectors for Word Representation)</h4>
+<ul>
+<li>Starts with the co-occurrence matrix
+<ul>
+<li>Co-occurrence can be interpreted as an indicator of semantic proximity of words</li>
+</ul></li>
+<li>Takes advantage of global count statistics</li>
+<li>Predicts co-occurrence ratios</li>
+<li>Loss based on word frequency</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="word-embedding-applications" class="level2">
+<h2 class="anchored" data-anchor-id="word-embedding-applications">Word Embedding Applications</h2>
+<ul>
+<li>Using word embeddings for various ML (NLP) tasks</li>
+<li>Before using it for application, need to <strong>evaluate quality</strong> of word embeddings:
+<ul>
+<li>Examine a number of word pairs for similarity scores (use TOEFL MCQ dataset)</li>
+<li>Examine different analogies for stereotypes and biases they encode</li>
+<li>Visualize embeddings in two dimensions</li>
+</ul></li>
+</ul>
+<section id="document-similarity-and-text-classification" class="level3">
+<h3 class="anchored" data-anchor-id="document-similarity-and-text-classification">Document Similarity and Text Classification</h3>
+<ul>
+<li><strong>Motivation</strong>: You can understand a document by the context/company it keeps.</li>
+<li>Assuming we have reasonable representations of words, we can represent a paragraph/ document as:
+<ol type="1">
+<li>Average embeddings</li>
+<li>Concatenate embeddings</li>
+</ol></li>
+</ul>
+<section id="averaging-embeddings" class="level4">
+<h4 class="anchored" data-anchor-id="averaging-embeddings">Averaging Embeddings</h4>
+<ul>
+<li>Do it with <code>spacy</code></li>
+<li>We do not necessarily get expected representation of text
+<ul>
+<li>e.g.&nbsp;“Machine Learning” and “Learning Machine” will have same representation</li>
+</ul></li>
+<li>For long sentences or documents, this can get very noisy (mix of different signals)</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'en_core_web_md'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>nlp(<span class="st">"empty"</span>).vector[<span class="dv">0</span>:<span class="dv">10</span>] <span class="co"># access word vector</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(<span class="st">"I like apples and oranges"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>doc_vec <span class="op">=</span> doc.vector <span class="co"># shape (300,)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>doc2 <span class="op">=</span> nlp(<span class="st">"I like bananas and grapes"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>doc.similarity(doc2) <span class="co"># check similarity by averaging word vectors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="concatenating-embeddings" class="level4">
+<h4 class="anchored" data-anchor-id="concatenating-embeddings">Concatenating Embeddings</h4>
+<ul>
+<li><code>spacy</code>’s <code>mlp.pipe()</code> takes iterable of texts and returns an iterable of <code>Doc</code> objects.</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X_train_embeddings <span class="op">=</span> pd.DataFrame([text.vector <span class="cf">for</span> text <span class="kw">in</span> nlp.pipe(X_train)]) <span class="co"># shape (n, 300)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>X_test_embeddings <span class="op">=</span> pd.DataFrame([text.vector <span class="cf">for</span> text <span class="kw">in</span> nlp.pipe(X_test)])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>lgr <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>) <span class="co"># from sklearn.linear_model</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>lgr.fit(X_train_embeddings, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>spaCy uses corpus of text styles from telephone conversations, newswire, newsgroups, broadcast news, weblogs, and conversational telephone speech.</li>
+<li>Might need to train your own for medical, tweets, etc.</li>
+</ul>
+</section>
+</section>
+<section id="word2vec-for-product-recommendations" class="level3">
+<h3 class="anchored" data-anchor-id="word2vec-for-product-recommendations">word2vec for Product Recommendations</h3>
+<ul>
+<li>Not so common, but it’s possible</li>
+<li>Comparisons:
+<ul>
+<li>Words -&gt; Products</li>
+<li>Sentences -&gt; Purchase history of users</li>
+<li>Vocabulary -&gt; Products</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="manifold-learning" class="level2">
+<h2 class="anchored" data-anchor-id="manifold-learning">Manifold Learning</h2>
+<p><img src="images/6_swiss_roll.png" width="500"></p>
+<p><a href="https://www.cs.ubc.ca/~schmidtm/Courses/340-F19/L31.pdf">source</a></p>
+<ul>
+<li><strong>Manifold</strong>: Lower-dimensional structure embedded within a higher-dimensional space (can be curved/ twisted)</li>
+<li><strong>Manifold Learning</strong>: Techniques to learn the structure of the manifold from the data
+<ul>
+<li>Based on the idea of finding low dimensional representation that <strong>preserves the distances between points</strong> as best as possible</li>
+<li>Real-world data often lies on a low-dimensional manifold</li>
+</ul></li>
+<li>Common methods:
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.MDS.html">Multi-dimensional scaling (MDS)</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.Isomap.html#sklearn.manifold.Isomap">ISOMAP</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.LocallyLinearEmbedding.html">Locally linear embedding (LLE)</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html">t-SNE</a></li>
+<li><a href="https://umap-learn.readthedocs.io/en/latest/">UMAP [best one]</a></li>
+</ul></li>
+</ul>
+<section id="t-sne-t-distributed-stochastic-neighbor-embedding" class="level3">
+<h3 class="anchored" data-anchor-id="t-sne-t-distributed-stochastic-neighbor-embedding">t-SNE (t-distributed Stochastic Neighbor Embedding)</h3>
+<ul>
+<li>t-SNE applies <strong>non-linear</strong> transformation to the data
+<ul>
+<li>PCA is a linear dimensionality reduction technique</li>
+</ul></li>
+<li>Mostly used for visualization</li>
+<li>Does not construct an explicit mapping function from the high-dimensional space to the low-dimensional space
+<ul>
+<li>It <strong>optimizes the position of the points in the low-dimensional space</strong></li>
+</ul></li>
+<li>Hyperparameters:
+<ul>
+<li><code>perplexity</code>: Number of nearest neighbors to consider</li>
+<li><code>learning_rate</code>: Step size for gradient descent</li>
+<li><code>n_iter</code>: Number of iterations</li>
+</ul></li>
+<li><strong>Cons</strong>:
+<ul>
+<li>slow and does not scale well to large datasets</li>
+<li>random initialization can lead to different results</li>
+<li>sensitive to hyperparameters (perplexity)</li>
+<li>Need to re-run when new data is added</li>
+</ul></li>
+</ul>
+<section id="example-with-scikit-learn" class="level4">
+<h4 class="anchored" data-anchor-id="example-with-scikit-learn">Example with <code>scikit-learn</code></h4>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_digits</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>digits <span class="op">=</span> load_digits()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>digits_tsne <span class="op">=</span> tsne.fit_transform(digits.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Input: <img src="images/6_digits.png" width="500"></p></li>
+<li><p>PCA output: <img src="images/6_pca_out.png" width="500"></p></li>
+<li><p>t-SNE output: <img src="images/6_tsne_out.png" width="500"></p></li>
+</ul>
+</section>
+<section id="high-level-algorithm" class="level4">
+<h4 class="anchored" data-anchor-id="high-level-algorithm">High-level Algorithm</h4>
+<ul>
+<li>Idea: Preserve the similarity between points in high-dimensional space in the low-dimensional space</li>
+</ul>
+<p><strong>In high-dimensional space,</strong></p>
+<ol type="1">
+<li>Compute pairwise similarity between points as probabilities</li>
+<li>Similarity b/w <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span> is <span class="math inline">\(p_{ij}\)</span>
+<ul>
+<li><span class="math inline">\(p_{ij}\)</span> is calculated using Gaussian distribution, centered at <span class="math inline">\(x_i\)</span>
+<ul>
+<li>It is the density of <span class="math inline">\(x_j\)</span> under the Gaussian centered at <span class="math inline">\(x_i\)</span></li>
+<li><span class="math inline">\(p_{ij}\)</span> high if <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span> are close to each other (and low if far)</li>
+</ul></li>
+<li>Variance <span class="math inline">\(\sigma^2\)</span> of the Gaussian is influenced by <code>perplexity</code> hyperparameter
+<ul>
+<li><code>perplexity</code> is a measure of effective number of neighbors to consider</li>
+<li>Higher perplexity, larger variance, more neighbors</li>
+</ul></li>
+</ul></li>
+</ol>
+<p><strong>In low-dimensional space,</strong></p>
+<ol type="1">
+<li>Randomly initialize points in low-dimensional space (e.g.&nbsp;PCA)</li>
+<li>Calculates a similar set of pairwise probabilities <span class="math inline">\(q_{ij}\)</span> in the low-dimensional space
+<ul>
+<li><span class="math inline">\(q_{ij}\)</span> is calculated using <strong>t-distribution</strong> (NOT Gaussian) to mitigate crowding problem
+<ul>
+<li>Makes sure points are not crowded together</li>
+</ul></li>
+<li>t-distribution has heavier tails than Gaussian
+<ul>
+<li>Assigns a higher probability to points that are far apart</li>
+</ul></li>
+</ul></li>
+</ol>
+<p><strong>Loss function</strong></p>
+<ul>
+<li>Minimize the difference between <span class="math inline">\(p_{ij}\)</span> and <span class="math inline">\(q_{ij}\)</span> using gradient descent (use Kullback-Leibler divergence)</li>
+</ul>
+<p><span class="math display">\[KL(P||Q) = \sum_{i,j}p_{ij}\log\left(\frac{p_{ij}}{q_{ij}}\right)\]</span></p>
+</section>
+<section id="hyperparameter-perplexity" class="level4">
+<h4 class="anchored" data-anchor-id="hyperparameter-perplexity">Hyperparameter: Perplexity</h4>
+<ul>
+<li><p>Perplexity is a measure of effective number of neighbors to consider</p>
+<ul>
+<li>Low: consider fewer neighbors, smaller variance</li>
+<li>High: consider more neighbors, larger variance</li>
+</ul>
+<p><img src="images/6_perplexity.png" width="500"></p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="recommender-systems-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="recommender-systems-introduction">Recommender Systems Introduction</h2>
+<ul>
+<li>A recommender suggests a particular product or service to users they are likely to consume.</li>
+<li><strong>Why is it important?</strong>
+<ul>
+<li>Everything we buy or consume is influenced by this (music, shopping, movies, etc.)</li>
+<li>It is the core of success for many companies (e.g.&nbsp;spotify, amazon, netflix, etc.)</li>
+<li>Tool <strong>to reduce the effort of users</strong> to find what they want</li>
+</ul></li>
+<li><strong>Ethical considerations</strong>:
+<ul>
+<li>Can lead to <strong>filter bubbles</strong> (e.g.&nbsp;political views, etc.)</li>
+<li>Can lead to <strong>privacy issues</strong> (e.g.&nbsp;tracking user behavior)</li>
+</ul></li>
+</ul>
+<section id="data-and-approaches-to-recommender-systems" class="level3">
+<h3 class="anchored" data-anchor-id="data-and-approaches-to-recommender-systems">Data and Approaches to Recommender Systems</h3>
+<ul>
+<li><strong>Data</strong>:
+<ul>
+<li>purchase history</li>
+<li>user-system interactions (e.g.&nbsp;clicks, likes, etc.)</li>
+<li>features of the items (e.g.&nbsp;genre, price, etc.)</li>
+</ul></li>
+<li><strong>Approaches</strong>:
+<ul>
+<li><strong>Collaborative filtering</strong>:
+<ul>
+<li>Unsupervised learning</li>
+<li>Have labels <span class="math inline">\(y_{ij}\)</span> (ratings for user <span class="math inline">\(i\)</span> and item <span class="math inline">\(j\)</span>)</li>
+<li>Learn latent features of users and items</li>
+</ul></li>
+<li><strong>Content-based filtering</strong>:
+<ul>
+<li>Supervised learning</li>
+<li>Extract features of items/ users to predict ratings</li>
+</ul></li>
+<li><strong>Hybrid methods</strong>:
+<ul>
+<li>Combine both approaches</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="recommender-systems-structure" class="level2">
+<h2 class="anchored" data-anchor-id="recommender-systems-structure">Recommender Systems Structure</h2>
+<section id="utility-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="utility-matrix">Utility Matrix</h3>
+<ul>
+<li>Also referred to as the <strong><span class="math inline">\(Y\)</span> matrix</strong></li>
+<li>Not actually used in real life because it will be very large (also sparse)</li>
+<li>Train and validation will have same number of rows (users) and columns (items)
+<ul>
+<li><span class="math inline">\(N\)</span> users and <span class="math inline">\(M\)</span> items</li>
+<li><span class="math inline">\(Y_{ij}\)</span> is the rating of user <span class="math inline">\(i\)</span> for item <span class="math inline">\(j\)</span></li>
+</ul></li>
+</ul>
+<p><img src="images/7_util_mat.png" width="400"></p>
+<ul>
+<li><strong>predict rating <span class="math inline">\(\neq\)</span> regression or classification</strong>:
+<ul>
+<li>It is a different problem because we don’t have a target variable</li>
+<li>We have to predict the missing values in the utility matrix</li>
+</ul></li>
+</ul>
+<section id="creating-a-utility-matrix" class="level4">
+<h4 class="anchored" data-anchor-id="creating-a-utility-matrix">Creating a Utility Matrix</h4>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ratings <span class="op">=</span> pd.read_csv(<span class="st">'ratings.csv'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="bu">len</span>(np.unique(ratings[users]))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> <span class="bu">len</span>(np.unique(ratings[items]))</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>user_mapper <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(np.unique(ratings[<span class="st">'users'</span>]), <span class="bu">list</span>(<span class="bu">range</span>(N))))</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>item_mapper <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(np.unique(ratings[<span class="st">'items'</span>]), <span class="bu">list</span>(<span class="bu">range</span>(M))))</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>user_inv_mapper <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(<span class="bu">list</span>(<span class="bu">range</span>(N)), np.unique(ratings[<span class="st">'users'</span>])))</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>item_inv_mapper <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(<span class="bu">list</span>(<span class="bu">range</span>(M)), np.unique(ratings[<span class="st">'items'</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Map to get user/item id -&gt; indices (utility matrix)</li>
+<li>Inverse map to get indices -&gt; user/item id</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_Y_from_ratings(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    data, N, M, user_mapper, item_mapper, user_key<span class="op">=</span><span class="st">"user_id"</span>, item_key<span class="op">=</span><span class="st">"movie_id"</span>):  <span class="co"># Function to create a dense utility matrix</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> np.zeros((N, M))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    Y.fill(np.nan)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index, val <span class="kw">in</span> data.iterrows():</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> user_mapper[val[user_key]]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> item_mapper[val[item_key]]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        Y[n, m] <span class="op">=</span> val[<span class="st">"rating"</span>]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Y</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>Y_mat <span class="op">=</span> create_Y_from_ratings(toy_ratings, N, M, user_mapper, item_mapper)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation">Evaluation</h3>
+<ul>
+<li>No notion of “accurate” recommendations, but still need to evaluate</li>
+<li>Unsupervised learning but <u>split the data and evaluate </u>
+<ul>
+<li><strong>SPLIT TRAIN /VALID ON RATINGS, NOT UTILITY MATRIX</strong></li>
+<li>Utility matrix of train and validation will be <strong>the same</strong></li>
+<li>Code shown below, not really going to use <code>y</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> toy_ratings.copy()</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> toy_ratings[user_key]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>X_train, X_valid, y_train, y_valid <span class="op">=</span> train_test_split(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>train_mat <span class="op">=</span> create_Y_from_ratings(X_train, N, M, user_mapper, item_mapper)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>valid_mat <span class="op">=</span> create_Y_from_ratings(X_valid, N, M, user_mapper, item_mapper)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>RMSE</strong>:
+<ul>
+<li>It is the most common metric</li>
+<li>It compares the predicted ratings with the actual ratings</li>
+</ul></li>
+</ul>
+</section>
+<section id="baseline-approaches" class="level3">
+<h3 class="anchored" data-anchor-id="baseline-approaches">Baseline Approaches</h3>
+<ul>
+<li><p><strong>Global Average</strong>:</p>
+<ul>
+<li>Predict everything as the global average rating</li>
+<li>It is a very simple model</li>
+</ul></li>
+<li><p><strong>Per-User Average</strong>:</p>
+<ul>
+<li>Predict everything as the average rating of the user</li>
+</ul></li>
+<li><p><strong>Per-Item Average</strong>:</p>
+<ul>
+<li>Predict everything as the average rating of the item</li>
+</ul></li>
+<li><p><strong>Per-User and Per-Item Average</strong>:</p>
+<ul>
+<li>Predict everything as the average of the user and the item</li>
+</ul></li>
+<li><p><strong>KNN</strong>:</p>
+<ul>
+<li>Calculate distance between examples usign features where neither value is missing</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> KNNImputer</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># assume train_mat is the utility matrix</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>imputer <span class="op">=</span> KNNImputer(n_neighbors<span class="op">=</span><span class="dv">2</span>, keep_empty_features<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>train_mat_imp <span class="op">=</span> imputer.fit_transform(train_mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<section id="other-possible-approaches" class="level4">
+<h4 class="anchored" data-anchor-id="other-possible-approaches">Other possible approaches</h4>
+<ol type="1">
+<li><strong>Clustering</strong>:
+<ul>
+<li>Cluster the items, then recommend items from the same cluster</li>
+</ul></li>
+<li><strong>Graphs and BFS</strong>:
+<ul>
+<li>Create a graph of users and items</li>
+<li>Use BFS to recommend items</li>
+</ul></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="collaborative-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="collaborative-filtering">Collaborative Filtering</h2>
+<ul>
+<li>Unsupervised learning</li>
+<li><strong>Intuition</strong>:
+<ul>
+<li>People who agreed in the past are likely to agree again in future</li>
+<li>Leverage social information for recommendations</li>
+</ul></li>
+<li><strong>PCA ?</strong>:
+<ul>
+<li>To learn latent features of users and items</li>
+<li>Run on utility matrix</li>
+<li><strong>Problem</strong>: missing values
+<ul>
+<li>PCA loss function <span class="math inline">\(f(Z,W) = \sum_{i,j} ||W^TZ_{ij} - Y_{ij}||^2\)</span></li>
+<li>Cannot use SVD directly because have many missing values AND missing values make SVD undefined</li>
+</ul></li>
+<li><strong>Solutions</strong>:
+<ul>
+<li>Impute the values to do PCA
+<ul>
+<li>BUT, will introduce bias (distort the data)</li>
+<li>Result will be dominated by the imputed values</li>
+</ul></li>
+<li>Summing over only available values
+<ul>
+<li>Prone to overfitting</li>
+</ul></li>
+<li><strong>Collaborative Filtering Loss Function</strong>:
+<ul>
+<li>Only consider the available values</li>
+<li>Add L2-reg to the loss function for W and Z</li>
+<li><span class="math inline">\(f(Z,W) = \sum_{i,j} ||W^TZ_{ij} - Y_{ij}||^2 + \frac{\lambda_1}{2}||W||^2 + \frac{\lambda_2}{2}||Z||^2\)</span></li>
+<li>This accounts for the missing values and the regularization terms prevent overfitting (representations are not too complex)</li>
+<li>This improved the RMSE score bby 7% in the Netflix competition</li>
+<li>Optimize using SGD (stoachastic gradient descent) and WALS (weighted alternating least squares)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Other Notes</strong>:
+<ul>
+<li>Result can be outside the range of the ratings</li>
+<li>Will have problems with cold start (new users or items)</li>
+</ul></li>
+</ul>
+<section id="z-and-w-in-collaborative-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="z-and-w-in-collaborative-filtering">Z and W in Collaborative Filtering</h3>
+<p><img src="images/7_zw.png" width="500"></p>
+<ul>
+<li><span class="math inline">\(Z\)</span> is no longer the points in the new hyperplane and <span class="math inline">\(W\)</span> is no longer the weights</li>
+<li><strong><span class="math inline">\(Z\)</span></strong>:
+<ul>
+<li>Each row is a user</li>
+<li>Maps users to latent feature of items</li>
+</ul></li>
+<li><strong><span class="math inline">\(W\)</span></strong>:
+<ul>
+<li>Each col is an item</li>
+<li>Maps items to latent feature of users</li>
+</ul></li>
+</ul>
+</section>
+<section id="using-surprise-library" class="level3">
+<h3 class="anchored" data-anchor-id="using-surprise-library">Using <code>surprise</code> library</h3>
+<ul>
+<li>https://surprise.readthedocs.io/en/stable/index.html</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> surprise</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> surprise <span class="im">import</span> SVD, Dataset, Reader, accuracy</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>reader <span class="op">=</span> Reader()</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> Dataset.load_from_df(ratings[[<span class="st">'users'</span>, <span class="st">'items'</span>, <span class="st">'ratings'</span>]], reader)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Train-test split</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>trainset, validset <span class="op">=</span> train_test_split(data, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA-like model</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>k<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>algo <span class="op">=</span> SVD(n_factors<span class="op">=</span>k, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>algo.fit(trainset)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictions</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> algo.test(validset.build_testset())</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co"># RMSE</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>accuracy.rmse(preds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Can also cross-validate</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> surprise.model_selection <span class="im">import</span> cross_validate</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>cross_validate(algo, data, measures<span class="op">=</span>[<span class="st">'RMSE'</span>, <span class="st">"MAE"</span>], cv<span class="op">=</span><span class="dv">5</span>, verbose<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="distance-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="distance-metrics">Distance Metrics</h2>
+<p><img src="images/7_dist.png" width="300"></p>
+<p>Source: <a href="https://developers.google.com/machine-learning/recommendation/overview/candidate-generation">Google ML</a></p>
+<ul>
+<li><strong>Cosine</strong>:
+<ul>
+<li><span class="math inline">\(d(x,y) = \frac{x \cdot y}{||x|| \cdot ||y||}\)</span></li>
+<li>Collinear = 1, orthogonal = 0 (want a value close to 1)</li>
+<li>It is the angle between the two vectors</li>
+<li>Rank (high to low): C, A, B</li>
+</ul></li>
+<li><strong>Euclidean</strong>:
+<ul>
+<li><span class="math inline">\(d(x,y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}\)</span></li>
+<li>It is the straight line distance between the two points (want smaller distance)</li>
+<li>Rank (high to low): B, C, A</li>
+</ul></li>
+<li><strong>Dot Product</strong>:
+<ul>
+<li><span class="math inline">\(d(x,y) = x \cdot y\)</span></li>
+<li>It is the projection of one vector onto the other</li>
+<li>If vectors are normalized, it is the same as cosine similarity (want larger value)</li>
+<li>Rank (high to low): A, B, C</li>
+</ul></li>
+</ul>
+</section>
+<section id="content-based-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="content-based-filtering">Content Based Filtering</h2>
+<ul>
+<li>Supervised learning</li>
+<li>Does not make use of <em>social network / information</em></li>
+<li>Solves the cold start problem (can recommend items to new users/items)</li>
+<li>Assumes that we have <strong>features of items and/or users</strong> to predict ratings</li>
+<li>Create a user profile for each user
+<ul>
+<li>Treat rating prediction as a regression problem</li>
+<li>Have a regression model for each user</li>
+</ul></li>
+</ul>
+<section id="steps-in-python-with-a-movie-recommendation-example" class="level3">
+<h3 class="anchored" data-anchor-id="steps-in-python-with-a-movie-recommendation-example">Steps in Python (With a movie recommendation example)</h3>
+<ol start="0" type="1">
+<li>Load <code>ratings_df</code> (contains <code>user_id</code>, <code>movie_id</code>, and <code>rating</code>)
+<ul>
+<li>Also make the user and movie mappers.</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>toy_ratings <span class="op">=</span> pd.read_csv(<span class="st">"data/toy_ratings.csv"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="bu">len</span>(np.unique(toy_ratings[<span class="st">"user_id"</span>]))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> <span class="bu">len</span>(np.unique(toy_ratings[<span class="st">"movie_id"</span>]))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>user_key <span class="op">=</span> <span class="st">"user_id"</span> <span class="co"># Name of user</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>item_key <span class="op">=</span> <span class="st">"movie_id"</span> <span class="co"># Name of movie</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Turns the name into a number (id)</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>user_mapper <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(np.unique(toy_ratings[user_key]), <span class="bu">list</span>(<span class="bu">range</span>(N))))</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>item_mapper <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(np.unique(toy_ratings[item_key]), <span class="bu">list</span>(<span class="bu">range</span>(M))))</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Turns the number (id) back into a name</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>user_inverse_mapper <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(<span class="bu">list</span>(<span class="bu">range</span>(N)), np.unique(toy_ratings[user_key])))</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>item_inverse_mapper <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(<span class="bu">list</span>(<span class="bu">range</span>(M)), np.unique(toy_ratings[item_key])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li><strong>Load movie features</strong>. This is a matrix of shape <code>(n_movies, n_features)</code>
+<ul>
+<li>Index of movie features is movie id/name</li>
+<li>Features can be genre, director, actors, etc.</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>movie_feats_df <span class="op">=</span> pd.read_csv(<span class="st">"data/toy_movie_feats.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> movie_feats_df.to_numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/8_1.png" width="400"></p>
+<ol start="2" type="1">
+<li><p><strong>Build a user profile</strong>. For each user, we will get the ratings and the corresponding movie features.</p>
+<ul>
+<li>Results in a dictionary (key: user, value: numpy array of size <code>(n_ratings, n_genres)</code>)
+<ul>
+<li><code>n_ratings</code>: number of movies rated by the user</li>
+</ul></li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_X_y_per_user(ratings, d<span class="op">=</span>item_feats.shape[<span class="dv">1</span>]):</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns X and y for each user.</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">    ratings : pandas.DataFrame</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">         ratings data as a dataframe</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">    d : int</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">        number of item features</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Return:</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">        dictionaries containing X and y for all users</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    lr_y <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    lr_X <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index, val <span class="kw">in</span> ratings.iterrows():</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> user_mapper[val[user_key]]</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> item_mapper[val[item_key]]</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>        lr_X[n].append(item_feats[m])</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>        lr_y[n].append(val[<span class="st">"rating"</span>])</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> lr_X:</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>        lr_X[n] <span class="op">=</span> np.array(lr_X[n])</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>        lr_y[n] <span class="op">=</span> np.array(lr_y[n])</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lr_X, lr_y</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_user_profile(user_name):</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="co">  Get the user profile based on the user name</span></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="co">  e.g. get_user_profile("user1")</span></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> X_train_usr[user_mapper[user_name]]</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> y_train_usr[user_mapper[user_name]]</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>    items <span class="op">=</span> rated_items[user_mapper[user_name]]</span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>    movie_names <span class="op">=</span> [item_inverse_mapper[item] <span class="cf">for</span> item <span class="kw">in</span> items]</span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Profile for user: "</span>, user_name)</span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>    profile_df <span class="op">=</span> pd.DataFrame(X, columns<span class="op">=</span>movie_feats_df.columns, index<span class="op">=</span>movie_names)</span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>    profile_df[<span class="st">"ratings"</span>] <span class="op">=</span> y</span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> profile_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the helper functions</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>Xt,yt <span class="op">=</span> get_X_y_per_user(X_train)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>Xv,yv <span class="op">=</span> get_X_y_per_user(X_valid)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the user profile</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>get_user_profile(<span class="st">"Nando"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li><p><strong>Supervised learning</strong>. Train a regression model for each user.</p>
+<ul>
+<li>We will use <code>Ridge</code> regression model for this example.</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>models <span class="op">=</span> <span class="bu">dict</span>()</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make utility matrix</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>pred_lin_reg <span class="op">=</span> np.zeros((N, M))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  models[n] <span class="op">=</span> Ridge()</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  models[n].fit(Xt[n], yt[n])</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  pred_lin_reg[n] <span class="op">=</span> models[n].predict(item_feats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="collaborative-vs-content-based-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="collaborative-vs-content-based-filtering">Collaborative vs Content Based Filtering</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 49%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Collaborative Filtering</th>
+<th>Content Based Filtering</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\hat{y}_{ij} = w_j^T z_i\)</span></td>
+<td><span class="math inline">\(\hat{y}_{ij} = w_i^T x_{ij}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(w_j^T\)</span>: “hidden” embedding for feature <span class="math inline">\(j\)</span> <br> <span class="math inline">\(z_i\)</span>: “hidden” embedding for user <span class="math inline">\(i\)</span></td>
+<td><span class="math inline">\(w_i\)</span>: feature vector for user <span class="math inline">\(i\)</span> <br> <span class="math inline">\(x_{ij}\)</span>: feature <span class="math inline">\(j\)</span> for user <span class="math inline">\(i\)</span></td>
+</tr>
+<tr class="odd">
+<td>(+) Makes use of social network / information</td>
+<td>(-) Does not make use of social network / information</td>
+</tr>
+<tr class="even">
+<td>(-) Cold start problem</td>
+<td>(+) Solves the cold start problem</td>
+</tr>
+<tr class="odd">
+<td>(+) No feature engineering required</td>
+<td>(-) Requires feature engineering</td>
+</tr>
+<tr class="even">
+<td>(-) Hard to interpret</td>
+<td>(+) Easy to interpret</td>
+</tr>
+<tr class="odd">
+<td>(-) Cannot capture unique user preferences</td>
+<td>(+) Can capture unique user preferences (since each model is unique)</td>
+</tr>
+<tr class="even">
+<td>(+) More diverse recommendations</td>
+<td>(-) Less diverse recommendations (hardly recommend an item outside the user’s profile)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="beyond-error-rate-in-recommender-systems" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-error-rate-in-recommender-systems">Beyond Error Rate in Recommender Systems</h2>
+<ul>
+<li>Best RMSE <span class="math inline">\(\neq\)</span> Best Recommender</li>
+<li>Need to consider simplicity, interpretatibility, code maintainability, etc.
+<ul>
+<li>The Netflix Prize: The winning solution was never implemented</li>
+</ul></li>
+<li>Other things to consider:
+<ul>
+<li>Diversity: If someone buys a tennis racket, they might not want to buy another tennis racket</li>
+<li>Freshness: New items (new items need to be recommended for it to be successful)</li>
+<li>Trust: Explain your recommendation to the user</li>
+<li>Persistence: If the same recommendation is made over and over again, it might not be a good recommendation</li>
+<li>Social influence: If a friend buys something, you might want to buy it too</li>
+</ul></li>
+<li>Also need to consider ethical implications
+<ul>
+<li>Filter bubbles</li>
+<li>Recommending harmful content</li>
+</ul></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

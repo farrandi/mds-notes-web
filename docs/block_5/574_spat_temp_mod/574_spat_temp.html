@@ -1,0 +1,2395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Nando's MDS Notes – spat_temp</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/white_cartoon.PNG" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/mds_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Nando’s MDS Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../list.html" rel="" target="">
+ <span class="menu-text">List of Notes</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#spatial-and-temporal-models" id="toc-spatial-and-temporal-models" class="nav-link active" data-scroll-target="#spatial-and-temporal-models">Spatial and Temporal Models</a>
+  <ul class="collapse">
+  <li><a href="#time-series" id="toc-time-series" class="nav-link" data-scroll-target="#time-series">Time Series</a>
+  <ul class="collapse">
+  <li><a href="#features-of-time-series" id="toc-features-of-time-series" class="nav-link" data-scroll-target="#features-of-time-series">Features of Time Series</a></li>
+  <li><a href="#time-series-decomposition" id="toc-time-series-decomposition" class="nav-link" data-scroll-target="#time-series-decomposition">Time Series Decomposition</a></li>
+  </ul></li>
+  <li><a href="#forecasting" id="toc-forecasting" class="nav-link" data-scroll-target="#forecasting">Forecasting</a>
+  <ul class="collapse">
+  <li><a href="#baseline-forecasting-methods" id="toc-baseline-forecasting-methods" class="nav-link" data-scroll-target="#baseline-forecasting-methods">Baseline Forecasting Methods</a></li>
+  <li><a href="#exponential-models" id="toc-exponential-models" class="nav-link" data-scroll-target="#exponential-models">Exponential Models</a></li>
+  <li><a href="#selecting-a-model" id="toc-selecting-a-model" class="nav-link" data-scroll-target="#selecting-a-model">Selecting a Model</a></li>
+  </ul></li>
+  <li><a href="#arima-models" id="toc-arima-models" class="nav-link" data-scroll-target="#arima-models">ARIMA Models</a>
+  <ul class="collapse">
+  <li><a href="#stationarity" id="toc-stationarity" class="nav-link" data-scroll-target="#stationarity">Stationarity</a></li>
+  <li><a href="#checking-for-stationarity" id="toc-checking-for-stationarity" class="nav-link" data-scroll-target="#checking-for-stationarity">Checking for Stationarity</a></li>
+  <li><a href="#making-a-time-series-stationary" id="toc-making-a-time-series-stationary" class="nav-link" data-scroll-target="#making-a-time-series-stationary">Making a Time Series Stationary</a></li>
+  <li><a href="#ar-and-ma-models" id="toc-ar-and-ma-models" class="nav-link" data-scroll-target="#ar-and-ma-models">AR and MA Models</a></li>
+  <li><a href="#arma-model" id="toc-arma-model" class="nav-link" data-scroll-target="#arma-model">ARMA Model</a></li>
+  <li><a href="#arima-model" id="toc-arima-model" class="nav-link" data-scroll-target="#arima-model">ARIMA Model</a></li>
+  <li><a href="#choosing-orders" id="toc-choosing-orders" class="nav-link" data-scroll-target="#choosing-orders">Choosing Orders</a></li>
+  </ul></li>
+  <li><a href="#time-series-forecasting-in-ml" id="toc-time-series-forecasting-in-ml" class="nav-link" data-scroll-target="#time-series-forecasting-in-ml">Time Series Forecasting in ML</a>
+  <ul class="collapse">
+  <li><a href="#key-differences-vs.-traditional-ml" id="toc-key-differences-vs.-traditional-ml" class="nav-link" data-scroll-target="#key-differences-vs.-traditional-ml">Key Differences vs.&nbsp;Traditional ML</a></li>
+  <li><a href="#sktime-library" id="toc-sktime-library" class="nav-link" data-scroll-target="#sktime-library"><code>sktime</code> Library</a></li>
+  <li><a href="#forecasting-1" id="toc-forecasting-1" class="nav-link" data-scroll-target="#forecasting-1">Forecasting</a></li>
+  <li><a href="#feature-preprocessing-and-engineering" id="toc-feature-preprocessing-and-engineering" class="nav-link" data-scroll-target="#feature-preprocessing-and-engineering">Feature Preprocessing and Engineering</a></li>
+  <li><a href="#multivariate-time-series" id="toc-multivariate-time-series" class="nav-link" data-scroll-target="#multivariate-time-series">Multivariate Time Series</a></li>
+  </ul></li>
+  <li><a href="#probabilistic-forecasting" id="toc-probabilistic-forecasting" class="nav-link" data-scroll-target="#probabilistic-forecasting">Probabilistic Forecasting</a>
+  <ul class="collapse">
+  <li><a href="#analytical" id="toc-analytical" class="nav-link" data-scroll-target="#analytical">Analytical</a></li>
+  <li><a href="#simulation-and-bootstrapping" id="toc-simulation-and-bootstrapping" class="nav-link" data-scroll-target="#simulation-and-bootstrapping">Simulation and Bootstrapping</a></li>
+  <li><a href="#quantile-regression" id="toc-quantile-regression" class="nav-link" data-scroll-target="#quantile-regression">Quantile Regression</a></li>
+  <li><a href="#evaluating-distributional-forecast-accuracy" id="toc-evaluating-distributional-forecast-accuracy" class="nav-link" data-scroll-target="#evaluating-distributional-forecast-accuracy">Evaluating Distributional Forecast Accuracy</a></li>
+  </ul></li>
+  <li><a href="#anomaly-detection" id="toc-anomaly-detection" class="nav-link" data-scroll-target="#anomaly-detection">Anomaly Detection</a>
+  <ul class="collapse">
+  <li><a href="#rolling-median" id="toc-rolling-median" class="nav-link" data-scroll-target="#rolling-median">Rolling Median</a></li>
+  <li><a href="#stl-decomposition" id="toc-stl-decomposition" class="nav-link" data-scroll-target="#stl-decomposition">STL Decomposition</a></li>
+  <li><a href="#model-based" id="toc-model-based" class="nav-link" data-scroll-target="#model-based">Model-based</a></li>
+  <li><a href="#ml-approaches" id="toc-ml-approaches" class="nav-link" data-scroll-target="#ml-approaches">ML approaches</a></li>
+  <li><a href="#global-vs-local-outliers" id="toc-global-vs-local-outliers" class="nav-link" data-scroll-target="#global-vs-local-outliers">Global vs Local Outliers</a></li>
+  </ul></li>
+  <li><a href="#imputation" id="toc-imputation" class="nav-link" data-scroll-target="#imputation">Imputation</a></li>
+  <li><a href="#deep-learning-with-time-series" id="toc-deep-learning-with-time-series" class="nav-link" data-scroll-target="#deep-learning-with-time-series">Deep Learning with Time Series</a>
+  <ul class="collapse">
+  <li><a href="#neural-networks" id="toc-neural-networks" class="nav-link" data-scroll-target="#neural-networks">Neural Networks</a></li>
+  <li><a href="#convolutional-neural-networks-cnn" id="toc-convolutional-neural-networks-cnn" class="nav-link" data-scroll-target="#convolutional-neural-networks-cnn">Convolutional Neural Networks (CNN)</a></li>
+  <li><a href="#recurrent-neural-networks-rnn" id="toc-recurrent-neural-networks-rnn" class="nav-link" data-scroll-target="#recurrent-neural-networks-rnn">Recurrent Neural Networks (RNN)</a></li>
+  <li><a href="#long-short-term-memory-lstm" id="toc-long-short-term-memory-lstm" class="nav-link" data-scroll-target="#long-short-term-memory-lstm">Long Short-Term Memory (LSTM)</a></li>
+  <li><a href="#useful-time-series-packages" id="toc-useful-time-series-packages" class="nav-link" data-scroll-target="#useful-time-series-packages">Useful Time Series Packages</a></li>
+  <li><a href="#additional-topics" id="toc-additional-topics" class="nav-link" data-scroll-target="#additional-topics">Additional Topics</a></li>
+  </ul></li>
+  <li><a href="#spatial-data" id="toc-spatial-data" class="nav-link" data-scroll-target="#spatial-data">Spatial Data</a>
+  <ul class="collapse">
+  <li><a href="#working-with-vector-data" id="toc-working-with-vector-data" class="nav-link" data-scroll-target="#working-with-vector-data">Working with Vector Data</a></li>
+  <li><a href="#working-with-raster-data" id="toc-working-with-raster-data" class="nav-link" data-scroll-target="#working-with-raster-data">Working with Raster Data</a></li>
+  <li><a href="#coordinate-reference-systems-crs" id="toc-coordinate-reference-systems-crs" class="nav-link" data-scroll-target="#coordinate-reference-systems-crs">Coordinate Reference Systems (CRS)</a></li>
+  </ul></li>
+  <li><a href="#spatial-visualization" id="toc-spatial-visualization" class="nav-link" data-scroll-target="#spatial-visualization">Spatial Visualization</a>
+  <ul class="collapse">
+  <li><a href="#geopandas-plotting" id="toc-geopandas-plotting" class="nav-link" data-scroll-target="#geopandas-plotting">Geopandas Plotting</a></li>
+  <li><a href="#plotly-express" id="toc-plotly-express" class="nav-link" data-scroll-target="#plotly-express">Plotly Express</a></li>
+  <li><a href="#kepler.gl" id="toc-kepler.gl" class="nav-link" data-scroll-target="#kepler.gl">Kepler.gl</a></li>
+  </ul></li>
+  <li><a href="#spatial-modeling" id="toc-spatial-modeling" class="nav-link" data-scroll-target="#spatial-modeling">Spatial Modeling</a>
+  <ul class="collapse">
+  <li><a href="#deterministic-interpolation" id="toc-deterministic-interpolation" class="nav-link" data-scroll-target="#deterministic-interpolation">Deterministic Interpolation</a></li>
+  <li><a href="#probabilistic-interpolation" id="toc-probabilistic-interpolation" class="nav-link" data-scroll-target="#probabilistic-interpolation">Probabilistic Interpolation</a></li>
+  <li><a href="#areal-interpolation" id="toc-areal-interpolation" class="nav-link" data-scroll-target="#areal-interpolation">Areal Interpolation</a></li>
+  <li><a href="#shortest-path-analysis" id="toc-shortest-path-analysis" class="nav-link" data-scroll-target="#shortest-path-analysis">Shortest Path Analysis</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="spatial-and-temporal-models" class="level1">
+<h1>Spatial and Temporal Models</h1>
+<section id="time-series" class="level2">
+<h2 class="anchored" data-anchor-id="time-series">Time Series</h2>
+<ul>
+<li>Collection of observations made sequentially in time</li>
+<li>Data Types:
+<ul>
+<li><strong>Univariate</strong>: Single observation at each time point (e.g.&nbsp;bike sale over time)</li>
+<li><strong>Multivariate</strong>: Multiple observations at each time point (e.g.&nbsp;bike sale + profit over time)</li>
+<li><strong>Heirarchical</strong>: Multiple time series, each with a hierarchical structure (e.g.&nbsp;bike sale + profit for each store over time)</li>
+</ul></li>
+<li>Common Tasks:
+<ul>
+<li><strong>Prediction/ Forecasting</strong> (Supervised Learning)
+<ul>
+<li>Difficult since many factors</li>
+</ul></li>
+<li><strong>Clustering/ Anomaly Detection</strong> (Unsupervised Learning)</li>
+</ul></li>
+</ul>
+<section id="features-of-time-series" class="level3">
+<h3 class="anchored" data-anchor-id="features-of-time-series">Features of Time Series</h3>
+<section id="visualizing" class="level4">
+<h4 class="anchored" data-anchor-id="visualizing">Visualizing</h4>
+<ul>
+<li>Time plot: x-axis = time, y-axis = value</li>
+</ul>
+</section>
+<section id="temporal-dependence" class="level4">
+<h4 class="anchored" data-anchor-id="temporal-dependence">Temporal Dependence</h4>
+<ul>
+<li>Observations close in time are often correlated
+<ul>
+<li>Can quanitify using <strong>autocorrelation</strong></li>
+</ul></li>
+<li><strong>Autocorrelation</strong>: Correlation of a time series with a lagged version of itself
+<ul>
+<li><strong>Lag</strong>: Time difference between two observations</li>
+<li><strong>ACF</strong>: Autocorrelation function
+<ul>
+<li>Plots autocorrelation for different lags</li>
+</ul></li>
+<li><strong>PACF</strong>: Partial autocorrelation function
+<ul>
+<li>Plots correlation between two observations after removing the effect of other lags</li>
+</ul></li>
+<li>e.g.&nbsp;<code>data[t (lag=1)] = data[t].shift(t)</code></li>
+</ul></li>
+</ul>
+<section id="correlogram" class="level5">
+<h5 class="anchored" data-anchor-id="correlogram">Correlogram</h5>
+<ul>
+<li>Plot of ACF vs.&nbsp;lag</li>
+<li>Helps identify patterns in time series</li>
+<li>Use <code>statsmodels.graphics.tsaplots.plot_acf()</code></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fig, (ax1,ax2) <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">5</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>plot_acf(data, lags<span class="op">=</span><span class="dv">20</span>, title<span class="op">=</span><span class="st">'ACF'</span>, ax<span class="op">=</span>ax1)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"Lag (years)"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'ACF'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/1_co2_ACF.png" width="400"> <img src="images/1_sunspot_ACF.png" width="400"></p>
+<ul>
+<li><p>Shading indicates if correlation is significantly different from 0</p>
+<ul>
+<li><span class="math inline">\(CI = \pm z_{\alpha/2} SE(r_k)\)</span>, <span class="math inline">\(z_{\alpha/2} \approx 1.96\)</span> for 95% CI</li>
+<li><span class="math inline">\(SE(r_k) = \frac{1}{\sqrt{T}}\)</span>, where <span class="math inline">\(T\)</span> is the number of observations - Or Bartlett’s formula: <span class="math inline">\(SE(r_k) = \sqrt{\frac{1 + 2\sum_{j=1}^{k-1}r_j^2}{T}}\)</span> <br></li>
+</ul></li>
+<li><p>CO2 plot has a trend so ACF for smaller lags tend to be higher</p></li>
+<li><p><strong>General Key Observations</strong>:</p>
+<ol type="1">
+<li>ACF almost always decays with lag</li>
+<li>If a series alternates (oscillates about mean), ACF will alternates too</li>
+<li>If a series has seasonal or cyclical fluctuations, the ACF will oscillate at the same frequency</li>
+<li>If there is a trend, ACF will decay slower (due to high correlation of the consecutive observations)</li>
+<li>Experience is required to interpret ACF</li>
+</ol></li>
+</ul>
+</section>
+</section>
+<section id="time-series-patterns" class="level4">
+<h4 class="anchored" data-anchor-id="time-series-patterns">Time Series Patterns</h4>
+<ol type="1">
+<li><strong>Trend</strong>: Long-term increase/ decrease</li>
+<li><strong>Seasonality</strong>: Regular pattern of up and down fluctuations (fixed interval)
+<ul>
+<li>typically over smaller time frame</li>
+</ul></li>
+<li><strong>Cyclic</strong>: Fluctuations not of fixed period (unknown and changing interval)
+<ul>
+<li>typically over larger time frame</li>
+</ul></li>
+</ol>
+</section>
+<section id="white-noise" class="level4">
+<h4 class="anchored" data-anchor-id="white-noise">White Noise</h4>
+<ul>
+<li><p>Time series with:</p>
+<ul>
+<li>0 mean</li>
+<li>Constant variance</li>
+<li>No autocorrelation</li>
+</ul></li>
+<li><p>Further assumed that it is iid and gaussian: <span class="math inline">\(N(0, \sigma^2)\)</span></p></li>
+<li><p><strong>Why do we care?</strong></p>
+<ul>
+<li>Cannot predict white noise</li>
+<li>If residuals from time series for a forecast should resemble white noise
+<ul>
+<li>Implies that the model has captured all the information in the data</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="time-series-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="time-series-decomposition">Time Series Decomposition</h3>
+<ul>
+<li><p>When we decompose, we split the time series into 3 components:</p>
+<ol type="1">
+<li><strong>Trend-cycle (T)</strong>: Long-term increase/ decrease</li>
+<li><strong>Seasonal (S)</strong>: same as seasonal above</li>
+<li><strong>Residual</strong>: Random fluctuations</li>
+</ol></li>
+</ul>
+<p><img src="images/1_add_mult.png" width="550"></p>
+<ul>
+<li><strong>Additive Model</strong>: <span class="math inline">\(Y_t = T_t + S_t + R_t\)</span>
+<ul>
+<li>When the magnitude of the seasonal fluctuations <strong>does not change</strong> with the level of the time series</li>
+</ul></li>
+<li><strong>Multiplicative Model</strong>: <span class="math inline">\(Y_t = T_t \times S_t \times R_t\)</span>
+<ul>
+<li>When the magnitude of the seasonal fluctuations <strong>does change</strong> with the level of the time series</li>
+</ul></li>
+</ul>
+<section id="estimating-the-trend" class="level4">
+<h4 class="anchored" data-anchor-id="estimating-the-trend">Estimating the Trend</h4>
+<ol type="1">
+<li><p><strong>Curve Fitting</strong>: Fit a polynomial of degree <span class="math inline">\(n\)</span> to the time series</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.tsatools <span class="im">import</span> detrend</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>detrended <span class="op">=</span> data <span class="op">-</span> detrend(data, order<span class="op">=</span><span class="dv">2</span>) <span class="co"># order=2 for quadratic</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Moving Average</strong>: Smooths out short-term fluctuations and highlights longer-term trends</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rolling is a pandas function</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rolling_mean <span class="op">=</span> df.rolling(window<span class="op">=</span><span class="dv">5</span>, center<span class="op">=</span><span class="va">True</span>).mean()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For even window, common practice to do:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df.rolling(window).mean().rolling(<span class="dv">2</span>).mean().shift(<span class="op">-</span>window<span class="op">//</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>window</code>: Number of observations used for calculating the statistic</li>
+<li><code>center</code>: Set the labels at the center of the window
+<ul>
+<li>if odd, the label is at the center</li>
+<li>if even, the label is at the right</li>
+</ul></li>
+</ul></li>
+</ol>
+<ul>
+<li>The even code does this: <img src="images/1_even_ma.gif" width="400"></li>
+</ul>
+</section>
+<section id="estimating-seasonality" class="level4">
+<h4 class="anchored" data-anchor-id="estimating-seasonality">Estimating Seasonality</h4>
+<ul>
+<li>Simple steps:
+<ol type="1">
+<li>Remove the trend from the data (the detrended data above)</li>
+<li>Estimate the seasonal component by averaging the detrended data over each season</li>
+</ol></li>
+</ul>
+</section>
+<section id="estimating-the-residual" class="level4">
+<h4 class="anchored" data-anchor-id="estimating-the-residual">Estimating the Residual</h4>
+<ul>
+<li>The residual is the remainder after removing the trend and seasonal components</li>
+<li>If additive model: <span class="math inline">\(R_t = Y_t - T_t - S_t\)</span></li>
+<li>If multiplicative model: <span class="math inline">\(R_t = \frac{Y_t}{T_t \times S_t}\)</span></li>
+</ul>
+</section>
+<section id="all-together" class="level4">
+<h4 class="anchored" data-anchor-id="all-together">All Together</h4>
+<ul>
+<li>Luckily, there exists a function to do all of this for us: <code>seasonal_decompose()</code></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.seasonal <span class="im">import</span> seasonal_decompose</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>decomposition <span class="op">=</span> seasonal_decompose(data, model<span class="op">=</span><span class="st">'additive'</span>, period<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>decomposition.trend <span class="co"># the trend component</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>decomposition.seasonal <span class="co"># the seasonal component</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>decomposition.resid <span class="co"># the residual component</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the decomposition</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> decomposition.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="forecasting" class="level2">
+<h2 class="anchored" data-anchor-id="forecasting">Forecasting</h2>
+<ul>
+<li><strong>Forecasting</strong>: Predicting future values of a time series</li>
+</ul>
+<section id="baseline-forecasting-methods" class="level3">
+<h3 class="anchored" data-anchor-id="baseline-forecasting-methods">Baseline Forecasting Methods</h3>
+<ol type="1">
+<li><strong>Average</strong>: Use average of all past observations</li>
+</ol>
+<p><img src="images/2_ave.png" width="300"></p>
+<ol start="2" type="1">
+<li><strong>Naive</strong>: Use the last observation as the forecast</li>
+<li><strong>Seasonally Adjusted Naive</strong>: Same as Naive but with seasonally adjusted data (classical decomposition)</li>
+</ol>
+<p><img src="images/2_naive_san.png" width="350"></p>
+<ol start="4" type="1">
+<li><strong>Seasonally Naive</strong>: Use the last observation from the same season (only one with seasonality)</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"month"</span>] <span class="op">=</span> df.index.month</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>last_season <span class="op">=</span> (df.drop_duplicates(<span class="st">"month"</span>, keep<span class="op">=</span><span class="st">"last"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                 .sort_values(by<span class="op">=</span><span class="st">"month"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                 .set_index(<span class="st">"month"</span>)[<span class="st">"value"</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span><span class="st">"month"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>last_season</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/2_sn.png" width="300"></p>
+<ol start="5" type="1">
+<li><strong>Drift</strong>: Linearly extrapolate the trend (only one that is not a straight horizontal line)</li>
+</ol>
+<p><img src="images/2_drift.png" width="300"></p>
+</section>
+<section id="exponential-models" class="level3">
+<h3 class="anchored" data-anchor-id="exponential-models">Exponential Models</h3>
+<section id="simple-exponential-smoothing" class="level4">
+<h4 class="anchored" data-anchor-id="simple-exponential-smoothing">Simple Exponential Smoothing</h4>
+<ul>
+<li>Forecast is a weighted average of all past observations</li>
+<li>Recursively defined: <span class="math inline">\(\hat{y}_{t+1|t} = \alpha y_t + (1 - \alpha) \hat{y}_{t|t-1}\)</span></li>
+<li><strong><span class="math inline">\(\alpha\)</span>: Smoothing parameter</strong>
+<ul>
+<li>Close to 0: More weight to past observations</li>
+<li>Close to 1: More weight to current observation (closer to Naive forecast)</li>
+</ul></li>
+<li><strong>Initial Forecast</strong>:
+<ul>
+<li><span class="math inline">\(\hat{y}_{1|0} = y_1\)</span></li>
+<li>Heuristic: linear interpolation of the first few observations</li>
+<li>Learn it by optimizing SSE</li>
+</ul></li>
+<li>Forecasts are flat</li>
+<li></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a> <span class="im">from</span> statsmodels.tsa.holtwinters <span class="im">import</span> SimpleExpSmoothing</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> SES <span class="op">=</span> SimpleExpSmoothing(data, initialization_method<span class="op">=</span><span class="st">'heuristic'</span>)<span class="op">=</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a> <span class="co"># Fit the model</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a> model <span class="op">=</span> SES.fit(smoothing_level<span class="op">=</span><span class="fl">0.2</span>, optimized<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a> <span class="co"># Forecast</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a> forecast <span class="op">=</span> model.forecast(steps<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="holts-method" class="level4">
+<h4 class="anchored" data-anchor-id="holts-method">Holt’s Method</h4>
+<ul>
+<li><p>Extend SES to include a trend component <span class="math display">\[\hat{y}_{t+h|t} = \ell_t + h b_t\]</span></p>
+<p><span class="math display">\[\ell_t = \alpha y_t + (1 - \alpha)(\ell_{t-1} + b_{t-1})\]</span></p>
+<p><span class="math display">\[b_t = \beta(\ell_t - \ell_{t-1}) + (1 - \beta)b_{t-1}\]</span></p></li>
+<li><p><span class="math inline">\(\ell_t\)</span>: Level</p></li>
+<li><p><span class="math inline">\(b_t\)</span>: Smoothness of the trend</p>
+<ul>
+<li>Close to 0: Trend is more linear</li>
+<li>Close to 1: Trend changes with each observation</li>
+</ul></li>
+<li><p><span class="math inline">\(\alpha\)</span>: Smoothing parameter for level</p></li>
+</ul>
+</section>
+<section id="holts-winter-method" class="level4">
+<h4 class="anchored" data-anchor-id="holts-winter-method">Holt’s Winter Method</h4>
+<ul>
+<li><p>Extend Holt’s method to include a seasonal component <span class="math display">\[\hat{y}_{t+h|t} = \ell_t + h b_t + s_{t-m+h_m}\]</span></p>
+<p><span class="math display">\[b_t = \beta(\ell_t - \ell_{t-1}) + (1 - \beta)b_{t-1}\]</span></p></li>
+<li><p>For Additive Seasonal: <span class="math display">\[\ell_t = \alpha(y_t - s_{t-m}) + (1 - \alpha)(\ell_{t-1} + b_{t-1})\]</span></p>
+<p><span class="math display">\[s_t = \gamma(y_t - \ell_{t-1} - b_{t-1}) + (1 - \gamma)s_{t-m}\]</span></p></li>
+<li><p>For Multiplicative Seasonal: <span class="math display">\[\ell_t = \alpha\frac{y_t}{s_{t-m}} + (1 - \alpha)(\ell_{t-1} + b_{t-1})\]</span></p>
+<p><span class="math display">\[s_t = \gamma\frac{y_t}{\ell_{t-1} + b_{t-1}} + (1 - \gamma)s_{t-m}\]</span></p></li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Trend component</th>
+<th>Seasonal Component</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>None <code>(N)</code></td>
+<td>None <code>(N)</code></td>
+</tr>
+<tr class="even">
+<td>Additive <code>(A)</code></td>
+<td>Additive <code>(A)</code></td>
+</tr>
+<tr class="odd">
+<td>Additive Damped <code>(Ad)</code></td>
+<td>Multiplicative <code>(M)</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Simple Exponential Smoothing <code>(N,N)</code></li>
+<li>Holt’s Method <code>(A,N)</code></li>
+<li>Holt’s Winter Method <code>(A,A)</code></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.holtwinters <span class="im">import</span> ExponentialSmoothing</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> model <span class="op">=</span> ExponentialSmoothing(data,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>     trend<span class="op">=</span><span class="st">'add'</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>     damped_trend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>     seasonal<span class="op">=</span><span class="st">'mul'</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>     seasonal_periods<span class="op">=</span><span class="dv">12</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>     initialization_method<span class="op">=</span><span class="st">'estimated'</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> ).fit(method<span class="op">=</span><span class="st">"least_squares"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ets-error-trend-seasonal-models" class="level4">
+<h4 class="anchored" data-anchor-id="ets-error-trend-seasonal-models">ETS (Error, Trend, Seasonal) Models</h4>
+<ul>
+<li>Components:
+<ul>
+<li>Error: <code>{A, M}</code></li>
+<li>Trend: <code>{N, A, Ad}</code></li>
+<li>Seasonal: <code>{N, A, M}</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.holtwinters <span class="im">import</span> ETSModel</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> model <span class="op">=</span> ETSModel(data,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      error<span class="op">=</span><span class="st">'add'</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      trend<span class="op">=</span><span class="st">'add'</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      damped_trend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      seasonal<span class="op">=</span><span class="st">'add'</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      seasonal_periods<span class="op">=</span><span class="dv">12</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a> ).fit()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a> <span class="co"># Forecast</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a> model.forecast(steps<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a> <span class="co"># Summary</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Can generate prediction intervals (confidence intervals):
+<ol type="1">
+<li><code>model.get_prediction()</code> (analytical)</li>
+<li><code>model.simulate()</code></li>
+</ol></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> model.get_prediction(start<span class="op">=</span>df.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> pd.DateOffset(months<span class="op">=</span><span class="dv">1</span>), end<span class="op">=</span><span class="st">"2020"</span>).summary_frame()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="fl">0.975</span> <span class="co"># 95% CI</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>sim <span class="op">=</span> model.simulate(anchor<span class="op">=</span><span class="st">"end"</span>, nsimulations<span class="op">=</span><span class="dv">348</span>, repetitions<span class="op">=</span><span class="dv">100</span>, random_errors<span class="op">=</span><span class="st">"bootstrap"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>simu <span class="op">=</span> pd.DataFrame({<span class="st">"median"</span>: simulations.median(axis<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"pi_lower"</span>: simulations.quantile((<span class="dv">1</span> <span class="op">-</span> q), axis<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"pi_upper"</span>: simulations.quantile(q, axis<span class="op">=</span><span class="dv">1</span>)},</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                    index<span class="op">=</span>simulations.index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="selecting-a-model" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-a-model">Selecting a Model</h3>
+<ul>
+<li><strong>Metrics</strong>, Commonly used:
+<ul>
+<li>AIC, BIC</li>
+<li>SSE/ MSE/ RMSE</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using ets model from above</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>model.aic</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>model.bic</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>model.mse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><strong>Residuals</strong>:
+<ul>
+<li>Visual inspection (should be uncorrelated, zero mean, normally distributed)</li>
+<li>Running diagnostic Portmanteau tests:
+<ul>
+<li><strong>Ljung-Box Test</strong>: <span class="math inline">\(H_0\)</span>: Residuals are uncorrelated (white noise)
+<ul>
+<li>p-value &lt; 0.05: Reject <span class="math inline">\(H_0\)</span> (bad)</li>
+</ul></li>
+<li><strong>Jarque-Bera Test</strong>: <span class="math inline">\(H_0\)</span>: Residuals are normally distributed
+<ul>
+<li>p-value &lt; 0.05: Reject <span class="math inline">\(H_0\)</span> (bad)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using ets model from above</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model.summary().tables[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ljung-Box Test</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> model.test_serial_correlation(method<span class="op">=</span><span class="st">"ljungbox"</span>, lags<span class="op">=</span><span class="dv">10</span>)[<span class="dv">0</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Jarque-Bera Test</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> model.test_normality(method<span class="op">=</span><span class="st">"jarquebera"</span>)[<span class="dv">0</span>,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Out-of-sample Forecasting</strong>:
+<ul>
+<li>Split data into training and testing</li>
+<li>Fit model on training data</li>
+<li>Forecast on testing data</li>
+<li>Compare forecast with actuals</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="arima-models" class="level2">
+<h2 class="anchored" data-anchor-id="arima-models">ARIMA Models</h2>
+<ul>
+<li><strong>ARIMA</strong>: AutoRegressive Integrated Moving Average</li>
+<li>Commonly used for time series forecasting (other than exponential smoothing)</li>
+<li>Based on autocorrelation of data</li>
+<li>Do not model trend nor seasonality, so it is typically constrained to <strong>stationary</strong> data</li>
+</ul>
+<section id="stationarity" class="level3">
+<h3 class="anchored" data-anchor-id="stationarity">Stationarity</h3>
+<ul>
+<li>Statistical properties of a time series do not change over time
+<ul>
+<li>Mean, variance is constant</li>
+<li>Is roughly horizontal (no strong trend)</li>
+<li>Does not show predictable patterns (no seasonality)</li>
+</ul></li>
+<li>DOES not mean that the time series is constant, just that the way it changes is constant</li>
+<li>It is one way of modelling dependence structure
+<ul>
+<li>Can only be independent in one way but dependent in many ways</li>
+</ul></li>
+</ul>
+<section id="strong-vs-weak-stationarity" class="level4">
+<h4 class="anchored" data-anchor-id="strong-vs-weak-stationarity">Strong vs Weak Stationarity</h4>
+<table class="table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 22%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Strong Stationarity</th>
+<th>Weak Stationarity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean, Variance, Autocovariance</td>
+<td>Constant</td>
+<td>Constant</td>
+</tr>
+<tr class="even">
+<td>Higher order moments (skewness, kurtosis)</td>
+<td>Constant</td>
+<td>Not necessarily constant</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Weak stationarity is often sufficient for time series analysis</li>
+</ul>
+</section>
+</section>
+<section id="checking-for-stationarity" class="level3">
+<h3 class="anchored" data-anchor-id="checking-for-stationarity">Checking for Stationarity</h3>
+<ol type="1">
+<li><strong>Visual Inspection</strong>: Plot the time series
+<ul>
+<li>Look for trends, seasonality, and variance (none of these should be present)</li>
+<li>Make a correlogram plot (ACF plot should rapidly decay to 0)</li>
+</ul></li>
+<li><strong>Summary Statistics</strong>: Calculate mean, variance, and autocovariance
+<ul>
+<li>Mean and variance should be roughly constant over time</li>
+</ul></li>
+<li><strong>Hypothesis Testing</strong>: Use statistical tests
+<ul>
+<li><strong>Augmented Dickey-Fuller (ADF) test</strong>
+<ul>
+<li>Null hypothesis: Time series is non-stationary</li>
+<li>small p: it is stationary (reject null)</li>
+<li>Use <code>statsmodels.tsa.stattools.adfuller</code></li>
+</ul></li>
+<li><strong>Kwiatkowski-Phillips-Schmidt-Shin (KPSS) test</strong>
+<ul>
+<li>Null hypothesis: Time series is stationary</li>
+<li>small p: it is non-stationary (reject null)</li>
+</ul></li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> adfuller</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ADF test</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> adfuller(data)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'ADF Statistic: </span><span class="sc">%f</span><span class="st">'</span> <span class="op">%</span> result[<span class="dv">0</span>])</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'p-value: </span><span class="sc">%f</span><span class="st">'</span> <span class="op">%</span> result[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="making-a-time-series-stationary" class="level3">
+<h3 class="anchored" data-anchor-id="making-a-time-series-stationary">Making a Time Series Stationary</h3>
+<ul>
+<li><p><strong>Stabilizing the variance using transformations</strong></p>
+<ul>
+<li>Log or box-cox transformation</li>
+</ul>
+<p><span class="math display">\[w_t = \begin{cases} \frac{y_t^\lambda - 1}{\lambda} &amp; \text{if } \lambda \neq 0 \\ \ln(y_t) &amp; \text{if } \lambda = 0 \end{cases}\]</span></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> boxcox</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> boxcox(data, lmbda<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># log transformation</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.log(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Stabilize the mean using differencing</strong></p>
+<ul>
+<li>First difference: <span class="math inline">\(y' = y_t - y_{t-1}\)</span></li>
+<li>Second difference: <span class="math inline">\(y'' = y' - y'_{t-1} = y_t - 2y_{t-1} + y_{t-2}\)</span></li>
+<li>Seasonal difference: <span class="math inline">\(y' = y_t - y_{t-m}\)</span>, where <span class="math inline">\(m\)</span> is the seasonal period</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First difference</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="op">=</span> data.diff().dropna()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Second difference</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> data.diff().diff().dropna()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Seasonal difference, m is the seasonal period</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>data_m <span class="op">=</span> data.diff(m).dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="ar-and-ma-models" class="level3">
+<h3 class="anchored" data-anchor-id="ar-and-ma-models">AR and MA Models</h3>
+<table class="table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>AR (AutoRegressive) Model</th>
+<th>MA (Moving Average) Model</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression of the time series on its own lagged values</td>
+<td>Regression of the time series on past forecast errors</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(y_t = \phi_1 y_{t-1} + \phi_2 y_{t-2} + \ldots + \phi_p y_{t-p} + \epsilon_t\)</span></td>
+<td><span class="math inline">\(y_t = \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \ldots + \theta_q \epsilon_{t-q}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(p\)</span>: order of the AR model</td>
+<td><span class="math inline">\(q\)</span>: order of the MA model</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\phi\)</span>: AR coefficients</td>
+<td><span class="math inline">\(\theta\)</span>: MA coefficients</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\epsilon_t\)</span>: white noise</td>
+<td><span class="math inline">\(\epsilon_t\)</span>: white noise</td>
+</tr>
+<tr class="even">
+<td><strong>Long memory model</strong>: <span class="math inline">\(y_1\)</span> has a direct effect on <span class="math inline">\(y_t\)</span> for all <span class="math inline">\(t\)</span></td>
+<td><strong>Short memory model</strong>: <span class="math inline">\(y_t\)</span> is only affected by recent values of <span class="math inline">\(\epsilon\)</span></td>
+</tr>
+<tr class="odd">
+<td>Good for modeling time-series with dependency on past values</td>
+<td>Good for modeling time-series with a lot of volatility and noise</td>
+</tr>
+<tr class="even">
+<td>Less sensitive to choice of lag or window size</td>
+<td>More sensitive to choice of lag or window size</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Both values are between -1 and 1</li>
+<li>AR value of 1 means that the time series is a random walk</li>
+</ul>
+</section>
+<section id="arma-model" class="level3">
+<h3 class="anchored" data-anchor-id="arma-model">ARMA Model</h3>
+<ul>
+<li><strong>ARMA</strong>: AutoRegressive Moving Average</li>
+<li>Combines AR and MA models</li>
+<li>Key Idea: Parsimony
+<ul>
+<li>fit a simpler, mixed model with fewer parameters, than either a pure AR or a pure MA model</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[y_t = c + \phi_1 y_{t-1} + \phi_2 y_{t-2} + \ldots + \phi_p y_{t-p} + \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \ldots + \theta_q \epsilon_{t-q}\]</span></p>
+<ul>
+<li><span class="math inline">\(c\)</span>: constant</li>
+<li><span class="math inline">\(\phi\)</span>: AR coefficients</li>
+<li><span class="math inline">\(\theta\)</span>: MA coefficients</li>
+<li>Usually write it as <code>ARMA(p, q)</code></li>
+</ul>
+</section>
+<section id="arima-model" class="level3">
+<h3 class="anchored" data-anchor-id="arima-model">ARIMA Model</h3>
+<ul>
+<li><strong>ARIMA</strong>: AutoRegressive Integrated Moving Average</li>
+<li>Combines ARMA with differencing</li>
+<li><code>ARIMA(p, d, q)</code>
+<ul>
+<li><code>p</code>: order of the AR model</li>
+<li><code>d</code>: degree of differencing</li>
+<li><code>q</code>: order of the MA model</li>
+</ul></li>
+<li>Use <code>statsmodels.tsa.arima.model.ARIMA</code></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.arima.model <span class="im">import</span> ARIMA</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># All with first order differencing</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>model_ar <span class="op">=</span> ARIMA(data[<span class="st">"col"</span>], order<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>)).fit() <span class="co"># AR(3)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>model_ma <span class="op">=</span> ARIMA(data[<span class="st">"col"</span>], order<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>)).fit() <span class="co"># MA(1)</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>model_arima <span class="op">=</span> ARIMA(data[<span class="st">"col"</span>], order<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>)).fit() <span class="co"># ARIMA(3, 3)</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>model_arma <span class="op">=</span> ARIMA(data[<span class="st">"col"</span>], order<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">3</span>)).fit() <span class="co"># ARMA(3, 3)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="arima-hyperparameter-tuning" class="level4">
+<h4 class="anchored" data-anchor-id="arima-hyperparameter-tuning">ARIMA hyperparameter tuning</h4>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pmdarima <span class="im">as</span> pm</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>autoarima <span class="op">=</span> pm.auto_arima(data.col,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                          start_p<span class="op">=</span><span class="dv">0</span>, star_d<span class="op">=</span><span class="dv">1</span>, start_q<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                          max_p<span class="op">=</span><span class="dv">5</span>, max_d<span class="op">=</span><span class="dv">3</span>, max_q<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                          seasonal<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>autoarima.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sarima" class="level4">
+<h4 class="anchored" data-anchor-id="sarima">SARIMA</h4>
+<ul>
+<li><strong>SARIMA</strong>: Seasonal ARIMA</li>
+<li><code>SARIMA(p, d, q)(P, D, Q, m)</code>
+<ul>
+<li><code>p</code>, <code>d</code>, <code>q</code>: ARIMA parameters</li>
+<li><code>P</code>, <code>D</code>, <code>Q</code>: Seasonal ARIMA parameters</li>
+<li><code>m</code>: seasonal period</li>
+</ul></li>
+<li>E.g. In a dataset with years and 12 months
+<ul>
+<li><span class="math inline">\(p=2\)</span> means Jan is affected by Dec and Nov</li>
+<li><span class="math inline">\(P=2\)</span> means Jan is affected by Jan of the previous 2 years</li>
+</ul></li>
+</ul>
+<pre><code>sarima = ARIMA(data["col"], order=(3, 1, 3), seasonal_order=(1, 1, 1, 12)).fit()</code></pre>
+<ul>
+<li>Also have <strong>SARIMAX</strong> (with exogenous variables)
+<ul>
+<li>adds exogenous variables (other time series) to the model</li>
+<li>Not the most effective model</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="choosing-orders" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-orders">Choosing Orders</h3>
+<ul>
+<li><strong>ACF and PACF plots</strong>
+<ul>
+<li>ACF: Autocorrelation Function</li>
+<li>PACF: Partial Autocorrelation Function</li>
+<li>Use these to determine the order of the AR and MA models</li>
+</ul></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ACF Plot</th>
+<th>PACF Plot</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Measures correlation between an observation and its lagged values</td>
+<td>same but removes intermediate correlations (kinda isolates the direct effect)</td>
+</tr>
+<tr class="even">
+<td>For <strong>MA(q)</strong>, cuts off after lag q</td>
+<td>For <strong>AR(p)</strong>, cuts off after lag p</td>
+</tr>
+<tr class="odd">
+<td>Else, tails off (exp or like damped sin)</td>
+<td>Else, tails off (no clear pattern)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>See the cutoff when the peaks are lower than the shaded region</li>
+</ul>
+<section id="example-ar" class="level4">
+<h4 class="anchored" data-anchor-id="example-ar">Example AR</h4>
+<ol type="1">
+<li><p><span class="math inline">\(y_t=-0.9y_{t-1}+\epsilon_t\)</span> <img src="images/3_eq1.png" width="550"></p></li>
+<li><p><span class="math inline">\(y_t=0.3y_{t-1}+\epsilon_t\)</span> <img src="images/3_eq2.png" width="550"></p></li>
+<li><p><span class="math inline">\(y_t=0.5y_{t-1}-0.8y_{t-2}+\epsilon_t\)</span> <img src="images/3_eq3.png" width="550"></p></li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.arima_process <span class="im">import</span> ArmaProcess</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate 1</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(ArmaProcess(ar<span class="op">=</span>[<span class="dv">1</span>, <span class="op">-</span><span class="fl">0.9</span>]).generate_sample())</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate 2</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(ArmaProcess(ar<span class="op">=</span>[<span class="dv">1</span>, <span class="fl">0.3</span>]).generate_sample())</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate 3</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(ArmaProcess(ar<span class="op">=</span>[<span class="dv">1</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.8</span>]).generate_sample())</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">5</span>))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"y_t = 0.9y_{t-1} + e_t"</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>df.plot(ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>plot_acf(df, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>plot_pacf(df, ax<span class="op">=</span>axes[<span class="dv">2</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="example-ma" class="level4">
+<h4 class="anchored" data-anchor-id="example-ma">Example MA</h4>
+<ol type="1">
+<li><span class="math inline">\(y_t = \epsilon_t + 0.9\epsilon_{t-1}\)</span> <img src="images/3_ma.png" width="550"></li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(ArmaProcess(ma<span class="op">=</span>[<span class="dv">1</span>, <span class="op">-</span><span class="fl">0.9</span>]).generate_sample())</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">6</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"$y_t = \epsilon_t - 0.9 \epsilon_{t-1} $"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>df.plot(ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>plot_acf(df, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>plot_pacf(df, ax<span class="op">=</span>axes[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="whole-process-with-arima" class="level4">
+<h4 class="anchored" data-anchor-id="whole-process-with-arima">Whole process with ARIMA</h4>
+<p>(Based on lab 2 q4)</p>
+<ol type="1">
+<li><p><strong>Load Data</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># turns first col into index + parses dates</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>, parse_dates<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>EDA</strong> with plot + ACF + PACF (Stationarity check)</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">5</span>))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>df.plot(ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plot_acf(df, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>plot_pacf(df, ax<span class="op">=</span>axes[<span class="dv">2</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Can also check with ADF test (p&gt;0.05 means non-stationary)</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> adfuller</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ADF test</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> adfuller(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Make the time series stationary</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="op">=</span> data.diff().dropna()</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># Log transformation</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a> data <span class="op">=</span> np.log(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Repeat step 2 and check, also use ACF and PACF to find the AR and MA orders</li>
+</ul></li>
+<li><p><strong>ARIMA Model</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.arima.model <span class="im">import</span> ARIMA</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ARIMA(train, order<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>), seasonal_order<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">12</span>)).fit()</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>model.summary()</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>model.plot_diagnostics()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Can also use <code>auto_arima</code> from <code>pmdarima</code> for hyperparameter tuning</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pmdarima <span class="im">as</span> pm</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>autoarima <span class="op">=</span> pm.auto_arima(data.col,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                          start_p<span class="op">=</span><span class="dv">0</span>, star_d<span class="op">=</span><span class="dv">1</span>, start_q<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                          max_p<span class="op">=</span><span class="dv">5</span>, max_d<span class="op">=</span><span class="dv">3</span>, max_q<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                          seasonal<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>autoarima.summary()</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>autoarima.plot_diagnostics()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Forecast</strong></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>forecast <span class="op">=</span> model.forecast(steps<span class="op">=</span><span class="bu">len</span>(valid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Can also use <code>predict</code> for in-sample prediction</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> model.predict(start<span class="op">=</span><span class="bu">len</span>(train), end<span class="op">=</span><span class="bu">len</span>(train)<span class="op">+</span><span class="bu">len</span>(valid)<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>ax.plot(valid, label<span class="op">=</span><span class="st">'Valid'</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>ax.plot(pred, label<span class="op">=</span><span class="st">'Prediction'</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>ax.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="time-series-forecasting-in-ml" class="level2">
+<h2 class="anchored" data-anchor-id="time-series-forecasting-in-ml">Time Series Forecasting in ML</h2>
+<section id="key-differences-vs.-traditional-ml" class="level3">
+<h3 class="anchored" data-anchor-id="key-differences-vs.-traditional-ml">Key Differences vs.&nbsp;Traditional ML</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Traditional ML</th>
+<th>Time Series ML</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data is IID</td>
+<td>Data is ordered</td>
+</tr>
+<tr class="even">
+<td>CV is random</td>
+<td>Use sliding window CV</td>
+</tr>
+<tr class="odd">
+<td>Use feature engineering</td>
+<td>Use lags, rolling windows, etc.</td>
+</tr>
+<tr class="even">
+<td>Predict new data</td>
+<td>Predict future (specify horizon)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sktime-library" class="level3">
+<h3 class="anchored" data-anchor-id="sktime-library"><code>sktime</code> Library</h3>
+<section id="load-data" class="level4">
+<h4 class="anchored" data-anchor-id="load-data">1. Load Data</h4>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># turns first col into index + parses dates</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>, parse_dates<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="feature-engineering" class="level4">
+<h4 class="anchored" data-anchor-id="feature-engineering">2. Feature Engineering</h4>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sktime.transformations.series.lag <span class="im">import</span> Lag</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a new column with lag</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'col-1'</span>] <span class="op">=</span> df[<span class="st">'col'</span>].shift(<span class="dv">1</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># or use sktime</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> Lag(lags<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], index_out<span class="op">=</span><span class="st">"original"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>pd.concat([df, t.fit_transform(df)], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="train-test-split" class="level4">
+<h4 class="anchored" data-anchor-id="train-test-split">3. Train-Test Split</h4>
+<ul>
+<li>Never use random shuffling</li>
+<li>Need to keep temporal order</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sktime.split <span class="im">import</span> temporal_train_test_split</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>y_train, y_test <span class="op">=</span> temporal_train_test_split(y, test_size<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co"># or use sklearn</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>df_train, df_test <span class="op">=</span> train_test_split(df.dropna(), test_size<span class="op">=</span><span class="fl">0.2</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="cross-validation-for-time-series" class="level5">
+<h5 class="anchored" data-anchor-id="cross-validation-for-time-series">Cross-Validation for Time Series</h5>
+<ol type="1">
+<li><strong>Expanding Window</strong>: start with small training set and increase it <img src="images/4_expanding.png" width="300"></li>
+<li><strong>Fixed/sliding Window</strong>: use a fixed window size <img src="images/4_sliding.png" width="300"></li>
+</ol>
+</section>
+</section>
+<section id="model-fitting" class="level4">
+<h4 class="anchored" data-anchor-id="model-fitting">4. Model Fitting</h4>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sktime.forecasting.model_evaluation <span class="im">import</span> evaluate</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sktime.forecasting.naive <span class="im">import</span> NaiveForecaster</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sktime.forecasting.arima <span class="im">import</span> AutoARIMA</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>forecaster <span class="op">=</span> NaiveForecaster(strategy<span class="op">=</span><span class="st">"last"</span>, sp<span class="op">=</span><span class="dv">12</span>) <span class="co"># seasonal naive</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># forecaster = AutoARIMA(sp=12)</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> evaluate(forecaster<span class="op">=</span>forecaster, y<span class="op">=</span>y_train, cv<span class="op">=</span>cv, strategy<span class="op">=</span><span class="st">"refit"</span>, return_data<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="forecasting-1" class="level3">
+<h3 class="anchored" data-anchor-id="forecasting-1">Forecasting</h3>
+<ol type="1">
+<li><strong>One-step forecasting</strong>: one step ahead</li>
+<li><strong>Multi-step forecasting</strong>: multiple steps ahead
+<ol type="a">
+<li><strong>Recursive strategy</strong>: predict <code>t</code>, then it becomes part of the input for <code>t+1</code></li>
+<li><strong>Direct strategy</strong>: have a model for each step (model for <code>t+1</code>, another for <code>t+2</code>, etc)</li>
+<li><strong>Hybrid strategy</strong>: is dumb and bad</li>
+<li><strong>Multi-output strategy</strong>: 2 different series (e.g.&nbsp;temperature and humidity)</li>
+</ol></li>
+</ol>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsRegressor</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sktime.forecasting.compose <span class="im">import</span> make_reduction</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>regressor <span class="op">=</span> KNeighborsRegressor()</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>forecaster <span class="op">=</span> make_reduction(regressor,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>   window_length<span class="op">=</span><span class="dv">12</span>,</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>   strategy<span class="op">=</span><span class="st">"recursive"</span>) <span class="co"># or "direct" or "dirrec" or "multioutput"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="feature-preprocessing-and-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="feature-preprocessing-and-engineering">Feature Preprocessing and Engineering</h3>
+<section id="preprocessing" class="level4">
+<h4 class="anchored" data-anchor-id="preprocessing">Preprocessing</h4>
+<ol type="1">
+<li>Coerce to stationary (via diff or transforms)</li>
+<li>Smoothing (e.g.&nbsp;moving average)</li>
+<li>Impute missing value (e.g.&nbsp;linear interpolation)</li>
+<li>Removing outliers</li>
+</ol>
+</section>
+<section id="feature-engineering-1" class="level4">
+<h4 class="anchored" data-anchor-id="feature-engineering-1">Feature Engineering</h4>
+<ol type="1">
+<li>Lagging features/ responses</li>
+<li>Adding time stamps (e.g.&nbsp;day of week, month, etc) 3, Rolling Statistics (e.g.&nbsp;rolling mean, rolling std)</li>
+</ol>
+</section>
+</section>
+<section id="multivariate-time-series" class="level3">
+<h3 class="anchored" data-anchor-id="multivariate-time-series">Multivariate Time Series</h3>
+<ul>
+<li>Means time series with multiple variables (e.g.&nbsp;temperature and humidity)</li>
+</ul>
+</section>
+</section>
+<section id="probabilistic-forecasting" class="level2">
+<h2 class="anchored" data-anchor-id="probabilistic-forecasting">Probabilistic Forecasting</h2>
+<ul>
+<li>We have been dealing with <strong>point forecasts</strong> (modelling averages)</li>
+<li>Want to estimate the <strong>uncertainty</strong> of our forecasts
+<ul>
+<li>or the extreme (e.g.&nbsp;90% or 95% quantiles)
+<ul>
+<li>example: find upper quantile of electricity demand so that we can plan for the maximum demand</li>
+</ul></li>
+<li>or predict the variance of the forecast (how volatile a metric will be in the future)</li>
+</ul></li>
+</ul>
+<section id="analytical" class="level3">
+<h3 class="anchored" data-anchor-id="analytical">Analytical</h3>
+<ul>
+<li>Assume distribution of forecasts are normal</li>
+</ul>
+<p><span class="math display">\[
+\hat{y}_{T+h|T} \pm c \hat{\sigma}_{h}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\hat{\sigma}_{h}\)</span> is the standard deviation of the forecast</li>
+<li><span class="math inline">\(c\)</span>: coverage factor (e.g.&nbsp;1.96 for 95% confidence interval)</li>
+</ul>
+<p><span class="math display">\[
+\hat{\sigma}_{h} = \sqrt{\frac{1}{T-K}\sum_{t=1}^{T} e_{t}^{2}}
+\]</span></p>
+<ul>
+<li>Focus is finding <span class="math inline">\(\hat{\sigma}_{h}\)</span>
+<ul>
+<li><span class="math inline">\(K\)</span>: number of parameters</li>
+<li><span class="math inline">\(T\)</span>: total length of time series</li>
+<li><span class="math inline">\(e_{t} = y_{t} - \hat{y}_{t|t-1}\)</span></li>
+</ul></li>
+<li>Methods that have been derived mathematically: | Method | Forecast sd | |——–|————–| | Mean | <span class="math inline">\(\hat{\sigma}_{h} = \hat{\sigma_1} \sqrt{1 + \frac{h}{T}}\)</span> | |Naive | <span class="math inline">\(\hat{\sigma}_{h} = \hat{\sigma_1} \sqrt{h}\)</span> | | Seasonal Naive | $_{h} = $ | | Drift | <span class="math inline">\(\hat{\sigma}_{h} = \hat{\sigma_1} \sqrt{h(1+\frac{h}{T})}\)</span> |</li>
+<li><em>Recall: <span class="math inline">\(h\)</span> is the forecast horizon (steps ahead), <span class="math inline">\(m\)</span> is the seasonal period</em></li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas <span class="im">import</span> pd</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">1.96</span> <span class="co"># 95% confidence interval</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>train[<span class="st">'pred'</span>] <span class="op">=</span> train[<span class="st">'y'</span>].shift(<span class="dv">1</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>train[<span class="st">'residuals'</span>] <span class="op">=</span> train[<span class="st">'y'</span>] <span class="op">-</span> train[<span class="st">'pred'</span>]</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> train[<span class="st">'residuals'</span>].std()</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="bu">len</span>(forecast_index) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>naive_forecast <span class="op">=</span> train[<span class="st">'y'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create lower and upper bound</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>naive <span class="op">=</span> pd.DataFrame({<span class="st">"y"</span>: naive_forecast,</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"pi_lower"</span>: naive_forecast <span class="op">-</span> c <span class="op">*</span> sigma <span class="op">*</span> np.sqrt(horizon),</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"pi_upper"</span>: naive_forecast <span class="op">+</span> c <span class="op">*</span> sigma <span class="op">*</span> np.sqrt(horizon),</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Label"</span>: <span class="st">"Naive"</span>},</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>forecast_index)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>plot_prediction_intervals(train[<span class="st">"y"</span>], naive, <span class="st">"y"</span>, valid<span class="op">=</span>valid[<span class="st">"y"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ETS</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ETSModel(train[<span class="st">"y"</span>], error<span class="op">=</span><span class="st">"add"</span>, trend<span class="op">=</span><span class="st">"add"</span>, seasonal<span class="op">=</span><span class="st">"add"</span>).fit(disp<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>ets <span class="op">=</span> model.get_prediction(start<span class="op">=</span>forecast_index[<span class="dv">0</span>], end<span class="op">=</span>forecast_index[<span class="op">-</span><span class="dv">1</span>]).summary_frame()</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>plot_prediction_intervals(train[<span class="st">"y"</span>], ets, <span class="st">"mean"</span>, valid<span class="op">=</span>valid[<span class="st">"y"</span>], width<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ARIMA</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ARIMA(train[<span class="st">"y"</span>], order<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>), seasonal_order<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">12</span>)).fit()</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>arima <span class="op">=</span> model.get_prediction(start<span class="op">=</span>forecast_index[<span class="dv">0</span>], end<span class="op">=</span>forecast_index[<span class="op">-</span><span class="dv">1</span>]).summary_frame()</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>plot_prediction_intervals(train[<span class="st">"y"</span>], arima, <span class="st">"mean"</span>, valid<span class="op">=</span>valid[<span class="st">"y"</span>], width<span class="op">=</span><span class="dv">800</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/5_normal_plot.png" width="500"></p>
+</section>
+<section id="simulation-and-bootstrapping" class="level3">
+<h3 class="anchored" data-anchor-id="simulation-and-bootstrapping">Simulation and Bootstrapping</h3>
+<ul>
+<li>Assume future errors will be similar to past errors</li>
+<li>Draw from the distribution of past errors to simulate future errors</li>
+</ul>
+<p><span class="math display">\[y_{T+h} = \hat{y}_{T+h|T} + \epsilon_{T+h}\]</span></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an ETS model</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ETSModel(train[<span class="st">"y"</span>], error<span class="op">=</span><span class="st">"add"</span>, trend<span class="op">=</span><span class="st">"add"</span>).fit(disp<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate predictions</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>ets <span class="op">=</span> model.simulate(anchor<span class="op">=</span><span class="st">"end"</span>, nsimulations<span class="op">=</span><span class="bu">len</span>(forecast_index),</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>                     repetitions<span class="op">=</span>n_simulations,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>                     random_errors<span class="op">=</span><span class="st">"bootstrap"</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> train[<span class="st">"y"</span>].plot.line()</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>ets.plot.line(ax<span class="op">=</span>ax, legend<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span><span class="st">"r"</span>, alpha<span class="op">=</span><span class="fl">0.05</span>,</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>              xlabel<span class="op">=</span><span class="st">"Time"</span>, ylabel<span class="op">=</span><span class="st">"y"</span>, figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">5</span>))<span class="op">;</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co"># get quantiles</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>ets <span class="op">=</span> pd.DataFrame({<span class="st">"median"</span>: ets.median(axis<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"pi_lower"</span>: ets.quantile(<span class="dv">1</span><span class="op">-</span><span class="fl">0.975</span>, axis<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"pi_upper"</span>: ets.quantile(<span class="fl">0.975</span>, axis<span class="op">=</span><span class="dv">1</span>)},</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>                   index<span class="op">=</span>forecast_index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/5_boot.png" width="500"></p>
+</section>
+<section id="quantile-regression" class="level3">
+<h3 class="anchored" data-anchor-id="quantile-regression">Quantile Regression</h3>
+<ul>
+<li>Wish to predict particular quantile instead of mean
+<ul>
+<li>e.g <span class="math inline">\(q=0.9\)</span> so we expect 90% of the future values to be below the forecast</li>
+</ul></li>
+<li>Pinball loss/ Quantile loss: <span class="math display">\[
+\mathcal{L}=
+     \left\{
+\begin{array}{ll}
+      (1-q)(\hat{y}_{t,q}-y_t) \text{,} \;\; \text{ if } y_t &lt; \hat{y}_{t,q} \\
+      q(y_t-\hat{y}_{t,q}) \text{,} \;\;\;\;\;\;\;\;\;\; \text{ if } y_t \ge \hat{y}_{t,q} \\
+\end{array}
+\right.
+\]</span></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 49%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>High Quantile</th>
+<th>Low Quantile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Higher penalty for predicting <strong>OVER</strong></td>
+<td>Higher penalty for predicting <strong>UNDER</strong></td>
+</tr>
+</tbody>
+</table>
+<section id="quantile-regression-in-pytorch" class="level4">
+<h4 class="anchored" data-anchor-id="quantile-regression-in-pytorch">Quantile Regression in PyTorch</h4>
+<p>see <a href="https://pages.github.ubc.ca/MDS-2023-24/DSCI_574_spat-temp-mod_instructors/lectures/lecture5_uncertainty.html#quantile-regression">here</a></p>
+<p>Quantile loss is not currently a supported criterion in pytorch but it’s easy to define ourselves. We really have two options:</p>
+<ul>
+<li>Train a network for each quantile we want to predict; or</li>
+<li>Train a network to output multiple quantiles at once</li>
+</ul>
+</section>
+</section>
+<section id="evaluating-distributional-forecast-accuracy" class="level3">
+<h3 class="anchored" data-anchor-id="evaluating-distributional-forecast-accuracy">Evaluating Distributional Forecast Accuracy</h3>
+<ul>
+<li><p>There are 4 main sources of uncertainty:</p>
+<ol type="1">
+<li>Random error term</li>
+<li>Uncertainty in model parameter estimates</li>
+<li>Uncertainty in model selection</li>
+<li>Uncertainty about consistency of data generating process in the future</li>
+</ol></li>
+<li><p>Most methods only consider the first source of uncertainty</p></li>
+<li><p>Simulation tries to consider 2 and 3</p></li>
+<li><p>4 is practically impossible to consider</p></li>
+</ul>
+</section>
+</section>
+<section id="anomaly-detection" class="level2">
+<h2 class="anchored" data-anchor-id="anomaly-detection">Anomaly Detection</h2>
+<ul>
+<li>Outliers are observations that are significantly different from the rest of the data
+<ul>
+<li>Can be due to measurement error, data entry error, or just unique observations</li>
+</ul></li>
+</ul>
+<section id="rolling-median" class="level3">
+<h3 class="anchored" data-anchor-id="rolling-median">Rolling Median</h3>
+<ul>
+<li><strong>Methodology</strong>:
+<ol type="1">
+<li>Subtract the rolling median from data (with suitable window size)</li>
+<li>Calculate standard deviation of the residuals (<span class="math inline">\(\hat{\sigma_r}\)</span>)</li>
+<li>Assume normally distributed residuals then identify outliers as outside the 95% confidence interval (<span class="math inline">\(\pm 1.96 \hat{\sigma_r}\)</span>)</li>
+</ol></li>
+</ul>
+</section>
+<section id="stl-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="stl-decomposition">STL Decomposition</h3>
+<ul>
+<li><strong>Methodology</strong>:
+<ol type="1">
+<li>Decompose time series to find residuals:
+<ul>
+<li>Non-seasonal data: use LOESS</li>
+<li>Seasonal data: use STL (Seasonal-Trend decomposition using LOESS)</li>
+</ul></li>
+<li>Calculate <span class="math inline">\(q_{0.1}\)</span> and <span class="math inline">\(q_{0.9}\)</span> of the residuals</li>
+<li>Identify outliers as <span class="math inline">\(\pm2 \times (q_{0.9} - q_{0.1})\)</span></li>
+</ol></li>
+</ul>
+</section>
+<section id="model-based" class="level3">
+<h3 class="anchored" data-anchor-id="model-based">Model-based</h3>
+<ul>
+<li><strong>Methodology</strong>:
+<ol type="1">
+<li>Fit a model to the data</li>
+<li>Identify outliers as significant deviations from model predictions (e.g.&nbsp;95% confidence interval)</li>
+</ol></li>
+</ul>
+</section>
+<section id="ml-approaches" class="level3">
+<h3 class="anchored" data-anchor-id="ml-approaches">ML approaches</h3>
+<ul>
+<li>Train an ML model to predict outliers</li>
+<li>A few common packages: pyod, sklearn, luminaire, sklyline, etc.</li>
+</ul>
+<section id="isolation-forest" class="level4">
+<h4 class="anchored" data-anchor-id="isolation-forest">Isolation Forest</h4>
+<ul>
+<li>Built on basis of decision trees</li>
+<li><strong>High-level idea</strong>:
+<ul>
+<li>randomly select a feature</li>
+<li>randomly splits that feature into 2 values</li>
+<li>repeat until all data points are isolated</li>
+</ul></li>
+<li>Less splits to isolate a data point = more likely to be an outlier</li>
+<li>Score = [0, 1] where 1 is an outlier, &gt; 0.5 are normal observations.</li>
+</ul>
+<p><img src="images/5_isoforest.png" width="500"></p>
+<ul>
+<li>Example of sklearn’s <code>IsolationForest</code>:</li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>outliers <span class="op">=</span> IsolationForest(contamination<span class="op">=</span><span class="fl">0.05</span>).fit_predict(df) <span class="op">==</span> <span class="op">-</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="k-nn" class="level4">
+<h4 class="anchored" data-anchor-id="k-nn">K-NN</h4>
+<ul>
+<li>For each data point, calculate the distance to its k-th nearest neighbor
+<ul>
+<li>Large distance = outlier</li>
+</ul></li>
+<li>Supports 3 kNN detectors:
+<ol type="1">
+<li>Largest: distance to the k-th neighbor</li>
+<li>Mean: average distance to k neighbors</li>
+<li>Median: median distance to k neighbors</li>
+</ol></li>
+<li>pyod’s <code>KNN()</code> outlier detection</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyod.models.knn <span class="im">import</span> KNN</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>outliers <span class="op">=</span> KNN(contamination<span class="op">=</span><span class="fl">0.05</span>).fit_predict(df).labels_ <span class="op">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="global-vs-local-outliers" class="level3">
+<h3 class="anchored" data-anchor-id="global-vs-local-outliers">Global vs Local Outliers</h3>
+<ul>
+<li><p><strong>Global outliers</strong>: A data point with its value is far outside of the entirety of the data set (e.g., billionaires)</p></li>
+<li><p><strong>Local/Contextual outliers</strong>: A data point is considered a contextual outlier if its value significantly deviates from the rest the data points in the same context. (e.g., earning 50K income in a developing countries)</p></li>
+</ul>
+</section>
+</section>
+<section id="imputation" class="level2">
+<h2 class="anchored" data-anchor-id="imputation">Imputation</h2>
+<ul>
+<li><strong>Imputation</strong>: Filling in missing values/ outliers in a dataset</li>
+<li>Overarching techniques:
+<ol type="1">
+<li>Remove (<code>.dropna()</code>)</li>
+<li>Fill manually based on some expert-interpreted values (<code>.fillna()</code>)</li>
+<li>Fill with mean/median/mode (<code>.fillna()</code>)</li>
+<li>Fill based on rolling statistic, e.g.&nbsp;rolling mean/median</li>
+<li>Polynomial interpolation</li>
+<li>Fill based on temporal dependence
+<ul>
+<li>i.e.&nbsp;use same value from the same period last season, or average of all periods in the past season</li>
+</ul></li>
+<li>Fill with model fitted values</li>
+<li>Use <code>MICE</code> (Multiple Imputation by Chained Equations) from <code>statsmodels</code> or <code>IterativeImputer</code> from <code>sklearn</code>.</li>
+</ol></li>
+</ul>
+</section>
+<section id="deep-learning-with-time-series" class="level2">
+<h2 class="anchored" data-anchor-id="deep-learning-with-time-series">Deep Learning with Time Series</h2>
+<ul>
+<li><p>Classical time series (ARIMA, Exponential Smoothing) limitations:</p>
+<ul>
+<li>They are linear models</li>
+<li>Inputs must be specified, not learned automatically</li>
+<li>Focus on univariate time series (lack support for multivariate time series)</li>
+<li>Focus on regression (lack support for classification)</li>
+<li>Assumes complete, non-missing data</li>
+</ul></li>
+<li><p>Deep learning models can address these limitations, as NNs are:</p>
+<ul>
+<li>robust to noise</li>
+<li>can learn complex, non-linear relationships</li>
+<li>support multivariate time series</li>
+<li>feature learning (learn the inputs)</li>
+<li>temporal dependencies can be learned</li>
+</ul></li>
+</ul>
+<section id="neural-networks" class="level3">
+<h3 class="anchored" data-anchor-id="neural-networks">Neural Networks</h3>
+<ul>
+<li>NN allows us so that the features do not need to be ordered
+<ul>
+<li>e.g.&nbsp;target, lag1. lag2, lag3 is the same as lag2, lag3, target, lag1</li>
+</ul></li>
+<li>Need to take into account inherent temporal dependencies (approach above does not)</li>
+<li>Do something similar like CNN (retain spatial information) but for time series</li>
+</ul>
+</section>
+<section id="convolutional-neural-networks-cnn" class="level3">
+<h3 class="anchored" data-anchor-id="convolutional-neural-networks-cnn">Convolutional Neural Networks (CNN)</h3>
+<ul>
+<li>Can work with 3D data (channels, height, width)</li>
+<li>Can also do 2D data (features, time)</li>
+<li>Use <code>Conv1D</code> from <code>pytorch</code> to work with time series data
+<ul>
+<li>Looks at local groups of data (filter of some size)</li>
+<li>Missing memory (does not remember previous values, only looks at local groups of data)
+<ul>
+<li>can be solved with RNN</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="images/6_cnn.gif" width="600"></p>
+<p><em>Image with sequence of 20 values, filtered with 4 kernels of size 3</em></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.Conv1d</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sktime.utils.data_processing <span class="im">import</span> lag_df</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>conv_layer <span class="op">=</span> nn.Conv1d(in_channels<span class="op">=</span><span class="dv">1</span>, out_channels<span class="op">=</span><span class="dv">4</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> (pd.read_csv(<span class="st">"data/unemployed_train.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>, parse_dates<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>           .resample(<span class="st">"1M"</span>).mean()</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>           .assign(Label<span class="op">=</span><span class="st">"Train"</span>)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> (pd.read_csv(<span class="st">"data/unemployed_valid.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>, parse_dates<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>           .resample(<span class="st">"1M"</span>).mean()</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>           .assign(Label<span class="op">=</span><span class="st">"Test"</span>)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot train and test data</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>px.line(pd.concat((train, test)), y<span class="op">=</span><span class="st">"Unemployed persons"</span>, color<span class="op">=</span><span class="st">"Label"</span>, width<span class="op">=</span><span class="dv">600</span>, title<span class="op">=</span><span class="st">"Australian Unemployment"</span>)</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Make lag features</span></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>SEQUENCE_LENGTH <span class="op">=</span> <span class="dv">24</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>BATCH_SIZE <span class="op">=</span> <span class="dv">16</span></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>cnn_data <span class="op">=</span> lag_df(train, lags<span class="op">=</span>SEQUENCE_LENGTH, dropna<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>cnn_data <span class="op">=</span> cnn_data[cnn_data.columns[::<span class="op">-</span><span class="dv">1</span>]]  <span class="co"># Reverse columns to have lag0 at the end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Then make CNN with optimizer <code>Adam</code> and loss function <code>MSE</code></li>
+</ul>
+</section>
+<section id="recurrent-neural-networks-rnn" class="level3">
+<h3 class="anchored" data-anchor-id="recurrent-neural-networks-rnn">Recurrent Neural Networks (RNN)</h3>
+<ul>
+<li><p>Reasonable results with CNN because preserve structure of data</p></li>
+<li><p><strong>Structure</strong>: - Split up and process one time-step at a time</p>
+<p><img src="images/6_classic_nn.png" width="300"> <img src="images/6_rnn_diag.png" width="350"></p></li>
+<li><p>Great video on <a href="https://www.youtube.com/watch?v=LHXXI4-IEns&amp;t=585s">RNNs</a></p></li>
+<li><p>Draw back: <strong>Vanishing Gradient Problem</strong></p>
+<ul>
+<li>Gradient becomes so small that it does not update the weights</li>
+<li>Early time steps are not updated (long-term dependencies are not learned), they “forget”</li>
+<li>Can be solved with LSTM and GRU</li>
+</ul></li>
+</ul>
+</section>
+<section id="long-short-term-memory-lstm" class="level3">
+<h3 class="anchored" data-anchor-id="long-short-term-memory-lstm">Long Short-Term Memory (LSTM)</h3>
+<p><img src="images/6_lstm.png" width="400"></p>
+<ul>
+<li><p>Another great video on <a href="https://www.youtube.com/watch?v=8HyCNIVRbSU">LSTM</a></p></li>
+<li><p>All the yellow boxes (LSTM cells) are identical (same weights and architecture)</p></li>
+<li><p><strong>Components</strong>:</p>
+<ul>
+<li><strong>Cell State</strong>: The horizontal line running through the top of the diagram
+<ul>
+<li>It runs straight down the entire chain, with only some minor linear interactions</li>
+</ul></li>
+<li><strong>Forget Gate</strong>: Decides what information to throw away from the cell state</li>
+<li><strong>Input Gate</strong>: Decides what new information to store in the cell state</li>
+<li><strong>Output Gate</strong>: Decides what to output based on the cell state</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch <span class="im">import</span> nn</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LSTM(nn.Module):</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, input_size, output_size, hidden_dim):</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hidden_dim <span class="op">=</span> hidden_dim</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lstm <span class="op">=</span> nn.LSTM(input_size, hidden_dim, batch_first<span class="op">=</span><span class="va">True</span>, num_layers<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc <span class="op">=</span> nn.Linear(hidden_dim, output_size)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, hidden):</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># x :           (batch_size, seq_length, input_size)</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># hidden :      (short_mem, long_mem), each (n_layers, batch_size, hidden_dim)</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># output :  (batch_size, seq_length, input_size)</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># note that the output will have the same shape as the input because</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># it makes a forecast for each time step in the sequence</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># but we only care about the last prediction (the forecast after the sequence)</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># so I'll only take the last value of the output</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>        prediction, (short_mem, long_mem) <span class="op">=</span> <span class="va">self</span>.lstm(x, hidden)</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> <span class="va">self</span>.fc(prediction)</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output[:, <span class="op">-</span><span class="dv">1</span>, :], short_mem, long_mem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>GRU is similar to LSTM, but has less parameters and is faster to train</li>
+</ul>
+</section>
+<section id="useful-time-series-packages" class="level3">
+<h3 class="anchored" data-anchor-id="useful-time-series-packages">Useful Time Series Packages</h3>
+<section id="prophet-facebook" class="level4">
+<h4 class="anchored" data-anchor-id="prophet-facebook">Prophet (Facebook)</h4>
+<ul>
+<li>Frankenstein of classical time series models (decomposition, regression, exponential smoothing, etc)</li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prophet <span class="im">import</span> Prophet</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'example_data.csv'</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'ds'</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">'ds'</span>])</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Prophet model</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Prophet(interval_width<span class="op">=</span><span class="fl">0.95</span>, yearly_seasonality<span class="op">=</span><span class="va">True</span>, weekly_seasonality<span class="op">=</span><span class="va">True</span>, daily_seasonality<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>model.fit(data)</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Make future predictions</span></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>test_dates <span class="op">=</span> model.make_future_dataframe(periods<span class="op">=</span><span class="bu">len</span>(test), freq<span class="op">=</span><span class="st">'M'</span>, include_history<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>forecast <span class="op">=</span> model.predict(test_dates)</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the forecast</span></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> model.plot(forecast)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="other-ml-based-time-series-packages" class="level4">
+<h4 class="anchored" data-anchor-id="other-ml-based-time-series-packages">Other ML based time series packages</h4>
+<ul>
+<li>GluonTS: alternative to pytorch.</li>
+<li>PyTorch Forecasting: built on top of pytorch, but with more focus on time series forecasting.</li>
+<li>sktime: scikit-learn for time series data.</li>
+<li>Tidyverts: R package for time series forecasting.</li>
+</ul>
+</section>
+</section>
+<section id="additional-topics" class="level3">
+<h3 class="anchored" data-anchor-id="additional-topics">Additional Topics</h3>
+<ul>
+<li><strong>Heirarchical Time Series</strong>: Forecasting at different levels of aggregation (e.g.&nbsp;product sales at store level, then at regional level, then at national level)
+<ul>
+<li>Bottom-up: Forecast at the lowest level and aggregate up</li>
+<li>Top-down: Forecast at the highest level and disaggregate down</li>
+</ul></li>
+<li><strong>Multiple Seasonalities</strong>: e.g.&nbsp;daily and weekly seasonality
+<ul>
+<li>decompose independently</li>
+<li>decompose simultaneously (e.g.&nbsp;propher/ statsmodels)</li>
+</ul></li>
+<li><strong>Multivariate Time Series</strong>: e.g.&nbsp;sales and advertising spend
+<ul>
+<li>VAR (Vector Auto Regression)</li>
+<li>LSTM with multiple inputs</li>
+</ul></li>
+<li><strong>Explanatory variables</strong>:
+<ul>
+<li>easy to add features to ML models</li>
+<li>ARIMA can but using <code>exog</code> parameter</li>
+</ul></li>
+<li><strong>Time Series Classification</strong>:
+<ul>
+<li>Hidden Markov Models</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="spatial-data" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-data">Spatial Data</h2>
+<ul>
+<li>Data with location information</li>
+<li>Has spacial dependence</li>
+<li><strong>Main Tasks</strong>:
+<ul>
+<li>Wrangling</li>
+<li>Visualization</li>
+<li>Modelling</li>
+</ul></li>
+<li><strong>Representation</strong>:
+<ul>
+<li>Vector</li>
+<li>Raster</li>
+</ul></li>
+</ul>
+<section id="working-with-vector-data" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-vector-data">Working with Vector Data</h3>
+<ul>
+<li>Collection of discrete locations/ vertices <code>(x, y)</code> to form:
+<ul>
+<li><strong>Points</strong>: single location</li>
+<li><strong>Lines</strong>: series of points</li>
+<li><strong>Polygons</strong>: series of lines (closed shape)</li>
+</ul></li>
+<li>Stored in <code>.shp</code> (shapefile) format
+<ul>
+<li><code>.shp</code>: geometry</li>
+<li><code>.shx</code>: index (how geometry relates to one another)</li>
+<li><code>.dbf</code>: attributes (e.g.&nbsp;population, area)</li>
+</ul></li>
+</ul>
+<section id="geopandas-intro" class="level4">
+<h4 class="anchored" data-anchor-id="geopandas-intro">Geopandas Intro</h4>
+<ul>
+<li>To read and write vector data</li>
+<li>Built off of <code>pandas</code> and <code>shapely</code></li>
+<li>Similar to <code>pandas</code> it has:
+<ul>
+<li><code>GeoSeries</code>: series of geometries</li>
+<li><code>GeoDataFrame</code>: dataframe with geometry column
+<ul>
+<li>Geometry column contains vector data</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="images/7_geodf.png" width="300"></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.read_file(“path<span class="op">/</span>to<span class="op">/</span>shp_dir”)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>gdf.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="making-data-with-geopandas" class="level4">
+<h4 class="anchored" data-anchor-id="making-data-with-geopandas">Making data with Geopandas</h4>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> [<span class="fl">49.2827</span>, <span class="fl">49.2827</span>, <span class="fl">49.2827</span>, <span class="fl">49.2827</span>]</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>lon <span class="op">=</span> [<span class="op">-</span><span class="fl">123.1207</span>, <span class="op">-</span><span class="fl">123.1207</span>, <span class="op">-</span><span class="fl">123.1207</span>, <span class="op">-</span><span class="fl">123.1207</span>]</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.GeoDataFrame(geometry<span class="op">=</span>gpd.points_from_xy(lon, lat))</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>gdf.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="loading-from-openstreetmap" class="level4">
+<h4 class="anchored" data-anchor-id="loading-from-openstreetmap">Loading from OpenStreetMap</h4>
+<ul>
+<li>It is like the wikipedia of geospacial data</li>
+<li>Use <code>osmnx</code> to get data from OpenStreetMap</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>vancouver <span class="op">=</span> ox.geocode_to_gdf(<span class="st">"Vancouver, Canada"</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>vancouver.plot(edgecolor<span class="op">=</span><span class="st">"0.2"</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Vancouver"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/7_van_low_res.png" width="300"></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get higher resolution</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>van_bc <span class="op">=</span> gpd.clip(bc, vancouver)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>van_bc.plot(edgecolor<span class="op">=</span><span class="st">"0.2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/7_van_hi_res.png" width="300"></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot stanley park in vancouver</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>stanley_park <span class="op">=</span> ox.geocode_to_gdf(<span class="st">"Stanley Park, Vancouver"</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> van_bc.plot(edgecolor<span class="op">=</span><span class="st">"0.2"</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>stanley_park.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span><span class="st">"0.2"</span>, color<span class="op">=</span><span class="st">"tomato"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/7_stanley.png" width="300"></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graph bike network in vancouver</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>bike_network <span class="op">=</span> ox.graph_from_place(<span class="st">"Stanley Park, Vancouver"</span>,</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    network_type<span class="op">=</span><span class="st">"bike"</span>)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> stanley_park.plot(edgecolor<span class="op">=</span><span class="st">"0.2"</span>)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>bike_network.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span><span class="st">"0.2"</span>, color<span class="op">=</span><span class="st">"tomato"</span>)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co"># can be interactive</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>bike_network.explore()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/7_van_bike.png" width="300"></p>
+</section>
+<section id="wrangling-with-geopandas" class="level4">
+<h4 class="anchored" data-anchor-id="wrangling-with-geopandas">Wrangling with Geopandas</h4>
+<ul>
+<li><strong>Add width to line</strong>: <code>gdf.buffer(2)</code> to add a 2m to left and right of the line (4m total)</li>
+<li><strong>Get Length of line</strong>: <code>gdf.length.sum()</code> to get the length of the line
+<ul>
+<li>Need to convert to linear meters first</li>
+</ul></li>
+<li><strong>Get Area of polygon</strong>: <code>gdf.area.sum()</code> to get the area of the polygon
+<ul>
+<li>Need to convert to linear meters first</li>
+</ul></li>
+<li><strong>Joining</strong>: <code>gpd.sjoin(gdf1, gdf2, how=‘left’, predicate=‘intersects’)</code>
+<ul>
+<li><code>how</code>: left, right, inner, outer</li>
+<li><code>predicate</code>: intersects, contains, within, touches, crosses, overlaps</li>
+</ul></li>
+<li><strong>Grouping</strong>: <code>gdf.groupby(by=‘column’).sum().sort_values("length", ascending=False)</code></li>
+</ul>
+</section>
+</section>
+<section id="working-with-raster-data" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-raster-data">Working with Raster Data</h3>
+<p><img src="images/7_raster.png" width="400"></p>
+<ul>
+<li>Each pixel has 4 bands: Red, Green, Blue, and Infrared</li>
+<li><strong>Resolution</strong>: size of each pixel (e.g.&nbsp;1m x 1m)
+<ul>
+<li>smaller resolution = more detailed</li>
+</ul></li>
+<li>Most common format: GeoTIFF (<code>.tif</code>)</li>
+<li>Use Python library <code>rasterio</code> to read and write raster data</li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rasterio</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> rasterio.<span class="bu">open</span>(“path<span class="op">/</span>to<span class="op">/</span>raster.tif”)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="coordinate-reference-systems-crs" class="level3">
+<h3 class="anchored" data-anchor-id="coordinate-reference-systems-crs">Coordinate Reference Systems (CRS)</h3>
+<ul>
+<li>Typically identified by EPSG (European Petroleum Survey Group) code</li>
+<li><strong>Common CRS</strong>:
+<ul>
+<li><strong>Angular units</strong> (latitude and longitude): <code>EPSG:4326</code></li>
+<li><strong>Linear units</strong> (meters): Most common is UTM which is divided into zones. For British Columbia, it’s <code>EPSG:32610</code></li>
+<li><strong>Minimize distortion</strong> by choosing the right CRS, for Canada, it’s <code>EPSG:3347</code> (“Lambert projection”)</li>
+</ul></li>
+<li><strong>Change code in geopandas:</strong><code>gdf.to_crs(“EPSG:3347”)</code></li>
+</ul>
+<p><img src="images/7_distortion_map.gif" width="500"></p>
+</section>
+</section>
+<section id="spatial-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-visualization">Spatial Visualization</h2>
+<section id="geopandas-plotting" class="level3">
+<h3 class="anchored" data-anchor-id="geopandas-plotting">Geopandas Plotting</h3>
+<ul>
+<li>Easy to use and quick</li>
+</ul>
+<ol type="1">
+<li>Get data of UBC buildings from <code>osmnx</code></li>
+</ol>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>ubc <span class="op">=</span> (ox.features.features_from_place(<span class="st">"University of British Columbia, Canada"</span>,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>                                tags<span class="op">=</span>{<span class="st">'building'</span>:<span class="va">True</span>}) <span class="co"># Just keep building footprints</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>         .loc[:, [<span class="st">"geometry"</span>]]                 <span class="co"># just keep the geometry column for now</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>         .query(<span class="st">"geometry.type == 'Polygon'"</span>)  <span class="co"># only what polygons (buidling footprints)</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>         .assign(Label<span class="op">=</span><span class="st">"Building Footprints"</span>)  <span class="co"># assign a label for later use</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>         .reset_index(drop<span class="op">=</span><span class="va">True</span>)               <span class="co"># reset to 0 integer indexing</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Get the building footprint of a specific building from its coordinates</li>
+</ol>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>point_coord <span class="op">=</span> Point(<span class="op">-</span><span class="fl">123.25203756532703</span>,<span class="fl">49.26314716306668</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>ubc[ubc.contains(point_office)] <span class="co"># get the building that contains the point</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>ubc.loc[<span class="dv">47</span>, <span class="st">"Label"</span>] <span class="op">=</span> <span class="st">"Earth Science Building"</span> <span class="co"># change the label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Plot the GeoDataFrame</li>
+</ol>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> ubc.plot(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), column<span class="op">=</span><span class="st">"Label"</span>, legend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>edgecolor<span class="op">=</span><span class="st">"0.2"</span>, markersize<span class="op">=</span><span class="dv">200</span>, cmap<span class="op">=</span><span class="st">"rainbow"</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"UBC"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Add map to the background</li>
+</ol>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextily <span class="im">as</span> cx</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> (ubc.to_crs(<span class="st">"EPSG:3857"</span>)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>         .plot(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>), column<span class="op">=</span><span class="st">"Label"</span>, legend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>               edgecolor<span class="op">=</span><span class="st">"0.2"</span>, markersize<span class="op">=</span><span class="dv">200</span>, cmap<span class="op">=</span><span class="st">"rainbow"</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>cx.add_basemap(ax, source<span class="op">=</span>cx.providers.OpenStreetMap.Mapnik)  <span class="co"># I'm using OSM as the source. See all provides with ctx.providers</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"off"</span>)</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"UBC"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/8_gpd_plt.png" width="400"></p>
+</section>
+<section id="plotly-express" class="level3">
+<h3 class="anchored" data-anchor-id="plotly-express">Plotly Express</h3>
+<ul>
+<li>To add interactivity to the map</li>
+<li>Backed by MapBox (mapping and location data cloud platform)</li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Does the same thing as the previous cell, but with plotly express (interactive)</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.choropleth_mapbox(ubc,</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>                            geojson<span class="op">=</span>ubc.geometry,</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>                            locations<span class="op">=</span>ubc.index,</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>                            color<span class="op">=</span><span class="st">"Label"</span>,</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>                            center<span class="op">=</span>{<span class="st">"lat"</span>: <span class="fl">49.261</span>, <span class="st">"lon"</span>: <span class="op">-</span><span class="fl">123.246</span>},</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>                            zoom<span class="op">=</span><span class="fl">12.5</span>,</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>                            mapbox_style<span class="op">=</span><span class="st">"open-street-map"</span>)</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>fig.update_layout(margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">0</span>, r<span class="op">=</span><span class="dv">0</span>, t<span class="op">=</span><span class="dv">30</span>, b<span class="op">=</span><span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Can also plot the buildings with different colours based on building area</li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate area</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>ubc[<span class="st">"Area"</span>] <span class="op">=</span> ubc.to_crs(epsg<span class="op">=</span><span class="dv">3347</span>).area  <span class="co"># (https://epsg.io/3347)</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make plot</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.choropleth_mapbox(ubc,</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>                            geojson<span class="op">=</span>ubc.geometry,</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>                            locations<span class="op">=</span>ubc.index,</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>                            color<span class="op">=</span><span class="st">"Area"</span>,</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>                            center<span class="op">=</span>{<span class="st">"lat"</span>: <span class="fl">49.261</span>, <span class="st">"lon"</span>: <span class="op">-</span><span class="fl">123.246</span>},</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>                            zoom<span class="op">=</span><span class="fl">12.5</span>,</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>                            mapbox_style<span class="op">=</span><span class="st">"carto-positron"</span>)</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>fig.update_layout(margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">0</span>, r<span class="op">=</span><span class="dv">0</span>, t<span class="op">=</span><span class="dv">30</span>, b<span class="op">=</span><span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/8_plotly_c.png" width="500"></p>
+</section>
+<section id="kepler.gl" class="level3">
+<h3 class="anchored" data-anchor-id="kepler.gl">Kepler.gl</h3>
+<ul>
+<li>Web-based geospatial analysis tool</li>
+<li>Even more powerful than Plotly Express</li>
+<li>How it works:
+<ol type="1">
+<li>Create instance of map with <code>keplergl.KeplerGl()</code></li>
+<li>Add as much data with <code>.add_data()</code> method</li>
+<li>Customize and configure the map using GUI</li>
+</ol></li>
+</ul>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keplergl <span class="im">import</span> KeplerGl</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>ubc_map <span class="op">=</span> keplergl.KeplerGl(height<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>ubc_map.add_data(data<span class="op">=</span>ubc.copy(), name<span class="op">=</span><span class="st">"Building heights"</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>ubc_map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Can also make a 3d map with building heights
+<ul>
+<li>Load the building heights data</li>
+<li>Join the data with the building footprints</li>
+<li>Plot the 3d map + addjust the GUI settings</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="spatial-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-modeling">Spatial Modeling</h2>
+<p><img src="images/8_s_inter_tab.png" width="500"></p>
+<p>Source: https://www.neonscience.org/resources/learning-hub/tutorials/spatial-interpolation-basics</p>
+<ul>
+<li>Two common ways to model spatial data:
+<ol type="1">
+<li><strong>Spatial interpolation</strong>: use a set of observations in space to estimate the value of a spatial field</li>
+<li><strong>Areal interpolation</strong>: project data from one set of polygons to another set of polygons</li>
+</ol></li>
+<li>“everything is related to everything else, but near things are more related than distant things” (Tobler, 1970)</li>
+</ul>
+<section id="deterministic-interpolation" class="level3">
+<h3 class="anchored" data-anchor-id="deterministic-interpolation">Deterministic Interpolation</h3>
+<ul>
+<li><p>Use <code>scipy</code> module <code>interpolate</code> to do deterministic interpolation</p></li>
+<li><p>Common Techniques:</p>
+<ol type="1">
+<li><strong>Inverse Distance Weighting (IDW)</strong>: estimate the value of a point based on the values of its neighbours (farther neighbours have less weight)</li>
+</ol>
+<p><span class="math display">\[\hat{z}(x) = \frac{\sum_{i=1}^{n} w_i(x)z_i}{\sum_{i=1}^{n} w_i(x)}\]</span></p>
+<p>where <span class="math inline">\(w_i(x) = \frac{1}{d_i(x)^p}\)</span>, <span class="math inline">\(d_i(x)\)</span> is the distance between <span class="math inline">\(x\)</span> and <span class="math inline">\(i\)</span>, and <span class="math inline">\(p\)</span> is the power parameter</p>
+<ol start="2" type="1">
+<li><strong>Nearest Neighbour</strong>: estimate the value of a point based on the value of the nearest point (does not consider weights)</li>
+</ol>
+<ul>
+<li>Less smooth than IDW (more jagged)</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Polynomial Interpolation</strong>: estimate the value of a point based on the values of its neighbours using a polynomial function</li>
+<li><strong>Radial Basis Function</strong>: estimate the value of a point based on the values of its neighbours using a radial basis function</li>
+</ol></li>
+</ul>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> NearestNDInterpolator</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the geodataframe</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>gpm25 <span class="op">=</span> (gpd.GeoDataFrame(</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>            pm25,</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>            crs<span class="op">=</span><span class="st">"EPSG:4326"</span>, <span class="co"># angular CRS</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>            geometry<span class="op">=</span>gpd.points_from_xy(pm25[<span class="st">"Lon"</span>], pm25[<span class="st">"Lat"</span>])) <span class="co"># create geometry from coordinates</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>        .to_crs(<span class="st">"EPSG:3347"</span>) <span class="co"># convert to one for Canada</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates points to interpolate</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>gpm25[<span class="st">"Easting"</span>], gpm25[<span class="st">"Northing"</span>] <span class="op">=</span> gpm25.geometry.x, gpm25.geometry.y</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a grid</span></span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> <span class="dv">25000</span>  <span class="co"># cell size in meters, smaller cell size = smaller pixel = higher resolution</span></span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>gridx <span class="op">=</span> np.arange(gpm25.bounds.minx.<span class="bu">min</span>(), gpm25.bounds.maxx.<span class="bu">max</span>(), resolution)</span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>gridy <span class="op">=</span> np.arange(gpm25.bounds.miny.<span class="bu">min</span>(), gpm25.bounds.maxy.<span class="bu">max</span>(), resolution)</span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpolate</span></span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>interpolator <span class="op">=</span> NearestNDInterpolator(gpm25[[<span class="st">"Easting"</span>, <span class="st">"Northing"</span>]], gpm25[<span class="st">"PM25"</span>])</span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> model(<span class="op">*</span>np.meshgrid(gridx, gridy))</span>
+<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>plt.imshow(z)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Plot it back to map:</li>
+</ul>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function:</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pixel2poly(x, y, z, resolution):</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co">    x: x coords of cell</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co">    y: y coords of cell</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co">    z: matrix of values for each (x,y)</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co">    resolution: spatial resolution of each cell</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>    polygons <span class="op">=</span> []</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>    values <span class="op">=</span> []</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>    half_res <span class="op">=</span> resolution <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, j  <span class="kw">in</span> itertools.product(<span class="bu">range</span>(<span class="bu">len</span>(x)), <span class="bu">range</span>(<span class="bu">len</span>(y))):</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>        minx, maxx <span class="op">=</span> x[i] <span class="op">-</span> half_res, x[i] <span class="op">+</span> half_res</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>        miny, maxy <span class="op">=</span> y[j] <span class="op">-</span> half_res, y[j] <span class="op">+</span> half_res</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>        polygons.append(Polygon([(minx, miny), (minx, maxy), (maxx, maxy), (maxx, miny)]))</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">isinstance</span>(z, (<span class="bu">int</span>, <span class="bu">float</span>)):</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>            values.append(z)</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>            values.append(z[j, i])</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> polygons, values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>polygons, values <span class="op">=</span> pixel2poly(gridx, gridy, z, resolution)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>pm25_model <span class="op">=</span> (gpd.GeoDataFrame({<span class="st">"PM_25_modelled"</span>: values}, geometry<span class="op">=</span>polygons, crs<span class="op">=</span><span class="st">"EPSG:3347"</span>)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>                 .to_crs(<span class="st">"EPSG:4326"</span>)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>             )</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.choropleth_mapbox(pm25_model, geojson<span class="op">=</span>pm25_model.geometry, locations<span class="op">=</span>pm25_model.index,</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>                           color<span class="op">=</span><span class="st">"PM_25_modelled"</span>, color_continuous_scale<span class="op">=</span><span class="st">"RdYlGn_r"</span>, opacity<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>                           center<span class="op">=</span>{<span class="st">"lat"</span>: <span class="fl">52.261</span>, <span class="st">"lon"</span>: <span class="op">-</span><span class="fl">123.246</span>}, zoom<span class="op">=</span><span class="fl">3.5</span>,</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>                           mapbox_style<span class="op">=</span><span class="st">"carto-positron"</span>)</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>fig.update_layout(margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">0</span>, r<span class="op">=</span><span class="dv">0</span>, t<span class="op">=</span><span class="dv">30</span>, b<span class="op">=</span><span class="dv">10</span>))</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>fig.update_traces(marker_line_width<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="probabilistic-interpolation" class="level3">
+<h3 class="anchored" data-anchor-id="probabilistic-interpolation">Probabilistic Interpolation</h3>
+<ul>
+<li><strong>Kriging</strong> differs from deterministic because we interpolate using statistical models that include estimates of spatial autocorrelation</li>
+</ul>
+<p><span class="math display">\[\hat{Z}(s_0) = \sum_{i=1}^{n} \lambda_i Z(s_i)\]</span></p>
+<ul>
+<li><span class="math inline">\(\lambda_i\)</span> are the weights</li>
+<li><span class="math inline">\(Z(s_i)\)</span> are observations at locations <span class="math inline">\(s_i\)</span></li>
+<li><span class="math inline">\(N\)</span> is the size of <span class="math inline">\(s\)</span> (number of observations) <br></li>
+<li>Kriging uses spatial autocorrelation to estimate the weights
+<ul>
+<li>Looking at the variance between points to estimate the weights</li>
+</ul></li>
+</ul>
+<section id="variogram" class="level4">
+<h4 class="anchored" data-anchor-id="variogram">Variogram</h4>
+<ul>
+<li>Defines the spatial variance/ autocorrelation between points (as a function of distance)
+<ul>
+<li>Similar to ACF but for spatial data</li>
+</ul></li>
+<li>Used to estimate the weights in kriging</li>
+<li>e.g.&nbsp;of a function: <span class="math inline">\(\gamma(s_i, s_j) = \frac{1}{2}(Z(s_i) - Z(s_j))^2\)</span>
+<ul>
+<li>semi-variance because of a factor of 1/2</li>
+<li>Each pair is calculated twice</li>
+</ul></li>
+<li>Plot this function to get the variogram (x-axis: distance, y-axis: semivariance)</li>
+</ul>
+<p><img src="images/8_variogram.png" width="400"></p>
+<ul>
+<li><strong>Nugget</strong>: variance at distance 0
+<ul>
+<li>Ideally should be 0 (no variance at distance 0), higher nugget = more noise</li>
+<li>Can be thought of as Random error/ measurement error</li>
+</ul></li>
+<li><strong>Sill</strong>: maximum variance of spatial process
+<ul>
+<li>represents the amount of spatial autocorrelation that exists at large enough distances to capture the underlying trend of the process</li>
+</ul></li>
+<li><strong>Range</strong>: where the semivariance reaches the sill</li>
+</ul>
+<p><img src="images/8_semivar.png" width="500"></p>
+</section>
+<section id="kriging-with-pykrige" class="level4">
+<h4 class="anchored" data-anchor-id="kriging-with-pykrige">Kriging with <code>pykrige</code></h4>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pykrige.ok <span class="im">import</span> OrdinaryKriging</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>RESOLUTION <span class="op">=</span> <span class="dv">250</span>  <span class="co"># m</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Convert to meter-based</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>van_listings_gdf <span class="op">=</span> van_listings_gdf.to_crs(<span class="st">"EPSG:3347"</span>)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Add Easting and Northing columns</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>van_listings_gdf[<span class="st">"Easting"</span>] <span class="op">=</span> van_listings_gdf.geometry.x</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>van_listings_gdf[<span class="st">"Northing"</span>] <span class="op">=</span> van_listings_gdf.geometry.y</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Create a grid of points</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>gridx <span class="op">=</span> np.arange(</span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>    van_listings_gdf.bounds.minx.<span class="bu">min</span>(), van_listings_gdf.bounds.maxx.<span class="bu">max</span>(), RESOLUTION</span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>gridy <span class="op">=</span> np.arange(</span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>    van_listings_gdf.bounds.miny.<span class="bu">min</span>(), van_listings_gdf.bounds.maxy.<span class="bu">max</span>(), RESOLUTION</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Kriging</span></span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>krig <span class="op">=</span> OrdinaryKriging(</span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>van_listings_gdf[<span class="st">"Easting"</span>],</span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>van_listings_gdf[<span class="st">"Northing"</span>],</span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>van_listings_gdf[<span class="st">"price"</span>],</span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>    variogram_model<span class="op">=</span><span class="st">"spherical"</span>,</span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>    enable_plotting<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Execute and plot</span></span>
+<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a>z, ss <span class="op">=</span> krig.execute(<span class="st">"grid"</span>, gridx, gridy)</span>
+<span id="cb58-32"><a href="#cb58-32" aria-hidden="true" tabindex="-1"></a>plt.imshow(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="areal-interpolation" class="level3">
+<h3 class="anchored" data-anchor-id="areal-interpolation">Areal Interpolation</h3>
+<ul>
+<li>Project data from one set of polygons to another set of polygons</li>
+<li>E.g. Map air pollution data fo FSA (“forward sortation area”, which are groups of postal codes) polygons</li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the FSA data</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>van_fsa <span class="op">=</span> gpd.read_file(<span class="st">"data-spatial/van-fsa"</span>)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Kriging (similar to previous cell)</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> <span class="dv">10_000</span>  <span class="co"># cell size in meters</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>gridx <span class="op">=</span> np.arange(gpm25.bounds.minx.<span class="bu">min</span>(), gpm25.bounds.maxx.<span class="bu">max</span>(), resolution)</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>gridy <span class="op">=</span> np.arange(gpm25.bounds.miny.<span class="bu">min</span>(), gpm25.bounds.maxy.<span class="bu">max</span>(), resolution)</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>krig <span class="op">=</span> OrdinaryKriging(x<span class="op">=</span>gpm25[<span class="st">"Easting"</span>], y<span class="op">=</span>gpm25[<span class="st">"Northing"</span>], z<span class="op">=</span>gpm25[<span class="st">"PM_25"</span>], variogram_model<span class="op">=</span><span class="st">"spherical"</span>)</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>z, ss <span class="op">=</span> krig.execute(<span class="st">"grid"</span>, gridx, gridy)</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>polygons, values <span class="op">=</span> pixel2poly(gridx, gridy, z, resolution)</span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>pm25_model <span class="op">=</span> (gpd.GeoDataFrame({<span class="st">"PM_25_modelled"</span>: values}, geometry<span class="op">=</span>polygons, crs<span class="op">=</span><span class="st">"EPSG:3347"</span>)</span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>                 .to_crs(<span class="st">"EPSG:4326"</span>)</span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>z, ss <span class="op">=</span> krig.execute(<span class="st">"grid"</span>, gridx, gridy)</span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Areal Interpolation</span></span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>areal_interp <span class="op">=</span> area_interpolate(pm25_model.to_crs(<span class="st">"EPSG:3347"</span>),</span>
+<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a>                                van_fsa.to_crs(<span class="st">"EPSG:3347"</span>),</span>
+<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a>                                intensive_variables<span class="op">=</span>[<span class="st">"PM_25_modelled"</span>]).to_crs(<span class="st">"EPSG:4326"</span>)</span>
+<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a>areal_interp.plot(column<span class="op">=</span><span class="st">"PM_25_modelled"</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>),</span>
+<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a>                  edgecolor<span class="op">=</span><span class="st">"0.2"</span>, cmap<span class="op">=</span><span class="st">"RdBu"</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"FSA Air Pollution"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/8_area_inter.png" width="500"></p>
+</section>
+<section id="shortest-path-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="shortest-path-analysis">Shortest Path Analysis</h3>
+<ul>
+<li>Use <strong>Dijkstra’s algorithm</strong> to find the shortest path between two points</li>
+<li>Condition:
+<ul>
+<li>The graph must be weighted with non-negative weights</li>
+</ul></li>
+<li><strong>Algorithm</strong>:
+<ol type="1">
+<li>Label start node with 0, all others with infinity</li>
+<li>Label current node as visited</li>
+<li>Go to all connected nodes (to current) and update label with <code>min(current_label, previous_label + weight)</code></li>
+</ol>
+<ul>
+<li>If updated, then keep track of the previous node (for backtracking later)</li>
+</ul>
+<ol start="4" type="1">
+<li>Once all nodes around the current node are visited, go to the unvisited node with the smallest label and repeat step 2</li>
+<li>Backtrack from end node to start node using the previous node</li>
+</ol></li>
+<li>Time complexity: <span class="math inline">\(O(V^2)\)</span> but its <span class="math inline">\(O(E + V \log V)\)</span> with a min-priority queue/ binary heap</li>
+<li>Space complexity: <span class="math inline">\(O(V)\)</span></li>
+</ul>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Origin</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>orig_address <span class="op">=</span> <span class="st">"UBC bookstore, Vancouver"</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>orig_y, orig_x <span class="op">=</span> ox.geocode(orig_address)  <span class="co"># notice the coordinate order (y, x)!</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Destination</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>dest_address <span class="op">=</span> <span class="st">"Orchard Commons Student Residence, Vancouver"</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>dest_y, dest_x <span class="op">=</span> ox.geocode(dest_address)</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the nearest nodes</span></span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>orig_node_id, dist_to_orig <span class="op">=</span> ox.distance.nearest_nodes(G, X<span class="op">=</span>orig_x, Y<span class="op">=</span>orig_y, return_dist<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>dest_node_id, dist_to_dest <span class="op">=</span> ox.distance.nearest_nodes(G, X<span class="op">=</span>dest_x, Y<span class="op">=</span>dest_y, return_dist<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the shortest path</span></span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>route <span class="op">=</span> nx.shortest_path(G, orig_node_id, dest_node_id, weight<span class="op">=</span><span class="st">"length"</span>)</span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the shortest path</span></span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a>ox.plot.plot_graph_route(G, route)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
