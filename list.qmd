@@ -22,3 +22,6 @@ Below are my list of notes for each course.
 | 573          | 3       | [Model Selection](block_3/573_model_sel/573_model_sel.html)           |
 | 562          | 4       | [Regression II](block_4/562_regression_2/562_regression_2.html)       |
 | 572          | 4       | [Supervised Learning II](block_4/572_sup_learn_2/572_sup_learn_2.html)|
+| 553          | 5       | [Statistical Inference II](block_5/553_stat_inf_2/553_stat_inf_2.html)|
+| 563          | 5       | [Unsupervised Learning](block_5/563_unsup_learn/563_unsup_learn.html) |
+| 574          | 5       | [Spatial and Temporal Models](block_5/574_spat_temp_mod/574_spat_temp.md)|

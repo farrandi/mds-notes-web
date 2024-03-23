@@ -1684,7 +1684,7 @@
     "href": "list.html",
     "title": "List of Notes",
     "section": "",
-    "text": "This is the list of MDS Courses.\nBelow are my list of notes for each course.\n\n\n\nCourse Code\nBlock #\nTitle\n\n\n\n\n511\n1\nIntro to Python\n\n\n521\n1\nPlatforms\n\n\n523\n1\nR Programming\n\n\n551\n1\nStatistics and Probability\n\n\n512\n2\nAlgorithms and Data Structures\n\n\n531\n2\nData Visualization\n\n\n552\n2\nStatistical Interference\n\n\n571\n2\nSupervised Learning\n\n\n513\n3\nDatabases\n\n\n522\n3\nWorkflows\n\n\n561\n3\nRegression I\n\n\n573\n3\nModel Selection\n\n\n562\n4\nRegression II\n\n\n572\n4\nSupervised Learning II"
+    "text": "This is the list of MDS Courses.\nBelow are my list of notes for each course.\n\n\n\nCourse Code\nBlock #\nTitle\n\n\n\n\n511\n1\nIntro to Python\n\n\n521\n1\nPlatforms\n\n\n523\n1\nR Programming\n\n\n551\n1\nStatistics and Probability\n\n\n512\n2\nAlgorithms and Data Structures\n\n\n531\n2\nData Visualization\n\n\n552\n2\nStatistical Interference\n\n\n571\n2\nSupervised Learning\n\n\n513\n3\nDatabases\n\n\n522\n3\nWorkflows\n\n\n561\n3\nRegression I\n\n\n573\n3\nModel Selection\n\n\n562\n4\nRegression II\n\n\n572\n4\nSupervised Learning II\n\n\n553\n5\nStatistical Inference II\n\n\n563\n5\nUnsupervised Learning\n\n\n574\n5\nSpatial and Temporal Models"
   },
   {
     "objectID": "block_1/523_R/523_R.html",
