@@ -25,6 +25,6 @@ Below are my list of notes for each course.
 | 553          | 5       | [Statistical Inference II](block_5/553_stat_inf_2/553_stat_inf_2.html)|
 | 563          | 5       | [Unsupervised Learning](block_5/563_unsup_learn/563_unsup_learn.html) |
 | 574          | 5       | [Spatial and Temporal Models](block_5/574_spat_temp_mod/574_spat_temp.html)|
-| 575          | 6       | [Advanced Machine Learning](block_6/575_adv_ml/575_adv_ml.html)         |
-| 554          | 6       | [Experimentation and Causal Inference](block_6/554_exp_caus_inf/554_exp_caus_inf.html)|
 | 532          | 6       | [Dashboards](block_6/532_dashboards/532_dashboards.html)               |
+| 554          | 6       | [Experimentation and Causal Inference](block_6/554_exp_caus_inf/554_exp_caus_inf.html)|
+| 575          | 6       | [Advanced Machine Learning](block_6/575_adv_ml/575_adv_ml.html)         |
