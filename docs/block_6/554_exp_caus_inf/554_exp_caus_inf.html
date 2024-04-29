@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Nando's MDS Notes – exp_caus_inf</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/white_cartoon.PNG" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/mds_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Nando’s MDS Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../list.html" rel="" target="">
+ <span class="menu-text">List of Notes</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#experimentation-and-causal-inference" id="toc-experimentation-and-causal-inference" class="nav-link active" data-scroll-target="#experimentation-and-causal-inference">Experimentation and Causal Inference</a>
+  <ul class="collapse">
+  <li><a href="#observational-vs-experimental-studies" id="toc-observational-vs-experimental-studies" class="nav-link" data-scroll-target="#observational-vs-experimental-studies">Observational vs Experimental Studies</a></li>
+  <li><a href="#hypothesis-testing-review" id="toc-hypothesis-testing-review" class="nav-link" data-scroll-target="#hypothesis-testing-review">Hypothesis Testing Review</a>
+  <ul class="collapse">
+  <li><a href="#why-is-it-important-in-science" id="toc-why-is-it-important-in-science" class="nav-link" data-scroll-target="#why-is-it-important-in-science">Why is it Important in Science?</a></li>
+  <li><a href="#example-finding-out-food-to-health-relationship" id="toc-example-finding-out-food-to-health-relationship" class="nav-link" data-scroll-target="#example-finding-out-food-to-health-relationship">Example: Finding out Food to Health Relationship</a></li>
+  </ul></li>
+  <li><a href="#multiple-comparisons" id="toc-multiple-comparisons" class="nav-link" data-scroll-target="#multiple-comparisons">Multiple Comparisons</a>
+  <ul class="collapse">
+  <li><a href="#bonferroni-correction" id="toc-bonferroni-correction" class="nav-link" data-scroll-target="#bonferroni-correction">Bonferroni Correction</a></li>
+  <li><a href="#bonferroni-guarantee" id="toc-bonferroni-guarantee" class="nav-link" data-scroll-target="#bonferroni-guarantee">Bonferroni Guarantee</a></li>
+  <li><a href="#false-discovery-rate-fdr" id="toc-false-discovery-rate-fdr" class="nav-link" data-scroll-target="#false-discovery-rate-fdr">False Discovery Rate (FDR)</a></li>
+  <li><a href="#when-to-use-fwer-vs.-fdr" id="toc-when-to-use-fwer-vs.-fdr" class="nav-link" data-scroll-target="#when-to-use-fwer-vs.-fdr">When to Use FWER vs.&nbsp;FDR</a></li>
+  </ul></li>
+  <li><a href="#simpsons-paradox" id="toc-simpsons-paradox" class="nav-link" data-scroll-target="#simpsons-paradox">Simpson’s Paradox</a>
+  <ul class="collapse">
+  <li><a href="#confounding-factors" id="toc-confounding-factors" class="nav-link" data-scroll-target="#confounding-factors">Confounding Factors</a></li>
+  <li><a href="#strategies-to-address-confounding" id="toc-strategies-to-address-confounding" class="nav-link" data-scroll-target="#strategies-to-address-confounding">Strategies to Address Confounding</a></li>
+  </ul></li>
+  <li><a href="#foundations-of-ab-and-abn-testing" id="toc-foundations-of-ab-and-abn-testing" class="nav-link" data-scroll-target="#foundations-of-ab-and-abn-testing">Foundations of A/B and A/B/n Testing</a>
+  <ul class="collapse">
+  <li><a href="#ab-testing-with-continuous-response" id="toc-ab-testing-with-continuous-response" class="nav-link" data-scroll-target="#ab-testing-with-continuous-response">A/B Testing with Continuous Response</a></li>
+  </ul></li>
+  <li><a href="#blocking" id="toc-blocking" class="nav-link" data-scroll-target="#blocking">Blocking</a>
+  <ul class="collapse">
+  <li><a href="#blocking-procedure" id="toc-blocking-procedure" class="nav-link" data-scroll-target="#blocking-procedure">Blocking Procedure</a></li>
+  <li><a href="#randomization-and-blocking-recap" id="toc-randomization-and-blocking-recap" class="nav-link" data-scroll-target="#randomization-and-blocking-recap">Randomization and Blocking Recap</a></li>
+  </ul></li>
+  <li><a href="#increasing-sample-size" id="toc-increasing-sample-size" class="nav-link" data-scroll-target="#increasing-sample-size">Increasing Sample Size</a>
+  <ul class="collapse">
+  <li><a href="#power-in-sample-size-computations" id="toc-power-in-sample-size-computations" class="nav-link" data-scroll-target="#power-in-sample-size-computations">Power in Sample Size Computations</a></li>
+  <li><a href="#block-homogeneity-and-power" id="toc-block-homogeneity-and-power" class="nav-link" data-scroll-target="#block-homogeneity-and-power">Block Homogeneity and Power</a></li>
+  <li><a href="#sample-size-computation-in-proportion-tests" id="toc-sample-size-computation-in-proportion-tests" class="nav-link" data-scroll-target="#sample-size-computation-in-proportion-tests">Sample size computation in proportion tests</a></li>
+  <li><a href="#early-stopping-in-ab-testing" id="toc-early-stopping-in-ab-testing" class="nav-link" data-scroll-target="#early-stopping-in-ab-testing">Early stopping in A/B Testing</a></li>
+  </ul></li>
+  <li><a href="#observational-studies" id="toc-observational-studies" class="nav-link" data-scroll-target="#observational-studies">Observational Studies</a>
+  <ul class="collapse">
+  <li><a href="#example-pharmaco-epidemiology" id="toc-example-pharmaco-epidemiology" class="nav-link" data-scroll-target="#example-pharmaco-epidemiology">Example: Pharmaco-epidemiology</a></li>
+  </ul></li>
+  <li><a href="#sampling-schemes-in-observational-data" id="toc-sampling-schemes-in-observational-data" class="nav-link" data-scroll-target="#sampling-schemes-in-observational-data">Sampling Schemes in Observational Data</a>
+  <ul class="collapse">
+  <li><a href="#sampling-assesment-via-the-ground-truth" id="toc-sampling-assesment-via-the-ground-truth" class="nav-link" data-scroll-target="#sampling-assesment-via-the-ground-truth">Sampling Assesment via the Ground Truth</a></li>
+  <li><a href="#sampling-schemes-using-proxy-ground-truth" id="toc-sampling-schemes-using-proxy-ground-truth" class="nav-link" data-scroll-target="#sampling-schemes-using-proxy-ground-truth">Sampling Schemes using Proxy Ground Truth</a></li>
+  <li><a href="#sampling-scheme-assesment" id="toc-sampling-scheme-assesment" class="nav-link" data-scroll-target="#sampling-scheme-assesment">Sampling Scheme Assesment</a></li>
+  </ul></li>
+  <li><a href="#matched-case-control-studies" id="toc-matched-case-control-studies" class="nav-link" data-scroll-target="#matched-case-control-studies">Matched Case-Control Studies</a>
+  <ul class="collapse">
+  <li><a href="#alternative-data-collection" id="toc-alternative-data-collection" class="nav-link" data-scroll-target="#alternative-data-collection">Alternative Data Collection</a></li>
+  <li><a href="#cc-matching" id="toc-cc-matching" class="nav-link" data-scroll-target="#cc-matching">CC Matching</a></li>
+  </ul></li>
+  <li><a href="#ordinal-regressors" id="toc-ordinal-regressors" class="nav-link" data-scroll-target="#ordinal-regressors">Ordinal Regressors</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="experimentation-and-causal-inference" class="level1">
+<h1>Experimentation and Causal Inference</h1>
+<p>Want to address causality from:</p>
+<ul>
+<li><p>Randomized studies</p>
+<ul>
+<li>Can <strong>randomly</strong> allocate control (placebo) and treatment groups</li>
+</ul></li>
+<li><p>Non-randomized studies</p>
+<ul>
+<li>Treatment randomization is impossible</li>
+<li>Need to apply statistical methods to address it</li>
+</ul></li>
+</ul>
+<section id="observational-vs-experimental-studies" class="level2">
+<h2 class="anchored" data-anchor-id="observational-vs-experimental-studies">Observational vs Experimental Studies</h2>
+<ul>
+<li><strong>Experimental</strong>: The researcher <strong>manipulates</strong> the independent variable and observes the effect on the dependent variable.
+<ul>
+<li>E.g See if new gym class reduces body fat percentage, so <strong>randomly assign</strong> people to new and old class</li>
+</ul></li>
+<li><strong>Observational</strong>: The researcher observes the effect of the independent variable on the dependent variable without manipulating the independent variable.
+<ul>
+<li>E.g. See if new gym class reduces body fat percentage, so <strong>select</strong> people who signed up for new and old class</li>
+</ul></li>
+</ul>
+</section>
+<section id="hypothesis-testing-review" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing-review">Hypothesis Testing Review</h2>
+<ul>
+<li><p>Recall <a href="https://mds.farrandi.com/block_2/552_stat_inter/552_stat_inter#hypothesis-testing">552 Hypothesis Testing</a></p></li>
+<li><p>Tolerance to <strong>Type I Error</strong> is <span class="math inline">\(\alpha\)</span></p>
+<ul>
+<li><span class="math inline">\(\alpha = P(\text{reject null} | \text{null is true})\)</span></li>
+<li>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(p &lt; \alpha\)</span></li>
+</ul></li>
+</ul>
+<section id="why-is-it-important-in-science" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-it-important-in-science">Why is it Important in Science?</h3>
+<ul>
+<li>Easier to publish paper if findings are significant at <span class="math inline">\(\alpha = 0.05\)</span></li>
+<li>By Construction:
+<ul>
+<li><span class="math inline">\(H_0\)</span> is “conservative”/ “boring”/ “status quo”</li>
+<li><span class="math inline">\(H_a\)</span> is “exciting”/ “new”/ “interesting”</li>
+</ul></li>
+<li>When <span class="math inline">\(p &gt; \alpha\)</span>, we fail to reject <span class="math inline">\(H_0\)</span>
+<ul>
+<li>Does not mean <span class="math inline">\(H_0\)</span> is true</li>
+<li>Just means we do not have enough evidence to reject it</li>
+<li>Makes bad headlines: (e.g.&nbsp;“Null Hypothesis Not Rejected”)</li>
+</ul></li>
+<li><strong>P-Hacking</strong>: Repeatedly testing until <span class="math inline">\(p &lt; \alpha\)</span>
+<ul>
+<li>Inflate Type I Error Rate</li>
+<li>Does not always mean if <span class="math inline">\(p &lt; \alpha\)</span>, the result is significant
+<ul>
+<li>BE SCEPTICAL OF PAPERS, DO NOT BELIEVE EVERYTHING</li>
+</ul></li>
+<li>Need <strong>Bonferroni Correction</strong> to adjust for multiple comparisons</li>
+</ul></li>
+</ul>
+</section>
+<section id="example-finding-out-food-to-health-relationship" class="level3">
+<h3 class="anchored" data-anchor-id="example-finding-out-food-to-health-relationship">Example: Finding out Food to Health Relationship</h3>
+<ul>
+<li>Have 20 foods to test and 20 body parts to test</li>
+<li>In total get 400 tests (20 foods * 20 body parts)</li>
+<li>Simulate that the food is NOT related to any body part</li>
+<li>However, when we randomly test, we will get around 40% of the tests significant at <span class="math inline">\(\alpha = 0.05\)</span>
+<ul>
+<li>162 tests is significant of the 400</li>
+</ul></li>
+<li>This is because of <strong>Multiple Comparisons</strong>
+<ul>
+<li>We inflate the Type I Error Rate (<span class="math inline">\(\alpha\)</span> is too high)</li>
+<li>Need to adjust (decrease) <span class="math inline">\(\alpha\)</span> to account for multiple comparisons</li>
+</ul></li>
+</ul>
+<section id="why-is-this-the-case" class="level4">
+<h4 class="anchored" data-anchor-id="why-is-this-the-case">Why is this the case?</h4>
+<p><span class="math display">\[
+E_ i = \text{Committing Type I error in the } i \text{th test} \\
+P(E_ i) = \alpha.
+\]</span></p>
+<p>The probability of NOT committing Type I error in the <span class="math inline">\(i\)</span>th test is the following: <span class="math display">\[P\left(E_ i^c\right) = 1 - \alpha\]</span></p>
+<p>Probability of NOT committing Type I error in any of the tests is: <span class="math display">\[P\left(\bigcap_{i=1}^n E_ i^c\right) = \left(1 - \alpha\right)^n\]</span></p>
+<p>Probability of committing at least one Type I error in the tests is: <span class="math display">\[P\left(\bigcup_{i=1}^n E_ i\right) = 1 - P\left(\bigcap_{i=1}^n E_ i^c\right) = 1 - \left(1 - \alpha\right)^n\]</span></p>
+<p>The inflated probability corresponds to committing AT LEAST one Type I error in the <span class="math inline">\(m\)</span> tests.</p>
+</section>
+</section>
+</section>
+<section id="multiple-comparisons" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-comparisons">Multiple Comparisons</h2>
+<section id="bonferroni-correction" class="level3">
+<h3 class="anchored" data-anchor-id="bonferroni-correction">Bonferroni Correction</h3>
+<ul>
+<li>Conservatively guard against p-hacking</li>
+<li>Idea: If we do <span class="math inline">\(m\)</span> tests, then <span class="math inline">\(\alpha\)</span> should be <span class="math inline">\(\frac{\alpha}{m}\)</span></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pval <span class="co"># Matrix of p-values</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Bonferroni Correction</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pval_corrected <span class="ot">=</span> <span class="fu">p.adjust</span>(pval, <span class="at">method =</span> <span class="st">"bonferroni"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bonferroni-guarantee" class="level3">
+<h3 class="anchored" data-anchor-id="bonferroni-guarantee">Bonferroni Guarantee</h3>
+<p>Let <span class="math inline">\(R_i\)</span> be the event of rejecting <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is true for the <span class="math inline">\(i\)</span>th test. Then:</p>
+<p><span class="math display">\[
+P\left(E_ i^c\right) \leq \sum_{i=1}^m P\left(R_i\right)
+\]</span></p>
+<p>This leads to the <strong>Family-Wise Error Rate (FWER)</strong></p>
+<ul>
+<li>The chance that <strong>one or more</strong> of the true null hypotheses is rejected</li>
+</ul>
+<p><span class="math display">\[
+FWER \leq \sum_{i=1}^m \frac{\alpha}{m} = \alpha
+\]</span></p>
+<ul>
+<li><p>The Bonferroni Correction guarantees that we <strong>wrongly reject</strong> the null hypothesis with probability less than <span class="math inline">\(\alpha\)</span></p></li>
+<li><p><strong>Drawback: Very Conservative</strong></p></li>
+</ul>
+<p><span class="math display">\[P(R_1 \; \cup \; R_2) \leq P(R_1) + P(R_2)\]</span></p>
+<p>Works if <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span> are <em>mutually exclusive</em>.</p>
+<ul>
+<li>If not, then <span class="math inline">\(P(R_1 \; \cup \; R_2) = P(R_1) + P(R_2) - P(R_1 \; \cap \; R_2)\)</span></li>
+</ul>
+<p>So then the there will be too much correction -&gt; TOO CONSERVATIVE / More Type II Errors</p>
+</section>
+<section id="false-discovery-rate-fdr" class="level3">
+<h3 class="anchored" data-anchor-id="false-discovery-rate-fdr">False Discovery Rate (FDR)</h3>
+<ul>
+<li>We cannot just look at p-value and see if study is significant</li>
+<li>Need to find out how much “hunting” they did</li>
+<li>There is a trade-off between <strong>false discoveries</strong> (FP) and <strong>missing real effects</strong> (FN)</li>
+</ul>
+<p><span class="math display">\[FDR = \frac{FP}{FP + TP}\]</span></p>
+<ul>
+<li><strong>LESS STRICT</strong> than Bonferroni Correction
+<ul>
+<li>It is a method to control the <strong>Expected Proportion of False Positives</strong> instead of the probability of <strong>one or more</strong> false positives</li>
+</ul></li>
+</ul>
+<section id="benjamini-hochberg-bh-procedure" class="level4">
+<h4 class="anchored" data-anchor-id="benjamini-hochberg-bh-procedure">Benjamini-Hochberg (BH) Procedure</h4>
+<ul>
+<li><p>One method to control FDR</p></li>
+<li><p>Method:</p>
+<ol type="1">
+<li>Specify a <em>maximum acceptable FDR</em> <span class="math inline">\(\alpha\)</span></li>
+<li>Order the p-values from smallest to largest</li>
+<li>Find the largest <span class="math inline">\(k\)</span> such that <span class="math inline">\(p_{(k)} \leq \frac{k}{m} \alpha\)</span>
+<ul>
+<li><span class="math inline">\(p_{(k)}\)</span> is the <span class="math inline">\(k\)</span>th smallest p-value</li>
+</ul></li>
+<li>Take the <span class="math inline">\(k\)</span> smallest p-values as significant</li>
+</ol></li>
+<li><p>Get <strong>BH adjusted p-values</strong> as: <span class="math inline">\(\min \Big\{ \frac{p\text{-value}_i \times m}{i}, \text{BH adjusted } p\text{-value}_{i + 1} \Big\}\)</span></p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Benjamini-Hochberg Procedure</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pval_corrected <span class="ot">=</span> <span class="fu">p.adjust</span>(pval, <span class="at">method =</span> <span class="st">"fdr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="when-to-use-fwer-vs.-fdr" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-use-fwer-vs.-fdr">When to Use FWER vs.&nbsp;FDR</h3>
+<table class="table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>FWER</th>
+<th>FDR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>When there is high confidence to TP</td>
+<td>When there is certain proportion of FP</td>
+</tr>
+<tr class="even">
+<td>Want to be conservative</td>
+<td>Want to be less conservative</td>
+</tr>
+<tr class="odd">
+<td>Prefer <strong>False Negatives</strong></td>
+<td>Prefer <strong>False Positives</strong></td>
+</tr>
+<tr class="even">
+<td><code>TukeyHSD</code></td>
+<td><code>pairwise.prop.test(method="BH")</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="simpsons-paradox" class="level2">
+<h2 class="anchored" data-anchor-id="simpsons-paradox">Simpson’s Paradox</h2>
+<ul>
+<li>Arises when the association/trend between two variables is reversed when a third variable (<strong>confounder</strong>) is taken into account
+<ul>
+<li>Leads to deceptive statistical conclusions</li>
+</ul></li>
+</ul>
+<p><img src="images/2_sp_eg.png" width="500"></p>
+<section id="confounding-factors" class="level3">
+<h3 class="anchored" data-anchor-id="confounding-factors">Confounding Factors</h3>
+<ul>
+<li>Criteria to be a confounder:
+<ol type="1">
+<li>Related to the outcome by prognosis/ susceptibility</li>
+<li>the distribution of the confounding factor is different in the groups being compared</li>
+</ol></li>
+<li>Confounder is a variable related to both the explanatory and response variables</li>
+<li>Important to consider because without considering them, we may unkowingly observe a false demonstration of an association or the masking of an association between the explanatory and response variables.</li>
+</ul>
+<p><img src="images/2_cofounder.png" width="200"></p>
+</section>
+<section id="strategies-to-address-confounding" class="level3">
+<h3 class="anchored" data-anchor-id="strategies-to-address-confounding">Strategies to Address Confounding</h3>
+<ol type="1">
+<li><strong>Stratification</strong>: good for observational data
+<ul>
+<li>Implies checking the association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> within each stratum of the confounder</li>
+<li><strong>Drawback</strong>: need to know all possible confounders</li>
+</ul></li>
+<li><strong>Analysis of Variance (ANOVA)</strong>: good for experimental data
+<ul>
+<li>Randomize each subject to a level of <span class="math inline">\(X\)</span>
+<ul>
+<li><strong>Randomization</strong> breaks the dependency between exploratory/ response variables and confounders</li>
+</ul></li>
+<li>Then compare <span class="math inline">\(Y\)</span> across levels of <span class="math inline">\(X\)</span> <br></li>
+</ul></li>
+</ol>
+<ul>
+<li>The <strong>second strategy</strong> is the golden standard in causal inference and design and analysis of experiments
+<ul>
+<li>The regressor <span class="math inline">\(X\)</span> is guaranteed to be independent of all possible confounders (known and unknown)</li>
+<li>No longer need to be concerned with confounding</li>
+<li>Can interpret the association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> in a causal manner</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="foundations-of-ab-and-abn-testing" class="level2">
+<h2 class="anchored" data-anchor-id="foundations-of-ab-and-abn-testing">Foundations of A/B and A/B/n Testing</h2>
+<ul>
+<li><strong>A/B Testing</strong>: randomized experiment between <strong>control</strong> and <strong>treatment</strong> groups</li>
+<li><strong>A/B/n Testing</strong>: randomized experiment between <strong>control</strong> for more than 2 groups (n is not the same as n samples)</li>
+<li>Recall: randomization makes variables independent of any confounding variables</li>
+<li>Hence we can infer causality instead of just association</li>
+</ul>
+<section id="ab-testing-with-continuous-response" class="level3">
+<h3 class="anchored" data-anchor-id="ab-testing-with-continuous-response">A/B Testing with Continuous Response</h3>
+<section id="common-terminology" class="level4">
+<h4 class="anchored" data-anchor-id="common-terminology">Common Terminology</h4>
+<ul>
+<li>Example: Have two categorical variables: <code>color</code>: blue/red and <code>font_size</code>: small/ medium/ large to predict <code>duration</code> of stay on a website</li>
+<li><strong>Variables</strong>: <code>color</code>, <code>font_size</code>
+<ul>
+<li>6 possible treatment groups: 3 font sizes * 2 colors</li>
+<li>If all 6 are used -&gt; <strong>Full Factorial Design</strong>, specifically <strong>2x3 Factorial Design</strong></li>
+</ul></li>
+<li>Each user is <strong>experimental unit</strong></li>
+<li>Each treatment group involves <strong>replicates</strong> (multiple experimental units)
+<ul>
+<li>The experimental units are randomly assigned to treatment groups</li>
+</ul></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 92%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Terms</th>
+<th>Definitions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stratification</td>
+<td>Process of splitting the population into homogenous subgroups and sampling observational units from the population independently in each subgroup.</td>
+</tr>
+<tr class="even">
+<td>Factorial Design</td>
+<td>Technique to investigate effects of several variables in one study; experimental units are assigned to all possible combinations of factors.</td>
+</tr>
+<tr class="odd">
+<td>Cofounder</td>
+<td>A variable that is associated with both the explanatory and response variable, which can result in either the false demonstration of an association, or the masking of an actual association between the explanatory and response variable.</td>
+</tr>
+<tr class="even">
+<td>Blocking</td>
+<td>Grouping experimental units (i.e., in a sample) together based on similarity.</td>
+</tr>
+<tr class="odd">
+<td>Factor</td>
+<td>Explanatory variable manipulated by the experimenter.</td>
+</tr>
+<tr class="even">
+<td>Experimental Unit</td>
+<td>The entity/object in the sample that is assigned to a treatment and for which information is collected.</td>
+</tr>
+<tr class="odd">
+<td>Replicate</td>
+<td>Repetition of an experimental treatment.</td>
+</tr>
+<tr class="even">
+<td>Balanced Design</td>
+<td>Equal number of experimental units for each treatment group.</td>
+</tr>
+<tr class="odd">
+<td>Randomization</td>
+<td>Process of randomly assigning explanatory variable(s) of interest to experimental units (e.g., patients, mice, etc.).</td>
+</tr>
+<tr class="even">
+<td>Treatment</td>
+<td>A combination of factor levels.</td>
+</tr>
+<tr class="odd">
+<td>A/B Testing</td>
+<td>Statistically comparing a key performance indicator (conversion rate, dwell time, etc.) between two (or more) versions of a webpage/app/add to assess which one performs better.</td>
+</tr>
+<tr class="even">
+<td>Observational Study</td>
+<td>A study where the researcher does not randomize the primary explanatory variables of interest.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="two-way-anova-with-main-effects-only" class="level4">
+<h4 class="anchored" data-anchor-id="two-way-anova-with-main-effects-only">Two-way ANOVA with main effects only</h4>
+<ul>
+<li>Typically initial analysis in A/B testing</li>
+<li>main effects: standalone regressors (e.g.&nbsp;<code>color</code>, <code>font_size</code>)</li>
+</ul>
+<p><span class="math display">\[
+Y_{i,j,k} = \mu_{i} + \tau_{j} + \varepsilon_{i, j, k}
+\]</span></p>
+<ul>
+<li>For <span class="math inline">\(i\)</span>th <code>font</code> and <span class="math inline">\(j\)</span>th <code>color</code>, for the <span class="math inline">\(k\)</span>th experimental unit</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>OLS_ABs_main_effects <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Duration <span class="sc">~</span> Font <span class="sc">+</span> Color, <span class="at">data =</span> data)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(OLS_ABs_main_effects)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>ANOVA tables go hand-in-hand with randomized experiments</li>
+</ul>
+<p><img src="images/3_anova.png" width="400"></p>
+<ul>
+<li>p-values tests the hypothesis that:
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_{1} = \mu_{2} = \mu_{3}\)</span> (no effect of <code>font</code>)</li>
+<li><span class="math inline">\(H_a\)</span>: at least one <span class="math inline">\(\mu_{i}\)</span> is different</li>
+</ul></li>
+<li>Recall: If p-value &lt; 0.05, we reject the null hypothesis</li>
+<li><code>Df</code> represents the degrees of freedom
+<ul>
+<li>It is of the formula: <code># of levels - 1</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="two-way-anova-with-interaction-effects" class="level4">
+<h4 class="anchored" data-anchor-id="two-way-anova-with-interaction-effects">Two-way ANOVA with interaction effects</h4>
+<p><span class="math display">\[
+Y_{i,j,k} = \mu_{i} + \tau_{j} + (\mu\tau)_{i,j} + \varepsilon_{i, j, k}
+\]</span></p>
+<ul>
+<li>Adds the interaction term <span class="math inline">\((\mu\tau)_{i,j}\)</span> to the model
+<ul>
+<li>Does not indicate they are multiplied</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>OLS_ABs_interaction <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Duration <span class="sc">~</span> Font <span class="sc">*</span> Color, <span class="at">data =</span> data)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(OLS_ABs_interaction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>Df</code> for interaction term is the product of <code>Df1</code> and <code>Df2</code></li>
+</ul>
+</section>
+<section id="post-hoc-tests" class="level4">
+<h4 class="anchored" data-anchor-id="post-hoc-tests">Post-hoc tests</h4>
+<ul>
+<li>Done if any factor is significant</li>
+<li>Compares all possible pairs among the levels
+<ul>
+<li>Involves multiple testing corrections</li>
+</ul></li>
+<li>Will use Tukey’s HSD test
+<ul>
+<li>Keeps the Family-Wise Error Rate (FWER) at <span class="math inline">\(\alpha\)</span> or less</li>
+<li>Only for ANOVA models</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Need aov: basically lm but for ANOVA</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>OLS_aov_ABn <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> Duration <span class="sc">~</span> Font <span class="sc">*</span> Color, <span class="at">data =</span> data)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(OLS_aov_ABn, <span class="at">conf.level =</span> <span class="fl">0.95</span>) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="blocking" class="level2">
+<h2 class="anchored" data-anchor-id="blocking">Blocking</h2>
+<ul>
+<li><strong>Blocking Factor</strong>: a variable that is not of primary interest (and cannot be controlled) but is known to affect the response variable
+<ul>
+<li>Consider as grouping factor</li>
+<li>Examples: time period when A/B testing is conducted, user demographics, etc.</li>
+</ul></li>
+<li><strong>“Block what you can, randomize what you cannot.”</strong>
+<ul>
+<li><strong>Blocking</strong>: removing the effect of secondary measurable variables from the response
+<ul>
+<li>This is so our model could get statistical association/ causation between the secondary variable and the response variable</li>
+</ul></li>
+<li><strong>Randomization</strong>: removing the effect of unmeasurable variables</li>
+</ul></li>
+</ul>
+<p><img src="images/3_blocking_count.png" width="500"></p>
+<p><em>Strategy A: Just Randomize, Strategy B: Randomize and Block</em></p>
+<section id="blocking-procedure" class="level3">
+<h3 class="anchored" data-anchor-id="blocking-procedure">Blocking Procedure</h3>
+<ol type="1">
+<li>Stratify experimental units into homogenous blocks. Each stratum is a block</li>
+<li>Randomize the experimental units into the treatment groups within each block</li>
+</ol>
+</section>
+<section id="randomization-and-blocking-recap" class="level3">
+<h3 class="anchored" data-anchor-id="randomization-and-blocking-recap">Randomization and Blocking Recap</h3>
+<p>Sorted Best to Worst:</p>
+<ol type="1">
+<li>Model with blocking for blocking factors + Post-Hoc adjustments</li>
+<li>Normal data with Post-Hoc adjustments for blocking factors (Treat blocking as a covariate)
+<ul>
+<li><strong>covariate</strong>: a variable that is possibly predictive of the response variable</li>
+</ul></li>
+<li>Raw model with no blocking nor Post-Hoc adjustments</li>
+</ol>
+</section>
+</section>
+<section id="increasing-sample-size" class="level2">
+<h2 class="anchored" data-anchor-id="increasing-sample-size">Increasing Sample Size</h2>
+<ul>
+<li>Increasing sample size would:
+<ul>
+<li>Increase the <strong>accuracy</strong> of the estimates</li>
+<li>Increase the <strong>power</strong> of the test
+<ul>
+<li><strong>Power</strong>: probability of rejecting the null hypothesis when it is false (predict correctly)
+<ul>
+<li>High power means our A/B test is robust enough to detect and estimate experimental treatment effects</li>
+</ul></li>
+<li>In class had example: Need 10x the sample size for raw to perform equal to covariate/ blocking</li>
+</ul></li>
+</ul></li>
+<li>But this model would not capture the right systematic component of the population, including the <strong>stratum effect</strong> (demographic categories)</li>
+<li>Using covariate and blocking would still be more precise</li>
+<li>Need to consider that increasing sample size is also expensive</li>
+</ul>
+<section id="power-in-sample-size-computations" class="level3">
+<h3 class="anchored" data-anchor-id="power-in-sample-size-computations">Power in Sample Size Computations</h3>
+<ul>
+<li>Recall that sample size computations involve playing around with three concepts:
+<ol type="1">
+<li><strong>effect size</strong>: how much we want the experimental treatment to differ from the control treatment in terms of the mean response</li>
+<li><strong>significance level</strong> <span class="math inline">\(\alpha\)</span>
+<ul>
+<li>Lower = more strict (less prone to Type I error/ false positive)</li>
+<li><span class="math inline">\(P(\text{reject } H_0 | H_0 \text{ is true}) = \alpha\)</span></li>
+</ul></li>
+<li><strong>power</strong> of the test <span class="math inline">\(1 - \beta = 1 - P(\text{Type II error})\)</span>,
+<ul>
+<li>Typically 0.8</li>
+<li>larger = less prone to Type II error</li>
+<li><span class="math inline">\(P(\text{reject } H_0 | H_a \text{ is true}) = 1 - \beta = 1 - P(\text{accept } H_0 | H_a \text{ is true})\)</span></li>
+</ul></li>
+</ol></li>
+</ul>
+<p><img src="images/0_stat_chart.png" width="500"></p>
+<table class="table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decision</th>
+<th>True Condition Positive (<span class="math inline">\(H_a\)</span> True)</th>
+<th>True Condition Negative (<span class="math inline">\(H_0\)</span> True)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Test Positive (Reject <span class="math inline">\(H_0\)</span>)</td>
+<td>Correct (True Positive)</td>
+<td>Type I Error (False Positive)</td>
+</tr>
+<tr class="even">
+<td>Test Negative (Accept <span class="math inline">\(H_0\)</span>)</td>
+<td>Type II Error (False Negative)</td>
+<td>Correct (True Negative)</td>
+</tr>
+</tbody>
+</table>
+<p><em>see more in <a href="https://mds.farrandi.com/block_2/552_stat_inter/552_stat_inter.html#visual-representation-of-errors">my statistical inference notes</a></em></p>
+<section id="example-case" class="level4">
+<h4 class="anchored" data-anchor-id="example-case">Example case</h4>
+<ul>
+<li>Lets say we want to see if changeing website design from “X” to “Y” will increase the average time spent on the website.</li>
+<li>We know:
+<ul>
+<li>Current average is between 30s to 2 min</li>
+<li>We want to see a 3% increase in time spent</li>
+</ul></li>
+<li>Calculation:
+<ul>
+<li><span class="math inline">\(\mu_x = 0.5 + \frac{2-0.5}{2} = 1.25 \text{ min}\)</span></li>
+<li>Using 95% CI, <span class="math inline">\(Z_i = \frac{Y_i - \mu_A}{\sigma} \sim \mathcal{N}(0, 1)\)</span>
+<ul>
+<li><span class="math inline">\(1.96 = \frac{2 - \mu_A}{\sigma}\)</span></li>
+<li><span class="math inline">\(\sigma = \frac{2 - 1.25}{1.96} = 0.383\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\delta = 0.03 \times 1.25 = 0.0375\)</span> (desired difference) <br></li>
+</ul></li>
+<li>Use <code>pwr.t.test</code> function in R to calculate sample size needed
+<ul>
+<li>will give <code>n</code> (sample size) needed for <strong>each</strong> group</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.t.test</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> <span class="fl">0.0375</span> <span class="sc">/</span> <span class="fl">0.383</span>, <span class="co"># delta / sigma</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">power =</span> <span class="fl">0.8</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"two.sample"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"greater"</span> <span class="co"># we want to see an increase</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/3_t_plot.png" width="600"></p>
+<p><em>Lower power means need less sample size</em></p>
+<p><img src="images/3_ab_size_plot.png" width="600"></p>
+<p><em>Higher response increase means more power for a given sample size</em></p>
+</section>
+</section>
+<section id="block-homogeneity-and-power" class="level3">
+<h3 class="anchored" data-anchor-id="block-homogeneity-and-power">Block Homogeneity and Power</h3>
+<ul>
+<li>We want to ensure that the blocks are <strong>homogeneous</strong>:
+<ul>
+<li>As <strong>much</strong> variation in <span class="math inline">\(\mu\)</span> as possible is <strong>across</strong> the blocks</li>
+<li>As <strong>little</strong> variation in <span class="math inline">\(\mu\)</span> as possible is <strong>within</strong> the blocks</li>
+</ul></li>
+<li>If not homogenous: blocking can be worse than raw</li>
+<li>The blocking setup needs to be carefully planned before running the experiment.</li>
+</ul>
+</section>
+<section id="sample-size-computation-in-proportion-tests" class="level3">
+<h3 class="anchored" data-anchor-id="sample-size-computation-in-proportion-tests">Sample size computation in proportion tests</h3>
+<ul>
+<li>Earlier was test with mean duration (continouous response) -&gt; use t-test</li>
+<li>We use <strong>z-test</strong> for <strong>proportion tests</strong>
+<ul>
+<li>proportion means value between 0 and 1</li>
+</ul></li>
+<li>E.g. see the click through rate (CTR) of a website between control “X” and treatment “Y”
+<ul>
+<li>CTR <span class="math inline">\(\in [0, 1]\)</span></li>
+</ul></li>
+</ul>
+<section id="effect-size-h" class="level4">
+<h4 class="anchored" data-anchor-id="effect-size-h">Effect size <span class="math inline">\(h\)</span></h4>
+<ul>
+<li>No need <span class="math inline">\(\sigma\)</span> nor <span class="math inline">\(\mu\)</span> for proportion test</li>
+<li>Need to know the effect size <span class="math inline">\(h\)</span> (difference in proportions)
+<ul>
+<li>Use <code>ES.h(data_control, data_treatment)</code> to calculate</li>
+</ul></li>
+<li>Effect size has an <strong>arcsine transformation</strong>:</li>
+</ul>
+<p><span class="math display">\[h = 2 \arcsin(\sqrt{p_Y}) - 2 \arcsin(\sqrt{p_X})\]</span></p>
+<ul>
+<li>This means:
+<ul>
+<li>Smaller transformed effect (y-axis) in the middle</li>
+<li>Larger transformed effect (y-axis) at the ends</li>
+</ul></li>
+</ul>
+<p><img src="images/5_asin_h.png" width="500"></p>
+<ul>
+<li>This behaviour is related to the <strong>statistic’s standard error</strong> of the two-proportion z-test
+<ul>
+<li><span class="math inline">\(\delta = p_Y - p_X\)</span></li>
+<li><span class="math inline">\(H_0: \delta &lt; some\_value\)</span>, <span class="math inline">\(H_a: \delta \geq some\_value\)</span></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+Z = \frac{\hat{\delta}_{\text{CTR}} - some\_value}{\sqrt{\frac{\hat{\text{CTR}}_A (1 - \hat{\text{CTR}}_A)}{n/2} + \frac{\hat{\text{CTR}}_B (1 - \hat{\text{CTR}}_B)}{n/2}}} = \frac{\hat{\delta}_{\text{CTR}} - some\_value}{\text{SE}\left(\hat{\delta}_{\text{CTR}}
+\right)}
+\]</span></p>
+<p><img src="images/5_std_err.png" width="500"></p>
+<p><em>More error in the middle, less error at the ends. Smaller sample size = more error</em></p>
+</section>
+<section id="using-function-pwr.2p.test" class="level4">
+<h4 class="anchored" data-anchor-id="using-function-pwr.2p.test">Using function <code>pwr.2p.test</code></h4>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>CTR_effect_size <span class="ot">=</span> <span class="fu">ES.h</span>(data_control, data_treatment)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.2p.test</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">h =</span> CTR_effect_size,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> alpha,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">power =</span> pow,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"greater"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/5_sample_prop.png" width="600"></p>
+<p>We can see that we need more sample size when:</p>
+<ul>
+<li><span class="math inline">\(\delta\)</span> is smaller</li>
+<li><span class="math inline">\(CTR_X\)</span> is closer to 0.5, more error in the middle</li>
+</ul>
+</section>
+</section>
+<section id="early-stopping-in-ab-testing" class="level3">
+<h3 class="anchored" data-anchor-id="early-stopping-in-ab-testing">Early stopping in A/B Testing</h3>
+<ul>
+<li><strong>Peeking</strong>: looking at the data before the experiment is over/ through the experiment</li>
+<li>Still compute overall sample size to get <span class="math inline">\(n_{max}\)</span></li>
+<li>If at some peek, <strong>updated test statistic</strong> is significant, we can stop the experiment</li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>Aggresive Peeking</strong>: look at the data after every new experimental unit
+<ul>
+<li>If test <span class="math inline">\(P_Y &gt; P_X\)</span> (and in fact it is true), aggressive peeking will improve power of the test if:
+<ul>
+<li><span class="math inline">\(P_Y &gt; 1.5 * P_X\)</span></li>
+<li>Otherwise, it gives a concerning power decrease</li>
+</ul></li>
+<li>If test <span class="math inline">\(P_Y = P_X\)</span>,
+<ul>
+<li>the proportion of replicates where <span class="math inline">\(z_{test} &gt; z_{1- \alpha}\)</span> correspond to type I error rate</li>
+<li>will lead to <strong>inflating the type I error rate</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="observational-studies" class="level2">
+<h2 class="anchored" data-anchor-id="observational-studies">Observational Studies</h2>
+<ul>
+<li>We <strong>do not</strong> have control of the variable of interest.</li>
+<li><strong>Without randomization, life is harder</strong>. Strategy includes:
+<ol type="1">
+<li>Recording potential confounders</li>
+<li>Use confounders as part of the analysis</li>
+<li>Tempering the causal strength in light of inherent challenges in (i) and (ii)</li>
+</ol></li>
+</ul>
+<section id="example-pharmaco-epidemiology" class="level3">
+<h3 class="anchored" data-anchor-id="example-pharmaco-epidemiology">Example: Pharmaco-epidemiology</h3>
+<ul>
+<li>Response <span class="math inline">\(Y\)</span>: binary indicator of disease state. (1: disease, 0: no disease)</li>
+<li><span class="math inline">\(X\)</span>: binary indicator of behavior (1: type A, 0: type B)
+<ul>
+<li>Type A: more agressive personality, competitive, etc</li>
+<li>Type B: more laid back personality, relaxed, etc</li>
+</ul></li>
+<li>Confounders <span class="math inline">\(C_j\)</span> (e.g.&nbsp;age, sex, BMI, cholesterol level, etc.)</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Since it is binary =&gt; binary logistic regression
+<ul>
+<li>Use log-odds <span class="math inline">\(logit(p) = \log(\frac{p}{1-p})\)</span></li>
+<li>odds-ratio: <span class="math inline">\(\text{OR} = \frac{\frac{n_{X = 1, Y = 1}/ n}{n_{X = 1,Y = 0} / n}}{\frac{n_{X = 0, Y = 1}/ n}{n_{X = 0,Y = 0} / n}} = \frac{\frac{n_{X = 1, Y = 1}}{n_{X = 1,Y = 0}}}{\frac{n_{X = 0, Y = 1}}{n_{X = 0,Y = 0}}} = \frac{n_{X = 1, Y = 1} \times n_{X = 0,Y = 0}}{n_{X = 1,Y = 0} \times n_{X = 0, Y = 1}}\)</span>
+<ul>
+<li>OR = 1: X does not effect Y</li>
+<li>OR &gt; 1: X increases the odds of Y</li>
+<li>OR &lt; 1: X decreases the odds of Y</li>
+</ul></li>
+<li><span class="math inline">\(\text{SE} = \sqrt{\frac{1}{n_{X = 1, Y = 1}} + \frac{1}{n_{X = 1,Y = 0}} + \frac{1}{n_{X = 0, Y = 1}} + \frac{1}{n_{X = 0, Y =0}}}\)</span></li>
+</ul></li>
+<li>Can also just use binary logistic regression in R</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> data, <span class="at">family =</span> binomial) <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(<span class="at">conf.int =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="adding-confounders" class="level4">
+<h4 class="anchored" data-anchor-id="adding-confounders">Adding confounders</h4>
+<ul>
+<li>Turn a continous confounder (e.g.&nbsp;age) into discrete categories and add to the model
+<ul>
+<li><code>data |&gt; mutate(age_bins = cut(age, breaks = c(min(age), quantile(age, (1:3) / 4), max(age)), include.lowest = TRUE)</code></li>
+</ul></li>
+<li>By making <strong>stratum-specific inference</strong> with multiple confounders, we aim to infer causality between X and Y
+<ul>
+<li>However, there will be few observations in each strata (not enough data)</li>
+<li><strong>Solution</strong>: use binomial logistic regression (<strong>Overall Model-Based Inference</strong>) with interaction terms</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glm</span>(Y <span class="sc">~</span> X <span class="sc">*</span> C1 <span class="sc">*</span> C2, <span class="at">data =</span> data, <span class="at">family =</span> binomial) <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(<span class="at">conf.int =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>recall: odds ratio is <span class="math inline">\(exp(\beta)\)</span> where <span class="math inline">\(\beta\)</span> is the coefficient/ estimate</em></p>
+</section>
+<section id="assumptions-for-causal-model-based-inference-binary-logistic-regression" class="level4">
+<h4 class="anchored" data-anchor-id="assumptions-for-causal-model-based-inference-binary-logistic-regression">Assumptions for Causal Model-based Inference (binary logistic regression)</h4>
+<ol type="1">
+<li><strong>Simple/ smooth structure in how the Y-specific log-OR varies across the strata</strong>
+<ul>
+<li>Check using ANOVA comparing the simple model (all additive terms) and the complex model (with interaction terms of all confounders with each other)</li>
+<li><code>complex_model &lt;- glm(Y ~ X + C1 * C2, data = data, family = binomial)</code></li>
+<li><code>anova(simple_model, complex_model, test = "LRT")</code></li>
+</ul></li>
+<li><strong>Strength of <span class="math inline">\((X, Y)\)</span> association is constant across the strata</strong> (i.e.&nbsp;no interaction between X and C)
+<ul>
+<li>complex model: all simple terms + double interactions of X and confounders</li>
+<li><code>complex_model_c1 &lt;- glm(Y ~ X + C1 + C2 + X:C1, data = data, family = binomial)</code></li>
+<li><code>complex_model_c2 &lt;- glm(Y ~ X + C1 + C2 + X:C2, data = data, family = binomial)</code></li>
+<li>Compare all models with simple model using ANOVA</li>
+</ul></li>
+<li><strong>No unmeasured confounders</strong> (All confounders are included in the model)
+<ul>
+<li>Add new model with unmeasured confounder</li>
+<li><code>new_model &lt;- glm(Y ~ X + C1 + C2 + CU, data = data, family = binomial)</code> where CU is the unmeasured confounder</li>
+</ul></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="sampling-schemes-in-observational-data" class="level2">
+<h2 class="anchored" data-anchor-id="sampling-schemes-in-observational-data">Sampling Schemes in Observational Data</h2>
+<ul>
+<li>Must Explore how to select our sample <strong>before</strong> executing the study</li>
+<li>Analysis must also account for the sampling scheme</li>
+</ul>
+<section id="sampling-assesment-via-the-ground-truth" class="level3">
+<h3 class="anchored" data-anchor-id="sampling-assesment-via-the-ground-truth">Sampling Assesment via the Ground Truth</h3>
+<ul>
+<li><strong>Ground Truth</strong>: checking the results of the study in terms of its estimation accuracy against the <strong>real-world</strong></li>
+<li>Ground truth is hard to get/ not available in many cases
+<ul>
+<li>Frequentist paradigm: we <strong>do not</strong> have access to true population parameters</li>
+<li>Need to reply on sample to estimate the population parameters</li>
+</ul></li>
+</ul>
+<section id="simulation-proxy-for-ground-truth" class="level4">
+<h4 class="anchored" data-anchor-id="simulation-proxy-for-ground-truth">Simulation: Proxy for Ground Truth</h4>
+<ul>
+<li><p>A better simulation technique than Monte Carlo</p></li>
+<li><p><strong>Core Idea</strong>:</p>
+<ul>
+<li><strong>Use a relevant sample dataset</strong>: assumes previous sample data is representative of the population</li>
+<li><strong>Fit a model</strong> with <code>Y ~ X + C_j</code> (where <span class="math inline">\(C_j\)</span> are a determined set of confounders)</li>
+<li><strong>Simulate a proxy ground truth</strong> by generating new data from the model</li>
+</ul></li>
+<li><p>Still use the 3 assumptions for the causal model-based inference</p></li>
+<li><p>Steps:</p>
+<ol type="1">
+<li>Get a dataset and generate multiple rows of data (break continuous variables into quartile bins)</li>
+<li>Fit a model with the data</li>
+<li>Simulate a proxy ground truth by generating new data from the model</li>
+</ol></li>
+</ul>
+</section>
+</section>
+<section id="sampling-schemes-using-proxy-ground-truth" class="level3">
+<h3 class="anchored" data-anchor-id="sampling-schemes-using-proxy-ground-truth">Sampling Schemes using Proxy Ground Truth</h3>
+<ul>
+<li>Three Sampling Schemes:
+<ol type="1">
+<li><strong>Cross-Sectional Sampling</strong></li>
+<li><strong>Case-Control Sampling</strong></li>
+<li><strong>Cohort Sampling</strong></li>
+</ol></li>
+<li>These schemes will imply different <strong>temporalities</strong></li>
+</ul>
+<section id="cross-sectional-cs-sampling-scheme" class="level4">
+<h4 class="anchored" data-anchor-id="cross-sectional-cs-sampling-scheme">Cross-Sectional (CS) Sampling Scheme</h4>
+<ul>
+<li><strong>Contemporaneous</strong>: all data is collected at the same time
+<ul>
+<li>Grab a simple random sample of size n from the population</li>
+<li>Similar to an instantaneous snapshot of all study variables</li>
+</ul></li>
+<li><strong>Ideal</strong> in <strong>early research stages</strong> to get a sense of the data
+<ul>
+<li>Fast to run</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>CS_sample_index <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> n_sample, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>CS_data <span class="ot">&lt;-</span> data[CS_sample_index, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="case-control-cc-sampling-scheme" class="level4">
+<h4 class="anchored" data-anchor-id="case-control-cc-sampling-scheme">Case-Control (CC) Sampling Scheme</h4>
+<ul>
+<li><strong>Retrospective</strong>: data is collected after the event of interest has occurred
+<ul>
+<li>Sample into cases <code>Y=1</code> and controls <code>Y=0</code> (Equal sample sizes for both)</li>
+<li>Then ask the subjects “have you been exposed to <code>X</code> in the past?”</li>
+</ul></li>
+<li><strong>Ideal</strong> where outcome <code>Y=1</code> is rare
+<ul>
+<li>Not have have a lot of cases of <code>Y=1</code> so recruit a lot of patients with <code>Y=1</code> for study</li>
+</ul></li>
+<li>It will <strong>oversample</strong> <span class="math inline">\(Y=1\)</span> cases and <strong>undersample</strong> <span class="math inline">\(Y=0\)</span> controls
+<ul>
+<li>Leads to a second statistical inquiry: “Is it a winning strategy to oversample cases?”
+<ul>
+<li>Do <strong>modified Power Analysis</strong> using Case:Control ratio</li>
+<li>If ratio = 1, then control = case</li>
+<li>If ratio &gt; 1, then case &gt; control</li>
+<li>If ratio &lt; 1, then case &lt; control</li>
+</ul></li>
+<li>According to SE behaviors, in populations when <span class="math inline">\(Y=1\)</span> is rare, get <strong>more precise</strong> estimates by oversampling cases and undersampling controls</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>CC_sample_index <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>n)[data<span class="sc">$</span>Y <span class="sc">==</span> <span class="dv">1</span>], <span class="at">size =</span> n_sample<span class="sc">/</span><span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>n)[data<span class="sc">$</span>Y <span class="sc">==</span> <span class="dv">0</span>], <span class="at">size =</span> n_sample<span class="sc">/</span><span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>CC_data <span class="ot">&lt;-</span> data[CC_sample_index, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cohort-co-sampling-scheme" class="level4">
+<h4 class="anchored" data-anchor-id="cohort-co-sampling-scheme">Cohort (CO) Sampling Scheme</h4>
+<ul>
+<li><strong>Prospective</strong>: data is collected over time
+<ul>
+<li>Sample into exposed <code>X=1</code> and unexposed <code>X=0</code> (Equal sample sizes for both)</li>
+<li>Then follow the subjects over time to see if they develop the disease <code>Y=1</code></li>
+</ul></li>
+<li><code>Y</code> is assumed as the recorded outcome at the end of the study</li>
+<li><strong>Ideal</strong> for when exposure <code>X=1</code> is rare
+<ul>
+<li>Not have have a lot of cases of <code>X=1</code> so recruit a lot of patients with <code>X=1</code> for study</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>CO_sample_index <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>n)[data<span class="sc">$</span>X <span class="sc">==</span> <span class="dv">1</span>], <span class="at">size =</span> n_sample<span class="sc">/</span><span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>n)[data<span class="sc">$</span>X <span class="sc">==</span> <span class="dv">0</span>], <span class="at">size =</span> n_sample<span class="sc">/</span><span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>CO_data <span class="ot">&lt;-</span> data[C0_sample_index, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="sampling-scheme-assesment" class="level3">
+<h3 class="anchored" data-anchor-id="sampling-scheme-assesment">Sampling Scheme Assesment</h3>
+<ul>
+<li>Need to run multiple simulations to get a sense of the variability of the estimates</li>
+<li>Use function <code>sim_study</code> to run the simulation</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sim_study <span class="ot">&lt;-</span> <span class="cf">function</span>(pop_data, n, alpha, log_OR, num_replicates) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="cn">NULL</span>) <span class="co"># Setting up matrix with metrics</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  res[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> res[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> res[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, num_replicates, <span class="dv">3</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">suppressMessages</span>(<span class="cf">for</span> (lp <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_replicates) { <span class="co"># Otherwise, we get "Waiting for profiling to be done..."</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Obtaining samples by scheme</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># CS</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    CS_sampled_subjects <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pop_data), <span class="at">size =</span> n, <span class="at">replace =</span> F)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    CS_sample <span class="ot">&lt;-</span> pop_data[CS_sampled_subjects, ]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># CC</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    CC_sampled_subjects <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pop_data))[pop_data<span class="sc">$</span>chd69 <span class="sc">==</span> <span class="st">"0"</span>],</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> n <span class="sc">/</span> <span class="dv">2</span>, <span class="at">replace =</span> F</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pop_data))[pop_data<span class="sc">$</span>chd69 <span class="sc">==</span> <span class="st">"1"</span>],</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> n <span class="sc">/</span> <span class="dv">2</span>, <span class="at">replace =</span> F</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    CC_sample <span class="ot">&lt;-</span> pop_data[CC_sampled_subjects, ]</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># CO</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    CO_sampled_subjects <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pop_data))[pop_data<span class="sc">$</span>dibpat <span class="sc">==</span> <span class="st">"Type B"</span>],</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> n <span class="sc">/</span> <span class="dv">2</span>, <span class="at">replace =</span> F</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pop_data))[pop_data<span class="sc">$</span>dibpat <span class="sc">==</span> <span class="st">"Type A"</span>],</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> n <span class="sc">/</span> <span class="dv">2</span>, <span class="at">replace =</span> F</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    CO_sample <span class="ot">&lt;-</span> pop_data[CO_sampled_subjects, ]</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Do the three analyses</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># CS</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    CS_bin_log_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(chd69 <span class="sc">~</span> dibpat <span class="sc">+</span> age_bins <span class="sc">+</span> smoke <span class="sc">+</span> bmi_bins <span class="sc">+</span> chol_bins,</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> CS_sample</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># CC</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    CC_bin_log_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(chd69 <span class="sc">~</span> dibpat <span class="sc">+</span> age_bins <span class="sc">+</span> smoke <span class="sc">+</span> bmi_bins <span class="sc">+</span> chol_bins,</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> CC_sample</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># CO</span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    CO_bin_log_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(chd69 <span class="sc">~</span> dibpat <span class="sc">+</span> age_bins <span class="sc">+</span> smoke <span class="sc">+</span> bmi_bins <span class="sc">+</span> chol_bins,</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> CO_sample</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and the takeaways</span></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    res[[<span class="dv">1</span>]][lp, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">coef</span>(CS_bin_log_model)[<span class="st">"dibpatType A"</span>], <span class="fu">confint</span>(CS_bin_log_model)[<span class="st">"dibpatType A"</span>, ])</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>    res[[<span class="dv">2</span>]][lp, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">coef</span>(CC_bin_log_model)[<span class="st">"dibpatType A"</span>], <span class="fu">confint</span>(CC_bin_log_model)[<span class="st">"dibpatType A"</span>, ])</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>    res[[<span class="dv">3</span>]][lp, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">coef</span>(CO_bin_log_model)[<span class="st">"dibpatType A"</span>], <span class="fu">confint</span>(CO_bin_log_model)[<span class="st">"dibpatType A"</span>, ])</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Summaries</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>  BIAS <span class="ot">&lt;-</span> <span class="fu">sapply</span>(</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>    res,</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(mat) {</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(mat[, <span class="dv">1</span>]) <span class="sc">-</span> log_OR</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>  vrnc <span class="ot">&lt;-</span> <span class="fu">sapply</span>(res, <span class="cf">function</span>(mat) {</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">var</span>(mat[, <span class="dv">1</span>])</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>  CVRG <span class="ot">&lt;-</span> <span class="fu">sapply</span>(res,</span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(mat, trg) {</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>((mat[, <span class="dv">2</span>] <span class="sc">&lt;</span> trg) <span class="sc">&amp;</span> (trg <span class="sc">&lt;</span> mat[, <span class="dv">3</span>]))</span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">trg =</span> log_OR</span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>  PWR <span class="ot">&lt;-</span> <span class="fu">sapply</span>(res, <span class="cf">function</span>(mat) {</span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(mat[, <span class="dv">2</span>] <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>  RMSE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(BIAS<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> vrnc)</span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>  opt <span class="ot">&lt;-</span> <span class="fu">cbind</span>(BIAS, RMSE, CVRG, PWR)</span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames</span>(opt) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cross-Sectional (CS)"</span>, <span class="st">"Case-Control (CC)"</span>, <span class="st">"Cohort (CO)"</span>)</span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(opt)</span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Function inputs:
+<ul>
+<li><code>pop_data</code>: the dataset where we will sample from</li>
+<li><code>n</code>: sample size</li>
+<li><code>alpha</code>: significance level <span class="math inline">\(\alpha\)</span></li>
+<li><code>log_OR</code>: true log odds ratio</li>
+<li><code>num_replicates</code>: number of simulations to run</li>
+</ul></li>
+<li>The function <code>sim_study</code> will return a matrix with the following metrics:
+<ul>
+<li><strong>BIAS</strong>: difference between the estimated and true log odds ratio</li>
+<li><strong>RMSE</strong>: root mean squared error</li>
+<li><strong>CVRG</strong>: coverage of the 95% confidence interval (as a proportion of <code>num_replicates</code>)</li>
+<li><strong>PWR</strong>: power of the test</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="matched-case-control-studies" class="level2">
+<h2 class="anchored" data-anchor-id="matched-case-control-studies">Matched Case-Control Studies</h2>
+<ul>
+<li>All our previous sampling schemes used a <strong>binary logistic regression</strong> model</li>
+<li>Recall we checked that CC is the best compared to the other 2 designs (CS and CO) in terms of power when <span class="math inline">\(Y=1\)</span> is rare</li>
+</ul>
+<section id="alternative-data-collection" class="level3">
+<h3 class="anchored" data-anchor-id="alternative-data-collection">Alternative Data Collection</h3>
+<ul>
+<li>Using CC is acceptable because:
+<ul>
+<li>We assumed <span class="math inline">\(Y|X, C_1, ..., C_p\)</span></li>
+<li>Create artificial population by “cloning subjects”
+<ul>
+<li>This is done using the estimated model from (previous reperesentative sample) + induced random noise</li>
+<li>AKA Proxy Ground Truth</li>
+</ul></li>
+</ul></li>
+<li>CC is useful when <span class="math inline">\(Y=1\)</span> is rare and sampling is costly</li>
+</ul>
+</section>
+<section id="cc-matching" class="level3">
+<h3 class="anchored" data-anchor-id="cc-matching">CC Matching</h3>
+<ul>
+<li>Need to have artificial population to be representative of the true population</li>
+<li>Then will sample to get a sample size of <span class="math inline">\(n\)</span></li>
+<li>Record the confounders of interest as <strong>strata</strong></li>
+<li>Sample <span class="math inline">\(n/2\)</span> cases then <span class="math inline">\(n/2\)</span> controls
+<ul>
+<li>Keep Case:Control ratio = 1</li>
+<li>Match <strong>exactly</strong> on the confounder to the case counterpart
+<ul>
+<li>e.g.&nbsp;case has confounder <span class="math inline">\(C_1=1\)</span>, then control must have <span class="math inline">\(C_1=1\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Important</strong>: Cannot fit Binary Logistic Regression model since we have matched pairs
+<ul>
+<li>Can get a sparse data problem</li>
+<li>Use <strong>McNemar’s Test</strong> instead</li>
+</ul></li>
+<li>CC-matched will show a smaller average bias compared to CC-unmatched
+<ul>
+<li>Power is the same once <span class="math inline">\(n\)</span> increases</li>
+</ul></li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Control <span class="math inline">\(X=0\)</span></th>
+<th>Control <span class="math inline">\(X=1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Case <span class="math inline">\(X=0\)</span></td>
+<td><span class="math inline">\(n_{00}\)</span></td>
+<td><span class="math inline">\(n_{01}\)</span></td>
+</tr>
+<tr class="even">
+<td>Case <span class="math inline">\(X=1\)</span></td>
+<td><span class="math inline">\(n_{10}\)</span></td>
+<td><span class="math inline">\(n_{11}\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="math inline">\(n_{00}\)</span> and <span class="math inline">\(n_{11}\)</span> are the <strong>concordant pairs</strong></li>
+<li><span class="math inline">\(n_{01}\)</span> and <span class="math inline">\(n_{10}\)</span> are the <strong>discordant pairs</strong></li>
+<li>Estimator of the <strong>odds ratio</strong> is based on discordant pairs: <span class="math inline">\(OR = \frac{n_{10}}{n_{01}}\)</span>
+<ul>
+<li><span class="math inline">\(OR = 1\)</span> implies no association</li>
+<li><span class="math inline">\(OR &gt; 1\)</span> implies positive association</li>
+<li><span class="math inline">\(OR &lt; 1\)</span> implies negative association</li>
+</ul></li>
+</ul>
+<section id="mcnemars-test" class="level4">
+<h4 class="anchored" data-anchor-id="mcnemars-test">McNemar’s Test</h4>
+<ul>
+<li><span class="math inline">\(H_0: log(OR) = 0\)</span>, <span class="math inline">\(H_a: log(OR) \neq 0\)</span></li>
+<li><span class="math inline">\(log(OR) = log{n_{10}} - log{n_{01}}\)</span></li>
+<li>It is approximately normally distributed with an SE of:
+<ul>
+<li><span class="math inline">\(SE = \sqrt{\frac{1}{n_{10}} + \frac{1}{n_{01}}}\)</span></li>
+</ul></li>
+<li>Test statistic: <span class="math inline">\(Z = \frac{log(OR)}{SE}\)</span></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="ordinal-regressors" class="level2">
+<h2 class="anchored" data-anchor-id="ordinal-regressors">Ordinal Regressors</h2>
+<ul>
+<li>The numerical confounding strata we have been using are ordinal</li>
+</ul>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<ul>
+<li><span class="math inline">\(Y\)</span> is continuous, <span class="math inline">\(X\)</span> is ordinal</li>
+</ul>
+<ol type="1">
+<li>Need to convert the variable <span class="math inline">\(X\)</span> to ordinal</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>X_ord <span class="ot">&lt;-</span> <span class="fu">ordered</span>(data<span class="sc">$</span>X, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"medium"</span>, <span class="st">"high"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Fit a <strong>one-way analysis of variance (ANOVA)</strong> model</li>
+</ol>
+<ul>
+<li>R uses <strong>polynomial contrasts</strong> in ordered type factors
+<ul>
+<li>Elements of vectors sum to 0</li>
+<li>Roughly, if have <code>k</code> levels, then <code>k-1</code> polynomials</li>
+<li>E.g. <code>l=4</code>, we will have linear, quadratic, cubic contrasts</li>
+<li>Use <code>contr.poly(l)</code> to get the contrasts when <code>l</code> levels
+<ul>
+<li>Gives design matrix for the contrasts</li>
+<li>Cols sum to 0</li>
+<li>Rows are the contrasts and are orthogonal</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>OLS <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_ord, <span class="at">data=</span>data)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get contrasts</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>OLS <span class="sc">|&gt;</span> <span class="fu">model.matrix</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Hypothesis test:
+<ul>
+<li><span class="math inline">\(H_0\)</span>: there is no GIVEN trend in the ordered data</li>
+<li><span class="math inline">\(H_1\)</span>: there is a GIVEN trend in the ordered data</li>
+<li>GIVEN will be replaced with linear, quadratic, cubic, etc</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> eda_plot <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">unclass</span>(X_ord), <span class="at">color=</span><span class="dv">1</span>),</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">formula=</span>y<span class="sc">~</span>x, <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">unclass</span>(X_ord), <span class="at">color=</span><span class="dv">2</span>),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">formula=</span>y<span class="sc">~</span><span class="fu">poly</span>(x, <span class="dv">2</span>), <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">unclass</span>(X_ord), <span class="at">color=</span><span class="dv">3</span>),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">formula=</span>y<span class="sc">~</span><span class="fu">poly</span>(x, <span class="dv">3</span>), <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="successive-difference-constrasts" class="level4">
+<h4 class="anchored" data-anchor-id="successive-difference-constrasts">Successive Difference Constrasts</h4>
+<ul>
+<li>Alternative to make inferential interpretations more straightforward</li>
+<li>Want to answer whether differences exist between ordered levels</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">contrasts =</span> <span class="fu">c</span>(<span class="st">"contr.treatment"</span>, <span class="st">"contr.sdif"</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>OLS_sdif <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_ord, <span class="at">data=</span>data) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Interpretation is very straightforward</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

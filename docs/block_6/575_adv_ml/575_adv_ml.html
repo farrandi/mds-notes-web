@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Nando's MDS Notes – adv_ml</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/white_cartoon.PNG" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/mds_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Nando’s MDS Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../list.html" rel="" target="">
+ <span class="menu-text">List of Notes</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#advanced-machine-learning-large-language-models" id="toc-advanced-machine-learning-large-language-models" class="nav-link active" data-scroll-target="#advanced-machine-learning-large-language-models">Advanced Machine Learning (Large Language Models)</a>
+  <ul class="collapse">
+  <li><a href="#language-models" id="toc-language-models" class="nav-link" data-scroll-target="#language-models">Language Models</a>
+  <ul class="collapse">
+  <li><a href="#large-language-models" id="toc-large-language-models" class="nav-link" data-scroll-target="#large-language-models">Large Language Models</a></li>
+  </ul></li>
+  <li><a href="#markov-model" id="toc-markov-model" class="nav-link" data-scroll-target="#markov-model">Markov Model</a>
+  <ul class="collapse">
+  <li><a href="#markov-assumption" id="toc-markov-assumption" class="nav-link" data-scroll-target="#markov-assumption">Markov Assumption</a></li>
+  <li><a href="#markov-chain-definition" id="toc-markov-chain-definition" class="nav-link" data-scroll-target="#markov-chain-definition">Markov Chain Definition</a></li>
+  <li><a href="#markov-chain-tasks" id="toc-markov-chain-tasks" class="nav-link" data-scroll-target="#markov-chain-tasks">Markov Chain Tasks</a></li>
+  <li><a href="#learning-markov-models" id="toc-learning-markov-models" class="nav-link" data-scroll-target="#learning-markov-models">Learning Markov Models</a></li>
+  <li><a href="#n-gram-language-model" id="toc-n-gram-language-model" class="nav-link" data-scroll-target="#n-gram-language-model">n-gram language model</a></li>
+  </ul></li>
+  <li><a href="#applications-of-markov-models" id="toc-applications-of-markov-models" class="nav-link" data-scroll-target="#applications-of-markov-models">Applications of Markov Models</a>
+  <ul class="collapse">
+  <li><a href="#google-pagerank" id="toc-google-pagerank" class="nav-link" data-scroll-target="#google-pagerank">Google PageRank</a></li>
+  </ul></li>
+  <li><a href="#basic-text-preprocessing" id="toc-basic-text-preprocessing" class="nav-link" data-scroll-target="#basic-text-preprocessing">Basic Text Preprocessing</a>
+  <ul class="collapse">
+  <li><a href="#tokenization" id="toc-tokenization" class="nav-link" data-scroll-target="#tokenization">Tokenization</a></li>
+  <li><a href="#word-segmentation" id="toc-word-segmentation" class="nav-link" data-scroll-target="#word-segmentation">Word Segmentation</a></li>
+  <li><a href="#word-based-vs-character-based-language-models" id="toc-word-based-vs-character-based-language-models" class="nav-link" data-scroll-target="#word-based-vs-character-based-language-models">word-based vs character-based language models</a></li>
+  <li><a href="#other-preprocessing-steps" id="toc-other-preprocessing-steps" class="nav-link" data-scroll-target="#other-preprocessing-steps">Other Preprocessing Steps</a></li>
+  <li><a href="#other-typical-nlp-tasks" id="toc-other-typical-nlp-tasks" class="nav-link" data-scroll-target="#other-typical-nlp-tasks">Other Typical NLP Tasks</a></li>
+  </ul></li>
+  <li><a href="#hidden-markov-models" id="toc-hidden-markov-models" class="nav-link" data-scroll-target="#hidden-markov-models">Hidden Markov Models</a>
+  <ul class="collapse">
+  <li><a href="#speech-recognition" id="toc-speech-recognition" class="nav-link" data-scroll-target="#speech-recognition">Speech Recognition</a></li>
+  <li><a href="#hmm-definition-and-example" id="toc-hmm-definition-and-example" class="nav-link" data-scroll-target="#hmm-definition-and-example">HMM Definition and Example</a></li>
+  <li><a href="#supervised-learning-in-hmm" id="toc-supervised-learning-in-hmm" class="nav-link" data-scroll-target="#supervised-learning-in-hmm">Supervised Learning in HMM</a></li>
+  <li><a href="#decoding-the-viterbi-algorithm" id="toc-decoding-the-viterbi-algorithm" class="nav-link" data-scroll-target="#decoding-the-viterbi-algorithm">Decoding: The Viterbi Algorithm</a></li>
+  <li><a href="#the-backward-procedure" id="toc-the-backward-procedure" class="nav-link" data-scroll-target="#the-backward-procedure">The Backward Procedure</a></li>
+  <li><a href="#baum-welch-bw-algorithm" id="toc-baum-welch-bw-algorithm" class="nav-link" data-scroll-target="#baum-welch-bw-algorithm">Baum-Welch (BW) Algorithm</a></li>
+  </ul></li>
+  <li><a href="#topic-modeling" id="toc-topic-modeling" class="nav-link" data-scroll-target="#topic-modeling">Topic Modeling</a>
+  <ul class="collapse">
+  <li><a href="#how-to-do-topic-modeling" id="toc-how-to-do-topic-modeling" class="nav-link" data-scroll-target="#how-to-do-topic-modeling">How to do Topic Modeling?</a></li>
+  <li><a href="#latent-semantic-analysis-lsa" id="toc-latent-semantic-analysis-lsa" class="nav-link" data-scroll-target="#latent-semantic-analysis-lsa">Latent Semantic Analysis (LSA)</a></li>
+  <li><a href="#latent-dirichlet-allocation-lda" id="toc-latent-dirichlet-allocation-lda" class="nav-link" data-scroll-target="#latent-dirichlet-allocation-lda">Latent Dirichlet Allocation (LDA)</a></li>
+  <li><a href="#topic-modeling-in-python" id="toc-topic-modeling-in-python" class="nav-link" data-scroll-target="#topic-modeling-in-python">Topic Modeling in Python</a></li>
+  </ul></li>
+  <li><a href="#recurrent-neural-networks-rnns" id="toc-recurrent-neural-networks-rnns" class="nav-link" data-scroll-target="#recurrent-neural-networks-rnns">Recurrent Neural Networks (RNNs)</a>
+  <ul class="collapse">
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#introduction-to-rnns" id="toc-introduction-to-rnns" class="nav-link" data-scroll-target="#introduction-to-rnns">Introduction to RNNs</a></li>
+  <li><a href="#parameters-in-rnns" id="toc-parameters-in-rnns" class="nav-link" data-scroll-target="#parameters-in-rnns">Parameters in RNNs</a></li>
+  <li><a href="#forward-pass" id="toc-forward-pass" class="nav-link" data-scroll-target="#forward-pass">Forward Pass</a></li>
+  <li><a href="#rnn-applications" id="toc-rnn-applications" class="nav-link" data-scroll-target="#rnn-applications">RNN Applications</a></li>
+  <li><a href="#stacked-rnns" id="toc-stacked-rnns" class="nav-link" data-scroll-target="#stacked-rnns">Stacked RNNs</a></li>
+  <li><a href="#bidirectional-rnns" id="toc-bidirectional-rnns" class="nav-link" data-scroll-target="#bidirectional-rnns">Bidirectional RNNs</a></li>
+  <li><a href="#problems-with-rnns" id="toc-problems-with-rnns" class="nav-link" data-scroll-target="#problems-with-rnns">Problems with RNNs</a></li>
+  </ul></li>
+  <li><a href="#transformers" id="toc-transformers" class="nav-link" data-scroll-target="#transformers">Transformers</a>
+  <ul class="collapse">
+  <li><a href="#intuition-for-transformers" id="toc-intuition-for-transformers" class="nav-link" data-scroll-target="#intuition-for-transformers">Intuition for Transformers</a></li>
+  <li><a href="#self-attention-mechanism" id="toc-self-attention-mechanism" class="nav-link" data-scroll-target="#self-attention-mechanism">Self-Attention Mechanism</a></li>
+  <li><a href="#positional-embeddings" id="toc-positional-embeddings" class="nav-link" data-scroll-target="#positional-embeddings">Positional Embeddings</a></li>
+  <li><a href="#multi-head-attention" id="toc-multi-head-attention" class="nav-link" data-scroll-target="#multi-head-attention">Multi-Head Attention</a></li>
+  <li><a href="#transformer-blocks" id="toc-transformer-blocks" class="nav-link" data-scroll-target="#transformer-blocks">Transformer Blocks</a></li>
+  </ul></li>
+  <li><a href="#types-of-transformers" id="toc-types-of-transformers" class="nav-link" data-scroll-target="#types-of-transformers">Types of Transformers</a>
+  <ul class="collapse">
+  <li><a href="#decoder-only-transformer" id="toc-decoder-only-transformer" class="nav-link" data-scroll-target="#decoder-only-transformer">Decoder-only Transformer</a></li>
+  <li><a href="#encoder-only-transformer" id="toc-encoder-only-transformer" class="nav-link" data-scroll-target="#encoder-only-transformer">Encoder-only Transformer</a></li>
+  <li><a href="#encoder-decoder-transformer" id="toc-encoder-decoder-transformer" class="nav-link" data-scroll-target="#encoder-decoder-transformer">Encoder-Decoder Transformer</a></li>
+  <li><a href="#interim-summary" id="toc-interim-summary" class="nav-link" data-scroll-target="#interim-summary">Interim Summary</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="advanced-machine-learning-large-language-models" class="level1">
+<h1>Advanced Machine Learning (Large Language Models)</h1>
+<section id="language-models" class="level2">
+<h2 class="anchored" data-anchor-id="language-models">Language Models</h2>
+<ul>
+<li>It computes the probability distribution of a sequence of words.
+<ul>
+<li><span class="math inline">\(P(w_1, w_2, ..., w_t)\)</span></li>
+<li>E.g. P(“I have read this book) &gt; P(”Eye have red this book”)</li>
+</ul></li>
+<li>Can also get the probability of the upcoming word.
+<ul>
+<li><span class="math inline">\(P(w_t | w_1, w_2, ..., w_{t-1})\)</span></li>
+<li>E.g. P(“book” | “I have read this”) &gt; P(“book” | “I have red this”)</li>
+</ul></li>
+</ul>
+<section id="large-language-models" class="level3">
+<h3 class="anchored" data-anchor-id="large-language-models">Large Language Models</h3>
+<ul>
+<li>Large language models are trained on a large corpus of text.</li>
+</ul>
+</section>
+</section>
+<section id="markov-model" class="level2">
+<h2 class="anchored" data-anchor-id="markov-model">Markov Model</h2>
+<ul>
+<li><strong>High-level</strong>: The probability of a word depends only on the previous word (forget everything written before that).</li>
+<li><strong>Idea</strong>: Predict future depending upon:
+<ul>
+<li>The current state</li>
+<li>The probability of change</li>
+</ul></li>
+</ul>
+<section id="markov-assumption" class="level3">
+<h3 class="anchored" data-anchor-id="markov-assumption">Markov Assumption</h3>
+<p>Naive probability of a sequence of words: <span class="math display">\[P(w_1, w_2, ..., w_t) = P(w_1)P(w_2|w_1)P(w_3|w_1, w_2)...P(w_t|w_1, w_2, ..., w_{t-1})\]</span></p>
+<p>e.g.&nbsp;<span class="math display">\[P(\text{I have read this book}) = P(\text{I})P(\text{have}|\text{I})P(\text{read}|\text{I have})P(\text{this}|\text{I have read})P(\text{book}|\text{I have read this})\]</span></p>
+<p>Or simply: <span class="math display">\[P(w_1, w_2, ..., w_t) = \prod_{i=1}^{t} P(w_i|w_{1:i-1})\]</span></p>
+<p>But this is hard, so in Markov model (n-grams), we only consider the <code>n</code> previous words. With the assumption:</p>
+<p><span class="math display">\[P(w_t|w_1, w_2, ..., w_{t-1}) \approx P(w_t| w_{t-1})\]</span></p>
+</section>
+<section id="markov-chain-definition" class="level3">
+<h3 class="anchored" data-anchor-id="markov-chain-definition">Markov Chain Definition</h3>
+<ul>
+<li>Have a set of states <span class="math inline">\(S = \{s_1, s_2, ..., s_n\}\)</span>.</li>
+<li>A set of discrete initial probabilities <span class="math inline">\(\pi_0 = \{\pi_0(s_1), \pi_0(s_2), ..., \pi_0(s_n)\}\)</span>.</li>
+<li>A transition matrix <span class="math inline">\(T\)</span> where each <span class="math inline">\(a_{ij}\)</span> is the probability of transitioning from state <span class="math inline">\(s_i\)</span> to state <span class="math inline">\(s_j\)</span>.</li>
+</ul>
+<p><span class="math display">\[
+T =
+\begin{bmatrix}
+    a_{11}       &amp; a_{12} &amp; a_{13} &amp; \dots &amp; a_{1n} \\
+    a_{21}       &amp; a_{22} &amp; a_{23} &amp; \dots &amp; a_{2n} \\
+    \dots \\
+    a_{n1}       &amp; a_{n2} &amp; a_{n3} &amp; \dots &amp; a_{nn}
+\end{bmatrix}
+\]</span></p>
+<ul>
+<li><strong>Properties</strong>:
+<ul>
+<li><span class="math inline">\(0 \leq a_{ij} \leq 1\)</span></li>
+<li><strong>rows sum to 1</strong>: <span class="math inline">\(\sum_{j=1}^{n} a_{ij} = 1\)</span></li>
+<li>columns do not need to sum to 1</li>
+<li>This is assuming <strong>Homogeneous Markov chain</strong> (transition matrix does not change over time).</li>
+</ul></li>
+</ul>
+</section>
+<section id="markov-chain-tasks" class="level3">
+<h3 class="anchored" data-anchor-id="markov-chain-tasks">Markov Chain Tasks</h3>
+<ol type="1">
+<li>Predict probabilities of sequences of states</li>
+<li>Compute probability of being at a state at a given time</li>
+<li>Stationary Distribution: Find steady state after a long time</li>
+<li>Generation: Generate a sequences that follows the probability of states</li>
+</ol>
+<section id="stationary-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="stationary-distribution">Stationary Distribution</h4>
+<ul>
+<li>Steady state after a long time.</li>
+<li>Basically the eigenvector of the transition matrix corresponding to the eigenvalue 1.</li>
+</ul>
+<p><span class="math display">\[\pi T = \pi\]</span></p>
+<ul>
+<li>Where <span class="math inline">\(\pi\)</span> is the stationary probability distribution <br></li>
+<li><strong>Sufficient Condition for Uniqueness</strong>:
+<ul>
+<li>Positive transitions (<span class="math inline">\(a_{ij} &gt; 0\)</span> for all <span class="math inline">\(i, j\)</span>)</li>
+</ul></li>
+<li><strong>Weaker Condition for Uniqueness</strong>:
+<ul>
+<li><strong>Irreducible</strong>: Can go from any state to any other state (fully connected)</li>
+<li><strong>Aperiodic</strong>: No fixed period (does not fall into a repetitive loop)</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="learning-markov-models" class="level3">
+<h3 class="anchored" data-anchor-id="learning-markov-models">Learning Markov Models</h3>
+<ul>
+<li>Similar to Naive Bayes, Markov models is just counting</li>
+<li>Given <span class="math inline">\(n\)</span> samples/ sequences, we can find:
+<ul>
+<li>Initial probabilities: <span class="math inline">\(\pi_0(s_i) = \frac{\text{count}(s_i)}{n}\)</span></li>
+<li>Transition probabilities: <span class="math inline">\(a_{ij} = \pi(s_i| s_j) = \frac{\text{count}(s_i, s_j)}{\text{count}(s_i)} = \frac{\text{count of state i to j}}{\text{count of state i to any state}}\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="n-gram-language-model" class="level3">
+<h3 class="anchored" data-anchor-id="n-gram-language-model">n-gram language model</h3>
+<ul>
+<li>Markov model for NLP</li>
+<li><code>n</code> in n-gram means <span class="math inline">\(n-1\)</span> previous words are considered
+<ul>
+<li>e.g.&nbsp;<code>n=2</code> (bigram) means consider current word for the future</li>
+<li>DIFFERENT from Markov model definition bigram= markov model with <code>n=1</code> (we normally use this definition in NLP)</li>
+</ul></li>
+<li>We extend the definition of a “state” to be a sequence of words
+<ul>
+<li>e.g.&nbsp;“I have read this book” -&gt; bigram states: “I have”, “have read”, “read this”, “this book”</li>
+</ul></li>
+<li>example: “I have read this book”
+<ul>
+<li>trigram (n=2): <span class="math inline">\(P(\text{book} | \text{read this})\)</span></li>
+<li>n=3: <span class="math inline">\(P(\text{book} | \text{have read this})\)</span></li>
+</ul></li>
+</ul>
+<p><em>Note: n we use above is not the same as n in n-gram</em></p>
+<section id="evaluating-language-models" class="level4">
+<h4 class="anchored" data-anchor-id="evaluating-language-models">Evaluating Language Models</h4>
+<ul>
+<li>Best way is to embed it in an application and measure how much the application improves (<strong>extrinsic evaluation</strong>)</li>
+<li>Often it is expensive to run NLP pipeline</li>
+<li>It is helpful to have a metric to quickly evaluate performance</li>
+<li>Most common <strong>intrinsic evaluation</strong> metric is <strong>perplexity</strong>
+<ul>
+<li><strong>Lower perplexity is better</strong> (means better predictor of the words in test set)</li>
+</ul></li>
+</ul>
+</section>
+<section id="perplexity" class="level4">
+<h4 class="anchored" data-anchor-id="perplexity">Perplexity</h4>
+<p>Let <span class="math inline">\(W = w_1, w_2, ..., w_N\)</span> be a sequences of words.</p>
+<p><span class="math display">\[
+\text{Perplexity}(W) = P(w_1, w_2, ..., w_N)^{-\frac{1}{N}} \\
+= \sqrt[N]{\frac{1}{P(w_1, w_2, ..., w_N)}}
+\]</span></p>
+<p>For <code>n=1</code> markov model (bigram):</p>
+<p><span class="math display">\[P(w_1, w_2, ..., w_N) = \prod_{i=1}^{N} P(w_i|w_{i-1})\]</span></p>
+<p>So…</p>
+<p><span class="math display">\[
+\text{Perplexity}(W) = \sqrt[N]{\prod_{i=1}^{N} \frac{1}{P(w_i|w_{i-1})}}
+\]</span></p>
+<ul>
+<li>Increase <code>n</code> will decrease perplexity =&gt; better model</li>
+<li>Too high still bad because of overfitting</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="applications-of-markov-models" class="level2">
+<h2 class="anchored" data-anchor-id="applications-of-markov-models">Applications of Markov Models</h2>
+<section id="google-pagerank" class="level3">
+<h3 class="anchored" data-anchor-id="google-pagerank">Google PageRank</h3>
+<ul>
+<li><strong>Idea</strong>: The importance of a page is determined by the importance of the pages that link to it.</li>
+<li><strong>Markov Model</strong>: The probability of being on a page at time <span class="math inline">\(t\)</span> depends only on the page at time <span class="math inline">\(t-1\)</span>.</li>
+<li><strong>Transition Matrix</strong>: The probability of going from page <span class="math inline">\(i\)</span> to page <span class="math inline">\(j\)</span> is the number of links from page <span class="math inline">\(i\)</span> to page <span class="math inline">\(j\)</span> divided by the number of links from page <span class="math inline">\(i\)</span>.
+<ul>
+<li>Add <span class="math inline">\(\epsilon\)</span> to all values so that matrix is fully connected</li>
+<li>Normalize so sum of each row is 1</li>
+</ul></li>
+<li><strong>Stationary Distribution</strong>: The stationary distribution of the transition matrix gives the importance of each page.
+<ul>
+<li>It shows the page’s long-term visit rate</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="basic-text-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="basic-text-preprocessing">Basic Text Preprocessing</h2>
+<ul>
+<li>Text is unstructured and messy
+<ul>
+<li>Need to “normalize”</li>
+</ul></li>
+</ul>
+<section id="tokenization" class="level3">
+<h3 class="anchored" data-anchor-id="tokenization">Tokenization</h3>
+<ul>
+<li>Sentence segmentation: text -&gt; sentences</li>
+<li>Word tokenization: sentence -&gt; words
+<ul>
+<li>Process of identifying word boundaries</li>
+</ul></li>
+<li>Characters for tokenization: | Character | Description | | — | — | | Space | Separate words | | dot <code>.</code> | Kind of ambiguous (e.g.&nbsp;<code>U.S.A</code>) | | <code>!</code>, <code>?</code> | Kind of ambiguous too |</li>
+<li>How?
+<ul>
+<li>Regex</li>
+<li>Use libraries like <code>nltk</code>, <code>spacy</code>, <code>stanza</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="word-segmentation" class="level3">
+<h3 class="anchored" data-anchor-id="word-segmentation">Word Segmentation</h3>
+<ul>
+<li>In NLP we talk about:
+<ul>
+<li><strong>Type</strong>: Unique words (element in vocabulary)</li>
+<li><strong>Token</strong>: Instances of words</li>
+</ul></li>
+</ul>
+</section>
+<section id="word-based-vs-character-based-language-models" class="level3">
+<h3 class="anchored" data-anchor-id="word-based-vs-character-based-language-models">word-based vs character-based language models</h3>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 44%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Word-Based</th>
+<th>Character-Based</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Advantages</td>
+<td>- Faster training and inference due to smaller vocabulary size</td>
+<td>- Can handle unseen words (out-of-vocabulary) and typos by generating characters</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>- Leverages existing knowledge of grammar and syntax through word relationships</td>
+<td>- More flexible for generating creative text formats like code or names</td>
+</tr>
+<tr class="odd">
+<td>Disadvantages</td>
+<td>- Requires a large vocabulary, leading to higher memory usage and computational cost</td>
+<td>- May struggle with complex morphology (word structure) in some languages</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>- Can struggle with unseen words or typos (resulting in “unknown word” tokens)</td>
+<td>- May generate grammatically incorrect or nonsensical text due to lack of word-level context</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>n-gram typically have larger state space for word-based models than character-based models</li>
+</ul>
+</section>
+<section id="other-preprocessing-steps" class="level3">
+<h3 class="anchored" data-anchor-id="other-preprocessing-steps">Other Preprocessing Steps</h3>
+<ul>
+<li>Removing stop words</li>
+<li>Lemmatization: Convert words to their base form</li>
+<li>Stemming: Remove suffixes
+<ul>
+<li>e.g.&nbsp;automates, automatic, automation -&gt; automat</li>
+<li>Not actual words, but can be useful for some tasks</li>
+<li>Be careful, because kind of aggressive</li>
+</ul></li>
+</ul>
+</section>
+<section id="other-typical-nlp-tasks" class="level3">
+<h3 class="anchored" data-anchor-id="other-typical-nlp-tasks">Other Typical NLP Tasks</h3>
+<ul>
+<li><strong>Part of Speech (POS) Tagging</strong>: Assigning a part of speech to each word</li>
+<li><strong>Named Entity Recognition (NER)</strong>: Identifying named entities in text</li>
+<li><strong>Coreference Resolution</strong>: Identifying which words refer to the same entity</li>
+<li><strong>Dependency Parsing</strong>: Identifying the grammatical structure of a sentence</li>
+</ul>
+</section>
+</section>
+<section id="hidden-markov-models" class="level2">
+<h2 class="anchored" data-anchor-id="hidden-markov-models">Hidden Markov Models</h2>
+<section id="speech-recognition" class="level3">
+<h3 class="anchored" data-anchor-id="speech-recognition">Speech Recognition</h3>
+<ul>
+<li>Python has several libraries for speech recognition.
+<ul>
+<li>Have a module called <code>SpeechRecognition</code> which can access:
+<ul>
+<li>Google Web Speech API</li>
+<li>Sphinx</li>
+<li>Wit.ai</li>
+<li>Microsoft Bing Voice Recognition</li>
+<li>IBM Speech to Text</li>
+</ul></li>
+<li>Might need to pay for some of these services</li>
+</ul></li>
+<li><strong>General Task</strong>: Given a sequence of audio signals, want to recognize the corresponding phenomes/ words
+<ul>
+<li><strong>Phenomes</strong>: Distinct units of sound
+<ul>
+<li>E.g. “cat” has 3 phenomes: “k”, “ae”, “t”. “dog” has 3 phenomes: “d”, “aa”, “g”</li>
+</ul></li>
+<li>English has ~44 phenomes</li>
+</ul></li>
+<li>It is a <strong>sequence modeling problem</strong></li>
+<li>Many modern speech recognition systems use HMM
+<ul>
+<li>HMM is also still useful in bioinformatics, financial modeling, etc.</li>
+</ul></li>
+</ul>
+</section>
+<section id="hmm-definition-and-example" class="level3">
+<h3 class="anchored" data-anchor-id="hmm-definition-and-example">HMM Definition and Example</h3>
+<ul>
+<li><strong>Hidden</strong>: The state is not directly observable
+<ul>
+<li>e.g.&nbsp;In speech recognition, the phenome is not directly observable. Or POS (Part of Speech) tags in text.</li>
+</ul></li>
+<li>HMM is specified by a 5-tuple <span class="math inline">\((S, Y, \pi, T, B)\)</span>
+<ul>
+<li><span class="math inline">\(S\)</span>: Set of states</li>
+<li><span class="math inline">\(Y\)</span>: Set of observations</li>
+<li><span class="math inline">\(\pi\)</span>: Initial state probabilities</li>
+<li><span class="math inline">\(T\)</span>: Transition matrix, where <span class="math inline">\(a_{ij}\)</span> is the probability of transitioning from state <span class="math inline">\(s_i\)</span> to state <span class="math inline">\(s_j\)</span></li>
+<li><span class="math inline">\(B\)</span>: Emission probabilities. <span class="math inline">\(b_j(y)\)</span> is the probability of observing <span class="math inline">\(y\)</span> in state <span class="math inline">\(s_j\)</span></li>
+</ul></li>
+<li>Yielding the state sequence and observation sequence</li>
+</ul>
+<p><span class="math display">\[\text{State Sequence}:Q = q_1, q_2, ..., q_T \in S\]</span></p>
+<p><span class="math display">\[\text{Observation Sequence}: O = o_1, o_2, ..., o_T \in Y\]</span></p>
+<section id="hmm-assumptions" class="level4">
+<h4 class="anchored" data-anchor-id="hmm-assumptions">HMM Assumptions</h4>
+<p><img src="images/3_hmm.png" width="350"></p>
+<ol type="1">
+<li>The probability of a particular state depends only on the previous state</li>
+</ol>
+<p><span class="math display">\[P(q_i|q_0,q_1,\dots,q_{i-1})=P(q_i|q_{i-1})\]</span></p>
+<ol start="2" type="1">
+<li>Probability of an observation depends <strong>only</strong> on the state.</li>
+</ol>
+<p><span class="math display">\[P(o_i|q_0,q_1,\dots,q_{i-1},o_0,o_1,\dots,o_{i-1})=P(o_i|q_i)\]</span></p>
+<p><strong>Important Notes</strong>:</p>
+<ul>
+<li>Observations are ONLY dependent on the current state</li>
+<li>States are dependent on the previous state (not observations)</li>
+<li>Each hidden state has a probability distribution over all observations</li>
+</ul>
+</section>
+<section id="fundamental-questions-for-a-hmm" class="level4">
+<h4 class="anchored" data-anchor-id="fundamental-questions-for-a-hmm">Fundamental Questions for a HMM</h4>
+<ol type="1">
+<li>Likelihood
+<ul>
+<li>Given <span class="math inline">\(\theta = (\pi, T, B)\)</span> what is the probability of observation sequence <span class="math inline">\(O\)</span>?</li>
+</ul></li>
+<li>Decoding
+<ul>
+<li>Given an observation sequence <span class="math inline">\(O\)</span> and model <span class="math inline">\(\theta\)</span>. How do we choose the best state sequence <span class="math inline">\(Q\)</span>?</li>
+</ul></li>
+<li>Learning
+<ul>
+<li>Given an observation sequence <span class="math inline">\(O\)</span>, how do we learn the model <span class="math inline">\(\theta = (\pi, T, B)\)</span>?</li>
+</ul></li>
+</ol>
+</section>
+<section id="hmm-likelihood" class="level4">
+<h4 class="anchored" data-anchor-id="hmm-likelihood">HMM Likelihood</h4>
+<ul>
+<li>What is the probability of observing sequence <span class="math inline">\(O\)</span>?</li>
+</ul>
+<p><span class="math display">\[P(O) = \sum\limits_{Q} P(O,Q)\]</span></p>
+<p>This means we need all the possible state sequences <span class="math inline">\(Q\)</span></p>
+<p><span class="math display">\[P(O,Q) = P(O|Q)\times P(Q) = \prod\limits_{i=1}^T P(o_i|q_i) \times \prod\limits_{i=1}^T P(q_i|q_{i-1})\]</span></p>
+<p>This is computationally inefficient. <span class="math inline">\(O(2Tn^T)\)</span></p>
+<ul>
+<li>Need to find every possible state sequence <span class="math inline">\(n^T\)</span>, then consider each emission given the state sequence <span class="math inline">\(T\)</span></li>
+<li><span class="math inline">\(n\)</span> is the number of hidden states</li>
+<li><span class="math inline">\(T\)</span> is the length of the sequence</li>
+</ul>
+<p>To solve this, we use dynamic programming (Forward Procedure)</p>
+<section id="dynamic-programming-forward-procedure" class="level5">
+<h5 class="anchored" data-anchor-id="dynamic-programming-forward-procedure">Dynamic Programming: Forward Procedure</h5>
+<ul>
+<li>Find <span class="math inline">\(P(O|\theta)\)</span></li>
+<li>Make a table of size <span class="math inline">\(n \times T\)</span> called <strong>Trellis</strong>
+<ul>
+<li>rows: hidden states</li>
+<li>columns: time steps</li>
+</ul></li>
+<li>Fill the table using the following formula:
+<ol type="1">
+<li><strong>Initialization</strong>: compute first column (<span class="math inline">\(t=0\)</span>)
+<ul>
+<li><span class="math inline">\(\alpha_j(0) = \pi_j b_j(o_1)\)</span>
+<ul>
+<li><span class="math inline">\(\pi_j\)</span>: initial state probability</li>
+<li><span class="math inline">\(b_j(o_1)\)</span>: emission probability</li>
+</ul></li>
+</ul></li>
+<li><strong>Induction</strong>: compute the rest of the columns (<span class="math inline">\(1 \leq t &lt; T\)</span>)
+<ul>
+<li><span class="math inline">\(\alpha_j(t+1) = \sum\limits_{i=1}^n \alpha_i(t) a_{ij} b_j(o_{t+1})\)</span>
+<ul>
+<li><span class="math inline">\(a_{ij}\)</span>: transition probability from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Termination</strong>: sum over the last column (<span class="math inline">\(t=T\)</span>)
+<ul>
+<li><span class="math inline">\(P(O|\theta) = \sum\limits_{i=1}^n \alpha_T(i)\)</span></li>
+</ul></li>
+</ol></li>
+<li>It is computed left to right and top to bottom</li>
+<li>Time complexity: <span class="math inline">\(O(2n^2T)\)</span>
+<ul>
+<li>At each time step, need to compare states to all other states <span class="math inline">\(n^2\)</span></li>
+<li>Better compared to the naive approach <span class="math inline">\(O(2Tn^T)\)</span></li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="supervised-learning-in-hmm" class="level3">
+<h3 class="anchored" data-anchor-id="supervised-learning-in-hmm">Supervised Learning in HMM</h3>
+<ul>
+<li><p>Training data: Set of observations <span class="math inline">\(O\)</span> and set of state sequences <span class="math inline">\(Q\)</span></p></li>
+<li><p>Find parameters <span class="math inline">\(\theta = (\pi, T, B)\)</span></p></li>
+<li><p>Popular libraries in Python:</p>
+<ul>
+<li><code>hmmlearn</code></li>
+<li><code>pomegranate</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="decoding-the-viterbi-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="decoding-the-viterbi-algorithm">Decoding: The Viterbi Algorithm</h3>
+<ul>
+<li>Given an observation sequence <span class="math inline">\(O\)</span> and model <span class="math inline">\(\theta = (\pi, T, B)\)</span>, how do we choose the best state sequence <span class="math inline">\(Q\)</span>?</li>
+<li>Find <span class="math inline">\(Q^* = \arg\max_Q P(O,Q|\theta)\)</span></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 47%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Forward Procedure</th>
+<th>Viterbi Algorithm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Purpose</strong></td>
+<td>Computes the probability of observing a given sequence of emissions, given the model parameters.</td>
+<td>Finds the most likely sequence of hidden states that explains the observed sequence of emissions, given the model parameters.</td>
+</tr>
+<tr class="even">
+<td><strong>Computation</strong></td>
+<td>Computes forward probabilities, which are the probabilities of being in a particular state at each time step given the observed sequence.</td>
+<td>Computes the most likely sequence of hidden states.</td>
+</tr>
+<tr class="odd">
+<td><strong>Probability Calculation</strong></td>
+<td>Sum over all possible paths through the hidden states.</td>
+<td>Recursively calculates the probabilities of the most likely path up to each state at each time step.</td>
+</tr>
+<tr class="even">
+<td><strong>Objective</strong></td>
+<td>Computes the likelihood of observing a given sequence of emissions.</td>
+<td>Finds the most probable sequence of hidden states that explains the observed sequence of emissions.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Both are dynamic programming algorithms with time complexity <span class="math inline">\(O(n^2T)\)</span></p></li>
+<li><p><strong>Viterbi Overview</strong>:</p>
+<ul>
+<li>Store <span class="math inline">\(\delta\)</span> and <span class="math inline">\(\psi\)</span> at each node in the trellis
+<ul>
+<li><span class="math inline">\(\delta_i(t)\)</span> is the max probability of the most likely path ending in trellis node at state <span class="math inline">\(i\)</span> at time <span class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(\psi_i(t)\)</span> is the best possible previous state at time <span class="math inline">\(t-1\)</span> that leads to state <span class="math inline">\(i\)</span> at time <span class="math inline">\(t\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="images/4_viterbi.png" width="400"></p>
+<section id="viterbi-initialization" class="level4">
+<h4 class="anchored" data-anchor-id="viterbi-initialization">Viterbi: Initialization</h4>
+<ul>
+<li><span class="math inline">\(\delta_i(0) = \pi_i b_i(O_0)\)</span>
+<ul>
+<li>recall <span class="math inline">\(b_i(O_0)\)</span> is the emission probability and <span class="math inline">\(\pi_i\)</span> is the initial state probability</li>
+</ul></li>
+<li><span class="math inline">\(\psi_i(0) = 0\)</span></li>
+</ul>
+</section>
+<section id="viterbi-induction" class="level4">
+<h4 class="anchored" data-anchor-id="viterbi-induction">Viterbi: Induction</h4>
+<ul>
+<li><p>Best path <span class="math inline">\(\delta_j(t)\)</span> to state <span class="math inline">\(j\)</span> at time <span class="math inline">\(t\)</span> depends on each previous state and their transition to state <span class="math inline">\(j\)</span></p></li>
+<li><p><span class="math inline">\(\delta_j(t) = \max\limits_i \{\delta_i(t-1)a_{ij}\} b_j(o_t)\)</span></p>
+<ul>
+<li><span class="math inline">\(b_j(o_t)\)</span> is the emission probability of observation <span class="math inline">\(o_t\)</span> given state <span class="math inline">\(j\)</span></li>
+</ul></li>
+<li><p><span class="math inline">\(\psi_j(t) = \arg \max\limits_i \{\delta_i(t-1)a_{ij}\}\)</span></p></li>
+</ul>
+</section>
+<section id="viterbi-conclusion" class="level4">
+<h4 class="anchored" data-anchor-id="viterbi-conclusion">Viterbi: Conclusion</h4>
+<ul>
+<li>Choose the best final state
+<ul>
+<li><span class="math inline">\(q_t^* = \arg\max\limits_i \delta_i(T)\)</span></li>
+</ul></li>
+<li>Recursively choose the best previous state
+<ul>
+<li><span class="math inline">\(q_{t-1}^* = \psi_{q_t^*}(T)\)</span></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="the-backward-procedure" class="level3">
+<h3 class="anchored" data-anchor-id="the-backward-procedure">The Backward Procedure</h3>
+<ul>
+<li>We do not always have mapping from observations to states (emission probabilities <span class="math inline">\(B\)</span>)</li>
+<li>Given an observation sequence <span class="math inline">\(O\)</span> but not the state sequence <span class="math inline">\(Q\)</span>, how do we choose the best parameters <span class="math inline">\(\theta = (\pi, T, B)\)</span>?</li>
+<li>Use <strong>forward-backward algorithm</strong></li>
+</ul>
+<section id="basic-idea" class="level4">
+<h4 class="anchored" data-anchor-id="basic-idea">Basic Idea</h4>
+<ul>
+<li>Reverse of the forward procedure <strong>right to left</strong> but still <strong>top to bottom</strong></li>
+<li>Find the probability of observing the rest of the sequence given the current state
+<ul>
+<li><span class="math inline">\(\beta_j(t) = P(o_{t+1}, o_{t+2}, \dots, o_T)\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="steps-for-backward-procedure" class="level4">
+<h4 class="anchored" data-anchor-id="steps-for-backward-procedure">Steps for Backward Procedure</h4>
+<ol type="1">
+<li><strong>Initialization</strong>: set all values at last time step to 1
+<ul>
+<li><span class="math inline">\(\beta_j(T) = 1\)</span></li>
+</ul></li>
+<li><strong>Induction</strong>: compute the rest of the columns (<span class="math inline">\(1 \leq t &lt; T\)</span>)
+<ul>
+<li><span class="math inline">\(\beta_i(t) = \sum_{j=1}^N a_{ij}b_{j}(o_{t+1}) \beta_j(t+1)\)</span></li>
+</ul></li>
+<li><strong>Conclusion</strong>: sum over the first column
+<ul>
+<li><span class="math inline">\(P(O|\theta) = \sum_{i=1}^N \pi_i b_i(o_1) \beta_i(1)\)</span></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="baum-welch-bw-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="baum-welch-bw-algorithm">Baum-Welch (BW) Algorithm</h3>
+<ul>
+<li>Given observation sequence <span class="math inline">\(O\)</span>, no state sequence <span class="math inline">\(S\)</span>, how do we choose the “best” parameters <span class="math inline">\(\theta = (\pi, T, B)\)</span>?</li>
+<li>Want <span class="math inline">\(\theta\)</span> that maximizes <span class="math inline">\(P(O|\theta)\)</span></li>
+<li>Cannot use MLE because we do not have the state sequence</li>
+<li>Use an <strong>unsupervised learning</strong> algorithm called Baum-Welch (Expectation-Maximization)</li>
+</ul>
+<section id="high-level-idea" class="level4">
+<h4 class="anchored" data-anchor-id="high-level-idea">High-level Idea</h4>
+<ul>
+<li>Initialize <span class="math inline">\(\theta = (\pi, T, B)\)</span> (guess) then iteratively update them</li>
+<li>Combines the forward (get <span class="math inline">\(alpha\)</span>) and backward (get <span class="math inline">\(beta\)</span>) procedures</li>
+<li><span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are combined to represent the probability of an entire observation sequence</li>
+<li>Define <span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\xi\)</span> to update the parameters
+<ul>
+<li><span class="math inline">\(\gamma_i(t)\)</span>: probability of being in state <span class="math inline">\(i\)</span> at time <span class="math inline">\(t\)</span> given entire observation sequence <span class="math inline">\(O\)</span></li>
+<li><span class="math inline">\(\xi_{ij}(t)\)</span>: probability of transitioning from state <span class="math inline">\(i\)</span> to state <span class="math inline">\(j\)</span> at time <span class="math inline">\(t\)</span> to <span class="math inline">\(t+1\)</span> given entire observation sequence <span class="math inline">\(O\)</span> regarless of previous and future states</li>
+</ul></li>
+<li>These probabilities are used to compute the expected:
+<ul>
+<li>Number of times in state <span class="math inline">\(i\)</span></li>
+<li>Number of transitions from state <span class="math inline">\(i\)</span> to state <span class="math inline">\(j\)</span></li>
+</ul></li>
+<li>Repeat until convergence</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="topic-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="topic-modeling">Topic Modeling</h2>
+<ul>
+<li><strong>Motivation</strong>:
+<ul>
+<li>Humans are good at identifying topics in documents.</li>
+<li>But, it is difficult to do this at scale. (e.g., 1000s of documents)</li>
+</ul></li>
+</ul>
+<section id="how-to-do-topic-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-do-topic-modeling">How to do Topic Modeling?</h3>
+<ul>
+<li>Common to use unsupervised learning techniques
+<ul>
+<li>Given hyperparameter <span class="math inline">\(K\)</span>, we want to find <span class="math inline">\(K\)</span> topics.</li>
+</ul></li>
+<li>In unsupervised, a common model:
+<ul>
+<li>Input:
+<ul>
+<li><span class="math inline">\(D\)</span> documents</li>
+<li><span class="math inline">\(K\)</span> topics</li>
+</ul></li>
+<li>Output:
+<ul>
+<li>Topic-word association: for each topic, what words describe that topic?</li>
+<li>Document-topic association: for each document, what topics are in that document?</li>
+</ul></li>
+</ul></li>
+<li>Common approaches:
+<ol type="1">
+<li><strong>Latent Semantic Analysis (LSA)</strong></li>
+<li><strong>Latent Dirichlet Allocation (LDA)</strong></li>
+</ol></li>
+</ul>
+</section>
+<section id="latent-semantic-analysis-lsa" class="level3">
+<h3 class="anchored" data-anchor-id="latent-semantic-analysis-lsa">Latent Semantic Analysis (LSA)</h3>
+<ul>
+<li>Singular Value Decomposition (SVD) of the term-document matrix. See <a href="https://mds.farrandi.com/block_5/563_unsup_learn/563_unsup_learn#lsa-latent-semantic-analysis">LSA notes from 563</a>.</li>
+</ul>
+<p><span class="math display">\[X_{n \times d} \approx Z_{n \times k}W_{k \times d}\]</span></p>
+<ul>
+<li><span class="math inline">\(n\)</span>: number of documents, <span class="math inline">\(d\)</span>: number of words, <span class="math inline">\(k\)</span>: number of topics</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> TruncatedSVD</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>lsa_pipe <span class="op">=</span> make_pipeline(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    CountVectorizer(stop_words<span class="op">=</span><span class="st">"english"</span>), TruncatedSVD(n_components<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> lsa_pipe.fit_transform(toy_df[<span class="st">"text"</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="latent-dirichlet-allocation-lda" class="level3">
+<h3 class="anchored" data-anchor-id="latent-dirichlet-allocation-lda">Latent Dirichlet Allocation (LDA)</h3>
+<ul>
+<li>Bayesian, generative, and unsupervised model</li>
+<li>Developed by <a href="https://www.cs.columbia.edu/~blei/">David Blei</a> and colleagues in 2003
+<ul>
+<li>One of the most cited papers in computer science</li>
+</ul></li>
+<li><strong>Document-topic distribution</strong> or <strong>topic proportions</strong> <span class="math inline">\(\theta\)</span>:
+<ul>
+<li>Each document is considered a mixture of topics</li>
+</ul></li>
+<li><strong>Topic-word distribution</strong>:
+<ul>
+<li>Each topic is considered a mixture of words</li>
+<li>This is from all documents</li>
+</ul></li>
+</ul>
+<section id="high-level-lda-algorithm" class="level4">
+<h4 class="anchored" data-anchor-id="high-level-lda-algorithm">High-level LDA Algorithm</h4>
+<ol start="0" type="1">
+<li>Set the number of topics <span class="math inline">\(K\)</span></li>
+<li>Randomly assign each word in each document to a topic</li>
+<li>For each document <span class="math inline">\(d\)</span>:
+<ul>
+<li>Choose a distribution over topics <span class="math inline">\(\theta\)</span> from a <strong>Dirichlet prior</strong>
+<ul>
+<li>Use <strong>dirichlet</strong> distribution because it is conjugate priot (same form as posterior)</li>
+</ul></li>
+<li>For each word in the document:
+<ul>
+<li>Choose a topic from the document’s topic distribution <span class="math inline">\(\theta\)</span></li>
+<li>Choose a word from the topic’s word distribution <br></li>
+</ul></li>
+</ul></li>
+</ol>
+<ul>
+<li>Fit using Bayesian inference (most commonly MCMC)</li>
+</ul>
+</section>
+<section id="gibbs-sampling" class="level4">
+<h4 class="anchored" data-anchor-id="gibbs-sampling">Gibbs Sampling</h4>
+<ul>
+<li><p>A Markov Chain Monte Carlo (MCMC) method</p></li>
+<li><p>Very accurate, but slow (alternative is <strong>Variational Inference</strong>, which is faster but less accurate)</p></li>
+<li><p>Used to approximate the posterior distribution for document-topic and topic-word distributions</p></li>
+<li><p><strong>Main steps</strong>:</p>
+<ol type="1">
+<li><p><strong>Initialization</strong>: Randomly assign each word in each document to a topic <img src="images/5_gibbs_1.png" width="600"></p></li>
+<li><p><strong>Update topic-word assignments</strong>:</p>
+<ul>
+<li>Decrease count of current word in both topic and document distributions</li>
+<li>Reassign word to a new topic based on probabilities <img src="images/5_gibbs_2.png" width="300"> <img src="images/5_gibbs_3.png" width="300"></li>
+</ul></li>
+<li><p><strong>Iterate</strong> until convergence <img src="images/5_gibbs_4.png" width="600"></p></li>
+</ol></li>
+</ul>
+</section>
+</section>
+<section id="topic-modeling-in-python" class="level3">
+<h3 class="anchored" data-anchor-id="topic-modeling-in-python">Topic Modeling in Python</h3>
+<ul>
+<li>3 Main components:
+<ol type="1">
+<li>Preprocess corpus</li>
+<li>Train LDA (use <code>sklearn</code> or <code>gensim</code>)</li>
+<li>Interpret results</li>
+</ol></li>
+</ul>
+<section id="preprocess-corpus" class="level4">
+<h4 class="anchored" data-anchor-id="preprocess-corpus">Preprocess Corpus</h4>
+<ul>
+<li>Crucial to preprocess text data before training LDA</li>
+<li>Need tokenization, lowercasing, removing punctuation, stopwords</li>
+<li>Optionally, lemmatization or POS tagging</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">"en_core_web_md"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> preprocess_spacy(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    doc,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    min_token_len<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    irrelevant_pos<span class="op">=</span>[<span class="st">"ADV"</span>, <span class="st">"PRON"</span>, <span class="st">"CCONJ"</span>, <span class="st">"PUNCT"</span>, <span class="st">"PART"</span>, <span class="st">"DET"</span>, <span class="st">"ADP"</span>],</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">  Preprocess a document using spaCy</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">  [Tokenize, remove stopwords, minimum token length, irrelevant POS tags, lemmatization]</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    clean_text <span class="op">=</span> []</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> token <span class="kw">in</span> doc:</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            token.is_stop <span class="op">==</span> <span class="va">False</span>  <span class="co"># Check if it's not a stopword</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="kw">and</span> <span class="bu">len</span>(token) <span class="op">&gt;</span> min_token_len  <span class="co"># Check if the word meets minimum threshold</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="kw">and</span> token.pos_ <span class="kw">not</span> <span class="kw">in</span> irrelevant_pos</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        ):  <span class="co"># Check if the POS is in the acceptable POS tags</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            lemma <span class="op">=</span> token.lemma_  <span class="co"># Take the lemma of the word</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            clean_text.append(lemma.lower())</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">" "</span>.join(clean_text)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>wiki_df <span class="op">=</span> [preprocess_spacy(doc) <span class="cf">for</span> doc <span class="kw">in</span> nlp.pipe(wiki_df[<span class="st">"text"</span>])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="train-lda" class="level4">
+<h4 class="anchored" data-anchor-id="train-lda">Train LDA</h4>
+<ul>
+<li>With <code>sklearn</code>:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> LatentDirichletAllocation</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> CountVectorizer()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>dtm <span class="op">=</span> vectorizer.fit_transform(wiki_df[<span class="st">"text_pp"</span>])</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>n_topics <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>lda <span class="op">=</span> LatentDirichletAllocation(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    n_components<span class="op">=</span>n_topics, learning_method<span class="op">=</span><span class="st">"batch"</span>, max_iter<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>document_topics <span class="op">=</span> lda.fit_transform(dtm)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the topic-word distribution</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>sorting <span class="op">=</span> np.argsort(lda.components_, axis<span class="op">=</span><span class="dv">1</span>)[:, ::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> np.array(vectorizer.get_feature_names_out())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>With <code>gensim</code>:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gensim</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gensim.corpora <span class="im">import</span> Dictionary</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gensim.models <span class="im">import</span> LdaModel</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> [doc.split() <span class="cf">for</span> doc <span class="kw">in</span> wiki_df[<span class="st">"text_pp"</span>].tolist()]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>dictionary <span class="op">=</span> Dictionary(corpus) <span class="co"># Create a vocabulary for the lda model</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get document-term matrix</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>doc_term_matrix <span class="op">=</span> [dictionary.doc2bow(doc) <span class="cf">for</span> doc <span class="kw">in</span> corpus]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Train LDA model</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>num_topics <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>lda <span class="op">=</span> LdaModel(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    corpus<span class="op">=</span>doc_term_matrix,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    id2word<span class="op">=</span>dictionary,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    num_topics<span class="op">=</span>num_topics,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    passes<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Main hyperparameters read more about them in the <a href="https://radimrehurek.com/gensim/models/ldamodel.html">documentation</a>
+<ul>
+<li><code>num_topics</code>/ <code>K</code>: number of topics</li>
+<li><code>alpha</code>: Prior on document-topic distribution
+<ul>
+<li>High alpha: documents are likely to be a mixture of many topics</li>
+<li>Low alpha: documents are likely to be a mixture of few topics</li>
+</ul></li>
+<li><code>eta</code>: Prior on topic-word distribution
+<ul>
+<li>High eta: topics are likely to be a mixture of many words</li>
+<li>Low eta: topics are likely to be a mixture of few words</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="interpret-results" class="level4">
+<h4 class="anchored" data-anchor-id="interpret-results">Interpret Results</h4>
+<ul>
+<li>Since this is unsupervised, we need to interpret the topics ourselves</li>
+<li>Idea is to tell a story to humans and what we should care about and evaluate</li>
+<li><strong>Common methods</strong>:
+<ul>
+<li>Look at the top words in each topic and make judgements
+<ul>
+<li><strong>Word Intrusion</strong>: Add a random word to the top words and see if it is noticed</li>
+</ul></li>
+<li>Extrinsic evaluation: Evaluate whether topic nodel with current hyperparameters improves the results of task or not</li>
+<li>Quantify topic interpretability with metrics like <strong>Coherence Score</strong>
+<ul>
+<li>Use <code>Gensim</code>’s <code>CoherenceModel</code> to calculate coherence score</li>
+<li>Score is between -1 and 1, higher is better</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="recurrent-neural-networks-rnns" class="level2">
+<h2 class="anchored" data-anchor-id="recurrent-neural-networks-rnns">Recurrent Neural Networks (RNNs)</h2>
+<section id="motivation" class="level3">
+<h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
+<ul>
+<li>Recall when modelling sequences:
+<ul>
+<li>Order matters</li>
+<li>Sequence length can vary</li>
+<li>Need to capture long-term dependencies</li>
+</ul></li>
+<li><strong>Problem with Markov models</strong>:
+<ul>
+<li>Only capture short-term dependencies</li>
+<li>Sparsity problem: if there are a lot of states, the transition matrix will be very sparse</li>
+<li>Also need large memory to store the n-grams</li>
+<li>MM do not scale well</li>
+</ul></li>
+<li>To get closer to the ideal language model (closer to ChatGPT), here we will learn <strong>neural sequencing models</strong>.</li>
+<li><strong>Problem with Feedforward Neural Networks</strong>:
+<ul>
+<li>Lose temporal information</li>
+<li>All connects are fully connected and flow forward (no loops)</li>
+</ul></li>
+</ul>
+</section>
+<section id="introduction-to-rnns" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-to-rnns">Introduction to RNNs</h3>
+<ul>
+<li><strong>RNNs</strong> are a type of neural network that can model sequences
+<ul>
+<li>Similar to NN, it is supervised learning</li>
+</ul></li>
+<li>Solves the limited memory problem of Markov models
+<ul>
+<li>Memory only scales with number of words <span class="math inline">\(O(n)\)</span></li>
+</ul></li>
+<li>They use <strong>recurrent connections</strong> to maintain a state over time. <img src="images/6_rnn_diag.png" width="350"> <em>source: <a href="https://cs224d.stanford.edu/lectures/CS224d-Lecture8.pdf">Stanford CS224d slides</a></em></li>
+<li>Connect the hidden layer to itself</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pseudocode for RNN</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rnn <span class="op">=</span> RNN()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ff <span class="op">=</span> FeedForwardNN()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>hidden_state <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] <span class="co"># depenpent on the number of hidden units</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word <span class="kw">in</span> <span class="bu">input</span>:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    output, hidden_state <span class="op">=</span> rnn(word, hidden_state)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> ff(hidden_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/6_rnn_eg.png" width="400"></p>
+<p><em>source: <a href="https://www.youtube.com/watch?v=LHXXI4-IEns&amp;t=585s">Video on RNN</a></em></p>
+<ul>
+<li>The states above are hidden layers in each time step
+<ul>
+<li>Similar to HMMs, but state is continuous, high dimensional, and much richer</li>
+</ul></li>
+<li>Each state contains information about the whole past sequence</li>
+<li>Not that different from feedforward NNs
+<ul>
+<li>Still does forward calculation</li>
+<li>Just have new set of weights <span class="math inline">\(U\)</span> that connect previous hidden state to current hidden state</li>
+<li>These weights are also trained via backpropagation</li>
+</ul></li>
+</ul>
+</section>
+<section id="parameters-in-rnns" class="level3">
+<h3 class="anchored" data-anchor-id="parameters-in-rnns">Parameters in RNNs</h3>
+<ul>
+<li>There are 3 weight matrices in RNNs:
+<ul>
+<li><strong><span class="math inline">\(W\)</span>: input -&gt; hidden</strong>
+<ul>
+<li>size: <span class="math inline">\(d_{\text{input}} \times d_{\text{hidden}}\)</span></li>
+</ul></li>
+<li><strong><span class="math inline">\(V\)</span>: hidden -&gt; output</strong>
+<ul>
+<li>size: <span class="math inline">\(d_{\text{hidden}} \times d_{\text{output}}\)</span></li>
+</ul></li>
+<li><strong><span class="math inline">\(U\)</span>: hidden -&gt; hidden</strong>
+<ul>
+<li>size: <span class="math inline">\(d_{\text{hidden}} \times d_{\text{hidden}}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Important point</strong>: All weights between time steps are shared
+<ul>
+<li>Allows model to learn patterns that are independent of their position in the sequence</li>
+</ul></li>
+</ul>
+</section>
+<section id="forward-pass" class="level3">
+<h3 class="anchored" data-anchor-id="forward-pass">Forward Pass</h3>
+<p><img src="images/6_forward_pass.png" width="300"></p>
+<ul>
+<li>Computing new state <span class="math inline">\(h_t\)</span>:
+<ul>
+<li><span class="math inline">\(h_t = g(Uh_{t-1} + Wx_t + b_1)\)</span>
+<ul>
+<li><span class="math inline">\(g()\)</span>: activation function</li>
+<li><span class="math inline">\(x_t\)</span>: input at time <span class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(b_1\)</span>: bias</li>
+</ul></li>
+</ul></li>
+<li>Computing output <span class="math inline">\(y_t\)</span>:
+<ul>
+<li><span class="math inline">\(y_t = \text{softmax}(Vh_t + b_2)\)</span></li>
+</ul></li>
+</ul>
+<section id="forward-pass-with-pytorch" class="level4">
+<h4 class="anchored" data-anchor-id="forward-pass-with-pytorch">Forward Pass with PyTorch</h4>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.nn <span class="im">import</span> RNN</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>INPUT_SIZE <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>HIDDEN_SIZE <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>NUM_LAYERS <span class="op">=</span> <span class="dv">1</span> <span class="co"># number of hidden layers</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>rnn <span class="op">=</span> nn.RNN(INPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>h0 <span class="op">=</span> torch.randn(NUM_LAYERS, HIDDEN_SIZE) <span class="co"># initial hidden state</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># PyTorch gives output and hidden state</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>output, hn <span class="op">=</span> rnn(<span class="bu">input</span>, h0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Simple Sentiment RNN Class:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SentimentRNN(nn.Module):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, vocab_size, embedding_dim, hidden_dim, output_dim):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(SentimentRNN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.embedding <span class="op">=</span> nn.Embedding(vocab_size, embedding_dim)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rnn <span class="op">=</span> nn.RNN(embedding_dim, hidden_dim, batch_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc <span class="op">=</span> nn.Linear(hidden_dim, output_dim)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, text):</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        embedded <span class="op">=</span> <span class="va">self</span>.embedding(text)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        output, hidden <span class="op">=</span> <span class="va">self</span>.rnn(embedded)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> torch.equal(output[:, <span class="op">-</span><span class="dv">1</span>, :], hidden.squeeze(<span class="dv">0</span>))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.fc(hidden.squeeze(<span class="dv">0</span>))</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SentimentRNN(vocab_size<span class="op">=</span>vocab_size, embedding_dim<span class="op">=</span><span class="dv">100</span>, hidden_dim<span class="op">=</span><span class="dv">128</span>, output_dim<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="training-rnns" class="level4">
+<h4 class="anchored" data-anchor-id="training-rnns">Training RNNs</h4>
+<ul>
+<li>Since it is supervised, we have: training set, loss function, and backpropagation</li>
+<li>Need to tailor backpropagation for RNNs
+<ul>
+<li>Since hidden layers are connected to themselves, we need to backpropagate through time</li>
+<li><strong>Backpropagation Through Time (BPTT)</strong>
+<ul>
+<li>Unroll the RNN for a fixed number of time steps</li>
+<li>Calculate the loss at each time step</li>
+<li>Sum the losses and backpropagate</li>
+<li>Update the weights</li>
+</ul></li>
+<li>See <a href="https://gist.github.com/karpathy/d4dee566867f8291f086">the code</a> for the code implementation by Andrej Karpathy</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="rnn-applications" class="level3">
+<h3 class="anchored" data-anchor-id="rnn-applications">RNN Applications</h3>
+<p>Possible RNN architectures: <img src="images/6_rnn_arch.png" width="600"></p>
+<ul>
+<li><strong>Sequence Labelling</strong>:
+<ul>
+<li>E.g. Named Entity Recognition (NER) or Part-of-Speech (POS) tagging</li>
+<li>Many-to-many architecture</li>
+<li>Input are pre-trained word embeddings, outputs are tag probabilities by softmax</li>
+</ul></li>
+<li><strong>Sequence Classification</strong>:
+<ul>
+<li>E.g. Spam detection or sentiment analysis</li>
+<li>Similar to pseudo-code above, feed result of last hidden layer to a feedforward NN</li>
+<li>Many-to-one architecture</li>
+</ul></li>
+<li><strong>Text Generation</strong>:
+<ul>
+<li>E.g. ChatGPT</li>
+<li>One-to-many architecture</li>
+<li>Input is a seed, output is a sequence of words</li>
+</ul></li>
+<li><strong>Image captioning</strong>:
+<ul>
+<li>E.g. Show and Tell</li>
+<li>Many-to-many architecture</li>
+<li>Input is an image, output is a sequence of words</li>
+</ul></li>
+</ul>
+</section>
+<section id="stacked-rnns" class="level3">
+<h3 class="anchored" data-anchor-id="stacked-rnns">Stacked RNNs</h3>
+<ul>
+<li>Use <em>sequence of outputs</em> from one RNN as the <em>sequence of inputs</em> to another RNN</li>
+<li>Generally outperform single-layer RNNs</li>
+<li>Can learn different level of abstraction in each layer</li>
+<li>Number of layers is a hyperparameter, remember that higher also means more training cost</li>
+</ul>
+</section>
+<section id="bidirectional-rnns" class="level3">
+<h3 class="anchored" data-anchor-id="bidirectional-rnns">Bidirectional RNNs</h3>
+<ul>
+<li>Use case is in POS tagging it is useful to know words both before and after the current word</li>
+<li>Bidirectional RNNs have two hidden layers, one for forward and one for backward
+<ul>
+<li>Combines two independent RNNs</li>
+</ul></li>
+</ul>
+</section>
+<section id="problems-with-rnns" class="level3">
+<h3 class="anchored" data-anchor-id="problems-with-rnns">Problems with RNNs</h3>
+<p>3 Main problems:</p>
+<ol type="1">
+<li><strong>Hard to remember relevant information</strong>
+<ul>
+<li>Vanishing gradients because of long sequences</li>
+<li>Case example: <code>The students in the exam where the fire alarm is ringing (are) really stressed.</code>
+<ul>
+<li>Need to retain information that students are plural so use “are”</li>
+</ul></li>
+</ul></li>
+<li><strong>Hard to optimize</strong></li>
+<li><strong>Hard to parallelize</strong></li>
+</ol>
+</section>
+</section>
+<section id="transformers" class="level2">
+<h2 class="anchored" data-anchor-id="transformers">Transformers</h2>
+<section id="intuition-for-transformers" class="level3">
+<h3 class="anchored" data-anchor-id="intuition-for-transformers">Intuition for Transformers</h3>
+<ul>
+<li>Approach to sequence processing without using RNNs or LSTMs</li>
+<li><strong>Idea</strong>: Build up richer and richer <strong>contextual representations</strong> of words across series of transformer layers
+<ul>
+<li><strong>Contextual representation</strong>: Representation of a word that depends on the context in which it appears</li>
+</ul></li>
+<li>GPT-3: 96 layers of transformers</li>
+<li><strong>Benefits</strong>:
+<ul>
+<li><strong>Parallelization</strong>: Can process all words in parallel</li>
+<li><strong>Long-range dependencies</strong>: Can learn dependencies between words that are far apart</li>
+</ul></li>
+<li><strong>Two main components</strong>:
+<ul>
+<li><strong>Self-attention mechanism</strong></li>
+<li><strong>Positional embeddings/encodings</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="self-attention-mechanism" class="level3">
+<h3 class="anchored" data-anchor-id="self-attention-mechanism">Self-Attention Mechanism</h3>
+<ul>
+<li><strong>Goal</strong>: To look broadly into the context and tells us how to integrate the representations of context words to build representation of a word</li>
+<li><strong>Idea</strong>: Compute attention scores between each pair of words in a sentence
+<ul>
+<li><strong>Attention score</strong>: How much one word should focus on another word</li>
+</ul></li>
+<li><strong>Example</strong>: “She plucked the guitar strings , ending with a melancholic note.”
+<ul>
+<li>Attention score from <code>note</code> to <code>she</code> is low</li>
+<li>Attention score from <code>note</code> to <code>guitar</code> is high</li>
+<li>Attention score from <code>note</code> to <code>melancholic</code> is very high</li>
+</ul></li>
+</ul>
+<section id="high-level-overview" class="level4">
+<h4 class="anchored" data-anchor-id="high-level-overview">High-Level Overview</h4>
+<p>The basic steps of the self-attention mechanism are as follows:</p>
+<ol type="1">
+<li>Compare each word to every other word in the sentence (usually by <strong>dot product</strong>)</li>
+<li>Apply softmax to derive a probability distribution over all words</li>
+<li>Compute a weighted sum of all words, where the weights are the probabilities from step 2</li>
+</ol>
+<ul>
+<li>Operations can be done in parallel</li>
+</ul>
+</section>
+<section id="query-key-value" class="level4">
+<h4 class="anchored" data-anchor-id="query-key-value">Query, Key, Value</h4>
+<ul>
+<li><p><strong>Query</strong> <span class="math inline">\(W^Q\)</span>: Word whose representation we are trying to compute (<strong>current focus of attention</strong>)</p></li>
+<li><p><strong>Key</strong> <span class="math inline">\(W^K\)</span>: Word that we are comparing the query to</p></li>
+<li><p><strong>Value</strong> <span class="math inline">\(W^V\)</span>: Word that we are trying to compute the representation of (output for the <strong>current focus of attention</strong>)</p></li>
+<li><p>We can assume all of them have dimension … [TODO]</p></li>
+</ul>
+</section>
+<section id="self-attention-architecture" class="level4">
+<h4 class="anchored" data-anchor-id="self-attention-architecture">Self-Attention Architecture</h4>
+<p><em>All diagrams in this section is made by my friend Ben Chen. Check out his <a href="https://benchenblog.notion.site/Inside-the-Black-Box-of-Self-attention-b0feb3a57b51463f907a643468e4912d">blog on self-attention</a>.</em></p>
+<ul>
+<li><p>All inputs <span class="math inline">\(a_i\)</span> are connected to each other to make outputs <span class="math inline">\(b_i\)</span> <img src="images/7_sa1.png" width="300"></p></li>
+<li><p>This is a breakdown of how each input <span class="math inline">\(a_i\)</span> is connected to each output <span class="math inline">\(b_i\)</span> using the query, key, and value <img src="images/7_sa2.png" width="600"></p>
+<ul>
+<li>In the example our <strong>query is <span class="math inline">\(a_1\)</span></strong>, and our keys are <span class="math inline">\(a_2\)</span>, <span class="math inline">\(a_3\)</span>, and <span class="math inline">\(a_4\)</span></li>
+</ul></li>
+</ul>
+<p><em>Note</em>: For LLMs, not all the sequences are connected to each other, only words before the current word are connected to the current word.</p>
+<section id="breakdown-of-the-steps" class="level5">
+<h5 class="anchored" data-anchor-id="breakdown-of-the-steps">Breakdown of the steps</h5>
+<ol type="1">
+<li><p>Get the <span class="math inline">\(\alpha\)</span> values</p>
+<ul>
+<li><p>Can either do a dot product approach (more common) <img src="images/7_sa3.png" width="300"></p></li>
+<li><p>Or an additive approach with an activation function (like tanh) <img src="images/7_sa4.png" width="475"></p></li>
+</ul></li>
+<li><p>Apply softmax to get <span class="math inline">\(\alpha'\)</span> values</p></li>
+<li><p>Multiply <span class="math inline">\(\alpha'\)</span> values by the matrix product <span class="math inline">\(W^V \cdot A\)</span> to get the output <span class="math inline">\(b_1\)</span></p></li>
+</ol>
+</section>
+<section id="scaling-the-dot-product" class="level5">
+<h5 class="anchored" data-anchor-id="scaling-the-dot-product">Scaling the Dot Product</h5>
+<ul>
+<li>Result of the dot product can be very large</li>
+<li>They are scaled before applying softmax</li>
+<li>Common scaling: <span class="math inline">\(score(x_i, x_j) = \frac{x_i \cdot x_j}{\sqrt{d}}\)</span>
+<ul>
+<li><span class="math inline">\(d\)</span>: Dimensionsionality of the query and key vectors</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="the-steps-in-matrix-form" class="level4">
+<h4 class="anchored" data-anchor-id="the-steps-in-matrix-form">The Steps in Matrix Form</h4>
+<p>Let <span class="math inline">\(X\)</span> be matrix of all input <span class="math inline">\(x_i\)</span> vectors (Shape: <span class="math inline">\(N \times d\)</span>)</p>
+<ul>
+<li><span class="math inline">\(Q_{N \times d_k} = X \cdot W^Q_{d \times d_k}\)</span></li>
+<li><span class="math inline">\(K_{N \times d_k} = X \cdot W^K_{d \times d_k}\)</span></li>
+<li><span class="math inline">\(V_{N \times d_v} = X \cdot W^V_{d \times d_v}\)</span></li>
+</ul>
+<p>We can then get <span class="math inline">\(\alpha\)</span> easily by <span class="math inline">\(Q \times K\)</span> (shape: <span class="math inline">\(N \times N\)</span>)</p>
+<ul>
+<li>Recall <span class="math inline">\(N\)</span> is the number of words in the sentence</li>
+</ul>
+<p><img src="images/7_qk.png" width="400"></p>
+<p>Then to get the <span class="math inline">\(\text{Self Attention}(Q,K,V) = \text{softmax}(\frac{Q \times K}{\sqrt{d_k}}) \times V\)</span></p>
+<p>But for LLMs, we only want to look at the words before the current word, so:</p>
+<p><img src="images/7_qk_llm.png" width="400"></p>
+</section>
+</section>
+<section id="positional-embeddings" class="level3">
+<h3 class="anchored" data-anchor-id="positional-embeddings">Positional Embeddings</h3>
+<ul>
+<li>Using self-attention mechanism, we can learn dependencies between words, but we lose the order of words</li>
+<li><strong>Solution</strong>: Add positional embeddings to the input embeddings
+<ul>
+<li><strong>Positional embeddings</strong>: Embeddings that encode the position of a word in a sentence</li>
+</ul></li>
+</ul>
+</section>
+<section id="multi-head-attention" class="level3">
+<h3 class="anchored" data-anchor-id="multi-head-attention">Multi-Head Attention</h3>
+<ul>
+<li><p>Different words in a sentence can relate to each other in different ways simultaneously</p>
+<ul>
+<li>e.g.&nbsp;“The cat was scared because it didn’t recognize me in my mask”</li>
+</ul></li>
+<li><p>Single attention layer might not be able to capture all these relationships</p></li>
+<li><p>Transformer uses multiple attention layers in parallel</p>
+<ul>
+<li>Each layer is called a <strong>head</strong></li>
+<li>Each head learns different relationships between words</li>
+</ul></li>
+</ul>
+<p><img src="images/7_multi_att.png" width="500"></p>
+<p><a href="https://web.stanford.edu/~jurafsky/slp3/9.pdf">source</a></p>
+</section>
+<section id="transformer-blocks" class="level3">
+<h3 class="anchored" data-anchor-id="transformer-blocks">Transformer Blocks</h3>
+<p><img src="images/7_trf_blk.png" width="400"></p>
+<ul>
+<li>Each Transformer block consists of:
+<ul>
+<li><strong>Multi-head self-attention layer</strong></li>
+<li><strong>Feed-forward neural network</strong>:
+<ul>
+<li><span class="math inline">\(N\)</span> network</li>
+<li>1 hidden layer (normally higher dimensionality than input), 2 weight matrices</li>
+</ul></li>
+<li><strong>Residual connections</strong>
+<ul>
+<li>Add some “skip” connections because improves learning and gives more information to the next layer</li>
+</ul></li>
+<li><strong>Layer normalization</strong>
+<ul>
+<li>Similar to <code>StandardScaler</code>, make mean 0 and variance 1</li>
+<li>To keep values in a certain range</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+  T^1 = \text{SelfAttention}(X)\\
+  T^2 = X + T^1\\
+  T^3 = \text{LayerNorm}(T^2)\\
+  T^4 = \text{FFN}(T^3)\\
+  T^5 = T^4 + T^3\\
+  H = \text{LayerNorm}(T^5)
+\]</span></p>
+<ul>
+<li>Input and Output dimensions are matched so they can be “stacked”</li>
+</ul>
+<section id="transformer-in-llms" class="level4">
+<h4 class="anchored" data-anchor-id="transformer-in-llms">Transformer in LLMs</h4>
+<p><img src="images/7_trf_llm.png" width="400"></p>
+<ul>
+<li>Take output of <span class="math inline">\(h_N\)</span> and get logit vector of shape <span class="math inline">\(1 \times V\)</span> where <span class="math inline">\(V\)</span> is the vocabulary size
+<ul>
+<li><span class="math inline">\(h_N\)</span> -&gt; unembedding layer -&gt; logit vector -&gt; softmax -&gt; probability distribution</li>
+</ul></li>
+<li>This probability distribution is used to predict the next word</li>
+<li>This is a specific example of a <strong>decoder</strong> in a transformer</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="types-of-transformers" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-transformers">Types of Transformers</h2>
+<ol type="1">
+<li><strong>Decoder-only Transformer</strong>
+<ul>
+<li><strong>Example</strong>: GPT-3</li>
+<li><strong>Training</strong>: Trained on unsupervised data</li>
+<li><strong>Use case</strong>: Language modeling, text generation</li>
+</ul></li>
+<li><strong>Encoder-only Transformer</strong>
+<ul>
+<li><strong>Example</strong>: BERT</li>
+<li><strong>Training</strong>: Trained on supervised data</li>
+<li><strong>Use case</strong>: Text classification, question answering, sentiment analysis</li>
+</ul></li>
+<li><strong>Encoder-Decoder Transformer</strong>
+<ul>
+<li><strong>Example</strong>: T5, BART</li>
+<li><strong>Training</strong>: Trained on supervised data</li>
+<li><strong>Use case</strong>: Machine translation, summarization</li>
+</ul></li>
+</ol>
+<section id="decoder-only-transformer" class="level3">
+<h3 class="anchored" data-anchor-id="decoder-only-transformer">Decoder-only Transformer</h3>
+<ul>
+<li><strong>Training</strong>: Segment corpus of text into input-output pairs</li>
+<li>To predict the next word, given input words</li>
+<li>Self-attention only sees words before the current word
+<ul>
+<li>Use a <strong>causal mask</strong> to prevent the model from looking at future words</li>
+</ul></li>
+</ul>
+<section id="autoregressive-text-generation" class="level4">
+<h4 class="anchored" data-anchor-id="autoregressive-text-generation">Autoregressive text generation</h4>
+<ul>
+<li>Once trained, can generate text autoregressively
+<ul>
+<li>Incrementally generating words by sampling the next word based on previous choices</li>
+<li>Sampling part is similar to generation with Markov models (but with more context and long-range dependencies)</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="encoder-only-transformer" class="level3">
+<h3 class="anchored" data-anchor-id="encoder-only-transformer">Encoder-only Transformer</h3>
+<ul>
+<li>Mainly designed for a wide range of NLP tasks (e.g., text classification)</li>
+<li>It has <strong>bidirectional self-attention</strong>
+<ul>
+<li>Can look at all words in a sentence</li>
+<li>Can learn dependencies between words in both directions <img src="images/8_bidir.png" width="600"></li>
+</ul></li>
+<li><strong>Training</strong>:
+<ul>
+<li><strong>“fill in the blank” tasks/ cloze tasks</strong>
+<ul>
+<li>Model predicts the probability of missing words in a sentence, use cross-entropy loss</li>
+</ul></li>
+<li>Mask tokens and learn to recover them</li>
+<li><strong>Contextual embeddings</strong>: representations created by masked language models
+<ul>
+<li>Different to single vector embeddings from word2vec</li>
+<li>Each word has a different vector depending on the context</li>
+</ul></li>
+</ul></li>
+<li><strong>Transfer learning through fine-tuning</strong>:
+<ul>
+<li>GPT and BERT models are pre-trained on large corpora (very general)</li>
+<li>Can create interfaces from these models to downstream tasks</li>
+<li>Either freeze training or make minor adjustments to the model</li>
+</ul></li>
+</ul>
+</section>
+<section id="encoder-decoder-transformer" class="level3">
+<h3 class="anchored" data-anchor-id="encoder-decoder-transformer">Encoder-Decoder Transformer</h3>
+<ul>
+<li>For machine translation, summarization, etc.</li>
+<li><strong>High level architecture</strong>:
+<ul>
+<li><strong>Encoder</strong>: Takes input text and creates a representation
+<ul>
+<li>Similar transformer blocks as in the encoder-only transformer</li>
+</ul></li>
+<li><strong>Decoder</strong>: Takes the representation and generates the output text
+<ul>
+<li>More powerful block with extra cross-attention layer that can attend to all encoder words</li>
+</ul></li>
+<li><strong>Attention mechanism</strong>: Helps the decoder focus on different parts of the input text</li>
+</ul></li>
+</ul>
+</section>
+<section id="interim-summary" class="level3">
+<h3 class="anchored" data-anchor-id="interim-summary">Interim Summary</h3>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 24%">
+<col style="width: 25%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Decoder-only (e.g., GPT-3)</th>
+<th>Encoder-only (e.g., BERT, RoBERTa)</th>
+<th>Encoder-decoder (e.g., T5, BART)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Contextual Embedding Direction</td>
+<td>Unidirectional</td>
+<td>Bidirectional</td>
+<td>Bidirectional</td>
+</tr>
+<tr class="even">
+<td>Output Computation Based on</td>
+<td>Information earlier in the context</td>
+<td>Entire context (bidirectional)</td>
+<td>Encoded input context</td>
+</tr>
+<tr class="odd">
+<td>Text Generation</td>
+<td>Can naturally generate text completion</td>
+<td>Cannot directly generate text</td>
+<td>Can generate outputs naturally</td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td>MDS Cohort 8 is the ___</td>
+<td>MDS Cohort 8 is the best! → positive</td>
+<td>Input: Translate to Mandarin: MDS Cohort 8 is the best! Output: MDS 第八期是最棒的!</td>
+</tr>
+<tr class="odd">
+<td>Usage</td>
+<td>Recursive prediction over the sequence</td>
+<td>Used for classification tasks, sequence labeling taks and many other tasks</td>
+<td>Used for tasks requiring transformations of input (e.g., translation, summarization)</td>
+</tr>
+<tr class="even">
+<td>Textual Context Embeddings</td>
+<td>Produces unidirectional contextual embeddings and token distributions</td>
+<td>Compute bidirectional contextual embeddings</td>
+<td>Compute bidirectional contextual embeddings in the encoder part and unidirectional embeddings in the decoder part</td>
+</tr>
+<tr class="odd">
+<td>Sequence Processing</td>
+<td>Given a prompt <span class="math inline">\(X_{1:i}\)</span>, produces embeddings for <span class="math inline">\(X_{i+1}\)</span> to <span class="math inline">\(X_{L}\)</span></td>
+<td>Contextual embeddings are used for analysis, not sequential generation</td>
+<td>Encode input sequence, then decode to output sequence</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -11,7 +11,7 @@ Below are my list of notes for each course.
 | 511          | 1       | [Intro to Python](block_1/511_python/511_python.html)                 |
 | 521          | 1       | [Platforms](block_1/521_platforms/521_platforms.html)                 |
 | 523          | 1       | [R Programming](block_1/523_R/523_R.html)                             |
-| 551          | 1       | [Statistics and Probability](block_1/551_stats-and-prob/551_stats.md) |
+| 551          | 1       | [Statistics and Probability](block_1/551_stats-and-prob/551_stats.html) |
 | 512          | 2       | [Algorithms and Data Structures](block_2/512_algs_ds/512_algs_ds.html)|
 | 531          | 2       | [Data Visualization](block_2/531_viz/531_viz.html)                    |
 | 552          | 2       | [Statistical Interference](block_2/552_stat_inter/552_stat_inter.html)|
@@ -24,4 +24,7 @@ Below are my list of notes for each course.
 | 572          | 4       | [Supervised Learning II](block_4/572_sup_learn_2/572_sup_learn_2.html)|
 | 553          | 5       | [Statistical Inference II](block_5/553_stat_inf_2/553_stat_inf_2.html)|
 | 563          | 5       | [Unsupervised Learning](block_5/563_unsup_learn/563_unsup_learn.html) |
-| 574          | 5       | [Spatial and Temporal Models](block_5/574_spat_temp_mod/574_spat_temp.md)|
+| 574          | 5       | [Spatial and Temporal Models](block_5/574_spat_temp_mod/574_spat_temp.html)|
+| 575          | 6       | [Advanced Machine Learning](block_6/575_adv_ml/575_adv_ml.html)         |
+| 554          | 6       | [Experimentation and Causal Inference](block_6/554_exp_caus_inf/554_exp_caus_inf.html)|
+| 532          | 6       | [Dashboards](block_6/532_dashboards/532_dashboards.html)               |
